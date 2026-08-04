@@ -1,0 +1,801 @@
+iid,cust,sol,typ,dt,dur,notes,col8
+INT000001,83,Charles Thompson,MEETING,2021-07-01,1.6h,.,X
+INT000002,110,Lisa Johnson,Email,04/23/2022 00:00,83 mins,,
+INT000003,67,David Taylor,call,2023-09-20,43,N/A,
+INT000004,194,Jennifer Thomas,Call,25/06/2022,1.1h,Client satisfied,X
+INT000005,154,David Taylor,Letter,05/19/2021 00:00,1.6h,TBC,
+INT000006,174,Emma Wilson,EMAIL,17-02-21,80m,Client satisfied,X
+INT000007,31,Jennifer Thomas,MEETING,2022-06-30,68 mins,Follow up required,X
+I8,147,Lisa Johnson,Cal,2022-10-15,97m,Routine check-in,X
+INT000009,141,Jennifer Thomas,video,06/05/2021 00:00,31,,X
+INT000010,99,James Davies,email,16-04-23,64,,X
+INT000011,159,Susan Robinson,MEETING,06/02/2021 00:00,39 mins,Urgent matter,X
+I12,33,Patricia White,Ema,2023-05-23,13,N/A,X
+I13,55,Daniel Hughes,Chat,06-04-22,25,.,X
+INT000014,83,Michael Brown,Email,28-09-22,67m,.,X
+INT000015,129,Daniel Hughes,Email,22/06/2022,51m,TBC,
+INT000016,115,Charles Thompson,Chat,14-09-21,99m,,
+INT000017,42,Charles Thompson,video,18-10-21,51,Needs clarification,
+INT000018,9,Robert Smith,Cal,03/10/2021,19 mins,,
+I19,60,James Davies,VIDEO,24/11/2022,51,,
+INT000020,128,Andrew Roberts,Email,08-11-22,19,.,X
+I21,17,Robert Smith,Meeting,2022-09-13,11 mins,,X
+INT000022,51,Daniel Hughes,video,09/01/2023,63,,
+INT000023,87,Karen Edwards,Let,12-05-23,19,,X
+INT000024,85,Richard Evans,email,06/07/2023 00:00,1.6h,Urgent matter,X
+I25,82,Jennifer Thomas,Let,2022-09-03,27 mins,,X
+INT000026,171,Patricia White,Cal,07/30/2022 00:00,70m,Urgent matter,
+INT000027,194,Karen Edwards,Email,2022-11-05,50,.,
+INT000028,14,James Davies,call,24-12-21,90,,
+INT000029,164,Emma Wilson,Video,18-09-22,89m,Routine check-in,
+INT000030,169,Daniel Hughes,Let,24/10/2022,97 mins,Urgent matter,
+INT000031,1,Daniel Hughes,Meeting,08-02-22,56,,X
+INT000032,66,Lisa Johnson,chat,07-01-23,43,,
+INT000033,122,Michael Brown,CALL,2021-02-12,117 mins,.,X
+INT000034,59,Susan Robinson,VIDEO,22/01/2021,31,,X
+INT000035,183,Robert Smith,meeting,2022-06-29,117 mins,Urgent matter,
+INT000036,58,Richard Evans,EMAIL,02/11/2021 00:00,11 mins,.,
+INT000037,51,Michael Brown,Ema,18-12-21,97 mins,Client satisfied,X
+INT000038,29,Richard Evans,call,2021-03-16,69,Follow up required,X
+INT000039,39,Michael Brown,Cal,05/23/2022 00:00,16m,Urgent matter,X
+INT000040,145,Robert Smith,Meeting,12/28/2022 00:00,67 mins,Client satisfied,
+INT000041,142,Karen Edwards,Let,07/16/2023 00:00,11,Routine check-in,
+I42,33,Lisa Johnson,MEETING,2021-04-21,108,,X
+INT000043,64,Karen Edwards,MEETING,09/02/2021 00:00,72,,X
+INT000044,76,Sarah Jones,Chat,25/05/2023,1.9h,Client satisfied,
+I45,187,Daniel Hughes,Email,11/15/2023 00:00,57,N/A,X
+INT000046,6,Karen Edwards,Cal,2021-11-16,92 mins,Client satisfied,X
+INT000047,120,Daniel Hughes,call,2022-03-12,68,.,
+INT000048,15,Richard Evans,Call,2023-10-27,11,Urgent matter,
+INT000049,90,Daniel Hughes,VIDEO,22-06-21,72m,,
+INT000050,167,Michael Brown,Meeting,2021-07-30,1.2h,,X
+INT000051,125,Andrew Roberts,call,2023-10-04,68m,.,X
+INT000052,167,Daniel Hughes,Meeting,05-05-21,96 mins,,
+INT000053,74,Daniel Hughes,Letter,29-10-22,55m,,
+INT000054,198,David Taylor,VIDEO,06/12/2023,33,Urgent matter,X
+INT000055,110,Sarah Jones,Email,2023-05-06,13,,
+INT000056,31,Emma Wilson,Mee,01/29/2021 00:00,34,.,X
+INT000057,99,Robert Smith,Cha,03/21/2021 00:00,100,TBC,
+I58,194,Andrew Roberts,chat,2023-09-03,1.5h,TBC,X
+INT000059,160,Jennifer Thomas,CALL,2021-02-15,15 mins,,
+INT000060,199,Charles Thompson,MEETING,2023-06-05,105m,Routine check-in,
+INT000061,173,Emma Wilson,letter,08/29/2022 00:00,9m,Follow up required,X
+INT000062,170,Daniel Hughes,LETTER,2021-09-18,7,,
+I63,113,Patricia White,Vid,10-01-23,1.0h,Routine check-in,X
+I64,198,Lisa Johnson,Chat,2021-05-15,5,TBC,
+I65,163,Lisa Johnson,email,12/18/2021 00:00,77 mins,Needs clarification,X
+INT000066,129,Karen Edwards,Letter,2022-03-11,1.0h,Needs clarification,
+INT000067,47,Daniel Hughes,call,08-07-22,116 mins,Routine check-in,X
+INT000068,39,Andrew Roberts,Video,08/17/2022 00:00,32,Routine check-in,
+INT000069,150,Lisa Johnson,Ema,2021-12-03,91m,Client satisfied,
+INT000070,178,Jennifer Thomas,Mee,06/12/2021 00:00,25,TBC,X
+INT000071,123,Lisa Johnson,CHAT,06/26/2022 00:00,1.8h,Routine check-in,
+INT000072,147,Emma Wilson,letter,20/04/2022,71 mins,Needs clarification,X
+I73,166,Emma Wilson,VIDEO,13-06-21,119,Urgent matter,
+INT000074,75,Andrew Roberts,MEETING,2022-07-25,105m,Follow up required,
+INT000075,150,Andrew Roberts,Call,25-04-23,66,Follow up required,X
+I76,96,Lisa Johnson,MEETING,18/08/2021,73,Follow up required,
+INT000077,160,Sarah Jones,chat,23-12-21,34,.,X
+INT000078,58,James Davies,meeting,11/16/2021 00:00,106m,TBC,X
+INT000079,101,Richard Evans,Meeting,21/10/2023,40,Needs clarification,X
+INT000080,181,Michael Brown,Email,25-10-23,62m,Follow up required,
+INT000081,117,Daniel Hughes,Vid,26-09-22,39,TBC,
+INT000082,47,Sarah Jones,EMAIL,2022-03-25,1.4h,,
+INT000083,132,Andrew Roberts,meeting,2022-08-19,23m,Needs clarification,X
+INT000084,88,Charles Thompson,letter,29-07-22,1.2h,N/A,X
+INT000085,146,Charles Thompson,Video,25-06-21,73,Routine check-in,
+INT000086,144,Sarah Jones,letter,22/01/2022,71m,Needs clarification,X
+INT000087,37,Michael Brown,LETTER,05/04/2022 00:00,1.9h,Routine check-in,X
+I88,141,Richard Evans,Mee,2023-10-11,12,Client satisfied,X
+INT000089,89,Susan Robinson,chat,17/11/2023,89,Follow up required,X
+INT000090,84,Susan Robinson,CALL,05/07/2021 00:00,103,Urgent matter,
+I91,170,Richard Evans,meeting,10/02/2022,71 mins,,X
+INT000092,172,Daniel Hughes,Vid,15/12/2022,95m,Needs clarification,
+I93,187,Karen Edwards,video,14-07-23,13m,TBC,
+INT000094,35,Jennifer Thomas,chat,05/03/2023,50m,N/A,X
+I95,196,David Taylor,EMAIL,07-10-23,45 mins,Client satisfied,
+INT000096,126,Robert Smith,letter,2021-10-18,76,,
+INT000097,35,Robert Smith,LETTER,2022-07-21,104 mins,.,
+INT000098,157,Andrew Roberts,letter,2021-01-03,62,,
+INT000099,40,Patricia White,LETTER,07/13/2022 00:00,118 mins,Client satisfied,X
+I100,23,Patricia White,Video,2021-04-06,26,Urgent matter,
+INT000101,110,Robert Smith,Video,20/04/2022,1.6h,,X
+INT000102,19,Charles Thompson,Mee,2021-04-24,113,,
+INT000103,183,Andrew Roberts,EMAIL,2022-07-10,85,Follow up required,X
+INT000104,84,Emma Wilson,Cha,2021-10-07,1.9h,.,X
+I105,123,Daniel Hughes,letter,29-09-21,13 mins,,
+INT000106,127,Daniel Hughes,Let,01/23/2022 00:00,114 mins,,
+INT000107,187,Daniel Hughes,meeting,11/10/2022,1.9h,Client satisfied,
+I108,188,Lisa Johnson,call,11/04/2021,45m,Client satisfied,
+INT000109,83,Karen Edwards,Vid,26/01/2021,1.3h,.,X
+INT000110,164,Karen Edwards,Vid,03/02/2021 00:00,93m,,X
+INT000111,179,Lisa Johnson,Meeting,2021-05-30,27,N/A,
+INT000112,1,Daniel Hughes,Chat,05/26/2021 00:00,66,,X
+INT000113,125,Jennifer Thomas,Cha,06/26/2021 00:00,30 mins,Routine check-in,
+INT000114,159,Robert Smith,Vid,07/03/2021 00:00,51,,
+I115,138,Patricia White,Chat,29/01/2023,105 mins,Follow up required,X
+INT000116,16,Emma Wilson,Video,27/01/2022,87,,X
+INT000117,62,Susan Robinson,Ema,2023-02-03,60 mins,N/A,
+INT000118,30,Richard Evans,letter,30-05-22,115 mins,,X
+INT000119,12,Jennifer Thomas,Chat,10-11-22,64,,X
+INT000120,8,Karen Edwards,Chat,23/10/2021,16m,Routine check-in,X
+INT000121,88,Karen Edwards,Chat,31-01-23,94,TBC,X
+I122,191,David Taylor,Let,09/05/2022,81 mins,.,X
+INT000123,54,Michael Brown,MEETING,11/29/2021 00:00,28,Needs clarification,
+INT000124,70,Patricia White,Letter,22/06/2022,27,N/A,X
+INT000125,159,David Taylor,Call,01/28/2023 00:00,21,,X
+INT000126,29,Robert Smith,Email,03/06/2023 00:00,103,Urgent matter,X
+I127,25,Patricia White,letter,04/02/2021 00:00,100m,,
+INT000128,118,Robert Smith,email,08-03-23,89,Urgent matter,
+INT000129,143,Emma Wilson,Cha,04/18/2022 00:00,91 mins,Urgent matter,
+I130,173,Richard Evans,Chat,09/03/2021 00:00,77m,Urgent matter,
+INT000131,88,Karen Edwards,Cal,11/07/2022 00:00,19,Routine check-in,X
+INT000132,118,Emma Wilson,email,03/05/2022 00:00,51,Routine check-in,X
+INT000133,110,Charles Thompson,chat,01/15/2022 00:00,46,Urgent matter,
+INT000134,4,Sarah Jones,Video,20/02/2022,17m,Needs clarification,
+INT000135,61,Daniel Hughes,video,03/12/2022 00:00,28m,N/A,
+I136,28,Jennifer Thomas,Letter,19-05-21,119m,TBC,X
+INT000137,184,Susan Robinson,Meeting,04/14/2021 00:00,96,,X
+INT000138,178,Susan Robinson,MEETING,13-03-21,46,,X
+INT000139,164,Susan Robinson,Chat,2022-04-21,58,,
+I140,25,Richard Evans,letter,2021-05-28,33,Follow up required,
+INT000141,139,Daniel Hughes,Letter,14/10/2022,46,Needs clarification,
+INT000142,121,Sarah Jones,meeting,01/31/2023 00:00,1.8h,Client satisfied,
+INT000143,93,Michael Brown,letter,16-04-23,73m,,X
+INT000144,197,James Davies,Video,02/19/2023 00:00,61 mins,,X
+I145,135,Lisa Johnson,VIDEO,02/02/2021 00:00,78,Urgent matter,X
+INT000146,176,Karen Edwards,call,2023-03-26,93m,N/A,X
+INT000147,151,Emma Wilson,video,04/12/2022,1.8h,,
+INT000148,92,Robert Smith,Cal,01-04-23,39,,X
+INT000149,31,Sarah Jones,video,11/27/2023 00:00,88,Needs clarification,
+INT000150,142,Karen Edwards,Cal,11/03/2022 00:00,40 mins,.,X
+INT000151,105,Jennifer Thomas,Cal,02/13/2022 00:00,1.7h,Follow up required,
+INT000152,60,James Davies,Chat,01/30/2023 00:00,96,,X
+INT000153,148,Patricia White,EMAIL,08-03-23,1.8h,Follow up required,X
+INT000154,161,Sarah Jones,Vid,12/31/2021 00:00,57,Needs clarification,
+INT000155,158,Karen Edwards,Video,04/02/2022 00:00,103 mins,Needs clarification,X
+INT000156,101,Richard Evans,MEETING,25-01-21,25 mins,Urgent matter,X
+INT000157,35,James Davies,Call,27/04/2022,23,Urgent matter,X
+I158,41,Robert Smith,MEETING,07/27/2021 00:00,42 mins,Routine check-in,
+INT000159,194,Jennifer Thomas,Ema,11-09-22,48,Urgent matter,
+I160,180,Andrew Roberts,MEETING,20/11/2021,101m,.,X
+INT000161,127,Richard Evans,LETTER,16/05/2023,12m,Needs clarification,X
+INT000162,18,Susan Robinson,VIDEO,06/28/2022 00:00,8,Needs clarification,
+INT000163,30,David Taylor,Chat,2021-04-28,29,Client satisfied,X
+INT000164,140,Daniel Hughes,video,2022-10-28,29,Client satisfied,
+I165,80,Sarah Jones,Call,15/10/2023,37,,
+INT000166,2,Daniel Hughes,Ema,27-06-23,14,,
+INT000167,52,Michael Brown,Meeting,23-04-21,20 mins,.,
+INT000168,148,Charles Thompson,meeting,17-08-22,20m,Client satisfied,X
+INT000169,159,Robert Smith,Chat,07/14/2023 00:00,104,N/A,
+INT000170,139,Jennifer Thomas,meeting,15-12-23,72m,N/A,X
+I171,187,Susan Robinson,CALL,06/15/2021 00:00,1.5h,Needs clarification,
+INT000172,9,Susan Robinson,Mee,2022-10-13,52,TBC,X
+I173,5,Susan Robinson,Mee,06/06/2023 00:00,45,Client satisfied,
+INT000174,53,David Taylor,CALL,29/04/2022,105m,.,
+INT000175,92,Susan Robinson,chat,17/05/2022,40,TBC,X
+INT000176,139,Charles Thompson,Ema,23-08-22,65 mins,,X
+INT000177,45,Emma Wilson,meeting,05-08-23,24m,,
+INT000178,128,Jennifer Thomas,meeting,2022-10-13,5 mins,Urgent matter,X
+INT000179,31,Sarah Jones,Let,25-09-21,1.4h,,
+INT000180,115,Emma Wilson,Chat,17/08/2023,18,Urgent matter,X
+INT000181,105,Charles Thompson,chat,04-11-23,46,Needs clarification,X
+INT000182,143,Patricia White,CALL,2023-12-22,120 mins,TBC,
+INT000183,76,David Taylor,LETTER,08/01/2021,65m,TBC,X
+I184,182,Sarah Jones,CALL,10/02/2023 00:00,11m,N/A,
+INT000185,136,Robert Smith,Cha,21/02/2022,74m,,X
+INT000186,192,Sarah Jones,call,02/03/2023 00:00,43m,Needs clarification,X
+I187,177,Sarah Jones,LETTER,24-02-23,1.7h,,
+I188,124,Emma Wilson,Mee,2022-02-05,57m,,X
+INT000189,100,Susan Robinson,Chat,2023-05-29,68,N/A,
+INT000190,169,Susan Robinson,call,04-04-23,8 mins,Urgent matter,X
+I191,187,Robert Smith,Call,2023-05-04,1.2h,Follow up required,X
+INT000192,145,Susan Robinson,Letter,13-01-23,87,.,X
+I193,188,Jennifer Thomas,video,13-08-22,41 mins,Urgent matter,X
+I194,102,Lisa Johnson,CHAT,09/02/2021,78 mins,Urgent matter,
+INT000195,115,Emma Wilson,Cal,05-06-22,101m,TBC,
+INT000196,16,Richard Evans,Email,08/04/2021 00:00,43,Needs clarification,
+INT000197,99,Karen Edwards,Ema,2022-10-27,111m,Routine check-in,
+I198,93,James Davies,Letter,01-03-22,20 mins,,
+INT000199,112,Susan Robinson,email,03/06/2021 00:00,39,Client satisfied,
+INT000200,143,Daniel Hughes,EMAIL,05/16/2022 00:00,107m,,
+INT000201,71,Patricia White,Let,22-12-22,36 mins,N/A,
+INT000202,128,Robert Smith,Let,06/02/2022,25,,X
+INT000203,76,Emma Wilson,VIDEO,2021-08-20,56,,X
+INT000204,102,Jennifer Thomas,MEETING,04/04/2022 00:00,10,,
+INT000205,186,Michael Brown,Video,18/04/2022,36m,Needs clarification,X
+INT000206,174,James Davies,VIDEO,28-04-23,44,Follow up required,
+INT000207,200,Daniel Hughes,call,13/12/2022,48 mins,,
+INT000208,162,Daniel Hughes,Call,2022-02-11,1.4h,TBC,X
+I209,91,Patricia White,Cha,01/18/2023 00:00,47m,Client satisfied,X
+INT000210,70,Robert Smith,Let,08/08/2023,45m,Routine check-in,
+I211,195,Andrew Roberts,video,06-01-23,1.5h,Follow up required,
+INT000212,185,Charles Thompson,MEETING,21/04/2021,48,,X
+INT000213,159,Charles Thompson,VIDEO,17/08/2022,1.7h,Client satisfied,X
+INT000214,31,Sarah Jones,MEETING,27-07-23,21 mins,Routine check-in,
+INT000215,178,Jennifer Thomas,video,16-02-21,59 mins,,
+INT000216,65,Patricia White,Email,16-01-23,15,N/A,X
+INT000217,47,Patricia White,LETTER,03/05/2021 00:00,76m,Client satisfied,
+INT000218,161,David Taylor,CALL,07/03/2021,101 mins,,
+INT000219,105,Robert Smith,video,25-04-22,13m,Routine check-in,
+INT000220,159,Charles Thompson,Ema,2023-05-30,35 mins,,
+I221,41,Jennifer Thomas,MEETING,15/01/2022,76m,TBC,X
+INT000222,191,Susan Robinson,call,2022-12-27,53m,TBC,
+INT000223,10,Patricia White,Let,11/27/2021 00:00,70 mins,Urgent matter,
+INT000224,125,Michael Brown,letter,2021-05-25,35m,Follow up required,X
+I225,13,Daniel Hughes,Meeting,12-08-23,74 mins,N/A,
+INT000226,65,Daniel Hughes,call,2023-09-26,118 mins,Urgent matter,
+INT000227,149,Richard Evans,Email,12/15/2023 00:00,1.5h,Needs clarification,
+INT000228,182,Karen Edwards,letter,26-11-22,1.1h,Follow up required,
+INT000229,30,Jennifer Thomas,Letter,25/07/2023,10m,Needs clarification,X
+INT000230,139,Richard Evans,CHAT,04-04-21,120 mins,Needs clarification,X
+INT000231,132,Karen Edwards,email,12/25/2022 00:00,1.2h,Routine check-in,X
+INT000232,66,Patricia White,MEETING,14/06/2023,1.1h,,X
+I233,186,Patricia White,VIDEO,18/02/2023,39,Needs clarification,
+INT000234,10,Robert Smith,call,14-10-23,45m,,
+INT000235,109,Sarah Jones,Ema,04/05/2021,9,Client satisfied,X
+INT000236,61,Daniel Hughes,Cal,19-03-21,60 mins,Follow up required,X
+INT000237,168,Andrew Roberts,EMAIL,04/03/2021,25 mins,,X
+INT000238,6,Patricia White,Ema,15/01/2021,57m,Urgent matter,
+INT000239,125,James Davies,video,2021-08-26,7,TBC,
+I240,68,Richard Evans,CALL,21-09-21,99 mins,Follow up required,
+INT000241,197,Charles Thompson,Letter,06/18/2021 00:00,26m,Routine check-in,
+INT000242,163,Lisa Johnson,EMAIL,17/08/2023,112m,Urgent matter,X
+INT000243,31,Lisa Johnson,EMAIL,04/15/2021 00:00,100,Follow up required,
+INT000244,115,James Davies,Email,04/16/2021 00:00,40m,N/A,
+INT000245,102,Lisa Johnson,letter,08-03-21,90m,Client satisfied,X
+I246,97,Susan Robinson,meeting,05/25/2021 00:00,18,Follow up required,
+INT000247,159,Daniel Hughes,CALL,2023-05-29,63m,,
+INT000248,78,Richard Evans,Video,2022-11-23,22,Routine check-in,X
+INT000249,14,James Davies,meeting,19-07-21,80,Client satisfied,
+INT000250,11,Charles Thompson,EMAIL,02/02/2022 00:00,1.8h,Urgent matter,X
+INT000251,160,Charles Thompson,Cal,2021-09-12,1.9h,Needs clarification,
+INT000252,171,Lisa Johnson,Letter,07/05/2021,38,.,X
+INT000253,5,Charles Thompson,Vid,21-03-21,37 mins,Needs clarification,X
+I254,14,Susan Robinson,Call,14-11-22,32m,,X
+INT000255,133,Karen Edwards,Mee,03/05/2021 00:00,67,Follow up required,
+INT000256,56,Patricia White,meeting,02-11-23,29 mins,,X
+INT000257,153,Robert Smith,video,16/09/2023,1.7h,Needs clarification,X
+I258,103,David Taylor,VIDEO,03/31/2023 00:00,113 mins,,X
+INT000259,128,Richard Evans,call,03/05/2022 00:00,57,N/A,X
+INT000260,137,Emma Wilson,Cha,12-09-22,47,,
+I261,173,Jennifer Thomas,Let,01/07/2021 00:00,111m,Routine check-in,X
+INT000262,173,Emma Wilson,Ema,01/01/2024 00:00,30,Needs clarification,
+INT000263,194,James Davies,Cal,2022-08-26,29m,.,X
+INT000264,123,James Davies,CHAT,01-02-21,1.2h,.,X
+INT000265,78,Karen Edwards,CHAT,23-11-21,18,TBC,
+INT000266,85,Richard Evans,Vid,02/04/2022 00:00,1.3h,,X
+I267,141,Charles Thompson,Meeting,2023-04-18,5 mins,,X
+INT000268,37,Andrew Roberts,Vid,20-02-21,40 mins,,X
+INT000269,82,James Davies,Letter,2023-03-31,1.8h,,X
+INT000270,78,Lisa Johnson,Mee,21/11/2023,71 mins,,X
+INT000271,20,Karen Edwards,VIDEO,01/01/2022 00:00,48,N/A,X
+INT000272,86,Andrew Roberts,Let,2021-04-13,96m,N/A,
+INT000273,42,Karen Edwards,Cal,02/02/2021,105 mins,N/A,
+INT000274,54,David Taylor,letter,2023-06-07,70m,,X
+INT000275,138,Jennifer Thomas,video,2022-01-03,94,Client satisfied,
+INT000276,159,Patricia White,Meeting,28/06/2022,97,,X
+INT000277,181,Lisa Johnson,LETTER,2021-05-21,6,Client satisfied,X
+INT000278,82,Andrew Roberts,chat,04/08/2021,48 mins,,X
+INT000279,117,Charles Thompson,Meeting,2022-10-11,33m,,X
+I280,102,Richard Evans,CHAT,04/08/2022,103m,,X
+INT000281,45,Lisa Johnson,LETTER,11/21/2021 00:00,9,Routine check-in,X
+INT000282,142,Daniel Hughes,call,11/30/2021 00:00,56,Follow up required,
+INT000283,95,Patricia White,CHAT,11/11/2023,24m,,X
+INT000284,32,Karen Edwards,email,10/28/2022 00:00,27,,X
+INT000285,54,Michael Brown,Video,10/16/2023 00:00,1.8h,,
+INT000286,86,Charles Thompson,letter,15-08-23,39m,Urgent matter,X
+INT000287,44,Andrew Roberts,meeting,07/19/2022 00:00,71 mins,Client satisfied,
+INT000288,128,Robert Smith,Cha,05/27/2023 00:00,16,Needs clarification,X
+INT000289,68,Lisa Johnson,Vid,11/11/2021 00:00,51m,Urgent matter,
+INT000290,149,Emma Wilson,LETTER,12/03/2021,33,Urgent matter,
+INT000291,197,Daniel Hughes,letter,01/28/2023 00:00,1.7h,,X
+INT000292,52,Susan Robinson,email,18/09/2021,1.4h,Client satisfied,
+INT000293,188,Michael Brown,Letter,08/04/2022,49m,Client satisfied,X
+INT000294,186,Susan Robinson,Let,2022-04-09,64,Routine check-in,
+INT000295,69,Patricia White,video,01-02-23,1.2h,,X
+INT000296,47,James Davies,Email,2023-03-09,56,TBC,X
+INT000297,196,Jennifer Thomas,video,2023-10-07,1.6h,Follow up required,
+INT000298,195,Sarah Jones,VIDEO,28-09-23,71,.,
+INT000299,183,Charles Thompson,CHAT,2021-08-15,1.3h,Needs clarification,
+INT000300,27,Daniel Hughes,call,2023-10-05,73,Client satisfied,X
+INT000301,58,Emma Wilson,Meeting,2021-09-20,59m,N/A,
+INT000302,99,Lisa Johnson,MEETING,28-09-22,110m,TBC,
+INT000303,116,Charles Thompson,Call,11/22/2022 00:00,40 mins,Routine check-in,X
+INT000304,13,Charles Thompson,EMAIL,2023-03-03,70,,
+INT000305,22,Andrew Roberts,Chat,2021-01-25,6,Follow up required,X
+INT000306,49,Charles Thompson,Let,01-05-21,55 mins,Client satisfied,X
+INT000307,178,Michael Brown,Video,2021-02-02,39,,
+INT000308,14,Michael Brown,MEETING,11/08/2022,108m,TBC,
+INT000309,103,Patricia White,email,11-08-21,33m,N/A,
+I310,57,Daniel Hughes,letter,12/09/2021,72 mins,,X
+INT000311,108,Michael Brown,Vid,03/09/2021,111m,,X
+I312,132,James Davies,call,2022-04-10,21 mins,Needs clarification,X
+INT000313,166,Andrew Roberts,VIDEO,16/03/2023,42 mins,,
+INT000314,145,David Taylor,LETTER,07/06/2021,53,.,X
+INT000315,158,Daniel Hughes,Video,13/10/2021,63,Client satisfied,X
+I316,199,Susan Robinson,Video,2021-02-14,43,Client satisfied,
+I317,86,Lisa Johnson,Cal,07/04/2023,61 mins,Needs clarification,X
+INT000318,67,Sarah Jones,CHAT,07/12/2022 00:00,58m,,X
+INT000319,48,Richard Evans,video,13-01-22,106 mins,TBC,
+INT000320,54,James Davies,CALL,08/24/2021 00:00,65m,Urgent matter,
+INT000321,46,Susan Robinson,MEETING,08/05/2021,85,Follow up required,X
+INT000322,32,Charles Thompson,call,2021-04-02,33,Urgent matter,
+INT000323,65,Michael Brown,EMAIL,2022-12-16,57,Needs clarification,
+INT000324,144,Lisa Johnson,chat,29/11/2023,38 mins,N/A,X
+I325,49,Michael Brown,Vid,2021-10-03,48 mins,Routine check-in,X
+INT000326,160,Richard Evans,Ema,15-07-23,2.0h,,
+INT000327,169,Michael Brown,VIDEO,23/10/2023,90,TBC,X
+INT000328,78,James Davies,Ema,08/13/2022 00:00,24m,.,
+INT000329,91,Patricia White,MEETING,2022-09-27,1.9h,Client satisfied,
+INT000330,174,Richard Evans,VIDEO,08-12-23,6,Needs clarification,
+INT000331,124,Patricia White,Letter,08-06-21,44,N/A,
+INT000332,18,Jennifer Thomas,Cal,2022-12-15,61m,Routine check-in,
+INT000333,80,David Taylor,letter,2022-05-29,80 mins,TBC,X
+INT000334,52,Emma Wilson,Email,27-11-23,1.6h,,
+INT000335,11,Richard Evans,LETTER,01/26/2023 00:00,1.9h,Urgent matter,X
+INT000336,33,Michael Brown,Meeting,25/06/2022,26m,,
+INT000337,85,Richard Evans,meeting,07/10/2023 00:00,95m,Follow up required,X
+I338,79,Sarah Jones,email,2021-03-25,37m,,
+INT000339,25,Sarah Jones,MEETING,05/31/2021 00:00,96,Follow up required,X
+INT000340,114,Sarah Jones,Letter,06/17/2022 00:00,77m,Routine check-in,
+INT000341,93,Charles Thompson,Cal,05/26/2023 00:00,42 mins,Follow up required,X
+INT000342,133,David Taylor,call,2023-01-04,25,Client satisfied,
+INT000343,19,Andrew Roberts,CALL,2023-07-06,7m,Urgent matter,
+INT000344,50,Sarah Jones,CALL,24/02/2023,83 mins,Urgent matter,
+INT000345,106,Sarah Jones,email,11/25/2021 00:00,79,,X
+I346,122,Lisa Johnson,Letter,19/06/2021,1.8h,,
+INT000347,199,Daniel Hughes,EMAIL,2022-07-19,34m,Follow up required,
+INT000348,52,Robert Smith,VIDEO,21-08-22,72,TBC,
+INT000349,82,David Taylor,chat,03/04/2022 00:00,48,Routine check-in,X
+INT000350,121,Emma Wilson,Email,2022-08-13,26 mins,TBC,X
+INT000351,92,Karen Edwards,Letter,10-12-21,108m,TBC,X
+INT000352,100,Charles Thompson,video,2022-04-29,26,,X
+I353,126,David Taylor,Email,14-03-23,112,,
+INT000354,70,Michael Brown,Email,2022-12-02,14,Needs clarification,X
+INT000355,138,Sarah Jones,CALL,2023-11-05,28,TBC,X
+INT000356,139,Lisa Johnson,CALL,2022-11-29,79m,Urgent matter,
+INT000357,154,James Davies,CHAT,12-01-21,11,,X
+INT000358,126,Richard Evans,VIDEO,2022-01-31,15,Client satisfied,
+INT000359,179,David Taylor,MEETING,19-05-21,80m,Urgent matter,X
+I360,143,Daniel Hughes,Letter,2023-06-10,72m,Client satisfied,X
+INT000361,89,Michael Brown,Video,2023-04-01,23 mins,TBC,
+INT000362,87,Charles Thompson,Meeting,2023-10-06,65,TBC,
+I363,60,Andrew Roberts,Meeting,05-11-22,27,,
+INT000364,139,Emma Wilson,call,2022-11-29,104m,Client satisfied,X
+INT000365,175,Susan Robinson,EMAIL,2022-11-13,45,Routine check-in,
+INT000366,182,Jennifer Thomas,Letter,10/27/2022 00:00,45m,Urgent matter,
+INT000367,103,Sarah Jones,EMAIL,19-10-23,23m,TBC,X
+INT000368,23,Michael Brown,Call,09/10/2021,55m,Client satisfied,
+INT000369,163,David Taylor,Cha,10/26/2022 00:00,68m,N/A,
+I370,56,Sarah Jones,Vid,12/01/2022,62m,Routine check-in,X
+INT000371,69,Andrew Roberts,chat,2022-03-29,50,.,
+INT000372,10,Lisa Johnson,EMAIL,04-08-21,32 mins,Routine check-in,
+INT000373,150,Andrew Roberts,Call,08-09-22,1.1h,Needs clarification,X
+INT000374,140,Michael Brown,VIDEO,2022-01-07,110 mins,,X
+INT000375,30,Robert Smith,Ema,11/15/2023 00:00,70m,Routine check-in,X
+I376,49,Patricia White,Letter,08/29/2023 00:00,1.4h,,X
+I377,126,Emma Wilson,call,03/17/2023 00:00,40 mins,Routine check-in,X
+INT000378,80,Emma Wilson,video,27-01-21,22,,
+INT000379,110,Robert Smith,Let,2021-04-26,20 mins,,
+I380,36,Susan Robinson,CHAT,16/11/2023,70,,X
+INT000381,168,Richard Evans,Ema,06-01-23,109 mins,,
+INT000382,87,Patricia White,LETTER,12/15/2023 00:00,11,,X
+INT000383,50,Richard Evans,CHAT,05-02-21,86 mins,TBC,X
+INT000384,180,Susan Robinson,Video,08/16/2023 00:00,13,Follow up required,X
+INT000385,143,Patricia White,EMAIL,07/22/2021 00:00,109m,Needs clarification,X
+INT000386,84,Sarah Jones,meeting,02/09/2021 00:00,35 mins,,X
+INT000387,30,Andrew Roberts,Video,10-07-22,98m,Urgent matter,X
+INT000388,175,Karen Edwards,Cal,15-11-21,2.0h,N/A,
+INT000389,103,Sarah Jones,Let,2023-07-03,107 mins,Routine check-in,X
+INT000390,12,Lisa Johnson,Cha,04-08-22,58,Needs clarification,X
+INT000391,133,Daniel Hughes,Cal,18-09-23,70m,.,X
+I392,68,Patricia White,LETTER,04-08-22,30m,.,
+INT000393,188,Karen Edwards,call,24-05-22,10 mins,Routine check-in,X
+I394,56,Sarah Jones,video,03/09/2023 00:00,39,Needs clarification,X
+INT000395,22,Emma Wilson,Call,2022-04-05,1.1h,Urgent matter,X
+INT000396,82,Daniel Hughes,video,06/23/2021 00:00,1.5h,Needs clarification,X
+INT000397,106,Richard Evans,MEETING,09/09/2023 00:00,108m,,X
+INT000398,170,Charles Thompson,Email,2021-08-26,8,Follow up required,X
+INT000399,123,Daniel Hughes,video,2021-11-15,94,Routine check-in,
+INT000400,7,Sarah Jones,Cha,17-09-21,117,Needs clarification,
+INT000401,119,Lisa Johnson,Video,03/10/2021,52,,
+INT000402,110,Daniel Hughes,Chat,31-01-22,87,Urgent matter,
+INT000403,149,David Taylor,MEETING,2021-04-11,2.0h,Urgent matter,
+I404,142,Lisa Johnson,letter,10-02-21,12,,
+INT000405,168,Andrew Roberts,LETTER,29/12/2022,1.8h,TBC,
+INT000406,139,Charles Thompson,Chat,14-12-23,45m,Needs clarification,
+INT000407,2,Andrew Roberts,Letter,08/26/2021 00:00,16m,N/A,
+INT000408,2,Lisa Johnson,MEETING,02/10/2023 00:00,99 mins,N/A,X
+INT000409,191,Karen Edwards,chat,10/01/2022 00:00,15 mins,N/A,
+INT000410,82,Michael Brown,Mee,2021-10-20,69,,
+INT000411,8,David Taylor,Mee,08-06-23,14m,TBC,X
+INT000412,176,Robert Smith,CHAT,06/17/2022 00:00,33 mins,,X
+INT000413,95,Susan Robinson,Letter,2023-08-04,51m,,X
+INT000414,42,Sarah Jones,Vid,23/01/2022,1.2h,Urgent matter,
+INT000415,87,Robert Smith,CALL,01-12-23,93m,Routine check-in,X
+INT000416,39,Charles Thompson,CHAT,03/01/2022 00:00,98,Needs clarification,
+INT000417,59,Karen Edwards,LETTER,08/08/2021,96m,Follow up required,
+INT000418,187,Sarah Jones,Cal,04-05-22,47,Needs clarification,X
+INT000419,199,Emma Wilson,Vid,28-05-22,96 mins,Follow up required,X
+INT000420,179,Emma Wilson,chat,01/11/2022,1.1h,Routine check-in,X
+INT000421,98,Andrew Roberts,video,16-06-23,30,.,X
+INT000422,56,James Davies,Call,04/06/2021,7,,X
+INT000423,169,Emma Wilson,VIDEO,21/12/2021,106,,
+INT000424,176,Charles Thompson,email,26/08/2021,58 mins,Client satisfied,
+I425,44,Richard Evans,Let,04-09-21,26 mins,TBC,
+INT000426,185,Richard Evans,MEETING,12/22/2023 00:00,1.8h,Client satisfied,X
+INT000427,114,Karen Edwards,Meeting,2022-10-17,20 mins,.,
+INT000428,122,Andrew Roberts,meeting,09/06/2023 00:00,65 mins,,
+INT000429,162,Charles Thompson,Mee,12-10-23,79m,Routine check-in,
+INT000430,167,Andrew Roberts,meeting,2022-12-22,51m,Follow up required,
+INT000431,3,David Taylor,Mee,2022-07-22,113m,N/A,X
+INT000432,183,Robert Smith,call,2023-06-21,82,,
+INT000433,176,Emma Wilson,CHAT,10-07-23,45,,
+INT000434,195,Lisa Johnson,chat,01-01-22,75m,Needs clarification,
+INT000435,113,Emma Wilson,email,27-09-23,63m,.,X
+INT000436,15,David Taylor,meeting,03-11-23,114 mins,,
+INT000437,127,Emma Wilson,Meeting,11/23/2023 00:00,23m,Client satisfied,X
+I438,169,Lisa Johnson,call,11/12/2023 00:00,89 mins,Follow up required,X
+INT000439,154,Lisa Johnson,Let,2023-02-02,77 mins,Routine check-in,X
+INT000440,156,Richard Evans,CHAT,30-07-22,36,TBC,
+INT000441,38,James Davies,email,14-04-22,117 mins,Follow up required,X
+INT000442,192,Daniel Hughes,video,2021-06-30,21m,TBC,
+INT000443,14,David Taylor,Meeting,12/07/2022,34m,Follow up required,
+I444,15,Sarah Jones,EMAIL,20-09-23,53,,
+INT000445,164,Susan Robinson,LETTER,02/02/2023,8m,.,
+INT000446,44,Richard Evans,Letter,19-08-23,88 mins,,
+INT000447,185,David Taylor,LETTER,21-11-22,98 mins,,X
+I448,81,Karen Edwards,VIDEO,30-12-22,25 mins,,
+INT000449,41,Charles Thompson,LETTER,16-11-23,39 mins,Client satisfied,
+I450,150,Charles Thompson,video,02/25/2021 00:00,42m,TBC,X
+I451,55,Daniel Hughes,Let,20/05/2021,11 mins,,
+INT000452,135,Daniel Hughes,call,23/11/2021,67,Urgent matter,X
+INT000453,113,Andrew Roberts,Let,10-12-23,16 mins,.,
+INT000454,122,Lisa Johnson,Cal,09/08/2021 00:00,93m,.,
+INT000455,100,Emma Wilson,letter,06/20/2022 00:00,91 mins,Client satisfied,X
+INT000456,90,Charles Thompson,Ema,01/11/2022,91 mins,Urgent matter,X
+INT000457,132,Michael Brown,call,2023-12-23,8 mins,TBC,X
+INT000458,119,Lisa Johnson,Chat,27/01/2023,24 mins,Needs clarification,
+INT000459,91,Susan Robinson,meeting,10-01-23,99m,,
+INT000460,4,Karen Edwards,Video,04/06/2021 00:00,115,TBC,X
+INT000461,183,Jennifer Thomas,VIDEO,26-02-22,1.4h,N/A,X
+INT000462,25,Andrew Roberts,LETTER,2022-10-23,60 mins,Needs clarification,X
+I463,165,Lisa Johnson,Mee,07/02/2021,55m,,
+INT000464,130,Jennifer Thomas,LETTER,16-09-22,70,,
+INT000465,146,Andrew Roberts,Email,12/11/2023,17,N/A,X
+INT000466,129,Charles Thompson,EMAIL,06-05-21,80 mins,N/A,
+INT000467,47,James Davies,MEETING,25/12/2022,64 mins,Urgent matter,X
+INT000468,172,Susan Robinson,Meeting,05/02/2022 00:00,34m,TBC,
+INT000469,151,Susan Robinson,MEETING,2021-05-30,43 mins,.,X
+I470,167,Richard Evans,Cha,03-07-23,101 mins,Urgent matter,X
+INT000471,51,Richard Evans,Email,12/02/2023 00:00,15m,Needs clarification,
+INT000472,67,Andrew Roberts,Call,2022-11-06,29,.,
+INT000473,166,Michael Brown,Chat,03/25/2022 00:00,31m,N/A,X
+INT000474,187,Patricia White,Video,01/20/2021 00:00,57m,,
+INT000475,199,Susan Robinson,Chat,05-06-22,51m,Urgent matter,
+INT000476,159,Robert Smith,LETTER,06/18/2023 00:00,80,,X
+INT000477,197,David Taylor,EMAIL,05/09/2023,83 mins,.,
+INT000478,142,Sarah Jones,EMAIL,09-12-23,43m,Routine check-in,
+INT000479,131,Charles Thompson,Ema,06-05-21,117m,N/A,
+INT000480,46,Sarah Jones,VIDEO,01/09/2023 00:00,79 mins,Needs clarification,
+INT000481,168,Patricia White,Cha,08/02/2023 00:00,14 mins,,
+INT000482,26,Lisa Johnson,chat,2023-11-06,52,N/A,X
+INT000483,175,Patricia White,Let,09/06/2021,69m,Follow up required,
+INT000484,151,David Taylor,email,01/03/2021,61 mins,.,
+INT000485,99,Robert Smith,chat,2021-02-04,9,Follow up required,X
+INT000486,79,Andrew Roberts,Vid,11/13/2023 00:00,109,,X
+INT000487,145,Patricia White,video,06/02/2023,25,Needs clarification,
+INT000488,176,Jennifer Thomas,Let,09-11-21,23,Client satisfied,
+I489,110,Andrew Roberts,CALL,05-09-22,1.4h,Routine check-in,X
+INT000490,11,Patricia White,Video,12/01/2021 00:00,62,,
+INT000491,93,Richard Evans,letter,08/04/2022,53,,
+INT000492,168,Patricia White,CALL,08/06/2023,65m,Client satisfied,
+I493,128,Karen Edwards,LETTER,11-11-23,99m,TBC,X
+INT000494,181,Karen Edwards,Meeting,2021-05-25,39m,Routine check-in,
+INT000495,158,Michael Brown,Mee,31-01-21,39,,
+INT000496,29,Karen Edwards,CALL,19/07/2021,64m,Follow up required,X
+INT000497,122,Lisa Johnson,chat,18/10/2021,70,TBC,
+INT000498,77,Richard Evans,Call,31-08-21,96 mins,,X
+INT000499,32,Lisa Johnson,Email,2023-05-25,1.9h,TBC,X
+INT000500,1,Lisa Johnson,CALL,2023-01-23,67m,TBC,X
+I501,155,Karen Edwards,Email,10/20/2022 00:00,15,.,X
+INT000502,59,James Davies,video,2023-05-18,83,Needs clarification,
+INT000503,37,Sarah Jones,meeting,12-01-22,1.3h,Urgent matter,
+INT000504,96,Charles Thompson,Vid,2023-07-07,43,,X
+INT000505,157,Daniel Hughes,Video,09/19/2021 00:00,68 mins,,X
+INT000506,68,Sarah Jones,email,11-10-23,26,TBC,
+INT000507,4,Daniel Hughes,Vid,19-08-21,53,.,
+INT000508,10,Sarah Jones,Let,2022-11-13,1.7h,,X
+INT000509,75,Jennifer Thomas,Cal,12/22/2023 00:00,13,,
+INT000510,36,Andrew Roberts,Chat,23-06-21,106,,
+INT000511,91,Charles Thompson,email,27/05/2022,66 mins,Needs clarification,
+I512,181,Susan Robinson,Vid,19-02-23,12,Urgent matter,
+INT000513,189,Susan Robinson,Meeting,2021-09-15,68m,.,
+INT000514,64,Sarah Jones,letter,2022-09-24,6m,TBC,
+INT000515,28,Karen Edwards,Ema,05/24/2023 00:00,41m,.,X
+INT000516,138,Jennifer Thomas,MEETING,20/11/2021,29m,,
+INT000517,87,Andrew Roberts,Let,2021-03-26,100 mins,N/A,X
+INT000518,194,Emma Wilson,Email,04-06-21,16,,X
+I519,34,Karen Edwards,Call,2023-10-05,79m,Urgent matter,
+INT000520,51,Patricia White,Call,01-04-21,27,Needs clarification,
+INT000521,25,Richard Evans,chat,07/31/2021 00:00,16 mins,N/A,
+INT000522,69,James Davies,call,16-12-22,82 mins,Follow up required,
+INT000523,96,Robert Smith,Letter,14/02/2023,44 mins,Client satisfied,X
+I524,27,Richard Evans,meeting,2022-11-15,81m,,X
+INT000525,158,Lisa Johnson,LETTER,2023-07-29,15,Routine check-in,X
+INT000526,126,Lisa Johnson,Video,09/04/2023,53 mins,Needs clarification,X
+INT000527,26,Karen Edwards,Chat,2023-05-27,117 mins,Needs clarification,X
+I528,165,Daniel Hughes,Let,15-01-22,51,Urgent matter,
+I529,50,Lisa Johnson,Cal,2021-03-25,6,Client satisfied,
+INT000530,164,Emma Wilson,meeting,04/20/2023 00:00,102,,X
+INT000531,131,James Davies,Chat,18-09-22,37m,Follow up required,X
+INT000532,137,Robert Smith,chat,04/03/2021 00:00,18 mins,,X
+INT000533,101,Robert Smith,call,08/16/2021 00:00,97m,.,
+INT000534,152,Andrew Roberts,Video,20-08-23,26 mins,Urgent matter,X
+INT000535,48,Charles Thompson,VIDEO,06/08/2022,14 mins,Urgent matter,X
+INT000536,170,Andrew Roberts,Cha,08/12/2021 00:00,49,,
+I537,42,Richard Evans,MEETING,2023-03-12,59m,N/A,X
+INT000538,157,Sarah Jones,chat,2023-01-24,104,TBC,
+INT000539,114,Michael Brown,Ema,11/02/2021 00:00,2.0h,Needs clarification,
+INT000540,128,Robert Smith,call,23-09-22,17 mins,,X
+INT000541,70,Robert Smith,letter,11-11-23,62,,X
+INT000542,121,Andrew Roberts,video,03-08-22,1.9h,N/A,
+INT000543,15,Andrew Roberts,Video,06/12/2023 00:00,37m,N/A,
+INT000544,143,Richard Evans,meeting,14/01/2021,89,,
+INT000545,137,Patricia White,LETTER,01/03/2021 00:00,50 mins,,X
+INT000546,190,Robert Smith,video,05/27/2023 00:00,24 mins,,
+INT000547,41,Andrew Roberts,Video,04-09-22,1.2h,,
+INT000548,175,Susan Robinson,Vid,2021-11-21,38m,,
+INT000549,93,Michael Brown,Cha,07/12/2022,119 mins,,
+INT000550,129,Michael Brown,Chat,13/09/2022,13,Client satisfied,
+INT000551,63,Sarah Jones,Cha,03/22/2021 00:00,38,Client satisfied,X
+INT000552,2,Karen Edwards,Cha,2023-02-17,18m,.,X
+INT000553,67,Susan Robinson,Chat,25-02-23,44 mins,TBC,X
+INT000554,86,Robert Smith,meeting,04/14/2021 00:00,75,.,
+INT000555,59,Sarah Jones,Video,21/09/2022,89m,Client satisfied,X
+I556,112,Patricia White,Cal,02/03/2022,10m,.,
+INT000557,117,Emma Wilson,Mee,17-10-23,120,N/A,
+INT000558,157,Robert Smith,Call,2023-10-01,120m,Follow up required,X
+INT000559,20,Jennifer Thomas,Video,14/08/2023,57,Needs clarification,
+I560,11,Patricia White,Cha,2022-01-08,19,Client satisfied,
+INT000561,145,Robert Smith,VIDEO,10/13/2021 00:00,114,TBC,
+INT000562,80,Sarah Jones,Letter,2021-04-06,1.9h,,
+I563,39,Patricia White,CALL,24/05/2021,118 mins,,X
+INT000564,120,Emma Wilson,Cha,03/06/2022,13,Client satisfied,X
+INT000565,24,Andrew Roberts,EMAIL,04/26/2021 00:00,107,Urgent matter,X
+I566,28,James Davies,VIDEO,02/12/2023,1.2h,,
+INT000567,168,Andrew Roberts,VIDEO,13/11/2022,73,Follow up required,
+INT000568,175,Emma Wilson,CHAT,11-04-23,22 mins,TBC,
+INT000569,152,Michael Brown,CHAT,09/06/2022,1.9h,Follow up required,
+I570,107,Lisa Johnson,letter,2023-02-25,65,N/A,X
+I571,198,Daniel Hughes,meeting,01/12/2023,76 mins,Urgent matter,X
+INT000572,193,Robert Smith,CALL,04/01/2023 00:00,25,.,X
+INT000573,141,Jennifer Thomas,Cha,07/10/2022,87,,
+INT000574,60,Lisa Johnson,call,16-11-21,15,,
+INT000575,67,James Davies,Cha,08/03/2022 00:00,1.2h,,X
+INT000576,32,Andrew Roberts,letter,20/07/2021,20,,
+INT000577,102,Emma Wilson,email,2022-07-19,66m,Follow up required,
+INT000578,174,Robert Smith,call,02/10/2021 00:00,1.6h,TBC,X
+INT000579,180,James Davies,meeting,04/10/2022 00:00,87 mins,Urgent matter,X
+INT000580,3,Jennifer Thomas,Cha,08/16/2023 00:00,12,TBC,
+INT000581,199,Robert Smith,letter,01/01/2021 00:00,54 mins,TBC,X
+INT000582,164,Sarah Jones,letter,10/29/2022 00:00,1.8h,,
+INT000583,7,Jennifer Thomas,CHAT,02/14/2022 00:00,44m,TBC,X
+INT000584,8,Robert Smith,chat,2023-05-26,114 mins,.,
+INT000585,64,Robert Smith,Let,06/06/2023,1.9h,Client satisfied,X
+INT000586,27,Susan Robinson,Chat,23/07/2022,102m,Needs clarification,
+INT000587,94,Susan Robinson,Cha,2021-10-31,28 mins,Routine check-in,
+INT000588,183,Michael Brown,chat,26-03-22,114,Follow up required,X
+INT000589,131,Sarah Jones,Cal,25-03-22,63,,
+INT000590,163,Susan Robinson,video,03/02/2021 00:00,116,Routine check-in,X
+INT000591,47,Richard Evans,Email,28-12-22,79m,N/A,X
+INT000592,28,Andrew Roberts,CALL,10/26/2023 00:00,113 mins,N/A,X
+INT000593,109,Daniel Hughes,Letter,2023-05-05,40,N/A,X
+INT000594,148,Charles Thompson,MEETING,04/06/2023 00:00,6m,,
+I595,97,Susan Robinson,VIDEO,04/04/2021 00:00,1.6h,Needs clarification,X
+INT000596,96,Sarah Jones,Email,12/08/2022,26,Client satisfied,
+INT000597,31,Michael Brown,Letter,17/02/2023,1.7h,Follow up required,X
+INT000598,50,Lisa Johnson,VIDEO,26-06-22,100,,
+I599,183,Emma Wilson,Vid,14/07/2021,53,Client satisfied,
+INT000600,72,Lisa Johnson,Mee,2023-01-18,15,,X
+INT000601,168,Charles Thompson,Ema,14/03/2023,98,,
+INT000602,21,James Davies,LETTER,15/04/2021,74,Routine check-in,X
+INT000603,23,Susan Robinson,chat,20-01-21,27,Client satisfied,
+I604,7,Emma Wilson,CALL,01-06-23,95m,Routine check-in,X
+INT000605,49,Karen Edwards,call,2023-07-09,23,Routine check-in,X
+INT000606,80,David Taylor,LETTER,03/05/2021 00:00,1.6h,Needs clarification,X
+INT000607,92,James Davies,CHAT,25-12-23,1.4h,Urgent matter,
+INT000608,75,Emma Wilson,email,2023-12-12,49,Urgent matter,
+I609,53,Sarah Jones,Video,02/10/2023,54,Routine check-in,
+INT000610,64,David Taylor,Vid,28/01/2022,76,Follow up required,X
+INT000611,107,Robert Smith,Vid,18/05/2021,87 mins,Follow up required,X
+INT000612,169,James Davies,Cha,24-08-23,43,,X
+INT000613,146,Andrew Roberts,Letter,2023-12-14,93,Routine check-in,
+INT000614,78,Andrew Roberts,video,04-12-23,1.6h,Urgent matter,X
+INT000615,49,Michael Brown,Letter,30/08/2023,89m,,
+INT000616,124,Sarah Jones,chat,07-08-22,45m,N/A,
+INT000617,38,Jennifer Thomas,video,2022-10-29,61m,Needs clarification,
+INT000618,189,Susan Robinson,Vid,14-10-23,83,.,
+INT000619,35,Susan Robinson,Cha,11/10/2022,46,,X
+INT000620,2,James Davies,email,06/26/2023 00:00,88,Follow up required,
+INT000621,42,Emma Wilson,CALL,2023-05-12,13 mins,.,X
+INT000622,7,Andrew Roberts,CALL,28/12/2022,22m,,
+INT000623,149,Michael Brown,Email,2021-10-27,120m,Follow up required,X
+INT000624,150,Sarah Jones,video,24/03/2023,40,Client satisfied,
+INT000625,6,Emma Wilson,Vid,17-11-21,85,,
+INT000626,121,Daniel Hughes,chat,02-05-22,1.2h,Needs clarification,X
+I627,193,Sarah Jones,Email,02/25/2021 00:00,89m,.,
+INT000628,169,Karen Edwards,CALL,29-08-23,19,Needs clarification,X
+I629,123,Michael Brown,call,2022-02-11,31,Client satisfied,
+INT000630,181,Patricia White,chat,07/10/2023 00:00,13m,,X
+INT000631,136,David Taylor,letter,04/02/2022 00:00,1.2h,Follow up required,
+INT000632,46,James Davies,CHAT,16/11/2021,92,Client satisfied,
+INT000633,70,Robert Smith,EMAIL,16-12-23,19,N/A,X
+I634,104,Michael Brown,Call,04/11/2021 00:00,110 mins,Needs clarification,X
+INT000635,31,Daniel Hughes,CALL,2023-04-16,66m,.,X
+INT000636,111,Lisa Johnson,CHAT,2024-01-01,53 mins,TBC,X
+INT000637,49,James Davies,CALL,15/12/2022,9,.,
+I638,37,Michael Brown,meeting,2022-06-12,52 mins,Routine check-in,
+INT000639,6,Jennifer Thomas,Call,09/16/2022 00:00,16,N/A,
+INT000640,19,Richard Evans,VIDEO,05/03/2021 00:00,1.3h,Routine check-in,X
+INT000641,100,Andrew Roberts,Cha,2023-05-31,90,N/A,X
+INT000642,42,James Davies,meeting,01/04/2022,97 mins,Routine check-in,
+INT000643,12,Sarah Jones,Chat,07/24/2021 00:00,33,Needs clarification,X
+I644,97,Sarah Jones,letter,2021-07-06,1.7h,,
+INT000645,131,Charles Thompson,Cal,05/05/2021 00:00,47m,Needs clarification,X
+INT000646,131,Richard Evans,MEETING,17-12-23,79,TBC,
+INT000647,85,Emma Wilson,call,18/12/2021,1.7h,TBC,
+INT000648,17,Charles Thompson,Call,01/05/2022 00:00,113m,N/A,
+INT000649,21,Jennifer Thomas,meeting,20/04/2021,89 mins,Urgent matter,
+INT000650,37,Robert Smith,Let,19-04-23,92 mins,N/A,X
+INT000651,113,Charles Thompson,Mee,13-05-21,37,N/A,X
+INT000652,169,Jennifer Thomas,letter,25-01-21,1.3h,Client satisfied,X
+INT000653,77,Jennifer Thomas,meeting,06/04/2021 00:00,1.5h,TBC,
+I654,15,Charles Thompson,Vid,08-10-22,54m,Urgent matter,X
+INT000655,140,Robert Smith,EMAIL,12/31/2023 00:00,56m,,
+I656,124,Richard Evans,MEETING,06/02/2021 00:00,62m,,
+INT000657,117,Michael Brown,Ema,17-05-22,63m,Routine check-in,X
+INT000658,103,Sarah Jones,Video,01/01/2023 00:00,108,.,X
+INT000659,147,Susan Robinson,EMAIL,26/08/2021,25 mins,,
+INT000660,27,Lisa Johnson,CALL,2021-12-17,43,,X
+INT000661,27,James Davies,letter,05/12/2021 00:00,83 mins,,X
+INT000662,19,James Davies,Cha,05/14/2023 00:00,2.0h,Urgent matter,
+INT000663,29,Patricia White,Chat,10/19/2021 00:00,46,.,X
+INT000664,180,Andrew Roberts,Email,11/09/2022 00:00,115m,,
+INT000665,155,Susan Robinson,meeting,2022-04-14,16m,,X
+INT000666,65,Michael Brown,Call,31-03-22,16,,
+INT000667,11,Jennifer Thomas,video,13-02-21,55,Client satisfied,
+INT000668,55,Patricia White,Ema,2022-08-11,26,Routine check-in,
+INT000669,106,Patricia White,Ema,01/06/2022,9,Routine check-in,
+INT000670,167,David Taylor,Letter,02/01/2022,1.9h,Client satisfied,X
+INT000671,151,Susan Robinson,Letter,05-05-22,69 mins,TBC,
+INT000672,187,Charles Thompson,Email,20-03-21,16,,X
+INT000673,40,Jennifer Thomas,Cal,28-12-23,64,Urgent matter,X
+I674,153,James Davies,EMAIL,2023-09-29,88 mins,.,
+INT000675,10,Richard Evans,Cal,03/25/2023 00:00,2.0h,,X
+INT000676,37,Susan Robinson,CALL,2022-10-19,1.1h,Client satisfied,X
+I677,112,David Taylor,Vid,03/27/2022 00:00,29,,
+INT000678,136,Patricia White,Email,09/10/2021 00:00,106 mins,Follow up required,
+I679,147,Daniel Hughes,Mee,2022-09-21,22 mins,.,
+INT000680,44,Karen Edwards,Mee,25-08-21,91,,
+I681,90,James Davies,Mee,02-10-23,85 mins,Client satisfied,X
+INT000682,159,Lisa Johnson,EMAIL,31/03/2022,38 mins,Follow up required,X
+INT000683,171,Susan Robinson,Cha,2021-11-03,52,Client satisfied,
+INT000684,174,David Taylor,Let,13-12-23,107 mins,Needs clarification,
+INT000685,186,James Davies,letter,03/11/2023,1.8h,,X
+INT000686,147,Sarah Jones,meeting,2023-08-09,8 mins,.,X
+INT000687,147,James Davies,video,2021-12-03,66,,X
+INT000688,87,Richard Evans,Vid,2021-04-15,16m,.,X
+INT000689,69,Sarah Jones,LETTER,24/08/2021,1.7h,Client satisfied,X
+INT000690,36,Karen Edwards,Cal,09-01-23,1.8h,.,
+INT000691,187,Jennifer Thomas,Cha,22-08-22,119 mins,Client satisfied,X
+INT000692,75,Robert Smith,Cal,2023-07-05,88 mins,.,
+INT000693,139,Patricia White,Let,11/20/2021 00:00,83m,N/A,
+INT000694,92,David Taylor,video,2023-01-04,106,TBC,
+INT000695,159,Sarah Jones,meeting,25-11-23,48 mins,Follow up required,X
+INT000696,164,Michael Brown,Let,09/06/2023 00:00,35,Follow up required,
+INT000697,159,James Davies,Meeting,03/20/2023 00:00,51,TBC,X
+INT000698,61,Jennifer Thomas,email,02-01-23,1.7h,Needs clarification,
+I699,169,James Davies,Let,2021-05-11,104 mins,,X
+INT000700,153,Patricia White,Meeting,18/01/2023,1.8h,TBC,X
+INT000701,61,Karen Edwards,Letter,2022-07-17,1.1h,Needs clarification,
+INT000702,79,David Taylor,MEETING,05/08/2023 00:00,30,.,
+INT000703,32,Charles Thompson,meeting,14/12/2023,28,Urgent matter,
+INT000704,72,Sarah Jones,email,2023-12-30,108 mins,Urgent matter,X
+INT000705,175,Patricia White,Email,08/30/2021 00:00,94m,Routine check-in,
+INT000706,175,James Davies,Chat,08/05/2021,43,,
+INT000707,30,Lisa Johnson,CHAT,05/22/2021 00:00,96m,Follow up required,
+I708,46,James Davies,EMAIL,05/26/2022 00:00,82 mins,N/A,X
+INT000709,36,Susan Robinson,EMAIL,04/26/2021 00:00,26,,
+INT000710,88,Charles Thompson,Let,2021-10-25,33m,N/A,X
+INT000711,162,Andrew Roberts,CALL,26-02-23,71m,,X
+INT000712,92,Emma Wilson,LETTER,2023-09-05,16 mins,,X
+INT000713,120,Sarah Jones,Ema,10-03-23,62m,Follow up required,X
+INT000714,95,Sarah Jones,CALL,05-06-22,50,Routine check-in,
+INT000715,21,David Taylor,VIDEO,07/02/2021 00:00,82 mins,Routine check-in,X
+INT000716,172,Emma Wilson,Letter,17/11/2021,78 mins,Follow up required,X
+INT000717,198,Jennifer Thomas,email,2021-12-18,63m,Routine check-in,
+INT000718,197,David Taylor,video,04/23/2023 00:00,89m,TBC,X
+INT000719,37,David Taylor,Video,2022-09-27,35m,TBC,X
+INT000720,173,Daniel Hughes,Video,2022-01-04,38 mins,Follow up required,
+INT000721,35,Charles Thompson,call,22-07-22,78 mins,Follow up required,
+INT000722,165,Charles Thompson,Mee,20/08/2021,1.4h,Routine check-in,
+INT000723,164,Robert Smith,MEETING,2022-06-08,37,Urgent matter,
+INT000724,24,Robert Smith,Cal,08/21/2022 00:00,33 mins,Client satisfied,X
+INT000725,46,Patricia White,Chat,20-04-21,36,Follow up required,X
+INT000726,43,Robert Smith,Chat,15-04-22,10,Needs clarification,
+INT000727,55,Karen Edwards,CHAT,09/09/2021 00:00,1.8h,Follow up required,X
+INT000728,95,Richard Evans,Letter,2021-06-21,115m,Needs clarification,
+I729,104,Susan Robinson,CHAT,08/08/2022 00:00,1.6h,,
+I730,11,Jennifer Thomas,Chat,10/08/2022 00:00,57 mins,Follow up required,X
+INT000731,88,Karen Edwards,call,19/07/2022,58 mins,Routine check-in,
+INT000732,161,Robert Smith,VIDEO,19/04/2021,58,TBC,
+INT000733,113,Lisa Johnson,Cal,08-06-22,45 mins,Urgent matter,X
+INT000734,177,Daniel Hughes,letter,27/12/2023,94m,Urgent matter,
+INT000735,32,Lisa Johnson,chat,2021-04-27,1.6h,,
+INT000736,172,Karen Edwards,Mee,28-02-23,47,,
+INT000737,62,Robert Smith,meeting,12/12/2023 00:00,17 mins,,X
+INT000738,97,Daniel Hughes,Email,06/13/2021 00:00,48,,X
+INT000739,59,Sarah Jones,MEETING,26-05-23,39 mins,,
+I740,195,Daniel Hughes,EMAIL,03/04/2021 00:00,111,TBC,X
+INT000741,173,Robert Smith,MEETING,04/08/2023,60m,Client satisfied,X
+INT000742,4,Charles Thompson,chat,09/25/2021 00:00,84m,N/A,X
+INT000743,8,Patricia White,LETTER,04/12/2022,21m,Follow up required,X
+INT000744,65,Charles Thompson,Mee,2021-04-15,1.6h,.,X
+INT000745,142,Susan Robinson,Meeting,02/03/2021,44m,,X
+INT000746,150,Richard Evans,call,19-03-21,62m,Routine check-in,X
+INT000747,135,Karen Edwards,Video,10/10/2022 00:00,1.5h,Client satisfied,
+INT000748,183,Emma Wilson,CHAT,2023-05-22,1.5h,Needs clarification,X
+INT000749,166,Jennifer Thomas,video,18-03-21,92 mins,TBC,X
+I750,49,Charles Thompson,EMAIL,02/05/2023 00:00,67m,Client satisfied,
+INT000751,16,Patricia White,MEETING,03/17/2023 00:00,1.6h,TBC,
+INT000752,130,Charles Thompson,Call,02/12/2023,95m,N/A,X
+INT000753,65,Emma Wilson,Cha,05-01-23,118 mins,,X
+INT000754,112,Sarah Jones,call,04/30/2023 00:00,48m,Follow up required,X
+INT000755,118,Richard Evans,letter,01-02-23,38m,Client satisfied,X
+INT000756,86,Lisa Johnson,Chat,21-07-22,111m,,X
+INT000757,129,Emma Wilson,Meeting,2023-12-22,77 mins,,
+INT000758,87,Karen Edwards,Vid,2022-05-18,55 mins,Follow up required,X
+INT000759,90,Andrew Roberts,EMAIL,02-10-21,47,Follow up required,
+INT000760,89,Lisa Johnson,Email,02-01-21,36,,
+INT000761,75,Daniel Hughes,EMAIL,2021-07-12,91 mins,Needs clarification,X
+INT000762,181,Jennifer Thomas,Video,2021-03-10,1.8h,Urgent matter,X
+INT000763,172,Emma Wilson,Ema,08/04/2021 00:00,1.3h,Urgent matter,
+INT000764,114,David Taylor,meeting,2023-02-11,2.0h,,
+INT000765,157,Susan Robinson,Email,07/26/2021 00:00,72m,Needs clarification,
+INT000766,3,Karen Edwards,chat,2021-11-28,59,.,
+INT000767,26,Richard Evans,Mee,18-08-21,77 mins,Follow up required,
+INT000768,197,Richard Evans,Vid,2023-12-15,51 mins,.,X
+I769,195,Susan Robinson,MEETING,12-08-23,14,Client satisfied,
+I770,2,Richard Evans,Ema,09-11-23,25,Client satisfied,X
+I771,189,Richard Evans,Cal,09/01/2023,1.1h,Follow up required,X
+INT000772,171,Jennifer Thomas,CALL,25-11-21,111m,,
+INT000773,101,Richard Evans,Ema,30/01/2023,60,,
+INT000774,187,Andrew Roberts,Let,05/08/2023 00:00,37,,X
+INT000775,37,David Taylor,letter,05-03-23,79 mins,Urgent matter,
+I776,153,Susan Robinson,Email,16-08-22,86 mins,Needs clarification,X
+INT000777,102,Lisa Johnson,Mee,2023-04-18,119,,
+I778,57,Robert Smith,MEETING,18/06/2022,90,,X
+INT000779,14,Sarah Jones,Video,01/07/2023,106 mins,,X
+INT000780,120,Charles Thompson,EMAIL,2022-04-18,51m,.,X
+INT000781,41,Charles Thompson,LETTER,09-08-21,2.0h,,
+INT000782,147,Sarah Jones,CALL,2023-08-22,24m,Urgent matter,X
+I783,37,Richard Evans,CALL,2022-08-28,94 mins,Urgent matter,
+INT000784,55,David Taylor,Email,23/12/2023,18m,Follow up required,X
+INT000785,179,Susan Robinson,Ema,03/09/2022 00:00,108,,
+INT000786,68,Daniel Hughes,email,20/12/2021,9,N/A,
+INT000787,67,Michael Brown,EMAIL,2023-02-16,83m,N/A,X
+INT000788,95,Richard Evans,Chat,2023-10-17,100m,,
+I789,81,Lisa Johnson,CALL,01/10/2023 00:00,80m,N/A,X
+INT000790,15,Richard Evans,Letter,2022-09-01,39 mins,,X
+INT000791,74,Andrew Roberts,MEETING,27/12/2022,1.7h,Client satisfied,
+INT000792,27,Richard Evans,LETTER,2023-03-15,77 mins,.,
+INT000793,23,Andrew Roberts,Mee,12/08/2021,17m,Client satisfied,
+INT000794,196,Andrew Roberts,Meeting,30/11/2021,26,Needs clarification,X
+INT000795,157,Sarah Jones,call,2022-12-15,59,,
+INT000796,53,Susan Robinson,Cal,2023-08-23,21,Urgent matter,
+INT000797,163,Jennifer Thomas,Chat,05/02/2023 00:00,81m,Needs clarification,X
+INT000798,25,Andrew Roberts,call,2022-07-19,62m,,
+INT000799,99,Michael Brown,LETTER,2023-08-12,1.8h,,
+INT000800,134,Lisa Johnson,VIDEO,2022-08-13,10,Client satisfied,

@@ -1,0 +1,348 @@
+{
+  "ontologyDefinition": {
+    "name": "UKLegalFirmOntology",
+    "description": "Ontology layer for UK legal firm customer 360 and case management, defining entities, properties, and relationships",
+    "version": "1.0",
+    "entityTypes": [
+      {
+        "name": "Client",
+        "displayName": "Client",
+        "description": "A customer of the law firm, either an individual person or a corporate entity",
+        "synonyms": ["Customer", "Client", "Customer Entity", "Legal Client"],
+        "keys": [
+          {
+            "name": "ClientKey",
+            "properties": ["ClientID"]
+          }
+        ],
+        "properties": [
+          {
+            "name": "ClientID",
+            "displayName": "Client ID",
+            "dataType": "string",
+            "description": "Unique identifier for the client (e.g., C001, C002)",
+            "isKey": true,
+            "synonyms": ["Customer ID", "Client Number", "Client Code"]
+          },
+          {
+            "name": "ClientName",
+            "displayName": "Client Name",
+            "dataType": "string",
+            "description": "Full name of the client or company",
+            "synonyms": ["Customer Name", "Name", "Company Name", "Person Name"]
+          },
+          {
+            "name": "ClientType",
+            "displayName": "Client Type",
+            "dataType": "string",
+            "description": "Type of client: Individual (person) or Corporate (business)",
+            "validValues": ["Individual", "Corporate"],
+            "synonyms": ["Customer Type", "Client Category", "Entity Type"]
+          },
+          {
+            "name": "ClientStatus",
+            "displayName": "Client Status",
+            "dataType": "string",
+            "description": "Current relationship status: Active, Inactive, or Closed",
+            "validValues": ["Active", "Inactive", "Closed"],
+            "synonyms": ["Customer Status", "Relationship Status", "Account Status"]
+          },
+          {
+            "name": "Address",
+            "displayName": "Address",
+            "dataType": "string",
+            "description": "Street address of the client",
+            "synonyms": ["Street Address", "Location", "Physical Address"]
+          },
+          {
+            "name": "Postcode",
+            "displayName": "Postcode",
+            "dataType": "string",
+            "description": "UK postcode (e.g., SW1A 1AA)",
+            "synonyms": ["Postal Code", "ZIP Code", "Post Code"]
+          },
+          {
+            "name": "Phone",
+            "displayName": "Phone Number",
+            "dataType": "string",
+            "description": "Contact telephone number",
+            "synonyms": ["Telephone", "Contact Number", "Phone Number", "Mobile"]
+          },
+          {
+            "name": "Email",
+            "displayName": "Email Address",
+            "dataType": "string",
+            "description": "Email address for correspondence",
+            "synonyms": ["Email", "Contact Email", "E-mail"]
+          }
+        ],
+        "binding": {
+          "sourceType": "lakehouse",
+          "workspaceId": "<workspace_id>",
+          "lakehouseId": "<lakehouse_id>",
+          "tableName": "Customers",
+          "columnMappings": [
+            {"ontologyProperty": "ClientID", "sourceColumn": "customer_id"},
+            {"ontologyProperty": "ClientName", "sourceColumn": "customer_name"},
+            {"ontologyProperty": "ClientType", "sourceColumn": "customer_type"},
+            {"ontologyProperty": "ClientStatus", "sourceColumn": "customer_status"},
+            {"ontologyProperty": "Address", "sourceColumn": "customer_address"},
+            {"ontologyProperty": "Postcode", "sourceColumn": "customer_postcode"},
+            {"ontologyProperty": "Phone", "sourceColumn": "customer_phone"},
+            {"ontologyProperty": "Email", "sourceColumn": "customer_email"}
+          ]
+        }
+      },
+      {
+        "name": "LegalCase",
+        "displayName": "Legal Case",
+        "description": "A legal matter or case handled by the law firm",
+        "synonyms": ["Case", "Matter", "Legal Matter", "File", "Case File"],
+        "keys": [
+          {
+            "name": "CaseKey",
+            "properties": ["CaseID"]
+          }
+        ],
+        "properties": [
+          {
+            "name": "CaseID",
+            "displayName": "Case ID",
+            "dataType": "string",
+            "description": "Unique identifier for the legal case (e.g., CASE001, CASE002)",
+            "isKey": true,
+            "synonyms": ["Case Number", "Matter Number", "File Number"]
+          },
+          {
+            "name": "CaseType",
+            "displayName": "Case Type",
+            "dataType": "string",
+            "description": "Type of legal work (e.g., Conveyancing, Corporate Law, Family Law)",
+            "synonyms": ["Practice Area", "Legal Service Type", "Matter Type", "Case Category"]
+          },
+          {
+            "name": "CaseValue",
+            "displayName": "Case Value (GBP)",
+            "dataType": "decimal",
+            "description": "Total financial value of the case in British Pounds",
+            "unit": "GBP",
+            "synonyms": ["Case Worth", "Revenue", "Billing Amount", "Fee Value", "Case Fees"]
+          },
+          {
+            "name": "CaseStartDate",
+            "displayName": "Case Start Date",
+            "dataType": "dateTime",
+            "description": "Date when the case was opened",
+            "isTimeseries": true,
+            "synonyms": ["Start Date", "Open Date", "Case Opened", "Commencement Date"]
+          },
+          {
+            "name": "CaseCompletionDate",
+            "displayName": "Case Completion Date",
+            "dataType": "dateTime",
+            "description": "Date when the case was completed (may be null for ongoing cases)",
+            "synonyms": ["Completion Date", "Close Date", "End Date", "Finalization Date"]
+          },
+          {
+            "name": "PaymentStatus",
+            "displayName": "Payment Status",
+            "dataType": "string",
+            "description": "Current payment status: Paid, Pending, Overdue, or Closed",
+            "validValues": ["Paid", "Pending", "Overdue", "Closed"],
+            "synonyms": ["Billing Status", "Invoice Status", "Payment State"]
+          },
+          {
+            "name": "HighValueFlag",
+            "displayName": "High Value Case",
+            "dataType": "boolean",
+            "description": "Indicates if this is a high-value case (value >= £50,000)",
+            "synonyms": ["High Value", "Strategic Case", "Major Matter", "Large Case"]
+          }
+        ],
+        "timeseriesProperties": [
+          {
+            "propertyName": "CaseStartDate",
+            "granularity": "day",
+            "aggregations": ["count", "sum", "avg"],
+            "description": "Allows time-based analysis of case openings"
+          }
+        ],
+        "binding": {
+          "sourceType": "lakehouse",
+          "workspaceId": "<workspace_id>",
+          "lakehouseId": "<lakehouse_id>",
+          "tableName": "Cases",
+          "columnMappings": [
+            {"ontologyProperty": "CaseID", "sourceColumn": "case_id"},
+            {"ontologyProperty": "CaseType", "sourceColumn": "case_type"},
+            {"ontologyProperty": "CaseValue", "sourceColumn": "case_value_gbp"},
+            {"ontologyProperty": "CaseStartDate", "sourceColumn": "case_start_date"},
+            {"ontologyProperty": "CaseCompletionDate", "sourceColumn": "case_completion_date"},
+            {"ontologyProperty": "PaymentStatus", "sourceColumn": "payment_status"},
+            {"ontologyProperty": "HighValueFlag", "sourceColumn": "high_value_case_flag"}
+          ]
+        }
+      },
+      {
+        "name": "Solicitor",
+        "displayName": "Solicitor",
+        "description": "A legal professional (solicitor/lawyer) working at the firm",
+        "synonyms": ["Lawyer", "Attorney", "Legal Professional", "Solicitor"],
+        "keys": [
+          {
+            "name": "SolicitorKey",
+            "properties": ["SolicitorName"]
+          }
+        ],
+        "properties": [
+          {
+            "name": "SolicitorName",
+            "displayName": "Solicitor Name",
+            "dataType": "string",
+            "description": "Full name of the solicitor",
+            "isKey": true,
+            "synonyms": ["Lawyer Name", "Attorney Name", "Name"]
+          }
+        ],
+        "binding": {
+          "sourceType": "lakehouse",
+          "workspaceId": "<workspace_id>",
+          "lakehouseId": "<lakehouse_id>",
+          "tableName": "Cases",
+          "columnMappings": [
+            {"ontologyProperty": "SolicitorName", "sourceColumn": "assigned_solicitor_name"}
+          ],
+          "distinct": true,
+          "note": "Solicitor entities are derived distinctly from Cases table"
+        }
+      }
+    ],
+    "relationshipTypes": [
+      {
+        "name": "ClientHasCase",
+        "displayName": "Client Has Case",
+        "description": "Relationship between a client and their legal cases",
+        "fromEntityType": "Client",
+        "toEntityType": "LegalCase",
+        "cardinality": "oneToMany",
+        "synonyms": ["Client Cases", "Client Matters", "Customer Cases"],
+        "binding": {
+          "fromProperty": "ClientID",
+          "toProperty": "ClientID",
+          "sourceType": "lakehouse",
+          "tableName": "Cases",
+          "fromColumn": "customer_id",
+          "toColumn": "customer_id"
+        }
+      },
+      {
+        "name": "SolicitorAssignedToCase",
+        "displayName": "Solicitor Assigned To Case",
+        "description": "Relationship between a solicitor and the cases they handle",
+        "fromEntityType": "Solicitor",
+        "toEntityType": "LegalCase",
+        "cardinality": "oneToMany",
+        "synonyms": ["Solicitor Cases", "Assigned Cases", "Handles Cases"],
+        "binding": {
+          "fromProperty": "SolicitorName",
+          "toProperty": "SolicitorName",
+          "sourceType": "lakehouse",
+          "tableName": "Cases",
+          "fromColumn": "assigned_solicitor_name",
+          "toColumn": "assigned_solicitor_name"
+        }
+      },
+      {
+        "name": "SolicitorServesClient",
+        "displayName": "Solicitor Serves Client",
+        "description": "Derived relationship showing which solicitors work with which clients (via cases)",
+        "fromEntityType": "Solicitor",
+        "toEntityType": "Client",
+        "cardinality": "manyToMany",
+        "isDerived": true,
+        "derivedThrough": ["SolicitorAssignedToCase", "ClientHasCase"],
+        "synonyms": ["Solicitor Clients", "Client Solicitors", "Works With"]
+      }
+    ],
+    "contextualizations": [
+      {
+        "name": "ClientPortfolioContext",
+        "description": "Provides holistic view of client relationship including all cases and financial metrics",
+        "entityType": "Client",
+        "relatedEntities": ["LegalCase"],
+        "aggregations": [
+          {
+            "name": "TotalCaseValue",
+            "expression": "SUM(LegalCase.CaseValue)",
+            "description": "Total value of all cases for this client"
+          },
+          {
+            "name": "NumberOfCases",
+            "expression": "COUNT(LegalCase.CaseID)",
+            "description": "Total number of cases for this client"
+          },
+          {
+            "name": "AverageCaseValue",
+            "expression": "AVG(LegalCase.CaseValue)",
+            "description": "Average case value for this client"
+          },
+          {
+            "name": "ActiveCasesCount",
+            "expression": "COUNT(LegalCase.CaseID WHERE LegalCase.PaymentStatus != 'Closed')",
+            "description": "Number of active/ongoing cases"
+          }
+        ]
+      },
+      {
+        "name": "SolicitorWorkloadContext",
+        "description": "Provides view of solicitor workload and performance metrics",
+        "entityType": "Solicitor",
+        "relatedEntities": ["LegalCase", "Client"],
+        "aggregations": [
+          {
+            "name": "TotalCaseload",
+            "expression": "COUNT(LegalCase.CaseID)",
+            "description": "Total number of cases assigned to this solicitor"
+          },
+          {
+            "name": "TotalCaseValue",
+            "expression": "SUM(LegalCase.CaseValue)",
+            "description": "Total value of all cases handled by this solicitor"
+          },
+          {
+            "name": "AverageCaseValue",
+            "expression": "AVG(LegalCase.CaseValue)",
+            "description": "Average case value for this solicitor"
+          },
+          {
+            "name": "NumberOfClients",
+            "expression": "COUNT(DISTINCT Client.ClientID)",
+            "description": "Number of unique clients served by this solicitor"
+          },
+          {
+            "name": "HighValueCasesCount",
+            "expression": "COUNT(LegalCase.CaseID WHERE LegalCase.HighValueFlag = true)",
+            "description": "Number of high-value cases"
+          }
+        ]
+      },
+      {
+        "name": "CaseDetailsContext",
+        "description": "Provides complete case information including client and solicitor details",
+        "entityType": "LegalCase",
+        "relatedEntities": ["Client", "Solicitor"],
+        "includeProperties": [
+          "Client.ClientName",
+          "Client.ClientType",
+          "Solicitor.SolicitorName",
+          "CaseType",
+          "CaseValue",
+          "PaymentStatus"
+        ]
+      }
+    ]
+  },
+  "agentConfiguration": {
+    "instructions": "## Ontology-Based Query Guidance\n\nWhen users ask entity-based questions, use the ontology to understand relationships:\n\n**Entity-Based Queries:**\n- \"Show me all cases for client ACME\" → Query Client entity, traverse ClientHasCase relationship\n- \"What solicitors work with corporate clients?\" → Query Client (where ClientType='Corporate'), traverse SolicitorServesClient relationship\n- \"Show me Sarah Jones' clients\" → Query Solicitor entity, traverse relationships to Client\n\n**Contextualized Queries:**\n- \"Client portfolio summary\" → Use ClientPortfolioContext to get aggregated metrics\n- \"Solicitor performance\" → Use SolicitorWorkloadContext for workload metrics\n- \"Case details with client info\" → Use CaseDetailsContext to join entities\n\n**Timeseries Queries:**\n- \"How many cases opened each month?\" → Use CaseStartDate timeseries property with monthly granularity\n- \"Trend of case openings\" → Aggregate by CaseStartDate over time\n\n**The ontology provides semantic understanding beyond raw tables, enabling natural entity-relationship queries.**"
+  }
+}

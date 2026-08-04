@@ -1,0 +1,157 @@
+{
+  "dataAgentConfiguration": {
+    "name": "UK Legal Firm Customer 360 Agent",
+    "description": "Comprehensive data agent for UK law firm covering client relationships, case management, and financial transactions",
+    "dataSources": [
+      {
+        "id": "source1",
+        "name": "ClientCasePortfolio",
+        "type": "lakehouse",
+        "description": "Contains customer information and legal case details including case types, assigned solicitors, case values, and case status. Use this source for questions about clients, cases, case types, solicitor assignments, case status, high-value cases, and client demographics. Best for answering: Who are our clients? What cases do we have? Which solicitor handles which case? What's the status of a case? How many cases by type? Client portfolio analysis.",
+        "workspaceId": "<workspace_id>",
+        "lakehouseId": "<lakehouse_id>",
+        "selectedTables": [
+          {
+            "tableName": "Customers",
+            "selectedColumns": [
+              "customer_id",
+              "customer_name",
+              "customer_type",
+              "customer_status",
+              "customer_postcode",
+              "customer_email"
+            ]
+          },
+          {
+            "tableName": "Cases",
+            "selectedColumns": [
+              "case_id",
+              "customer_id",
+              "case_type",
+              "case_value_gbp",
+              "case_start_date",
+              "case_completion_date",
+              "assigned_solicitor_name",
+              "high_value_case_flag",
+              "payment_status"
+            ]
+          }
+        ],
+        "dataSourceInstructions": "## ClientCasePortfolio Data Source\n\nThis source contains customer and legal case master data.\n\n**When to use this source:**\n- Questions about clients/customers (who, how many, types, status)\n- Questions about cases/matters (types, values, dates, status)\n- Questions about solicitor assignments (who handles what)\n- Questions about case status and completion\n- Client demographics and contact information\n- High-value case identification\n\n**Tables:**\n- **Customers**: Client master data with demographics\n- **Cases**: Legal case records with financial values and assignments\n\n**Key relationships:**\n- Customers.customer_id → Cases.customer_id\n\n**Important notes:**\n- Use case_start_date for time-based case analysis\n- High-value cases are marked with high_value_case_flag = 'Yes'\n- Customer types are 'Individual' or 'Corporate'\n- Payment status indicates case payment state, not detailed transactions\n\n**Example value formats:**\n- customer_type: 'Individual', 'Corporate'\n- customer_status: 'Active', 'Inactive', 'Closed'\n- case_type: 'Conveyancing', 'Corporate Law', 'Family Law', 'Litigation', etc.\n- payment_status: 'Paid', 'Pending', 'Overdue', 'Closed'",
+        "exampleQueries": [
+          {
+            "question": "How many active customers do we have?",
+            "query": "SELECT COUNT(DISTINCT customer_id) FROM Customers WHERE customer_status = 'Active'",
+            "explanation": "Count of active clients"
+          },
+          {
+            "question": "Show me all cases assigned to Sarah Jones",
+            "query": "SELECT case_id, case_type, case_value_gbp, payment_status FROM Cases WHERE assigned_solicitor_name = 'Sarah Jones'",
+            "explanation": "Cases by specific solicitor"
+          },
+          {
+            "question": "What case types do we handle?",
+            "query": "SELECT DISTINCT case_type, COUNT(*) as case_count FROM Cases GROUP BY case_type ORDER BY case_count DESC",
+            "explanation": "Distribution of case types"
+          },
+          {
+            "question": "Which clients have high-value cases?",
+            "query": "SELECT DISTINCT c.customer_name, c.customer_type FROM Customers c INNER JOIN Cases cs ON c.customer_id = cs.customer_id WHERE cs.high_value_case_flag = 'Yes'",
+            "explanation": "Clients with high-value matters"
+          },
+          {
+            "question": "How many cases were started in Q1 2023?",
+            "query": "SELECT COUNT(*) FROM Cases WHERE case_start_date >= '2023-01-01' AND case_start_date < '2023-04-01'",
+            "explanation": "Time-based case analysis"
+          }
+        ]
+      },
+      {
+        "id": "source2",
+        "name": "FinancialTransactions",
+        "type": "lakehouse",
+        "description": "Contains detailed financial transaction records including timesheets, expenses, invoices, and payments. Use this source for questions about billing, invoices, payments, hours worked, hourly rates, expenses, disbursements, revenue recognition, payment methods, outstanding invoices, and detailed financial tracking. Best for answering: How many hours were billed? What are the expenses? Which invoices are unpaid? How much was paid? What's the hourly rate? Payment history and transaction details.",
+        "workspaceId": "<workspace_id>",
+        "lakehouseId": "<lakehouse_id>",
+        "selectedTables": [
+          {
+            "tableName": "FinancialTransactions",
+            "selectedColumns": [
+              "transaction_id",
+              "transaction_date",
+              "transaction_type",
+              "case_id",
+              "customer_id",
+              "solicitor_name",
+              "hours_worked",
+              "hourly_rate_gbp",
+              "expense_amount_gbp",
+              "invoice_number",
+              "payment_amount_gbp",
+              "payment_method",
+              "payment_date",
+              "transaction_status",
+              "description",
+              "category"
+            ]
+          }
+        ],
+        "dataSourceInstructions": "## FinancialTransactions Data Source\n\nThis source contains detailed financial transaction records for all billing, expenses, and payments.\n\n**When to use this source:**\n- Questions about hours worked or timesheets\n- Questions about hourly rates or billing rates\n- Questions about expenses or disbursements\n- Questions about invoices (amounts, dates, status)\n- Questions about payments (amounts, dates, methods)\n- Questions about specific transaction details\n- Revenue recognition and financial tracking\n- Detailed billing analysis\n\n**Transaction Types:**\n- **Timesheet**: Records of hours worked by solicitors\n- **Expense**: Disbursements and expenses incurred on cases\n- **Invoice**: Billing documents sent to clients\n- **Payment**: Payments received from clients\n\n**Key fields:**\n- transaction_type: Distinguishes between timesheet, expense, invoice, payment\n- hours_worked: Only populated for 'Timesheet' transactions\n- hourly_rate_gbp: Billing rate for timesheet entries\n- expense_amount_gbp: Amount for 'Expense' transactions\n- payment_amount_gbp: Amount for 'Payment' and 'Invoice' transactions\n- invoice_number: Links transactions to invoices (format: INV-YYYY-###)\n\n**Important notes:**\n- Timesheets record hours; use hours_worked and hourly_rate_gbp\n- Expenses are separate from timesheet amounts\n- Invoice transaction contains total invoice amount (sum of related timesheets + expenses)\n- Payment transactions record actual money received\n- Link to cases via case_id to understand case-level financials\n\n**Example filters:**\n- Timesheet entries: transaction_type = 'Timesheet'\n- Unpaid invoices: transaction_type = 'Invoice' AND NOT EXISTS (Payment for same invoice_number)\n- Expenses only: transaction_type = 'Expense'\n- Payment methods: payment_method IN ('Bank Transfer', 'Cheque', 'Credit Card')\n\n**Aggregations:**\n- Total hours: SUM(hours_worked) WHERE transaction_type = 'Timesheet'\n- Total expenses: SUM(expense_amount_gbp) WHERE transaction_type = 'Expense'\n- Total invoiced: SUM(payment_amount_gbp) WHERE transaction_type = 'Invoice'\n- Total paid: SUM(payment_amount_gbp) WHERE transaction_type = 'Payment'",
+        "exampleQueries": [
+          {
+            "question": "How many hours did Sarah Jones bill in March 2023?",
+            "query": "SELECT SUM(hours_worked) FROM FinancialTransactions WHERE solicitor_name = 'Sarah Jones' AND transaction_type = 'Timesheet' AND transaction_date >= '2023-03-01' AND transaction_date < '2023-04-01'",
+            "explanation": "Timesheet hours by solicitor and month"
+          },
+          {
+            "question": "What's the total of all expenses for case CASE005?",
+            "query": "SELECT SUM(expense_amount_gbp) FROM FinancialTransactions WHERE case_id = 'CASE005' AND transaction_type = 'Expense'",
+            "explanation": "Expenses by case"
+          },
+          {
+            "question": "Show me all unpaid invoices",
+            "query": "SELECT DISTINCT invoice_number, payment_amount_gbp, customer_id FROM FinancialTransactions WHERE transaction_type = 'Invoice' AND invoice_number NOT IN (SELECT invoice_number FROM FinancialTransactions WHERE transaction_type = 'Payment')",
+            "explanation": "Outstanding invoices"
+          },
+          {
+            "question": "What's Robert Smith's hourly rate?",
+            "query": "SELECT DISTINCT hourly_rate_gbp FROM FinancialTransactions WHERE solicitor_name = 'Robert Smith' AND transaction_type = 'Timesheet'",
+            "explanation": "Billing rate by solicitor"
+          },
+          {
+            "question": "How much total payment did we receive in Q2 2023?",
+            "query": "SELECT SUM(payment_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Payment' AND payment_date >= '2023-04-01' AND payment_date < '2023-07-01'",
+            "explanation": "Payment collections by time period"
+          }
+        ]
+      }
+    ],
+    "agentInstructions": "# UK Legal Firm Customer 360 Agent\n\nYou are a data agent for a UK law firm, helping users analyze client relationships, case portfolio, and financial performance.\n\n## Tone and Style\nUse clear, professional language appropriate for legal and financial contexts. Be precise with numbers and dates. Sound knowledgeable about UK legal terminology but explain technical terms when needed.\n\n## General Knowledge\nThis law firm handles various practice areas including conveyancing, corporate law, family law, litigation, employment law, wills and probate, commercial property, personal injury, immigration, and intellectual property. The firm tracks both case-level information and detailed financial transactions.\n\n## Data Source Routing\n\n**Use ClientCasePortfolio when asked about:**\n- Clients, customers (who they are, how many, types, status, demographics)\n- Cases, matters (types, values, status, completion)\n- Solicitor assignments (which solicitor handles which case)\n- Case portfolio analysis\n- Client demographics and contact information\n- High-value case identification\n- Case completion and status tracking\n- General case information questions\n\n**Example questions for ClientCasePortfolio:**\n- \"How many active customers do we have?\"\n- \"Show me all cases assigned to Sarah Jones\"\n- \"What case types do we handle?\"\n- \"Which clients have high-value cases?\"\n- \"What's the status of case CASE001?\"\n- \"How many conveyancing cases do we have?\"\n\n**Use FinancialTransactions when asked about:**\n- Hours worked, timesheets, time tracking\n- Hourly rates, billing rates\n- Expenses, disbursements, costs\n- Invoices, billing, invoiced amounts\n- Payments, payment methods, payment dates\n- Outstanding invoices, unpaid bills\n- Revenue recognition, collections\n- Detailed financial transactions\n- Specific transaction records\n\n**Example questions for FinancialTransactions:**\n- \"How many hours did [solicitor] bill in [time period]?\"\n- \"What are the total expenses for case [X]?\"\n- \"Show me all unpaid invoices\"\n- \"What's the hourly rate for [solicitor]?\"\n- \"How much payment did we receive in [time period]?\"\n- \"What invoice was sent for case [X]?\"\n\n**When a question requires BOTH sources:**\nFirst query one source, then the other, and combine results. For example:\n- \"What's the total billing for ACME Corporation?\" → Query ClientCasePortfolio for cases, then FinancialTransactions for invoices\n- \"Show me solicitor performance with hours worked\" → Query ClientCasePortfolio for case counts, then FinancialTransactions for hours\n\n## Business Terms and Definitions\n\n**High-Value Case:** A case with value >= £50,000\n**Active Client:** A customer with customer_status = 'Active'\n**Pending Payment:** A case with payment_status = 'Pending'\n**Overdue:** A case with payment_status = 'Overdue' (requires collections follow-up)\n**Individual Client:** Personal/consumer client (not a business)\n**Corporate Client:** Business/company client\n\n**Transaction Types:**\n- **Timesheet:** Records of billable hours worked\n- **Expense:** Costs incurred on behalf of client (disbursements)\n- **Invoice:** Bill sent to client\n- **Payment:** Money received from client\n\n**Practice Areas (Case Types):**\n- Conveyancing: Property transactions, real estate\n- Corporate Law: Business law, mergers, company matters\n- Family Law: Divorce, custody, matrimonial\n- Litigation: Disputes, court cases\n- Employment Law: Workplace matters\n- Wills and Probate: Estate planning, inheritance\n- Commercial Property: Business real estate\n- Personal Injury: Accident claims\n- Immigration: Visa, citizenship\n- Intellectual Property: Patents, trademarks\n\n## Default Preferences\n\n- For \"this year\" or \"YTD\", use calendar year (January to December)\n- When asked about \"revenue\", consider this means case value (ClientCasePortfolio) or invoiced amounts (FinancialTransactions) depending on context\n- When asked about \"caseload\", use number of cases from ClientCasePortfolio\n- When asked about \"billing\", use FinancialTransactions timesheet and invoice data\n- For time-based analysis, prefer case_start_date (ClientCasePortfolio) or transaction_date (FinancialTransactions)\n- Always show amounts in GBP with currency symbol (£)\n\n## Query Generation Guidance\n\n- Use exact match for solicitor names: 'Sarah Jones', 'Robert Smith', 'Michael Brown'\n- Use LIKE '%text%' for partial name matching on customer names\n- For time periods, use date range filters (>= start_date AND < end_date)\n- For quarterly analysis, use calendar quarters (Q1: Jan-Mar, Q2: Apr-Jun, Q3: Jul-Sep, Q4: Oct-Dec)\n- When filtering transactions, always specify transaction_type to avoid mixing record types\n- Link cases to transactions via case_id\n- Link customers to transactions via customer_id\n\n## Data Quality Notes\n\n- Some cases may not have completion dates (still ongoing)\n- Some customers may have missing contact details\n- Timesheet transactions have hours_worked > 0 and hourly_rate_gbp > 0\n- Expense transactions have expense_amount_gbp > 0\n- Invoice and Payment transactions have payment_amount_gbp > 0\n- Payment transactions include payment_date and payment_method\n\n## Response Formatting\n\n- Always format currency with £ symbol and thousands separator\n- Show dates in UK format: DD/MM/YYYY for display\n- Round decimal hours to 1 decimal place (e.g., 12.5 hours)\n- For solicitor names, use full names as stored\n- For lists, limit to top 10 by default unless user specifies otherwise",
+    "routingRules": [
+      {
+        "topicCategory": "Client Information",
+        "dataSource": "ClientCasePortfolio",
+        "keywords": ["client", "customer", "who", "contact", "demographics", "active customer", "corporate client", "individual client"],
+        "description": "Questions about client identity, demographics, or status"
+      },
+      {
+        "topicCategory": "Case Information",
+        "dataSource": "ClientCasePortfolio",
+        "keywords": ["case", "matter", "case type", "conveyancing", "litigation", "family law", "case status", "high value", "solicitor assignment"],
+        "description": "Questions about legal cases, types, status, or assignments"
+      },
+      {
+        "topicCategory": "Financial Transactions",
+        "dataSource": "FinancialTransactions",
+        "keywords": ["hours", "timesheet", "hourly rate", "expense", "invoice", "payment", "billing", "unpaid", "outstanding"],
+        "description": "Questions about detailed financial records, hours, rates, or transactions"
+      },
+      {
+        "topicCategory": "Combined Analysis",
+        "dataSource": "Both",
+        "keywords": ["total billing for client", "solicitor performance", "case profitability"],
+        "description": "Questions requiring data from both sources"
+      }
+    ]
+  }
+}

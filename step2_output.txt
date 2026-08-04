@@ -1,0 +1,131 @@
+Running in SIMULATION MODE - Step 2
+
+================================================================================
+Starting evaluation of 30 queries
+Agent: <agent_id>
+Mode: SIMULATION
+================================================================================
+
+[1/30] Q001: How many active customers do we have?...
+  Ô£ù Exact: False | Semantic: False | Routing: True | Time: 3276ms
+     Notes: OK
+[2/30] Q002: What's the total value of all cases?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 2654ms
+     Notes: OK
+[3/30] Q003: How many cases are assigned to Sarah Jones?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 3235ms
+     Notes: OK
+[4/30] Q004: What case types do we handle?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 2699ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[5/30] Q005: How many corporate customers do we have?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 3459ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[6/30] Q006: What's the average case value?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 3781ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[7/30] Q007: How many high-value cases do we have?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 2470ms
+     Notes: OK
+[8/30] Q008: What's the total value of overdue cases?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 3954ms
+     Notes: OK
+[9/30] Q009: How many cases were started in Q1 2023?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 1817ms
+     Notes: OK
+[10/30] Q010: Which solicitor handles the most cases?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 2896ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[11/30] Q011: How many hours did Sarah Jones bill in March 2023?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 3423ms
+     Notes: Error: Query execution failed
+[12/30] Q012: What's Robert Smith's hourly rate?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 3641ms
+     Notes: Error: Query execution failed
+[13/30] Q013: What's the total expenses for case CASE005?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 4153ms
+     Notes: Wrong source: ClientCasePortfolio vs FinancialTransactions
+[14/30] Q014: How many unpaid invoices do we have?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 3030ms
+     Notes: Wrong source: ClientCasePortfolio vs FinancialTransactions
+[15/30] Q015: What's the total payment received in Q2 2023?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 4324ms
+     Notes: Wrong source: ClientCasePortfolio vs FinancialTransactions
+[16/30] Q016: Show me case value by case type...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 1812ms
+     Notes: Error: Query execution failed
+[17/30] Q017: Which customers have active status?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 2963ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[18/30] Q018: What's the total hours billed by all solicitors?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 3371ms
+     Notes: OK
+[19/30] Q019: How many cases does each solicitor handle?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 3399ms
+     Notes: OK
+[20/30] Q020: What's the value of pending payment cases?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 3782ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[21/30] Q021: Show me all cases for ACME Corporation...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 3786ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[22/30] Q022: What's the average hourly rate across all solicitors?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 4342ms
+     Notes: Wrong source: ClientCasePortfolio vs FinancialTransactions
+[23/30] Q023: How many individual customers do we have?...
+  Ô£ù Exact: False | Semantic: False | Routing: True | Time: 2915ms
+     Notes: OK
+[24/30] Q024: What's the total invoiced amount?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 4106ms
+     Notes: OK
+[25/30] Q025: How many cases are still ongoing?...
+  Ô£ô Exact: True | Semantic: True | Routing: False | Time: 2228ms
+     Notes: Wrong source: FinancialTransactions vs ClientCasePortfolio
+[26/30] Q026: What's Michael Brown's total case value?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 3597ms
+     Notes: Error: Query execution failed
+[27/30] Q027: How many conveyancing cases do we have?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 2524ms
+     Notes: OK
+[28/30] Q028: What's the total expenses across all cases?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 3850ms
+     Notes: Error: Query execution failed
+[29/30] Q029: Which case type has the highest average value?...
+  Ô£ù Exact: False | Semantic: False | Routing: False | Time: 3186ms
+     Notes: Error: Query execution failed
+[30/30] Q030: How many payment transactions were recorded?...
+  Ô£ô Exact: True | Semantic: True | Routing: True | Time: 3209ms
+     Notes: OK
+
+================================================================================
+EVALUATION REPORT
+================================================================================
+
+Total Queries: 30
+
+Overall Accuracy:
+  Exact Match:        60.00%
+  Semantic Match:     60.00%
+  Routing:            40.00%
+  Measure Selection:  50.00%
+
+Performance:
+  Avg Response Time:       0 ms
+  Verified Answer Hit Rate:   0.00%
+  Error Rate:         20.00%
+
+By Category:
+  case_summary              (n=13): Exact= 76.9%, Semantic= 76.9%, Routing= 46.2%
+  financial_transactions    (n=10): Exact= 50.0%, Semantic= 50.0%, Routing= 30.0%
+  customer_count            (n= 4): Exact= 25.0%, Semantic= 25.0%, Routing= 50.0%
+  solicitor_performance     (n= 3): Exact= 66.7%, Semantic= 66.7%, Routing= 33.3%
+
+By Difficulty:
+  hard       (n= 2): Exact= 50.0%, Semantic= 50.0%
+  medium     (n=14): Exact= 64.3%, Semantic= 64.3%
+  easy       (n=14): Exact= 57.1%, Semantic= 57.1%
+
+================================================================================
+
+Results saved to step2_results.json
+Ô£ù FAIL: Accuracy < 75%

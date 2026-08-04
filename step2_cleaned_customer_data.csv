@@ -1,0 +1,19 @@
+customer_id,customer_name,customer_type,customer_address,customer_postcode,customer_phone,customer_email,customer_status,case_id,case_type,case_value_gbp,case_start_date,case_completion_date,assigned_solicitor_name,high_value_case_flag,payment_status
+C001,John Smith,Individual,123 High Street,SW1A 1AA,+44 20 7123 4567,john@email.com,Active,CASE001,Conveyancing,15000,2023-01-15,2023-03-20,Sarah Jones,Yes,Paid
+C002,ACME Corporation Ltd,Corporate,45 Business Park,EC1A 1BB,+44 20 7123 4568,contact@acme.co.uk,Active,CASE002,Corporate Law,125000,2023-02-15,,Robert Smith,Yes,Pending
+C003,Jane Doe,Individual,78 Park Lane,W1K 7TN,+44 7700 900123,jane.doe@email.com,Active,CASE003,Family Law,8500,2023-02-10,2023-04-15,Sarah Jones,No,Paid
+C005,TechStart Ltd,Corporate,Innovation Hub Unit 12,EC2A 4NE,,info@techstart.com,Inactive,CASE005,Litigation,45000,2023-03-01,2023-06-30,Michael Brown,No,Overdue
+C006,Mary Johnson,Individual,34 Queens Road,,+44 7700 900456,m.johnson@email.com,Active,CASE006,Employment Law,12000,,2023-05-20,Sarah Jones,Yes,Paid
+C002,ACME Corporation Ltd,Corporate,45 Business Park,EC1A 1BB,+44 20 7123 4568,contact@acme.co.uk,Active,CASE007,Corporate Law,250000,2023-04-01,2023-10-01,Robert Smith,Yes,Pending
+C008,Peter Williams,Individual,67 Station Road,,+44 7700 900789,peter.williams@email.com,Active,CASE008,Wills and Probate,5500,2023-04-12,,Michael Brown,No,Paid
+C009,Corporate Client Unknown,Corporate,89 Commercial Street,E1 6LY,+44 20 7123 4571,,Active,CASE009,Commercial Property,85000,2023-05-01,2023-08-15,Sarah Jones,Yes,Pending
+C010,Sarah Thompson,Individual,12 Riverside Walk,OX1 1SZ,,sarah.t@email.com,Inactive,CASE010,Family Law,3500,2023-02-20,2023-03-25,Michael Brown,No,Paid
+C011,BuildRight Construction,Corporate,Industrial Estate Plot 7,,+44 20 7123 4572,contracts@buildright.com,Active,CASE011,Construction Law,95000,2023-06-15,,Robert Smith,Yes,Overdue
+C012,David Brown,Individual,23 Mill Lane,CB2 1TN,+44 7700 900234,d.brown@email.com,Active,CASE012,Wills and Probate,7500,2023-03-15,2023-06-20,Sarah Jones,Yes,Paid
+C002,ACME Corporation Ltd,Corporate,45 Business Park,EC1A 1BB,+44 20 7123 4568,contact@acme.co.uk,Active,CASE013,Corporate Law,75000,2023-06-01,,Robert Smith,Yes,Pending
+C014,Emily Davis,Individual,,BS1 4DJ,+44 20 7123 4573,emily.davis@email.com,Active,CASE014,Personal Injury,6200,2023-04-25,2023-07-30,Michael Brown,No,Paid
+C015,Heritage Properties Group,Corporate,The Old Mill Riverside,,+44 20 7123 4575,enquiries@heritage.com,Active,CASE015,Commercial Property,180000,2023-07-01,2023-12-01,Sarah Jones,Yes,Pending
+C016,Thomas Anderson,Individual,56 Church Street,EH1 1SU,+44 7700 900345,t.anderson@email.com,Active,CASE016,Road Traffic Law,4800,2023-05-10,,Michael Brown,No,Paid
+C017,FastFood Franchises Ltd,Corporate,Retail Park Unit 45,M1 4BT,+44 20 7123 4574,legal@fastfood.com,Active,CASE017,Franchise Law,52000,2023-06-15,2023-09-20,Robert Smith,No,Pending
+C018,Lisa Martinez,Individual,89 Garden Close,,+44 20 7123 4576,lisa.m@email.com,Active,CASE018,Immigration Law,9200,2023-07-01,,Sarah Jones,Yes,Overdue
+C020,Innovation Tech Solutions,Corporate,Floor 3 Science Park,CB4 0WS,+44 20 7123 4577,legal.dept@innovation-tech.com,Inactive,CASE020,Intellectual Property,125000,2023-08-15,,Michael Brown,No,Closed

@@ -1,0 +1,16 @@
+sid,nm,spec,hiredt,rate,loc,stat
+SOL001,Sarah Jones,corp,06/06/2013,187,Southampton,1
+SOL002,Robert Smith,IP,09/09/2013,383.00,Bristol,active
+SOL003,Michael Brown,IP,06/01/2011,£418,Nottingham,Active
+SOL004,Emma Wilson,CORP,05/31/2016,152,Oxford,Employment
+SOL005,David Taylor,family,06/06/2015,£332,Bristol,1
+SOL006,James Davies,Contract,2014-02-25,£377,Birmingham,Active
+S7,Jennifer Thomas,PROPERTY,25/07/2018,314,Sheffield,A
+S8,Richard Evans,dispute,08/21/2017,198.00,Glasgow,active
+SOL009,Lisa Johnson,family,2016-09-20,£268,Liverpool,active
+SOL010,Andrew Roberts,Prop,03/31/2017,£386,Edinburgh,active
+S11,Susan Robinson,Cont,2017-04-28,£318,Cambridge,1
+SOL012,Charles Thompson,Cont,2011-08-18,350,Nottingham,Employment
+SOL013,Patricia White,Conveyancing,03/12/2010,291.00,Belfast,active
+SOL014,Daniel Hughes,LITIGATION,18/02/2019,£258,Sheffield,1
+SOL015,Karen Edwards,Corp,06/21/2020,£387,Brighton,Active
