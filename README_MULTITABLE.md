@@ -101,7 +101,6 @@ python generate_step2_data.py
 ### Data Files
 - `step1_raw_*.csv` (5 files) - Raw data with quality issues
 - `step2_cleaned_*.csv` (5 files) - Cleaned, standardized data
-- `step6_financial_transactions.csv` - Additional source for routing demo
 
 ### Model Files
 - `step3_basic_semantic_model.json` - Semantic model with anti-patterns
@@ -116,14 +115,7 @@ python generate_step2_data.py
 - `EVALUATION_COMPARISON.md` - Complete results analysis
 
 ### Documentation
-- `README.md` - Quick start guide
-- `DEMO_SUMMARY.md` - 15-minute presentation script
 - `STEP1_MULTITABLE_ANALYSIS.md` - Detailed Step 1 analysis
-- `step2_cleaning_analysis.md` - Data cleaning improvements
-- `step3_analysis.md` - Basic model anti-patterns
-- `step4_optimization_analysis.md` - Optimization impact
-- `step5_ontology_analysis.md` - Ontology benefits
-- `step6_routing_analysis.md` - Multi-source routing
 - `TEST_QUERIES.md` - 30 manual test queries
 - `EVALUATION_GUIDE.md` - How to run evaluation
 
