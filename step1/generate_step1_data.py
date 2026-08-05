@@ -6,6 +6,9 @@ Demonstrates real-world data problems at scale
 import csv
 import random
 from datetime import datetime, timedelta
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).resolve().parent
 
 # UK-specific data
 UK_CITIES = ["London", "Manchester", "Birmingham", "Leeds", "Glasgow", "Liverpool", 
@@ -353,11 +356,12 @@ def generate_raw_interactions(num_interactions=800, num_customers=200):
 
 def write_csv(filename, data, fieldnames):
     """Write data to CSV file"""
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
+    output_path = OUTPUT_DIR / filename
+    with open(output_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
-    print(f"✓ Generated {filename} with {len(data)} rows")
+    print(f"✓ Generated {output_path.name} with {len(data)} rows")
 
 
 if __name__ == "__main__":

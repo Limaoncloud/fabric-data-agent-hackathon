@@ -1,0 +1,16 @@
+solicitor_id,solicitor_name,specialization,hire_date,hourly_rate_gbp,office_location,status
+SOL001,Sarah Jones,Intellectual Property,19/07/2016,344,Belfast,Active
+SOL002,Robert Smith,General Practice,04/06/2014,162,Birmingham,Active
+SOL003,Michael Brown,Wills & Probate,04/05/2017,200,Southampton,Active
+SOL004,Emma Wilson,Dispute Resolution,13/09/2016,372,Sheffield,Active
+S5,David Taylor,General Practice,01/12/2021,173,Oxford,Active
+SOL006,James Davies,General Practice,13/03/2014,255,Nottingham,Active
+SOL007,Jennifer Thomas,Intellectual Property,24/02/2018,345,Southampton,Active
+SOL008,Richard Evans,Employment,17/09/2014,210,Oxford,Active
+SOL009,Lisa Johnson,Conveyancing,22/08/2023,367,Leeds,Active
+SOL010,Andrew Roberts,Commercial,20/06/2021,450,Edinburgh,Active
+SOL011,Susan Robinson,Property Law,18/05/2016,391,Cardiff,Active
+S12,Charles Thompson,Family Law,03/07/2020,348,Nottingham,Active
+SOL013,Patricia White,Employment,08/02/2019,353,Leicester,Active
+SOL014,Daniel Hughes,Intellectual Property,10/02/2013,166,Birmingham,Active
+SOL015,Karen Edwards,General Practice,20/08/2011,247,Bristol,Active

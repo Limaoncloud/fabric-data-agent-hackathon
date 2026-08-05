@@ -359,12 +359,12 @@ At scale (2,515 records across 5 tables), these quality issues compound:
 
 ## Files Generated
 
-Run `python generate_step1_data.py` to regenerate:
+Run `python step1/generate_step1_data.py` to regenerate:
 
-- `step1_raw_customers.csv` (200 rows)
-- `step1_raw_cases.csv` (500 rows)
-- `step1_raw_solicitors.csv` (15 rows)
-- `step1_raw_transactions.csv` (1000 rows)
-- `step1_raw_interactions.csv` (800 rows)
+- `step1/step1_raw_customers.csv` (200 rows)
+- `step1/step1_raw_cases.csv` (500 rows)
+- `step1/step1_raw_solicitors.csv` (15 rows)
+- `step1/step1_raw_transactions.csv` (1000 rows)
+- `step1/step1_raw_interactions.csv` (800 rows)
 
 **Total: 2,515 records** with intentional quality issues for demo purposes.

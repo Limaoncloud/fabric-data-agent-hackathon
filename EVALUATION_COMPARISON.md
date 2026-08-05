@@ -421,12 +421,12 @@ By Difficulty:
 
 | File | Description | Step |
 |------|-------------|------|
-| `step1_results.json` | Evaluation results for raw data | 1 |
-| `step2_results.json` | Evaluation results for cleaned data | 2 |
-| `step3_results.json` | Evaluation results for basic model | 3 |
-| `step4_results.json` | Evaluation results for optimized model | 4 |
-| `step5_results.json` | Evaluation results with ontology | 5 |
-| `step6_results.json` | Evaluation results with routing | 6 |
+| `step1/step1_results.json` | Evaluation results for raw data | 1 |
+| `step2/step2_results.json` | Evaluation results for cleaned data | 2 |
+| `step3/step3_results.json` | Evaluation results for basic model | 3 |
+| `step4/step4_results.json` | Evaluation results for optimized model | 4 |
+| `step5/step5_results.json` | Evaluation results with ontology | 5 |
+| `step6/step6_results.json` | Evaluation results with routing | 6 |
 
 All results include:
 - Query-level metrics (exact match, semantic match, routing, timing)

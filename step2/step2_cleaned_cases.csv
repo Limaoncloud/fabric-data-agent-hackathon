@@ -1,0 +1,501 @@
+case_id,customer_id,solicitor_name,case_type,case_value_gbp,start_date,case_status
+CASE0001,95,Richard Evans,Litigation,104709,02/06/2021,Pending
+CASE0002,15,Jennifer Thomas,Immigration,241518,18/12/2022,Closed
+CASE0003,86,Sarah Jones,Corporate,283275,05/09/2021,Closed
+CASE0004,100,Jennifer Thomas,Immigration,431534,08/05/2021,Open
+CASE0005,46,Susan Robinson,General,373153,06/02/2021,Pending
+CASE0006,165,Robert Smith,Contract Law,247972,25/03/2021,Closed
+CASE0007,149,Karen Edwards,Commercial,39337,23/02/2022,Closed
+CASE0008,19,Lisa Johnson,General,463150,18/09/2022,Open
+CASE0009,9,Richard Evans,Corporate,196887,24/05/2022,Closed
+CASE0010,28,Daniel Hughes,Contract Law,109073,28/11/2023,Pending
+CASE0011,93,Andrew Roberts,Property Law,490639,05/06/2023,Pending
+CASE0012,98,Andrew Roberts,Intellectual Property,366061,23/07/2023,Open
+CASE0013,45,Daniel Hughes,Litigation,386886,08/02/2023,Open
+CASE0014,138,Emma Wilson,General,118931,29/11/2021,Closed
+CASE0015,75,Michael Brown,Employment,258988,30/08/2021,Pending
+CASE0016,4,Richard Evans,Commercial,64682,02/07/2021,Closed
+CASE0017,122,Jennifer Thomas,General,424179,04/08/2021,Pending
+CASE0018,103,Richard Evans,Contract Law,11369,25/12/2021,Closed
+CASE0019,36,Andrew Roberts,Wills & Probate,428845,09/08/2022,Pending
+CASE0020,19,Robert Smith,Contract Law,414045,06/11/2022,Open
+CASE0021,134,Charles Thompson,Litigation,91459,18/04/2021,Open
+CASE0022,67,Richard Evans,Corporate,375516,02/10/2021,Pending
+CASE0023,41,Jennifer Thomas,Wills & Probate,422670,05/01/2023,Open
+CASE0024,112,Susan Robinson,Conveyancing,90776,21/10/2023,Open
+CASE0025,58,Emma Wilson,Wills & Probate,352055,08/06/2022,Pending
+CASE0026,102,Robert Smith,General,127023,17/11/2023,Closed
+CASE0027,28,Charles Thompson,Wills & Probate,165763,11/10/2021,Pending
+CASE0028,69,Sarah Jones,Immigration,71057,22/12/2022,Closed
+CASE0029,79,James Davies,Family Law,83856,15/09/2022,Closed
+CASE0030,102,David Taylor,Commercial,355328,05/09/2022,Pending
+CASE0031,164,James Davies,Commercial,303597,23/05/2021,Open
+CASE0032,63,Susan Robinson,General,410700,24/03/2023,Open
+CASE0033,169,Andrew Roberts,General,102118,03/08/2023,Closed
+CASE0034,44,Karen Edwards,Conveyancing,431449,04/09/2023,Open
+CASE0035,59,James Davies,Contract Law,219178,12/05/2023,Closed
+CASE0036,144,Jennifer Thomas,Wills & Probate,305850,18/01/2022,Open
+CASE0037,166,Lisa Johnson,General,175644,28/10/2021,Pending
+CASE0038,53,Emma Wilson,Property Law,6017,09/05/2023,Open
+CASE0039,47,Jennifer Thomas,Property Law,220590,04/08/2023,Open
+CASE0040,140,David Taylor,Employment,336378,24/11/2023,Closed
+CASE0041,142,Jennifer Thomas,Dispute Resolution,432457,17/10/2022,Closed
+CASE0042,140,Lisa Johnson,Contract Law,214581,24/07/2023,Closed
+CASE0043,83,Lisa Johnson,Litigation,33688,03/05/2021,Open
+CASE0044,84,Charles Thompson,General,376951,20/03/2021,Closed
+CASE0045,18,Robert Smith,Intellectual Property,453864,17/11/2022,Pending
+CASE0046,33,Jennifer Thomas,Employment,26372,31/07/2022,Closed
+CASE0047,97,Robert Smith,Corporate,328652,15/05/2021,Closed
+CASE0048,49,Michael Brown,Conveyancing,347900,23/05/2022,Pending
+CASE0049,157,Emma Wilson,Intellectual Property,407273,24/08/2021,Open
+CASE0050,19,Richard Evans,Commercial,64751,26/08/2023,Pending
+CASE0051,96,Lisa Johnson,General,215759,26/02/2021,Closed
+CASE0052,65,Sarah Jones,Conveyancing,317411,18/09/2021,Open
+CASE0053,169,Andrew Roberts,Property Law,113994,29/06/2021,Open
+CASE0054,43,Karen Edwards,Conveyancing,184176,05/10/2023,Pending
+CASE0055,163,Richard Evans,Litigation,408365,25/02/2022,Pending
+CASE0056,44,Patricia White,Intellectual Property,384071,24/10/2021,Open
+CASE0057,120,Charles Thompson,Dispute Resolution,13041,21/06/2021,Open
+CASE0058,121,Patricia White,Intellectual Property,224306,16/10/2022,Open
+CASE0059,7,David Taylor,Property Law,38848,25/01/2023,Open
+CASE0060,170,Lisa Johnson,General,249085,26/02/2022,Open
+CASE0061,49,Susan Robinson,Family Law,302901,28/02/2023,Pending
+CASE0062,127,Jennifer Thomas,Intellectual Property,440290,20/01/2021,Closed
+CASE0063,167,Emma Wilson,Corporate,17196,27/11/2021,Pending
+CASE0064,6,Robert Smith,Corporate,414755,02/12/2022,Pending
+CASE0065,165,Susan Robinson,General,499331,25/11/2021,Open
+CASE0066,7,Lisa Johnson,Corporate,272133,08/09/2023,Pending
+CASE0067,66,Charles Thompson,Contract Law,109367,21/11/2021,Open
+CASE0068,171,James Davies,Intellectual Property,412895,27/04/2021,Closed
+CASE0069,105,Lisa Johnson,Family Law,343367,09/08/2021,Closed
+CASE0070,114,Jennifer Thomas,Dispute Resolution,114986,22/01/2021,Open
+CASE0071,63,Andrew Roberts,Employment,120209,17/06/2022,Closed
+CASE0072,142,David Taylor,Conveyancing,429166,28/10/2021,Open
+CASE0073,153,Karen Edwards,Family Law,328840,04/07/2022,Closed
+CASE0074,80,Michael Brown,Dispute Resolution,178232,28/10/2022,Closed
+CASE0075,39,Charles Thompson,Family Law,193869,11/05/2021,Closed
+CASE0076,46,James Davies,Property Law,164282,03/07/2022,Open
+CASE0077,12,Susan Robinson,General,213120,12/09/2022,Open
+CASE0078,79,Patricia White,General,482656,10/06/2021,Pending
+CASE0079,76,Susan Robinson,Conveyancing,77605,17/10/2022,Open
+CASE0080,95,Richard Evans,Intellectual Property,75292,06/11/2021,Open
+CASE0081,22,Richard Evans,Employment,150414,05/04/2021,Open
+CASE0082,72,David Taylor,General,146716,08/01/2021,Open
+CASE0083,132,Susan Robinson,Dispute Resolution,454401,17/06/2022,Pending
+CASE0084,88,Patricia White,General,217842,10/02/2021,Pending
+CASE0085,119,Jennifer Thomas,Corporate,375304,31/08/2023,Pending
+CASE0086,42,Susan Robinson,Contract Law,203228,30/03/2022,Open
+CASE0087,108,Karen Edwards,Wills & Probate,75891,15/06/2023,Open
+CASE0088,22,Robert Smith,Employment,348523,20/04/2021,Closed
+CASE0089,66,Emma Wilson,Property Law,179169,29/09/2023,Open
+CASE0090,166,Robert Smith,Employment,65410,29/09/2023,Open
+CASE0091,41,Patricia White,Dispute Resolution,173767,11/05/2022,Open
+CASE0092,130,David Taylor,Conveyancing,90605,12/03/2023,Closed
+CASE0093,124,Charles Thompson,Employment,52254,03/12/2023,Closed
+CASE0094,103,Sarah Jones,Intellectual Property,175411,10/08/2021,Pending
+CASE0095,3,Charles Thompson,Commercial,142742,10/02/2023,Closed
+CASE0096,123,Emma Wilson,Family Law,429019,14/06/2022,Open
+CASE0097,124,Lisa Johnson,Immigration,305313,23/10/2023,Pending
+CASE0098,17,Patricia White,General,391456,19/05/2023,Pending
+CASE0099,134,Lisa Johnson,Commercial,252225,10/03/2021,Closed
+CASE0100,86,Andrew Roberts,Property Law,196508,15/02/2021,Closed
+CASE0101,82,Lisa Johnson,Dispute Resolution,280714,03/04/2021,Open
+CASE0102,72,Charles Thompson,Litigation,349883,19/02/2021,Closed
+CASE0103,69,Sarah Jones,Employment,103221,21/09/2022,Open
+CASE0104,31,Lisa Johnson,Litigation,330279,08/07/2022,Closed
+CASE0105,39,Susan Robinson,Immigration,432970,06/09/2023,Pending
+CASE0106,51,Jennifer Thomas,Commercial,90729,29/07/2023,Open
+CASE0107,94,Karen Edwards,Immigration,445768,13/06/2022,Pending
+CASE0108,50,Robert Smith,Corporate,35696,19/11/2023,Open
+CASE0109,111,Robert Smith,General,256565,23/02/2022,Open
+CASE0110,85,Lisa Johnson,Conveyancing,367033,14/03/2021,Pending
+CASE0111,4,Lisa Johnson,Employment,117021,09/02/2021,Closed
+CASE0112,122,Emma Wilson,Contract Law,93836,04/02/2022,Open
+CASE0113,134,Lisa Johnson,Conveyancing,484671,08/03/2021,Open
+CASE0114,1,Andrew Roberts,Employment,434921,12/12/2023,Closed
+CASE0115,89,Michael Brown,Dispute Resolution,206088,04/04/2021,Closed
+CASE0116,87,Daniel Hughes,Wills & Probate,384454,28/09/2022,Pending
+CASE0117,67,Michael Brown,Litigation,79697,09/03/2021,Pending
+CASE0118,104,Richard Evans,General,355599,28/11/2023,Open
+CASE0119,81,Jennifer Thomas,Conveyancing,275374,27/07/2023,Open
+CASE0120,89,Susan Robinson,Family Law,229076,12/01/2022,Open
+CASE0121,27,Daniel Hughes,Immigration,370989,25/12/2023,Closed
+CASE0122,139,Jennifer Thomas,General,337825,14/01/2022,Closed
+CASE0123,57,Sarah Jones,Family Law,261850,08/08/2023,Open
+CASE0124,7,Daniel Hughes,Employment,82250,08/06/2023,Open
+CASE0125,33,Karen Edwards,Conveyancing,268677,13/05/2023,Pending
+CASE0126,39,Emma Wilson,Wills & Probate,423147,06/04/2022,Open
+CASE0127,15,Charles Thompson,General,326653,17/07/2023,Closed
+CASE0128,115,Patricia White,Conveyancing,278822,24/02/2021,Pending
+CASE0129,73,Daniel Hughes,General,319249,23/11/2023,Pending
+CASE0130,112,David Taylor,Family Law,255927,26/04/2021,Pending
+CASE0131,94,Robert Smith,Property Law,177041,27/02/2021,Pending
+CASE0132,2,David Taylor,General,95405,17/09/2021,Pending
+CASE0133,57,Lisa Johnson,Contract Law,408260,03/07/2023,Closed
+CASE0134,102,Michael Brown,Family Law,21457,09/07/2023,Pending
+CASE0135,104,Andrew Roberts,General,331920,09/09/2023,Pending
+CASE0136,132,Susan Robinson,Wills & Probate,345438,09/07/2021,Pending
+CASE0137,163,Susan Robinson,Commercial,46075,27/07/2021,Closed
+CASE0138,65,Richard Evans,Commercial,353000,26/11/2023,Open
+CASE0139,122,Richard Evans,Conveyancing,116794,17/09/2023,Pending
+CASE0140,131,Daniel Hughes,Intellectual Property,65669,12/07/2021,Closed
+CASE0141,20,Richard Evans,Immigration,159730,30/11/2022,Pending
+CASE0142,157,Karen Edwards,Litigation,348795,05/12/2022,Pending
+CASE0143,35,Emma Wilson,Litigation,433639,21/08/2023,Pending
+CASE0144,140,Charles Thompson,Corporate,101369,14/04/2021,Open
+CASE0145,117,Lisa Johnson,Corporate,45152,20/04/2021,Open
+CASE0146,56,Susan Robinson,Immigration,169194,19/04/2023,Pending
+CASE0147,67,Daniel Hughes,Employment,163209,26/05/2023,Pending
+CASE0148,128,Charles Thompson,Litigation,131684,04/03/2022,Pending
+CASE0149,162,Richard Evans,Family Law,466349,10/03/2021,Open
+CASE0150,36,Richard Evans,Intellectual Property,201401,10/04/2023,Open
+CASE0151,118,David Taylor,General,18652,23/11/2023,Open
+CASE0152,18,Michael Brown,Dispute Resolution,367713,29/03/2022,Closed
+CASE0153,38,Jennifer Thomas,Property Law,167391,14/11/2023,Open
+CASE0154,94,James Davies,Corporate,289842,24/03/2023,Closed
+CASE0155,78,Lisa Johnson,Immigration,287145,26/01/2023,Closed
+CASE0156,44,Daniel Hughes,Corporate,471082,26/11/2023,Open
+CASE0157,109,Patricia White,Wills & Probate,7386,17/09/2022,Open
+CASE0158,160,Susan Robinson,Contract Law,224308,01/11/2022,Open
+CASE0159,130,Daniel Hughes,Property Law,231308,29/01/2023,Closed
+CASE0160,70,Daniel Hughes,Commercial,281526,12/09/2021,Pending
+CASE0161,26,Andrew Roberts,Intellectual Property,205068,18/08/2023,Closed
+CASE0162,150,Lisa Johnson,Contract Law,242440,30/12/2021,Closed
+CASE0163,23,Richard Evans,Property Law,161656,06/03/2022,Closed
+CASE0164,70,Patricia White,Intellectual Property,186060,12/03/2023,Open
+CASE0165,6,Daniel Hughes,Corporate,115930,30/05/2023,Pending
+CASE0166,24,Jennifer Thomas,Dispute Resolution,164075,16/02/2023,Open
+CASE0167,85,Michael Brown,Immigration,329780,15/02/2022,Closed
+CASE0168,122,Sarah Jones,Family Law,208306,13/02/2023,Closed
+CASE0169,14,Susan Robinson,General,32401,30/07/2022,Open
+CASE0170,162,Karen Edwards,Intellectual Property,420106,24/02/2022,Pending
+CASE0171,112,David Taylor,Dispute Resolution,343946,14/06/2022,Pending
+CASE0172,145,Charles Thompson,Intellectual Property,75363,07/04/2021,Closed
+CASE0173,45,Charles Thompson,Employment,247181,01/01/2021,Closed
+CASE0174,149,Charles Thompson,Employment,135819,23/05/2022,Closed
+CASE0175,111,Charles Thompson,Family Law,137632,07/03/2022,Closed
+CASE0176,162,Richard Evans,Intellectual Property,20147,14/11/2022,Closed
+CASE0177,58,David Taylor,Intellectual Property,425958,16/12/2022,Open
+CASE0178,57,Susan Robinson,Employment,42164,13/04/2023,Pending
+CASE0179,56,Emma Wilson,Corporate,284233,24/09/2023,Open
+CASE0180,93,Charles Thompson,General,74608,23/04/2021,Pending
+CASE0181,27,Richard Evans,Employment,427595,14/09/2021,Open
+CASE0182,11,Andrew Roberts,General,365694,18/07/2021,Closed
+CASE0183,102,Lisa Johnson,Intellectual Property,10414,31/05/2021,Closed
+CASE0184,2,Jennifer Thomas,Commercial,149637,27/11/2023,Pending
+CASE0185,170,David Taylor,Immigration,426893,28/04/2022,Pending
+CASE0186,120,Michael Brown,Wills & Probate,143433,17/08/2022,Open
+CASE0187,146,Robert Smith,General,391178,15/07/2021,Pending
+CASE0188,96,Susan Robinson,General,31175,21/02/2022,Open
+CASE0189,88,Robert Smith,General,234196,16/05/2023,Open
+CASE0190,105,Jennifer Thomas,General,70128,07/11/2023,Pending
+CASE0191,65,Robert Smith,Wills & Probate,448287,16/11/2023,Open
+CASE0192,140,Robert Smith,Family Law,47320,10/02/2022,Pending
+CASE0193,71,David Taylor,General,90773,10/08/2023,Pending
+CASE0194,66,Patricia White,Family Law,335800,25/04/2021,Open
+CASE0195,57,Patricia White,Corporate,284949,15/02/2021,Open
+CASE0196,131,Daniel Hughes,Immigration,397632,21/12/2023,Open
+CASE0197,85,James Davies,Property Law,149601,27/09/2023,Closed
+CASE0198,120,Lisa Johnson,General,36807,30/12/2022,Open
+CASE0199,7,Patricia White,Wills & Probate,46292,04/08/2021,Pending
+CASE0200,117,Karen Edwards,Dispute Resolution,217035,19/06/2023,Open
+CASE0201,85,Sarah Jones,Contract Law,395931,10/04/2021,Open
+CASE0202,67,Susan Robinson,Commercial,436434,18/05/2023,Open
+CASE0203,89,Sarah Jones,Conveyancing,469056,08/09/2021,Closed
+CASE0204,74,David Taylor,Intellectual Property,452198,23/01/2023,Closed
+CASE0205,169,Michael Brown,Employment,12161,06/11/2022,Closed
+CASE0206,53,Patricia White,Family Law,407078,26/10/2023,Closed
+CASE0207,101,James Davies,Wills & Probate,192234,22/02/2023,Open
+CASE0208,23,Andrew Roberts,Contract Law,222640,05/09/2022,Open
+CASE0209,71,Andrew Roberts,Corporate,321116,03/08/2023,Open
+CASE0210,91,Richard Evans,Employment,155007,19/08/2021,Closed
+CASE0211,127,Robert Smith,General,28308,20/07/2021,Closed
+CASE0212,48,Robert Smith,General,425966,22/10/2023,Pending
+CASE0213,94,Emma Wilson,Corporate,433520,02/11/2021,Open
+CASE0214,49,Michael Brown,Intellectual Property,483179,28/01/2022,Pending
+CASE0215,68,Robert Smith,General,16091,26/10/2022,Open
+CASE0216,163,Jennifer Thomas,Immigration,417876,07/04/2021,Pending
+CASE0217,15,Robert Smith,Immigration,65150,14/09/2023,Open
+CASE0218,154,Andrew Roberts,Employment,26194,22/09/2021,Open
+CASE0219,32,Jennifer Thomas,Property Law,397879,08/08/2022,Closed
+CASE0220,166,Emma Wilson,Family Law,242316,20/04/2022,Open
+CASE0221,34,Sarah Jones,General,288406,18/08/2023,Open
+CASE0222,23,Patricia White,Family Law,197757,07/11/2022,Pending
+CASE0223,119,Jennifer Thomas,Commercial,170657,19/01/2023,Open
+CASE0224,11,Karen Edwards,General,469139,13/06/2022,Pending
+CASE0225,21,Patricia White,Wills & Probate,140192,22/03/2023,Open
+CASE0226,98,Lisa Johnson,General,72185,02/02/2021,Pending
+CASE0227,87,Richard Evans,Conveyancing,436266,07/09/2023,Open
+CASE0228,143,Charles Thompson,Corporate,133648,26/10/2021,Closed
+CASE0229,68,James Davies,Wills & Probate,419318,04/09/2021,Open
+CASE0230,104,Susan Robinson,General,272366,02/04/2021,Closed
+CASE0231,150,Michael Brown,Immigration,145157,09/10/2021,Pending
+CASE0232,32,Emma Wilson,Employment,490147,18/02/2021,Open
+CASE0233,83,Patricia White,Family Law,450831,22/10/2021,Closed
+CASE0234,99,Daniel Hughes,Litigation,14030,21/05/2022,Pending
+CASE0235,109,James Davies,Commercial,321637,11/03/2022,Closed
+CASE0236,121,James Davies,Conveyancing,133887,04/08/2022,Pending
+CASE0237,84,Robert Smith,Property Law,51243,08/08/2021,Open
+CASE0238,42,Charles Thompson,Employment,159298,01/11/2021,Closed
+CASE0239,111,Susan Robinson,Intellectual Property,460187,23/10/2022,Pending
+CASE0240,132,David Taylor,Employment,35446,08/09/2022,Open
+CASE0241,113,Andrew Roberts,General,99284,07/01/2021,Open
+CASE0242,91,Andrew Roberts,Employment,76831,30/01/2022,Pending
+CASE0243,110,Richard Evans,Commercial,264933,15/07/2022,Closed
+CASE0244,92,Lisa Johnson,Wills & Probate,393992,28/10/2022,Pending
+CASE0245,161,Jennifer Thomas,Dispute Resolution,117453,23/03/2023,Closed
+CASE0246,91,Daniel Hughes,Intellectual Property,326100,29/06/2022,Closed
+CASE0247,17,Daniel Hughes,Litigation,21804,03/03/2022,Pending
+CASE0248,154,Emma Wilson,General,223158,11/12/2022,Pending
+CASE0249,124,Lisa Johnson,Contract Law,331651,18/04/2021,Pending
+CASE0250,157,Jennifer Thomas,Property Law,237581,29/10/2022,Closed
+CASE0251,57,Daniel Hughes,Conveyancing,283914,08/04/2023,Open
+CASE0252,153,Charles Thompson,Dispute Resolution,53287,24/03/2021,Open
+CASE0253,61,Susan Robinson,Property Law,137131,10/02/2022,Open
+CASE0254,50,Karen Edwards,Property Law,81064,23/11/2022,Closed
+CASE0255,82,Sarah Jones,Wills & Probate,377001,19/12/2021,Closed
+CASE0256,88,Michael Brown,Commercial,458367,13/10/2022,Open
+CASE0257,107,Jennifer Thomas,Family Law,68321,23/10/2022,Closed
+CASE0258,109,Patricia White,Family Law,136471,12/07/2021,Open
+CASE0259,101,Sarah Jones,Commercial,334893,02/07/2023,Closed
+CASE0260,75,Robert Smith,Litigation,209644,24/06/2023,Closed
+CASE0261,41,Robert Smith,Contract Law,381856,12/06/2021,Open
+CASE0262,6,James Davies,Property Law,128893,07/03/2023,Open
+CASE0263,154,Jennifer Thomas,Intellectual Property,164355,06/09/2023,Open
+CASE0264,55,James Davies,Corporate,496385,21/11/2021,Closed
+CASE0265,68,Michael Brown,Corporate,73035,06/10/2021,Open
+CASE0266,92,Andrew Roberts,Intellectual Property,32053,02/05/2022,Open
+CASE0267,154,Andrew Roberts,Conveyancing,56403,11/02/2021,Closed
+CASE0268,137,Jennifer Thomas,Commercial,327980,16/05/2023,Pending
+CASE0269,138,Michael Brown,Employment,37012,03/10/2021,Open
+CASE0270,81,Jennifer Thomas,Wills & Probate,397939,11/06/2022,Closed
+CASE0271,67,James Davies,Litigation,321424,07/08/2023,Pending
+CASE0272,137,Karen Edwards,Corporate,394667,25/02/2023,Open
+CASE0273,2,Lisa Johnson,Commercial,360755,14/01/2023,Open
+CASE0274,12,Jennifer Thomas,Dispute Resolution,350612,03/05/2023,Closed
+CASE0275,49,Emma Wilson,Employment,33483,17/02/2021,Open
+CASE0276,129,Lisa Johnson,Intellectual Property,374444,31/08/2021,Open
+CASE0277,116,Susan Robinson,Contract Law,475548,16/01/2021,Closed
+CASE0278,30,James Davies,General,441641,02/10/2023,Closed
+CASE0279,37,Sarah Jones,Family Law,220983,18/04/2023,Pending
+CASE0280,149,Emma Wilson,Wills & Probate,449053,18/11/2023,Pending
+CASE0281,103,Jennifer Thomas,Property Law,386634,14/08/2023,Open
+CASE0282,48,James Davies,General,220423,12/02/2022,Pending
+CASE0283,65,Charles Thompson,Employment,102228,31/05/2021,Closed
+CASE0284,94,Patricia White,General,352717,19/06/2021,Pending
+CASE0285,163,Charles Thompson,Conveyancing,279649,12/10/2023,Open
+CASE0286,6,Andrew Roberts,General,303267,04/08/2022,Closed
+CASE0287,36,Karen Edwards,Wills & Probate,359537,05/03/2023,Closed
+CASE0288,47,Richard Evans,Corporate,297420,26/05/2023,Closed
+CASE0289,50,Lisa Johnson,Contract Law,54340,30/11/2022,Pending
+CASE0290,34,Michael Brown,Dispute Resolution,52028,22/07/2022,Closed
+CASE0291,72,James Davies,Conveyancing,388038,29/11/2022,Closed
+CASE0292,72,Karen Edwards,General,270733,12/09/2022,Open
+CASE0293,87,Patricia White,Family Law,109991,15/10/2022,Closed
+CASE0294,161,Robert Smith,Property Law,280763,19/05/2022,Pending
+CASE0295,30,Robert Smith,Corporate,371701,16/01/2022,Closed
+CASE0296,114,Robert Smith,Litigation,20783,22/01/2023,Open
+CASE0297,135,Daniel Hughes,Corporate,427684,15/11/2022,Open
+CASE0298,103,Charles Thompson,Family Law,91244,02/09/2021,Closed
+CASE0299,21,Andrew Roberts,Wills & Probate,15978,25/08/2022,Pending
+CASE0300,25,Daniel Hughes,Litigation,79559,22/03/2022,Closed
+CASE0301,27,Patricia White,Conveyancing,200996,25/05/2021,Pending
+CASE0302,126,Charles Thompson,General,229388,08/10/2022,Closed
+CASE0303,93,Michael Brown,Commercial,58654,22/04/2022,Pending
+CASE0304,6,Lisa Johnson,Employment,325659,28/07/2022,Closed
+CASE0305,154,Jennifer Thomas,Intellectual Property,140617,18/07/2023,Open
+CASE0306,154,Emma Wilson,Conveyancing,166522,14/04/2023,Open
+CASE0307,46,Lisa Johnson,Employment,277607,12/09/2022,Closed
+CASE0308,71,Michael Brown,Intellectual Property,188278,16/02/2021,Closed
+CASE0309,97,Lisa Johnson,Property Law,91003,24/01/2021,Open
+CASE0310,122,Robert Smith,Wills & Probate,442026,02/07/2021,Pending
+CASE0311,128,Andrew Roberts,Contract Law,191203,28/09/2021,Pending
+CASE0312,161,Charles Thompson,Wills & Probate,411111,24/12/2021,Pending
+CASE0313,126,Michael Brown,Employment,120550,13/09/2023,Closed
+CASE0314,53,David Taylor,Commercial,130347,20/03/2022,Open
+CASE0315,148,James Davies,Conveyancing,347317,14/01/2021,Pending
+CASE0316,125,Patricia White,Property Law,330025,05/07/2021,Pending
+CASE0317,100,Andrew Roberts,Commercial,325519,04/12/2021,Closed
+CASE0318,149,Patricia White,Litigation,416993,19/03/2021,Closed
+CASE0319,101,Karen Edwards,Commercial,262690,05/11/2021,Open
+CASE0320,120,Jennifer Thomas,Family Law,252691,02/02/2022,Open
+CASE0321,99,Lisa Johnson,Intellectual Property,275483,28/11/2022,Closed
+CASE0322,18,Andrew Roberts,Intellectual Property,366790,06/10/2021,Pending
+CASE0323,126,Lisa Johnson,Wills & Probate,277031,15/01/2023,Pending
+CASE0324,96,Emma Wilson,General,179195,20/12/2023,Closed
+CASE0325,143,Charles Thompson,Corporate,91221,07/11/2023,Closed
+CASE0326,162,Charles Thompson,Property Law,9050,23/05/2021,Pending
+CASE0327,97,Michael Brown,Dispute Resolution,81369,10/10/2021,Closed
+CASE0328,55,Robert Smith,Wills & Probate,273953,13/04/2023,Closed
+CASE0329,151,Lisa Johnson,Corporate,414232,13/10/2021,Pending
+CASE0330,169,Robert Smith,Property Law,454018,23/11/2023,Closed
+CASE0331,49,David Taylor,Immigration,106304,10/10/2023,Open
+CASE0332,146,Daniel Hughes,Intellectual Property,259447,25/11/2022,Open
+CASE0333,154,Charles Thompson,Wills & Probate,484391,03/12/2023,Pending
+CASE0334,126,Patricia White,Intellectual Property,450311,27/12/2021,Pending
+CASE0335,72,Robert Smith,Corporate,35866,27/12/2023,Closed
+CASE0336,40,Lisa Johnson,Commercial,325037,15/09/2022,Open
+CASE0337,15,Karen Edwards,Dispute Resolution,403139,04/04/2021,Pending
+CASE0338,136,Robert Smith,Litigation,132920,14/07/2021,Open
+CASE0339,123,Jennifer Thomas,Dispute Resolution,12571,23/02/2022,Pending
+CASE0340,66,Patricia White,Litigation,180053,20/11/2022,Open
+CASE0341,84,David Taylor,Conveyancing,160520,18/10/2021,Closed
+CASE0342,10,Patricia White,General,195663,16/11/2023,Pending
+CASE0343,43,Patricia White,General,222161,02/04/2023,Closed
+CASE0344,67,James Davies,Corporate,415150,03/10/2021,Pending
+CASE0345,92,Michael Brown,Dispute Resolution,416974,05/12/2023,Pending
+CASE0346,83,Charles Thompson,Property Law,9931,23/07/2023,Open
+CASE0347,68,Lisa Johnson,Property Law,485447,15/03/2023,Closed
+CASE0348,87,James Davies,General,447592,12/09/2023,Closed
+CASE0349,136,Andrew Roberts,Corporate,186003,25/04/2022,Open
+CASE0350,100,Michael Brown,Commercial,412695,30/05/2022,Open
+CASE0351,121,Patricia White,Dispute Resolution,293610,21/01/2023,Closed
+CASE0352,3,Daniel Hughes,Litigation,484438,10/09/2023,Open
+CASE0353,150,David Taylor,General,48499,04/07/2023,Closed
+CASE0354,124,Daniel Hughes,General,126366,12/09/2023,Closed
+CASE0355,4,Michael Brown,General,389581,14/06/2022,Closed
+CASE0356,104,Emma Wilson,Employment,181960,05/01/2022,Pending
+CASE0357,53,David Taylor,Employment,14469,05/09/2022,Pending
+CASE0358,41,James Davies,Commercial,334448,27/12/2023,Open
+CASE0359,36,James Davies,Litigation,474813,26/04/2023,Closed
+CASE0360,150,Michael Brown,Family Law,494703,26/01/2023,Open
+CASE0361,125,Robert Smith,Immigration,331354,16/02/2021,Closed
+CASE0362,91,Susan Robinson,Dispute Resolution,189971,13/05/2023,Closed
+CASE0363,135,James Davies,Commercial,410821,01/09/2022,Closed
+CASE0364,136,Susan Robinson,Wills & Probate,253075,02/09/2021,Closed
+CASE0365,139,Michael Brown,Property Law,58431,13/11/2021,Pending
+CASE0366,171,Sarah Jones,Contract Law,338078,18/04/2022,Pending
+CASE0367,139,Jennifer Thomas,Dispute Resolution,341052,05/10/2022,Closed
+CASE0368,55,Karen Edwards,General,109345,06/02/2021,Pending
+CASE0369,40,Lisa Johnson,Family Law,7822,06/04/2021,Open
+CASE0370,69,Charles Thompson,Employment,60135,12/01/2022,Open
+CASE0371,14,Richard Evans,Commercial,471733,01/11/2021,Closed
+CASE0372,150,Jennifer Thomas,Conveyancing,130999,30/07/2023,Closed
+CASE0373,9,Richard Evans,General,416483,07/12/2023,Closed
+CASE0374,136,Sarah Jones,Litigation,29945,09/12/2021,Open
+CASE0375,160,Robert Smith,General,495591,15/02/2023,Open
+CASE0376,94,Lisa Johnson,Conveyancing,494686,17/04/2023,Open
+CASE0377,20,James Davies,Immigration,356977,06/05/2022,Open
+CASE0378,124,Sarah Jones,Family Law,164220,06/12/2023,Open
+CASE0379,24,Sarah Jones,Wills & Probate,377613,28/08/2022,Closed
+CASE0380,74,Patricia White,Litigation,123448,05/09/2023,Open
+CASE0381,157,Charles Thompson,Commercial,494855,08/02/2022,Pending
+CASE0382,47,Emma Wilson,Intellectual Property,219722,23/12/2021,Pending
+CASE0383,127,Lisa Johnson,Commercial,241820,31/08/2021,Closed
+CASE0384,111,Patricia White,General,444366,06/01/2021,Open
+CASE0385,146,Patricia White,Litigation,68658,18/03/2021,Open
+CASE0386,93,Andrew Roberts,Litigation,402617,06/03/2021,Open
+CASE0387,106,Emma Wilson,Litigation,346903,29/11/2023,Pending
+CASE0388,30,Lisa Johnson,Family Law,157794,07/01/2021,Pending
+CASE0389,100,Michael Brown,Commercial,259397,14/04/2021,Pending
+CASE0390,3,James Davies,General,484733,28/05/2021,Closed
+CASE0391,20,Emma Wilson,Dispute Resolution,455968,24/02/2021,Closed
+CASE0392,106,Sarah Jones,General,420202,16/11/2022,Closed
+CASE0393,80,Michael Brown,General,314624,10/02/2021,Closed
+CASE0394,47,David Taylor,General,414885,30/09/2021,Pending
+CASE0395,43,Emma Wilson,Wills & Probate,132484,18/09/2023,Pending
+CASE0396,51,Michael Brown,Employment,287678,18/06/2023,Closed
+CASE0397,75,Emma Wilson,Dispute Resolution,10452,16/08/2023,Open
+CASE0398,68,David Taylor,Wills & Probate,138555,10/12/2021,Pending
+CASE0399,167,Charles Thompson,Commercial,250849,23/04/2021,Open
+CASE0400,59,Daniel Hughes,Commercial,352477,28/04/2021,Closed
+CASE0401,168,Daniel Hughes,Immigration,349370,20/09/2022,Open
+CASE0402,126,James Davies,Corporate,232503,07/07/2022,Open
+CASE0403,49,David Taylor,General,171285,09/11/2022,Pending
+CASE0404,68,Charles Thompson,Conveyancing,476170,03/07/2021,Open
+CASE0405,19,Emma Wilson,Employment,296052,04/12/2021,Pending
+CASE0406,112,Richard Evans,General,377318,09/09/2021,Open
+CASE0407,123,Richard Evans,Immigration,339836,07/04/2021,Open
+CASE0408,65,Sarah Jones,Intellectual Property,351450,03/12/2023,Closed
+CASE0409,101,Emma Wilson,Corporate,426733,15/08/2022,Closed
+CASE0410,106,Richard Evans,General,181882,06/02/2021,Closed
+CASE0411,157,Susan Robinson,General,463753,11/01/2023,Pending
+CASE0412,90,Sarah Jones,Wills & Probate,406253,04/08/2021,Closed
+CASE0413,95,Richard Evans,Employment,64376,14/11/2021,Closed
+CASE0414,39,David Taylor,Conveyancing,383803,03/07/2023,Closed
+CASE0415,20,Jennifer Thomas,Property Law,494106,07/03/2021,Open
+CASE0416,44,David Taylor,Corporate,46174,26/06/2023,Closed
+CASE0417,61,James Davies,Intellectual Property,171190,12/05/2023,Closed
+CASE0418,149,Richard Evans,Employment,42332,05/03/2022,Pending
+CASE0419,126,Richard Evans,Immigration,13572,27/02/2023,Pending
+CASE0420,152,Patricia White,Employment,180810,17/02/2022,Closed
+CASE0421,49,Charles Thompson,Conveyancing,136862,31/05/2022,Open
+CASE0422,147,Patricia White,Dispute Resolution,432889,03/01/2021,Open
+CASE0423,170,Patricia White,Wills & Probate,383334,06/09/2021,Open
+CASE0424,136,Andrew Roberts,Litigation,68564,14/04/2023,Closed
+CASE0425,118,James Davies,Conveyancing,98803,28/11/2021,Pending
+CASE0426,104,David Taylor,General,379923,10/02/2022,Closed
+CASE0427,78,Andrew Roberts,Litigation,32045,04/04/2021,Closed
+CASE0428,82,Andrew Roberts,Property Law,194229,15/03/2023,Open
+CASE0429,170,James Davies,Immigration,93602,30/05/2022,Open
+CASE0430,148,David Taylor,Employment,152332,31/08/2022,Closed
+CASE0431,84,Patricia White,Litigation,179146,19/01/2023,Open
+CASE0432,21,Daniel Hughes,Dispute Resolution,400834,06/09/2022,Closed
+CASE0433,32,Robert Smith,Litigation,75488,29/06/2021,Pending
+CASE0434,19,Sarah Jones,Family Law,455679,18/09/2021,Pending
+CASE0435,131,David Taylor,Property Law,489177,31/05/2021,Closed
+CASE0436,152,James Davies,Commercial,49846,24/09/2022,Closed
+CASE0437,151,Patricia White,Employment,99479,06/08/2022,Closed
+CASE0438,115,Patricia White,Wills & Probate,421828,13/10/2022,Closed
+CASE0439,101,Andrew Roberts,Corporate,299280,21/06/2021,Open
+CASE0440,9,Patricia White,Corporate,250157,28/07/2022,Closed
+CASE0441,23,Karen Edwards,General,180726,05/03/2022,Closed
+CASE0442,160,Lisa Johnson,Contract Law,42169,12/08/2022,Closed
+CASE0443,28,Charles Thompson,Family Law,220675,25/03/2021,Closed
+CASE0444,124,Sarah Jones,General,328499,27/02/2022,Closed
+CASE0445,158,Charles Thompson,Conveyancing,256314,25/11/2023,Closed
+CASE0446,31,Emma Wilson,Corporate,151757,15/06/2022,Open
+CASE0447,23,Charles Thompson,General,88702,08/11/2022,Pending
+CASE0448,162,Andrew Roberts,Employment,305516,04/04/2021,Closed
+CASE0449,165,Lisa Johnson,General,188051,01/02/2021,Closed
+CASE0450,166,Susan Robinson,Corporate,452366,21/11/2021,Open
+CASE0451,17,Patricia White,Intellectual Property,281819,05/04/2021,Open
+CASE0452,27,Sarah Jones,Dispute Resolution,279400,29/11/2022,Closed
+CASE0453,28,Emma Wilson,Property Law,24825,02/01/2021,Closed
+CASE0454,53,Lisa Johnson,General,32460,09/04/2022,Pending
+CASE0455,109,Lisa Johnson,Wills & Probate,379541,26/04/2022,Closed
+CASE0456,58,James Davies,Wills & Probate,390306,04/05/2021,Closed
+CASE0457,114,James Davies,Intellectual Property,51245,07/05/2022,Pending
+CASE0458,8,Jennifer Thomas,General,232815,14/04/2022,Closed
+CASE0459,67,David Taylor,Immigration,414424,07/12/2023,Open
+CASE0460,154,Karen Edwards,Employment,101953,02/12/2023,Pending
+CASE0461,47,Charles Thompson,Corporate,325344,29/04/2021,Closed
+CASE0462,136,David Taylor,Corporate,122423,15/07/2021,Open
+CASE0463,108,Emma Wilson,General,340174,16/11/2023,Closed
+CASE0464,167,Emma Wilson,Immigration,328642,15/11/2022,Open
+CASE0465,28,Karen Edwards,Intellectual Property,168789,19/09/2021,Open
+CASE0466,100,Charles Thompson,Wills & Probate,152826,14/12/2021,Open
+CASE0467,64,Patricia White,Intellectual Property,192997,26/10/2023,Closed
+CASE0468,121,Patricia White,Family Law,144317,15/08/2021,Closed
+CASE0469,93,David Taylor,Contract Law,335361,23/06/2022,Open
+CASE0470,17,James Davies,General,17920,06/11/2022,Pending
+CASE0471,79,Jennifer Thomas,Conveyancing,457661,17/01/2021,Pending
+CASE0472,141,Daniel Hughes,Employment,451969,20/01/2021,Open
+CASE0473,101,Jennifer Thomas,Conveyancing,385461,06/10/2022,Open
+CASE0474,65,James Davies,Wills & Probate,451326,22/05/2021,Open
+CASE0475,156,Daniel Hughes,Family Law,58796,11/04/2022,Open
+CASE0476,166,Robert Smith,Conveyancing,19482,26/08/2021,Closed
+CASE0477,153,Jennifer Thomas,Wills & Probate,489149,12/07/2023,Closed
+CASE0478,5,Jennifer Thomas,Corporate,304195,16/10/2022,Closed
+CASE0479,139,Richard Evans,Wills & Probate,263543,30/08/2022,Pending
+CASE0480,39,James Davies,Contract Law,404447,10/11/2023,Closed
+CASE0481,79,Susan Robinson,Employment,459136,25/07/2023,Closed
+CASE0482,131,Sarah Jones,Family Law,140672,09/10/2022,Open
+CASE0483,62,Daniel Hughes,Employment,234519,27/01/2022,Closed
+CASE0484,78,Michael Brown,Employment,492243,29/08/2022,Closed
+CASE0485,36,Susan Robinson,General,169977,06/05/2023,Open
+CASE0486,41,Sarah Jones,General,197508,12/09/2023,Closed
+CASE0487,74,Emma Wilson,Conveyancing,108534,25/10/2022,Closed
+CASE0488,130,Daniel Hughes,General,471932,09/08/2021,Closed
+CASE0489,25,Jennifer Thomas,Commercial,448714,14/09/2022,Pending
+CASE0490,67,Sarah Jones,Employment,100168,16/02/2022,Closed
+CASE0491,91,Jennifer Thomas,Commercial,312167,04/05/2021,Closed
+CASE0492,72,Karen Edwards,Contract Law,299124,19/11/2021,Open
+CASE0493,139,Jennifer Thomas,Intellectual Property,316535,02/02/2022,Open
+CASE0494,158,Daniel Hughes,Intellectual Property,252446,06/10/2021,Closed
+CASE0495,123,Andrew Roberts,Property Law,150921,06/11/2023,Closed
+CASE0496,41,Jennifer Thomas,Corporate,75944,03/05/2023,Open
+CASE0497,65,Robert Smith,Corporate,23261,10/02/2023,Open
+CASE0498,133,Charles Thompson,Litigation,98788,02/07/2022,Open
+CASE0499,42,Karen Edwards,Contract Law,13859,14/06/2022,Closed
+CASE0500,32,Charles Thompson,Immigration,468794,01/04/2022,Open

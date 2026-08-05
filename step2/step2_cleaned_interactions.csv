@@ -1,0 +1,801 @@
+interaction_id,customer_id,solicitor_name,interaction_type,interaction_date,duration_minutes,notes
+INT000001,90,David Taylor,Chat,07/08/2021,72,Follow up required
+INT000002,125,Daniel Hughes,Chat,17/02/2023,103,
+INT000003,118,Susan Robinson,Email,15/06/2021,116,
+INT000004,161,Emma Wilson,Other,17/09/2022,65,
+INT000005,96,Emma Wilson,Email,18/05/2022,84,
+INT000006,85,Lisa Johnson,Other,05/04/2022,88,Follow up required
+INT000007,56,Robert Smith,Video Call,16/03/2022,49,Urgent matter
+INT000008,115,David Taylor,Other,15/04/2023,76,Client satisfied
+INT000009,148,James Davies,Other,12/12/2023,30,
+INT000010,85,Richard Evans,Phone Call,29/06/2021,30,Needs clarification
+INT000011,108,Charles Thompson,Meeting,14/11/2022,30,
+INT000012,74,James Davies,Letter,11/12/2022,103,
+INT000013,110,Sarah Jones,Meeting,03/01/2022,30,
+INT000014,115,Robert Smith,Chat,30/10/2022,80,Needs clarification
+INT000015,5,Emma Wilson,Other,24/07/2021,104,
+INT000016,28,David Taylor,Chat,01/02/2021,13,
+INT000017,129,Patricia White,Letter,18/08/2023,33,
+INT000018,109,Patricia White,Phone Call,25/11/2021,35,
+INT000019,146,Robert Smith,Video Call,26/11/2023,105,
+INT000020,165,Robert Smith,Other,07/09/2022,74,
+INT000021,32,Karen Edwards,Email,17/04/2021,47,Follow up required
+INT000022,3,Susan Robinson,Letter,18/01/2021,53,Client satisfied
+INT000023,100,Lisa Johnson,Phone Call,23/09/2021,30,Needs clarification
+INT000024,129,Andrew Roberts,Meeting,23/12/2021,107,Follow up required
+INT000025,13,Sarah Jones,Other,06/06/2022,114,
+INT000026,119,Sarah Jones,Meeting,09/04/2023,96,Urgent matter
+INT000027,69,Daniel Hughes,Other,09/12/2023,30,Client satisfied
+INT000028,82,Emma Wilson,Phone Call,11/09/2022,119,Client satisfied
+INT000029,101,Sarah Jones,Letter,26/04/2023,11,
+INT000030,35,James Davies,Other,29/07/2023,29,Urgent matter
+INT000031,104,Richard Evans,Other,15/05/2021,74,
+INT000032,24,Patricia White,Phone Call,30/04/2022,30,
+INT000033,140,Andrew Roberts,Video Call,21/09/2022,45,
+INT000034,76,Daniel Hughes,Chat,13/07/2021,22,
+INT000035,19,Charles Thompson,Phone Call,29/03/2021,14,Routine check-in
+INT000036,100,Robert Smith,Meeting,10/09/2022,30,Urgent matter
+INT000037,95,Michael Brown,Other,25/07/2022,81,Routine check-in
+INT000038,43,Susan Robinson,Letter,09/09/2021,57,
+INT000039,47,Karen Edwards,Other,26/09/2023,30,
+INT000040,38,Robert Smith,Letter,03/08/2021,24,
+INT000041,74,Michael Brown,Phone Call,09/12/2023,30,Routine check-in
+INT000042,108,Sarah Jones,Meeting,22/01/2022,30,
+INT000043,13,Richard Evans,Chat,28/01/2023,108,
+INT000044,59,Robert Smith,Chat,06/12/2022,46,
+INT000045,96,Jennifer Thomas,Chat,09/06/2021,69,Needs clarification
+INT000046,112,Andrew Roberts,Email,01/03/2022,30,Follow up required
+INT000047,145,Robert Smith,Chat,09/09/2021,78,
+INT000048,146,Emma Wilson,Phone Call,03/12/2023,30,
+INT000049,117,Susan Robinson,Phone Call,22/02/2022,30,
+INT000050,18,Michael Brown,Phone Call,02/01/2021,35,Needs clarification
+INT000051,151,Sarah Jones,Chat,09/01/2021,94,Urgent matter
+INT000052,32,Andrew Roberts,Other,02/02/2022,5,Client satisfied
+INT000053,139,David Taylor,Phone Call,25/06/2021,48,Follow up required
+INT000054,113,Jennifer Thomas,Chat,17/08/2022,36,
+INT000055,62,James Davies,Other,09/02/2021,115,
+INT000056,118,Robert Smith,Video Call,19/01/2023,120,
+INT000057,6,Sarah Jones,Video Call,14/06/2022,120,
+INT000058,140,Daniel Hughes,Video Call,30/05/2023,89,Routine check-in
+INT000059,157,Lisa Johnson,Other,27/10/2022,70,Needs clarification
+INT000060,94,Daniel Hughes,Phone Call,03/03/2021,108,
+INT000061,72,Michael Brown,Email,13/03/2021,14,Urgent matter
+INT000062,88,Lisa Johnson,Phone Call,25/12/2023,54,
+INT000063,150,Daniel Hughes,Email,13/09/2021,116,Urgent matter
+INT000064,8,Jennifer Thomas,Other,13/07/2022,104,Routine check-in
+INT000065,77,Jennifer Thomas,Email,19/01/2021,30,
+INT000066,123,Robert Smith,Email,03/09/2022,117,Client satisfied
+INT000067,28,Patricia White,Meeting,20/02/2021,16,Urgent matter
+INT000068,104,Patricia White,Email,07/10/2022,30,Follow up required
+INT000069,145,Susan Robinson,Email,06/12/2022,102,Client satisfied
+INT000070,13,Emma Wilson,Video Call,05/11/2022,52,
+INT000071,119,Andrew Roberts,Other,12/01/2023,97,
+INT000072,22,Emma Wilson,Video Call,14/08/2022,89,
+INT000073,138,David Taylor,Phone Call,05/09/2023,15,
+INT000074,138,Andrew Roberts,Chat,23/07/2021,54,Needs clarification
+INT000075,7,Susan Robinson,Email,09/11/2021,8,Urgent matter
+INT000076,39,Andrew Roberts,Video Call,14/05/2021,30,
+INT000077,105,Susan Robinson,Email,02/07/2021,36,Urgent matter
+INT000078,68,Daniel Hughes,Chat,11/11/2023,69,
+INT000079,82,Jennifer Thomas,Phone Call,05/09/2022,12,
+INT000080,160,Daniel Hughes,Letter,28/05/2023,65,
+INT000081,86,Emma Wilson,Phone Call,22/04/2022,30,
+INT000082,79,Robert Smith,Meeting,26/04/2023,29,
+INT000083,80,Daniel Hughes,Meeting,18/07/2021,16,
+INT000084,53,Lisa Johnson,Meeting,30/08/2022,79,
+INT000085,47,Emma Wilson,Letter,25/11/2022,115,
+INT000086,147,Robert Smith,Meeting,23/02/2022,66,Follow up required
+INT000087,94,Lisa Johnson,Phone Call,24/04/2022,97,Urgent matter
+INT000088,86,Andrew Roberts,Other,05/06/2021,30,
+INT000089,11,Karen Edwards,Chat,11/07/2022,30,Follow up required
+INT000090,29,Karen Edwards,Meeting,12/03/2022,22,
+INT000091,26,David Taylor,Video Call,10/07/2021,87,
+INT000092,52,Sarah Jones,Other,05/11/2022,30,
+INT000093,47,David Taylor,Video Call,20/05/2021,9,
+INT000094,88,Lisa Johnson,Other,21/02/2023,62,Routine check-in
+INT000095,108,Robert Smith,Video Call,10/10/2022,72,Client satisfied
+INT000096,79,Robert Smith,Chat,17/09/2021,6,
+INT000097,162,Susan Robinson,Phone Call,14/04/2021,76,Routine check-in
+INT000098,72,Michael Brown,Chat,23/10/2022,14,Follow up required
+INT000099,165,Michael Brown,Other,13/07/2022,18,
+INT000100,25,Robert Smith,Chat,05/05/2021,28,
+INT000101,15,Patricia White,Letter,14/08/2023,93,Urgent matter
+INT000102,10,Patricia White,Other,01/12/2021,12,
+INT000103,166,Susan Robinson,Letter,21/09/2021,30,
+INT000104,133,Sarah Jones,Letter,27/08/2021,30,Urgent matter
+INT000105,61,Patricia White,Email,19/08/2022,108,Follow up required
+INT000106,26,Robert Smith,Other,21/06/2022,47,
+INT000107,7,Andrew Roberts,Email,19/03/2021,120,
+INT000108,14,Lisa Johnson,Phone Call,26/04/2022,7,
+INT000109,54,Patricia White,Chat,12/07/2021,39,Routine check-in
+INT000110,147,Michael Brown,Phone Call,16/04/2023,61,
+INT000111,114,Emma Wilson,Letter,21/01/2022,90,
+INT000112,7,Emma Wilson,Video Call,11/06/2023,30,
+INT000113,1,Michael Brown,Other,08/10/2022,22,Client satisfied
+INT000114,27,Sarah Jones,Video Call,27/11/2021,30,
+INT000115,21,David Taylor,Email,28/03/2021,14,Follow up required
+INT000116,155,Emma Wilson,Phone Call,15/11/2022,30,
+INT000117,77,Charles Thompson,Letter,25/09/2021,30,Needs clarification
+INT000118,66,James Davies,Other,14/12/2021,66,Needs clarification
+INT000119,47,Sarah Jones,Chat,16/01/2023,30,
+INT000120,156,Robert Smith,Email,17/04/2021,97,Follow up required
+INT000121,68,Susan Robinson,Chat,18/10/2023,30,Routine check-in
+INT000122,69,Sarah Jones,Meeting,24/12/2022,43,Follow up required
+INT000123,57,Daniel Hughes,Meeting,30/11/2022,62,
+INT000124,119,Karen Edwards,Letter,08/07/2021,30,Follow up required
+INT000125,87,Lisa Johnson,Video Call,28/09/2021,19,Follow up required
+INT000126,21,Susan Robinson,Phone Call,28/10/2022,30,Routine check-in
+INT000127,61,Karen Edwards,Chat,03/09/2023,118,
+INT000128,109,James Davies,Phone Call,14/05/2022,30,
+INT000129,160,Daniel Hughes,Video Call,22/07/2022,96,Client satisfied
+INT000130,50,Andrew Roberts,Email,04/09/2023,52,
+INT000131,147,Emma Wilson,Chat,20/09/2023,30,Client satisfied
+INT000132,152,Richard Evans,Letter,03/03/2022,30,Routine check-in
+INT000133,12,Daniel Hughes,Meeting,06/07/2023,14,Routine check-in
+INT000134,76,Charles Thompson,Meeting,03/05/2022,59,
+INT000135,86,Richard Evans,Chat,07/05/2023,109,Client satisfied
+INT000136,45,Susan Robinson,Chat,07/05/2023,72,
+INT000137,15,Andrew Roberts,Other,12/10/2023,30,
+INT000138,147,Charles Thompson,Other,06/05/2023,30,
+INT000139,104,Karen Edwards,Video Call,15/07/2021,108,Routine check-in
+INT000140,136,Lisa Johnson,Letter,01/08/2022,33,Urgent matter
+INT000141,58,Daniel Hughes,Phone Call,05/04/2023,118,Follow up required
+INT000142,3,Lisa Johnson,Email,01/10/2022,47,
+INT000143,102,Karen Edwards,Phone Call,15/03/2023,90,Urgent matter
+INT000144,56,Susan Robinson,Phone Call,13/06/2023,36,Needs clarification
+INT000145,16,Karen Edwards,Other,07/12/2021,78,Client satisfied
+INT000146,144,Susan Robinson,Chat,21/08/2022,102,
+INT000147,69,Robert Smith,Chat,09/04/2023,107,Urgent matter
+INT000148,72,Susan Robinson,Letter,23/03/2022,31,
+INT000149,110,Michael Brown,Chat,29/09/2023,30,Urgent matter
+INT000150,150,Karen Edwards,Email,31/05/2021,66,
+INT000151,25,James Davies,Letter,14/08/2023,34,
+INT000152,28,James Davies,Email,21/08/2022,46,
+INT000153,35,Patricia White,Chat,19/10/2022,46,Routine check-in
+INT000154,80,Patricia White,Phone Call,14/12/2022,30,
+INT000155,11,Susan Robinson,Video Call,10/01/2022,100,
+INT000156,76,Andrew Roberts,Email,28/05/2022,78,
+INT000157,71,Susan Robinson,Meeting,27/10/2021,17,Routine check-in
+INT000158,1,Richard Evans,Video Call,10/07/2023,19,Routine check-in
+INT000159,113,Lisa Johnson,Chat,14/01/2021,26,
+INT000160,159,Patricia White,Phone Call,14/02/2023,27,Follow up required
+INT000161,132,Charles Thompson,Phone Call,31/07/2023,78,
+INT000162,130,Patricia White,Email,22/10/2023,72,Follow up required
+INT000163,108,Charles Thompson,Phone Call,13/09/2022,30,
+INT000164,48,Michael Brown,Chat,09/10/2023,115,Follow up required
+INT000165,14,Emma Wilson,Phone Call,24/07/2023,76,
+INT000166,138,David Taylor,Phone Call,06/06/2023,30,
+INT000167,102,Jennifer Thomas,Letter,25/07/2021,30,
+INT000168,141,Jennifer Thomas,Other,13/04/2021,111,Client satisfied
+INT000169,13,Emma Wilson,Phone Call,17/12/2022,95,
+INT000170,99,James Davies,Meeting,14/01/2022,47,
+INT000171,53,Karen Edwards,Other,28/10/2022,30,
+INT000172,108,Susan Robinson,Other,23/12/2021,30,
+INT000173,119,Richard Evans,Other,08/09/2021,9,
+INT000174,108,Lisa Johnson,Letter,26/12/2023,30,
+INT000175,84,Robert Smith,Other,02/02/2021,40,
+INT000176,167,Sarah Jones,Other,07/04/2022,84,Needs clarification
+INT000177,20,Karen Edwards,Video Call,06/11/2023,53,Routine check-in
+INT000178,136,Daniel Hughes,Chat,19/03/2023,114,Urgent matter
+INT000179,132,Lisa Johnson,Phone Call,25/09/2021,108,
+INT000180,78,Robert Smith,Phone Call,06/03/2022,49,
+INT000181,94,David Taylor,Video Call,18/11/2022,55,
+INT000182,54,Lisa Johnson,Meeting,11/01/2022,30,
+INT000183,82,Patricia White,Other,03/09/2023,78,
+INT000184,38,Michael Brown,Letter,06/12/2023,6,
+INT000185,4,Michael Brown,Chat,24/03/2022,30,Urgent matter
+INT000186,136,James Davies,Chat,18/12/2023,66,
+INT000187,58,Emma Wilson,Other,14/03/2023,30,Needs clarification
+INT000188,69,Sarah Jones,Meeting,27/10/2022,30,
+INT000189,5,Daniel Hughes,Other,29/03/2023,30,
+INT000190,22,James Davies,Phone Call,23/08/2022,23,
+INT000191,142,Charles Thompson,Chat,07/12/2023,108,Routine check-in
+INT000192,149,Susan Robinson,Video Call,18/11/2022,24,
+INT000193,93,Daniel Hughes,Meeting,03/09/2022,30,
+INT000194,88,Richard Evans,Meeting,06/03/2022,25,
+INT000195,154,Robert Smith,Email,07/05/2021,80,Routine check-in
+INT000196,14,Lisa Johnson,Meeting,09/07/2023,30,
+INT000197,81,Richard Evans,Other,31/08/2023,120,
+INT000198,83,Michael Brown,Other,15/03/2021,107,
+INT000199,23,Patricia White,Other,10/01/2022,66,
+INT000200,64,Daniel Hughes,Phone Call,19/04/2022,30,
+INT000201,19,Richard Evans,Letter,17/04/2023,16,
+INT000202,161,Jennifer Thomas,Email,21/02/2022,72,
+INT000203,83,Richard Evans,Phone Call,31/07/2022,96,Routine check-in
+INT000204,171,Lisa Johnson,Video Call,30/07/2022,66,Follow up required
+INT000205,160,Susan Robinson,Chat,14/10/2023,81,Client satisfied
+INT000206,121,Patricia White,Other,19/04/2021,90,
+INT000207,80,Emma Wilson,Email,04/03/2023,97,Client satisfied
+INT000208,73,Susan Robinson,Other,23/01/2023,79,Needs clarification
+INT000209,20,Patricia White,Letter,04/04/2022,30,Urgent matter
+INT000210,80,Michael Brown,Phone Call,26/05/2022,19,
+INT000211,101,Susan Robinson,Other,19/04/2023,68,
+INT000212,168,Jennifer Thomas,Phone Call,24/01/2022,30,Needs clarification
+INT000213,113,James Davies,Meeting,22/06/2022,51,
+INT000214,47,Lisa Johnson,Meeting,09/04/2022,21,
+INT000215,35,Andrew Roberts,Email,03/12/2021,108,
+INT000216,165,Robert Smith,Email,23/05/2021,45,Needs clarification
+INT000217,89,Patricia White,Email,24/10/2023,72,
+INT000218,28,Emma Wilson,Email,15/12/2023,30,
+INT000219,86,Andrew Roberts,Letter,17/11/2022,30,
+INT000220,52,Lisa Johnson,Phone Call,30/11/2023,72,
+INT000221,25,Karen Edwards,Meeting,28/05/2023,55,
+INT000222,109,James Davies,Phone Call,15/07/2023,113,
+INT000223,26,Daniel Hughes,Other,29/09/2021,112,Routine check-in
+INT000224,156,David Taylor,Video Call,10/03/2021,102,
+INT000225,156,Michael Brown,Letter,26/04/2022,30,
+INT000226,71,Daniel Hughes,Meeting,18/10/2022,8,
+INT000227,128,Andrew Roberts,Meeting,13/03/2023,30,
+INT000228,34,Emma Wilson,Chat,22/05/2022,23,Routine check-in
+INT000229,167,David Taylor,Letter,31/07/2021,8,Urgent matter
+INT000230,30,Charles Thompson,Phone Call,14/04/2022,30,
+INT000231,1,Susan Robinson,Phone Call,05/10/2022,30,Urgent matter
+INT000232,108,Jennifer Thomas,Email,05/07/2022,30,
+INT000233,50,Susan Robinson,Phone Call,28/04/2021,30,Client satisfied
+INT000234,92,Karen Edwards,Chat,13/10/2023,30,
+INT000235,121,David Taylor,Phone Call,23/04/2021,30,
+INT000236,72,James Davies,Other,27/09/2021,30,
+INT000237,159,Andrew Roberts,Email,03/11/2023,30,
+INT000238,145,Daniel Hughes,Chat,19/05/2022,46,
+INT000239,22,Robert Smith,Chat,19/07/2023,56,
+INT000240,35,Jennifer Thomas,Meeting,18/01/2022,96,Needs clarification
+INT000241,87,Lisa Johnson,Other,07/07/2022,12,Needs clarification
+INT000242,31,James Davies,Email,02/03/2022,56,
+INT000243,11,Richard Evans,Other,03/04/2021,117,
+INT000244,110,Patricia White,Chat,23/10/2022,6,
+INT000245,120,Richard Evans,Email,03/07/2022,73,
+INT000246,149,Charles Thompson,Email,12/08/2022,119,
+INT000247,20,Charles Thompson,Other,03/03/2021,81,Urgent matter
+INT000248,24,James Davies,Phone Call,21/01/2022,33,
+INT000249,86,Susan Robinson,Phone Call,19/10/2022,74,Client satisfied
+INT000250,89,James Davies,Video Call,14/10/2022,44,Follow up required
+INT000251,81,Richard Evans,Meeting,26/01/2022,114,
+INT000252,125,Richard Evans,Other,30/10/2022,120,Client satisfied
+INT000253,148,Charles Thompson,Video Call,07/09/2022,16,
+INT000254,43,Charles Thompson,Phone Call,14/10/2021,78,Routine check-in
+INT000255,118,Michael Brown,Other,04/06/2022,65,Follow up required
+INT000256,25,Lisa Johnson,Email,08/04/2022,114,Urgent matter
+INT000257,61,Patricia White,Meeting,21/05/2023,118,
+INT000258,78,Patricia White,Other,17/05/2023,35,Urgent matter
+INT000259,131,Patricia White,Meeting,26/01/2021,120,
+INT000260,48,Charles Thompson,Video Call,02/08/2023,30,
+INT000261,96,Sarah Jones,Chat,28/10/2022,84,
+INT000262,90,Karen Edwards,Email,28/05/2023,90,
+INT000263,56,Karen Edwards,Other,25/06/2022,30,
+INT000264,121,Susan Robinson,Other,12/07/2023,30,
+INT000265,88,Susan Robinson,Phone Call,11/01/2023,72,Needs clarification
+INT000266,141,James Davies,Video Call,27/10/2021,30,
+INT000267,161,Daniel Hughes,Letter,25/11/2021,30,Urgent matter
+INT000268,138,Sarah Jones,Meeting,22/02/2021,83,Routine check-in
+INT000269,21,Emma Wilson,Email,22/11/2021,77,Urgent matter
+INT000270,118,James Davies,Phone Call,16/09/2023,30,
+INT000271,84,Charles Thompson,Phone Call,29/08/2022,30,
+INT000272,166,Charles Thompson,Chat,10/03/2021,47,
+INT000273,21,Jennifer Thomas,Letter,11/05/2022,107,
+INT000274,89,Lisa Johnson,Email,24/06/2021,95,
+INT000275,52,James Davies,Phone Call,13/12/2022,30,
+INT000276,26,Lisa Johnson,Other,26/02/2022,81,Needs clarification
+INT000277,49,Patricia White,Letter,11/10/2023,84,
+INT000278,101,Michael Brown,Chat,24/02/2022,38,
+INT000279,7,Andrew Roberts,Email,11/10/2023,24,Urgent matter
+INT000280,123,Daniel Hughes,Meeting,14/07/2022,30,
+INT000281,68,Richard Evans,Chat,16/10/2023,51,
+INT000282,23,Michael Brown,Chat,02/01/2022,31,
+INT000283,160,Daniel Hughes,Video Call,02/09/2021,30,
+INT000284,96,Robert Smith,Chat,03/06/2021,30,Routine check-in
+INT000285,130,Richard Evans,Letter,07/03/2023,45,
+INT000286,20,Emma Wilson,Letter,04/04/2023,30,
+INT000287,142,Emma Wilson,Video Call,31/01/2021,98,Follow up required
+INT000288,66,Michael Brown,Chat,16/08/2023,42,
+INT000289,141,Lisa Johnson,Email,07/08/2023,30,
+INT000290,156,Susan Robinson,Meeting,11/03/2023,114,Urgent matter
+INT000291,96,Richard Evans,Email,22/12/2022,43,
+INT000292,171,Daniel Hughes,Meeting,03/12/2022,84,Client satisfied
+INT000293,116,Sarah Jones,Video Call,17/11/2021,96,
+INT000294,53,Andrew Roberts,Video Call,27/11/2023,30,
+INT000295,97,Andrew Roberts,Other,10/02/2023,30,Follow up required
+INT000296,10,Andrew Roberts,Other,07/05/2023,102,Client satisfied
+INT000297,157,Daniel Hughes,Letter,09/04/2021,30,
+INT000298,69,Emma Wilson,Email,30/11/2022,25,
+INT000299,34,Charles Thompson,Chat,08/02/2022,30,
+INT000300,78,Robert Smith,Letter,30/03/2022,24,Urgent matter
+INT000301,52,Richard Evans,Video Call,06/02/2022,102,
+INT000302,147,Richard Evans,Chat,11/08/2023,47,Client satisfied
+INT000303,9,James Davies,Other,03/04/2021,30,
+INT000304,19,Emma Wilson,Phone Call,23/04/2021,114,Routine check-in
+INT000305,41,Sarah Jones,Phone Call,17/11/2021,48,
+INT000306,10,Susan Robinson,Meeting,13/05/2021,52,Routine check-in
+INT000307,166,Jennifer Thomas,Meeting,27/11/2022,114,Routine check-in
+INT000308,52,Lisa Johnson,Email,18/02/2023,30,Routine check-in
+INT000309,165,Susan Robinson,Chat,14/10/2022,101,
+INT000310,11,Robert Smith,Chat,02/01/2022,48,Urgent matter
+INT000311,134,James Davies,Other,13/07/2021,30,
+INT000312,37,Emma Wilson,Phone Call,20/06/2022,30,Needs clarification
+INT000313,20,Jennifer Thomas,Meeting,30/05/2021,30,
+INT000314,14,Patricia White,Video Call,04/01/2021,92,Follow up required
+INT000315,41,Susan Robinson,Chat,11/08/2022,20,
+INT000316,74,Lisa Johnson,Other,04/10/2023,21,
+INT000317,148,Patricia White,Other,31/07/2023,30,
+INT000318,30,Andrew Roberts,Meeting,17/06/2023,78,Urgent matter
+INT000319,137,Jennifer Thomas,Phone Call,13/05/2021,30,
+INT000320,54,Emma Wilson,Other,02/01/2023,30,
+INT000321,69,Susan Robinson,Phone Call,25/01/2021,96,
+INT000322,49,Jennifer Thomas,Other,25/01/2023,30,Routine check-in
+INT000323,80,Susan Robinson,Other,07/11/2021,67,Follow up required
+INT000324,88,Patricia White,Letter,10/03/2022,30,
+INT000325,63,Karen Edwards,Meeting,17/02/2021,24,Follow up required
+INT000326,118,James Davies,Chat,09/08/2022,98,Urgent matter
+INT000327,137,Robert Smith,Video Call,08/01/2021,30,Urgent matter
+INT000328,146,James Davies,Phone Call,04/12/2023,30,Routine check-in
+INT000329,1,Daniel Hughes,Phone Call,28/01/2022,108,
+INT000330,156,Richard Evans,Email,15/11/2021,64,
+INT000331,78,Daniel Hughes,Other,19/11/2023,17,Urgent matter
+INT000332,52,Richard Evans,Email,23/05/2021,33,Follow up required
+INT000333,8,Daniel Hughes,Other,25/03/2023,36,
+INT000334,140,David Taylor,Chat,10/11/2022,35,Client satisfied
+INT000335,170,Patricia White,Chat,13/01/2021,66,Routine check-in
+INT000336,117,Patricia White,Email,04/06/2023,103,
+INT000337,24,James Davies,Other,26/12/2021,45,
+INT000338,92,Patricia White,Chat,30/10/2021,49,Needs clarification
+INT000339,56,Charles Thompson,Chat,04/01/2022,96,Client satisfied
+INT000340,24,Sarah Jones,Chat,02/12/2021,30,
+INT000341,119,Robert Smith,Email,27/10/2022,71,
+INT000342,62,Emma Wilson,Other,15/01/2021,30,
+INT000343,98,Jennifer Thomas,Email,14/10/2022,84,Routine check-in
+INT000344,137,David Taylor,Video Call,19/01/2021,42,Follow up required
+INT000345,78,Daniel Hughes,Other,07/12/2021,30,
+INT000346,46,James Davies,Video Call,10/02/2022,96,Routine check-in
+INT000347,25,David Taylor,Letter,12/02/2023,84,Urgent matter
+INT000348,128,Susan Robinson,Other,25/12/2023,52,
+INT000349,75,James Davies,Meeting,01/05/2023,120,
+INT000350,6,Karen Edwards,Other,12/12/2022,35,Follow up required
+INT000351,57,Karen Edwards,Letter,08/04/2021,105,
+INT000352,55,David Taylor,Meeting,07/02/2023,47,
+INT000353,146,David Taylor,Email,09/10/2021,114,
+INT000354,83,James Davies,Other,19/12/2022,30,
+INT000355,13,David Taylor,Other,18/12/2021,72,
+INT000356,94,Michael Brown,Meeting,08/10/2022,72,Needs clarification
+INT000357,91,Emma Wilson,Other,31/12/2022,30,
+INT000358,90,James Davies,Other,08/01/2021,41,
+INT000359,23,Emma Wilson,Phone Call,04/08/2022,30,Needs clarification
+INT000360,133,Emma Wilson,Phone Call,04/04/2023,5,
+INT000361,26,Lisa Johnson,Chat,20/07/2021,30,
+INT000362,148,Jennifer Thomas,Chat,12/01/2021,58,Routine check-in
+INT000363,113,Sarah Jones,Phone Call,02/03/2023,31,Needs clarification
+INT000364,57,Richard Evans,Letter,17/12/2022,53,Needs clarification
+INT000365,1,Robert Smith,Meeting,07/05/2021,33,Urgent matter
+INT000366,22,Lisa Johnson,Chat,13/09/2021,34,
+INT000367,65,Lisa Johnson,Meeting,08/01/2021,66,
+INT000368,29,Sarah Jones,Meeting,31/10/2022,114,Routine check-in
+INT000369,12,Charles Thompson,Letter,05/10/2022,39,
+INT000370,96,Andrew Roberts,Video Call,05/12/2023,30,
+INT000371,119,Patricia White,Letter,28/08/2021,30,
+INT000372,133,Patricia White,Video Call,11/11/2021,96,Client satisfied
+INT000373,90,Daniel Hughes,Other,16/11/2022,84,Follow up required
+INT000374,90,Karen Edwards,Video Call,14/04/2021,18,
+INT000375,114,Robert Smith,Video Call,30/05/2022,11,Client satisfied
+INT000376,131,Jennifer Thomas,Phone Call,06/10/2022,30,Urgent matter
+INT000377,123,James Davies,Chat,24/04/2021,6,Client satisfied
+INT000378,131,Lisa Johnson,Other,19/04/2022,30,
+INT000379,114,Daniel Hughes,Other,28/03/2022,109,
+INT000380,103,Sarah Jones,Chat,20/03/2021,46,Urgent matter
+INT000381,29,Richard Evans,Other,04/10/2022,14,
+INT000382,111,Robert Smith,Chat,06/10/2022,20,
+INT000383,67,Emma Wilson,Letter,15/03/2022,96,Follow up required
+INT000384,65,Robert Smith,Phone Call,23/02/2021,30,Urgent matter
+INT000385,106,Richard Evans,Email,22/11/2023,72,
+INT000386,14,Charles Thompson,Chat,29/09/2021,104,
+INT000387,94,Patricia White,Email,23/07/2021,30,Urgent matter
+INT000388,143,Michael Brown,Email,04/04/2022,30,Client satisfied
+INT000389,18,Daniel Hughes,Phone Call,24/03/2021,113,Routine check-in
+INT000390,159,Michael Brown,Video Call,05/09/2021,78,Client satisfied
+INT000391,159,Andrew Roberts,Video Call,02/05/2023,30,
+INT000392,113,Daniel Hughes,Phone Call,11/04/2022,114,Urgent matter
+INT000393,169,David Taylor,Meeting,21/03/2021,39,Routine check-in
+INT000394,32,Patricia White,Phone Call,13/04/2023,97,Routine check-in
+INT000395,8,Andrew Roberts,Phone Call,25/08/2021,100,Client satisfied
+INT000396,54,Daniel Hughes,Video Call,18/12/2022,116,
+INT000397,16,Lisa Johnson,Other,05/04/2023,30,
+INT000398,81,Richard Evans,Other,29/01/2023,114,
+INT000399,158,Sarah Jones,Other,25/02/2023,106,Follow up required
+INT000400,38,Susan Robinson,Other,08/10/2022,18,Urgent matter
+INT000401,117,Patricia White,Video Call,12/01/2022,117,Routine check-in
+INT000402,109,Emma Wilson,Video Call,03/11/2022,30,
+INT000403,137,Charles Thompson,Video Call,03/10/2021,50,Follow up required
+INT000404,57,David Taylor,Email,10/12/2022,30,Routine check-in
+INT000405,85,Michael Brown,Email,20/02/2023,42,
+INT000406,169,Andrew Roberts,Phone Call,05/11/2022,83,
+INT000407,37,Charles Thompson,Video Call,24/11/2022,68,Needs clarification
+INT000408,94,James Davies,Other,15/10/2022,46,Urgent matter
+INT000409,164,Andrew Roberts,Meeting,16/06/2022,111,Needs clarification
+INT000410,49,Charles Thompson,Letter,22/10/2021,26,Client satisfied
+INT000411,137,Richard Evans,Video Call,23/07/2022,109,
+INT000412,45,Emma Wilson,Chat,16/02/2022,21,
+INT000413,33,Daniel Hughes,Email,07/09/2023,30,
+INT000414,113,Robert Smith,Other,29/10/2022,25,Urgent matter
+INT000415,164,Charles Thompson,Chat,16/09/2022,30,
+INT000416,10,James Davies,Letter,11/06/2021,8,
+INT000417,45,Susan Robinson,Chat,14/09/2022,36,Client satisfied
+INT000418,100,James Davies,Other,18/07/2022,81,
+INT000419,142,Richard Evans,Other,11/08/2021,54,
+INT000420,98,David Taylor,Other,29/03/2022,35,
+INT000421,146,Patricia White,Phone Call,02/04/2021,30,
+INT000422,142,Sarah Jones,Meeting,14/04/2022,30,
+INT000423,101,Michael Brown,Video Call,30/08/2021,58,
+INT000424,80,Susan Robinson,Chat,17/11/2023,30,
+INT000425,78,Susan Robinson,Meeting,11/08/2021,96,
+INT000426,60,Michael Brown,Chat,25/05/2021,110,Needs clarification
+INT000427,91,Daniel Hughes,Chat,08/02/2021,51,Routine check-in
+INT000428,96,Sarah Jones,Chat,26/12/2023,30,
+INT000429,49,Andrew Roberts,Letter,04/07/2022,10,
+INT000430,104,Susan Robinson,Video Call,22/08/2022,15,Needs clarification
+INT000431,99,James Davies,Email,04/05/2022,105,
+INT000432,157,David Taylor,Phone Call,02/11/2022,73,Needs clarification
+INT000433,29,James Davies,Chat,21/02/2021,30,
+INT000434,144,Susan Robinson,Other,13/06/2022,84,Routine check-in
+INT000435,66,Richard Evans,Phone Call,18/11/2022,30,
+INT000436,4,Lisa Johnson,Letter,07/06/2022,30,
+INT000437,62,Charles Thompson,Video Call,23/08/2023,99,
+INT000438,22,Michael Brown,Video Call,26/09/2023,46,
+INT000439,65,Karen Edwards,Other,26/07/2023,90,
+INT000440,101,Robert Smith,Meeting,16/04/2021,30,Follow up required
+INT000441,168,Karen Edwards,Letter,26/11/2022,52,Urgent matter
+INT000442,151,Emma Wilson,Other,19/05/2023,24,Client satisfied
+INT000443,149,Jennifer Thomas,Video Call,17/07/2023,114,Client satisfied
+INT000444,153,James Davies,Email,03/04/2022,97,
+INT000445,38,Daniel Hughes,Other,26/09/2021,26,
+INT000446,27,Emma Wilson,Video Call,30/06/2022,10,Routine check-in
+INT000447,46,Susan Robinson,Other,27/04/2023,54,Follow up required
+INT000448,3,Daniel Hughes,Phone Call,22/11/2023,93,Follow up required
+INT000449,134,James Davies,Meeting,12/12/2021,60,
+INT000450,15,Andrew Roberts,Chat,23/06/2023,114,Client satisfied
+INT000451,163,Andrew Roberts,Phone Call,01/04/2021,96,
+INT000452,118,Andrew Roberts,Other,16/11/2023,19,Follow up required
+INT000453,31,Jennifer Thomas,Other,12/03/2022,72,Needs clarification
+INT000454,124,Charles Thompson,Chat,29/10/2021,87,
+INT000455,131,Michael Brown,Video Call,05/08/2021,30,
+INT000456,118,Jennifer Thomas,Letter,07/10/2022,83,Needs clarification
+INT000457,98,James Davies,Meeting,31/12/2023,113,
+INT000458,4,Robert Smith,Email,16/07/2021,30,Client satisfied
+INT000459,150,James Davies,Other,20/09/2021,30,Urgent matter
+INT000460,97,Emma Wilson,Letter,18/01/2023,16,
+INT000461,25,Sarah Jones,Other,09/02/2021,102,
+INT000462,149,Sarah Jones,Other,16/11/2021,84,
+INT000463,103,Andrew Roberts,Letter,02/03/2021,8,Client satisfied
+INT000464,162,Patricia White,Other,12/12/2023,32,
+INT000465,128,Robert Smith,Letter,10/10/2021,5,
+INT000466,24,Susan Robinson,Other,19/09/2021,30,Urgent matter
+INT000467,139,Daniel Hughes,Other,31/07/2023,83,
+INT000468,97,Robert Smith,Phone Call,27/01/2023,62,
+INT000469,39,David Taylor,Email,21/05/2023,30,Client satisfied
+INT000470,99,David Taylor,Other,16/01/2023,30,
+INT000471,149,Patricia White,Phone Call,06/03/2021,42,Client satisfied
+INT000472,83,David Taylor,Other,12/06/2023,6,
+INT000473,127,Susan Robinson,Letter,29/08/2022,16,
+INT000474,134,Andrew Roberts,Other,23/11/2023,30,
+INT000475,133,Robert Smith,Letter,26/12/2022,98,Urgent matter
+INT000476,143,Richard Evans,Meeting,27/04/2022,105,Client satisfied
+INT000477,93,Richard Evans,Chat,04/04/2023,90,Client satisfied
+INT000478,38,Andrew Roberts,Letter,20/07/2022,51,Urgent matter
+INT000479,137,Emma Wilson,Email,28/03/2021,38,Routine check-in
+INT000480,122,Charles Thompson,Video Call,26/11/2023,55,
+INT000481,6,Richard Evans,Chat,20/08/2023,43,Needs clarification
+INT000482,87,Charles Thompson,Email,21/04/2022,60,Needs clarification
+INT000483,130,Andrew Roberts,Chat,09/02/2023,40,
+INT000484,53,James Davies,Other,28/02/2021,102,Urgent matter
+INT000485,82,Karen Edwards,Meeting,01/05/2022,32,Follow up required
+INT000486,61,Patricia White,Phone Call,02/07/2021,96,Needs clarification
+INT000487,66,Richard Evans,Meeting,05/12/2022,30,Follow up required
+INT000488,42,Daniel Hughes,Video Call,01/05/2021,30,
+INT000489,5,Richard Evans,Phone Call,30/03/2023,24,
+INT000490,74,James Davies,Letter,28/05/2021,6,
+INT000491,162,Daniel Hughes,Video Call,15/07/2023,49,
+INT000492,59,Sarah Jones,Other,29/09/2021,114,
+INT000493,162,Sarah Jones,Meeting,13/02/2022,13,Client satisfied
+INT000494,39,James Davies,Letter,05/01/2021,120,
+INT000495,53,Daniel Hughes,Chat,24/10/2021,62,
+INT000496,150,Robert Smith,Video Call,10/04/2021,13,Routine check-in
+INT000497,122,Robert Smith,Video Call,20/10/2023,11,
+INT000498,103,David Taylor,Video Call,30/01/2022,76,Follow up required
+INT000499,106,Richard Evans,Meeting,22/07/2023,20,
+INT000500,121,Richard Evans,Chat,06/08/2022,108,Follow up required
+INT000501,120,Jennifer Thomas,Meeting,03/06/2023,83,Urgent matter
+INT000502,69,Patricia White,Other,02/07/2023,72,
+INT000503,147,Richard Evans,Phone Call,23/07/2023,5,
+INT000504,40,Robert Smith,Other,10/03/2022,22,Follow up required
+INT000505,78,Michael Brown,Other,23/02/2022,30,Routine check-in
+INT000506,110,Emma Wilson,Letter,06/10/2021,30,
+INT000507,105,Andrew Roberts,Chat,19/10/2021,30,
+INT000508,92,Robert Smith,Meeting,22/08/2022,30,Routine check-in
+INT000509,48,Charles Thompson,Email,01/10/2022,92,
+INT000510,28,Richard Evans,Phone Call,21/11/2023,30,Routine check-in
+INT000511,58,Charles Thompson,Letter,06/03/2022,30,
+INT000512,6,Robert Smith,Meeting,08/02/2023,35,
+INT000513,87,Charles Thompson,Letter,15/04/2021,30,
+INT000514,144,Robert Smith,Chat,15/07/2023,115,Routine check-in
+INT000515,167,Lisa Johnson,Other,01/04/2023,66,
+INT000516,64,Charles Thompson,Video Call,28/12/2021,23,
+INT000517,113,Andrew Roberts,Letter,31/07/2022,30,Follow up required
+INT000518,68,David Taylor,Meeting,05/10/2023,72,
+INT000519,9,Daniel Hughes,Other,26/04/2023,30,Client satisfied
+INT000520,84,Lisa Johnson,Phone Call,02/11/2023,65,
+INT000521,19,Michael Brown,Email,20/10/2023,42,
+INT000522,67,Daniel Hughes,Video Call,30/07/2023,11,Client satisfied
+INT000523,54,Daniel Hughes,Video Call,29/03/2022,28,
+INT000524,146,Charles Thompson,Other,11/01/2022,65,Routine check-in
+INT000525,31,Jennifer Thomas,Email,10/08/2021,118,Follow up required
+INT000526,54,Lisa Johnson,Other,30/01/2021,83,Urgent matter
+INT000527,86,Robert Smith,Email,29/03/2022,69,Needs clarification
+INT000528,120,Sarah Jones,Meeting,21/02/2022,30,
+INT000529,71,Michael Brown,Letter,30/07/2022,30,Client satisfied
+INT000530,21,James Davies,Meeting,30/10/2023,76,
+INT000531,114,Patricia White,Phone Call,02/08/2022,103,
+INT000532,154,Lisa Johnson,Other,10/06/2021,35,
+INT000533,40,Charles Thompson,Meeting,07/06/2021,64,
+INT000534,167,James Davies,Meeting,22/12/2021,21,
+INT000535,83,Sarah Jones,Video Call,05/11/2022,84,
+INT000536,70,Susan Robinson,Other,28/04/2023,30,
+INT000537,59,Robert Smith,Meeting,17/03/2023,30,
+INT000538,114,Susan Robinson,Other,28/07/2022,90,
+INT000539,130,Susan Robinson,Phone Call,20/11/2021,10,
+INT000540,16,Richard Evans,Chat,12/08/2022,30,
+INT000541,65,Michael Brown,Phone Call,14/02/2021,89,
+INT000542,95,Patricia White,Letter,01/07/2021,30,
+INT000543,143,Sarah Jones,Other,17/11/2021,78,
+INT000544,1,Emma Wilson,Other,14/06/2023,30,
+INT000545,18,Emma Wilson,Letter,10/02/2022,30,
+INT000546,154,Lisa Johnson,Letter,11/09/2021,95,
+INT000547,121,Jennifer Thomas,Other,22/11/2022,28,Follow up required
+INT000548,25,Susan Robinson,Chat,10/09/2022,114,
+INT000549,65,Jennifer Thomas,Video Call,30/11/2023,108,
+INT000550,139,Andrew Roberts,Other,18/10/2022,60,Needs clarification
+INT000551,131,Karen Edwards,Phone Call,31/10/2023,29,
+INT000552,48,James Davies,Email,21/06/2021,50,
+INT000553,29,Daniel Hughes,Email,02/07/2021,30,Follow up required
+INT000554,147,Charles Thompson,Other,25/06/2022,49,
+INT000555,10,Patricia White,Other,02/06/2021,58,
+INT000556,12,James Davies,Chat,03/08/2021,35,Urgent matter
+INT000557,59,Michael Brown,Other,29/03/2023,30,Follow up required
+INT000558,95,Richard Evans,Other,22/04/2022,30,
+INT000559,165,Charles Thompson,Email,26/03/2023,111,
+INT000560,82,Michael Brown,Meeting,26/04/2022,60,Client satisfied
+INT000561,35,James Davies,Phone Call,22/08/2022,45,
+INT000562,86,Susan Robinson,Video Call,25/11/2021,22,
+INT000563,100,Lisa Johnson,Phone Call,29/05/2022,62,Follow up required
+INT000564,60,Emma Wilson,Other,16/08/2022,8,
+INT000565,124,Jennifer Thomas,Chat,10/10/2022,33,
+INT000566,59,Jennifer Thomas,Chat,29/01/2021,30,Urgent matter
+INT000567,122,Charles Thompson,Phone Call,29/11/2021,30,Routine check-in
+INT000568,30,Emma Wilson,Email,12/07/2023,84,
+INT000569,135,James Davies,Other,20/02/2022,39,
+INT000570,34,Daniel Hughes,Chat,17/06/2021,30,
+INT000571,13,Sarah Jones,Phone Call,25/06/2022,22,Needs clarification
+INT000572,115,Sarah Jones,Video Call,22/04/2021,16,Needs clarification
+INT000573,84,Patricia White,Other,18/12/2022,27,Routine check-in
+INT000574,165,Susan Robinson,Video Call,17/08/2022,30,
+INT000575,84,Lisa Johnson,Email,22/01/2021,53,
+INT000576,2,David Taylor,Letter,17/09/2021,51,
+INT000577,96,Karen Edwards,Meeting,19/06/2022,35,
+INT000578,49,Michael Brown,Other,25/07/2023,30,
+INT000579,130,Emma Wilson,Chat,26/02/2022,9,
+INT000580,26,Patricia White,Other,28/11/2021,106,
+INT000581,98,Karen Edwards,Phone Call,16/09/2021,76,
+INT000582,21,Sarah Jones,Phone Call,10/12/2022,119,Needs clarification
+INT000583,104,Andrew Roberts,Video Call,18/08/2023,13,Urgent matter
+INT000584,101,Emma Wilson,Other,15/04/2021,7,Follow up required
+INT000585,86,Michael Brown,Chat,15/07/2023,40,
+INT000586,87,Richard Evans,Phone Call,22/07/2023,30,
+INT000587,11,Richard Evans,Phone Call,06/09/2021,28,
+INT000588,20,Lisa Johnson,Email,30/08/2023,28,
+INT000589,115,Richard Evans,Letter,16/12/2023,31,
+INT000590,163,James Davies,Other,19/05/2023,30,Urgent matter
+INT000591,163,Richard Evans,Email,20/10/2021,59,
+INT000592,131,Karen Edwards,Meeting,24/10/2022,30,Routine check-in
+INT000593,52,Susan Robinson,Video Call,28/07/2022,85,
+INT000594,24,Robert Smith,Video Call,11/07/2023,48,
+INT000595,141,Charles Thompson,Phone Call,09/07/2022,50,Urgent matter
+INT000596,162,Emma Wilson,Letter,13/12/2022,30,Client satisfied
+INT000597,29,Daniel Hughes,Meeting,25/02/2022,88,Follow up required
+INT000598,83,Lisa Johnson,Email,09/08/2022,96,Routine check-in
+INT000599,154,Patricia White,Email,08/09/2023,81,
+INT000600,128,Lisa Johnson,Other,13/08/2023,30,Needs clarification
+INT000601,131,James Davies,Phone Call,18/07/2023,30,Urgent matter
+INT000602,66,David Taylor,Chat,27/04/2021,30,Follow up required
+INT000603,49,Lisa Johnson,Video Call,22/05/2021,33,Client satisfied
+INT000604,32,Emma Wilson,Chat,25/09/2021,100,Follow up required
+INT000605,10,Emma Wilson,Other,16/01/2023,30,
+INT000606,81,James Davies,Phone Call,19/07/2023,30,Client satisfied
+INT000607,53,Jennifer Thomas,Meeting,25/05/2022,33,
+INT000608,87,David Taylor,Video Call,04/02/2022,13,
+INT000609,7,Lisa Johnson,Phone Call,10/06/2022,119,
+INT000610,159,Robert Smith,Video Call,23/03/2023,53,
+INT000611,16,Lisa Johnson,Meeting,16/07/2023,94,
+INT000612,115,Daniel Hughes,Email,15/12/2022,48,
+INT000613,37,Emma Wilson,Video Call,06/03/2021,80,Routine check-in
+INT000614,158,Jennifer Thomas,Other,08/06/2023,69,
+INT000615,127,Lisa Johnson,Other,08/11/2021,21,
+INT000616,4,Patricia White,Meeting,02/01/2022,84,Needs clarification
+INT000617,60,Patricia White,Letter,25/08/2022,54,
+INT000618,144,Jennifer Thomas,Other,18/08/2022,31,Needs clarification
+INT000619,109,Patricia White,Letter,01/09/2021,91,
+INT000620,72,Michael Brown,Phone Call,18/02/2021,60,
+INT000621,165,Lisa Johnson,Meeting,03/07/2022,30,
+INT000622,94,Jennifer Thomas,Letter,06/10/2022,90,Follow up required
+INT000623,153,Robert Smith,Letter,24/05/2023,120,
+INT000624,35,Charles Thompson,Letter,16/11/2021,120,Follow up required
+INT000625,75,Susan Robinson,Video Call,04/10/2022,48,
+INT000626,45,Susan Robinson,Email,08/06/2023,60,Needs clarification
+INT000627,47,Michael Brown,Meeting,17/05/2021,34,
+INT000628,3,Daniel Hughes,Video Call,30/08/2022,30,Urgent matter
+INT000629,109,Lisa Johnson,Email,30/03/2022,81,
+INT000630,76,Sarah Jones,Phone Call,16/12/2023,9,Follow up required
+INT000631,53,Patricia White,Phone Call,05/01/2023,78,Client satisfied
+INT000632,84,Jennifer Thomas,Email,22/05/2023,30,
+INT000633,94,Sarah Jones,Meeting,10/10/2023,30,Needs clarification
+INT000634,65,Daniel Hughes,Other,21/12/2022,30,
+INT000635,144,Patricia White,Meeting,27/12/2022,30,Follow up required
+INT000636,162,Richard Evans,Meeting,05/12/2022,10,
+INT000637,169,Jennifer Thomas,Other,11/06/2021,84,
+INT000638,42,Karen Edwards,Other,27/08/2021,66,Urgent matter
+INT000639,18,Sarah Jones,Phone Call,20/02/2023,87,Client satisfied
+INT000640,120,Andrew Roberts,Video Call,23/06/2021,87,Needs clarification
+INT000641,59,Patricia White,Letter,20/03/2021,96,Needs clarification
+INT000642,38,Susan Robinson,Other,08/06/2021,22,Urgent matter
+INT000643,76,Robert Smith,Other,09/10/2022,90,
+INT000644,157,Daniel Hughes,Phone Call,02/11/2022,118,
+INT000645,36,Susan Robinson,Letter,21/05/2021,55,Routine check-in
+INT000646,18,Michael Brown,Meeting,04/12/2022,75,
+INT000647,20,Jennifer Thomas,Letter,05/01/2022,69,Urgent matter
+INT000648,68,Daniel Hughes,Email,23/09/2023,40,Routine check-in
+INT000649,75,James Davies,Video Call,15/01/2022,77,
+INT000650,60,Susan Robinson,Chat,06/02/2023,30,Urgent matter
+INT000651,170,Karen Edwards,Meeting,21/03/2023,61,
+INT000652,74,Lisa Johnson,Meeting,16/01/2021,7,Urgent matter
+INT000653,129,Richard Evans,Phone Call,07/08/2023,30,Client satisfied
+INT000654,168,Lisa Johnson,Other,15/09/2021,36,Needs clarification
+INT000655,87,Karen Edwards,Chat,01/05/2023,108,
+INT000656,50,Patricia White,Other,21/05/2023,30,Follow up required
+INT000657,158,Andrew Roberts,Video Call,02/06/2022,27,Urgent matter
+INT000658,45,Susan Robinson,Chat,26/05/2022,36,Follow up required
+INT000659,81,Lisa Johnson,Letter,15/03/2021,50,Follow up required
+INT000660,57,James Davies,Chat,08/06/2023,30,
+INT000661,144,James Davies,Letter,03/10/2022,30,Urgent matter
+INT000662,1,Andrew Roberts,Phone Call,04/06/2023,90,Routine check-in
+INT000663,99,James Davies,Meeting,17/09/2021,41,Needs clarification
+INT000664,102,Charles Thompson,Phone Call,21/04/2021,115,Urgent matter
+INT000665,28,Robert Smith,Chat,14/06/2021,30,Client satisfied
+INT000666,68,Andrew Roberts,Video Call,07/12/2023,52,
+INT000667,160,Sarah Jones,Chat,13/06/2022,110,
+INT000668,28,Patricia White,Phone Call,10/05/2021,101,
+INT000669,101,Andrew Roberts,Other,30/08/2021,60,Follow up required
+INT000670,166,Sarah Jones,Chat,14/02/2021,47,Routine check-in
+INT000671,59,Emma Wilson,Letter,05/03/2022,84,Urgent matter
+INT000672,144,Andrew Roberts,Other,25/06/2023,30,
+INT000673,133,David Taylor,Meeting,06/04/2023,25,Urgent matter
+INT000674,26,Charles Thompson,Chat,21/05/2021,72,
+INT000675,42,Lisa Johnson,Chat,13/04/2023,93,Client satisfied
+INT000676,131,Robert Smith,Chat,18/03/2023,30,Urgent matter
+INT000677,2,Richard Evans,Chat,20/06/2021,110,Follow up required
+INT000678,51,Robert Smith,Meeting,04/05/2021,30,
+INT000679,101,Michael Brown,Other,21/06/2022,46,
+INT000680,54,Michael Brown,Meeting,27/10/2022,35,Urgent matter
+INT000681,99,Daniel Hughes,Other,02/07/2023,40,
+INT000682,90,Sarah Jones,Email,14/08/2021,120,
+INT000683,68,David Taylor,Email,16/03/2023,30,Needs clarification
+INT000684,31,Karen Edwards,Meeting,20/08/2021,27,
+INT000685,102,Michael Brown,Video Call,09/05/2022,46,
+INT000686,144,Andrew Roberts,Other,10/01/2022,83,
+INT000687,151,Andrew Roberts,Email,15/08/2022,20,Urgent matter
+INT000688,169,David Taylor,Letter,27/10/2022,30,
+INT000689,40,Charles Thompson,Other,21/01/2022,42,Routine check-in
+INT000690,124,Jennifer Thomas,Meeting,09/08/2023,47,Urgent matter
+INT000691,133,Daniel Hughes,Phone Call,23/09/2023,30,Client satisfied
+INT000692,18,Karen Edwards,Other,07/12/2021,9,
+INT000693,2,Charles Thompson,Meeting,12/10/2021,36,Client satisfied
+INT000694,73,Charles Thompson,Phone Call,22/10/2021,17,Urgent matter
+INT000695,55,Charles Thompson,Other,30/04/2021,84,Routine check-in
+INT000696,167,James Davies,Meeting,02/12/2022,102,
+INT000697,69,Daniel Hughes,Other,04/10/2021,30,
+INT000698,149,Jennifer Thomas,Phone Call,29/11/2023,43,Follow up required
+INT000699,122,Andrew Roberts,Other,02/06/2022,60,
+INT000700,103,Jennifer Thomas,Chat,21/05/2023,30,Follow up required
+INT000701,136,Emma Wilson,Other,15/09/2021,114,
+INT000702,15,Robert Smith,Other,23/02/2021,30,Routine check-in
+INT000703,100,Charles Thompson,Other,21/08/2022,34,
+INT000704,144,Lisa Johnson,Other,19/09/2021,20,
+INT000705,133,Daniel Hughes,Other,01/09/2022,30,Follow up required
+INT000706,133,James Davies,Chat,22/10/2023,37,
+INT000707,109,Susan Robinson,Meeting,31/05/2021,53,
+INT000708,154,Sarah Jones,Email,16/05/2022,30,
+INT000709,148,Karen Edwards,Phone Call,19/07/2021,69,
+INT000710,24,Robert Smith,Chat,11/02/2022,50,
+INT000711,6,Lisa Johnson,Video Call,16/03/2021,30,Routine check-in
+INT000712,138,Andrew Roberts,Other,09/07/2022,75,Client satisfied
+INT000713,72,Charles Thompson,Email,25/04/2021,64,
+INT000714,65,Richard Evans,Phone Call,27/05/2022,40,
+INT000715,139,Robert Smith,Phone Call,10/03/2021,22,
+INT000716,2,James Davies,Phone Call,26/04/2022,100,Routine check-in
+INT000717,100,Andrew Roberts,Other,11/06/2021,35,
+INT000718,85,Charles Thompson,Chat,03/04/2023,87,
+INT000719,159,James Davies,Phone Call,06/12/2021,30,Follow up required
+INT000720,160,Lisa Johnson,Email,03/12/2023,30,
+INT000721,136,Daniel Hughes,Video Call,03/11/2023,52,Urgent matter
+INT000722,21,Richard Evans,Phone Call,19/05/2023,62,Needs clarification
+INT000723,66,Sarah Jones,Meeting,08/02/2023,30,
+INT000724,63,Sarah Jones,Email,03/01/2021,58,
+INT000725,101,Jennifer Thomas,Phone Call,14/04/2021,40,Routine check-in
+INT000726,86,Lisa Johnson,Video Call,09/07/2022,77,
+INT000727,92,Michael Brown,Email,17/01/2021,30,Urgent matter
+INT000728,32,Charles Thompson,Phone Call,21/07/2022,30,
+INT000729,54,Susan Robinson,Chat,26/07/2022,67,Routine check-in
+INT000730,94,Daniel Hughes,Phone Call,20/09/2021,5,
+INT000731,122,Patricia White,Phone Call,06/12/2022,107,
+INT000732,53,Robert Smith,Other,27/02/2021,30,
+INT000733,32,Karen Edwards,Other,06/07/2022,7,Routine check-in
+INT000734,95,Andrew Roberts,Video Call,03/09/2021,60,
+INT000735,98,Robert Smith,Email,04/04/2022,109,
+INT000736,107,Charles Thompson,Letter,20/04/2023,18,Routine check-in
+INT000737,62,David Taylor,Letter,12/05/2021,30,Needs clarification
+INT000738,92,Daniel Hughes,Chat,28/04/2021,49,Needs clarification
+INT000739,3,Susan Robinson,Phone Call,14/11/2023,17,Routine check-in
+INT000740,166,Andrew Roberts,Letter,02/04/2023,30,
+INT000741,97,Robert Smith,Other,31/07/2023,57,
+INT000742,36,Daniel Hughes,Letter,16/04/2021,44,Urgent matter
+INT000743,12,Patricia White,Phone Call,19/10/2021,16,Client satisfied
+INT000744,15,Emma Wilson,Letter,10/09/2021,73,
+INT000745,120,Sarah Jones,Letter,11/09/2022,25,Follow up required
+INT000746,34,Andrew Roberts,Video Call,28/10/2022,84,
+INT000747,52,Charles Thompson,Other,09/01/2023,78,Needs clarification
+INT000748,49,Karen Edwards,Other,05/09/2023,66,
+INT000749,161,Patricia White,Chat,22/09/2022,28,
+INT000750,14,Michael Brown,Video Call,24/11/2021,30,
+INT000751,145,Patricia White,Meeting,29/06/2021,91,
+INT000752,52,Patricia White,Letter,26/05/2022,78,Needs clarification
+INT000753,83,James Davies,Phone Call,03/10/2022,30,
+INT000754,47,Robert Smith,Meeting,12/03/2023,103,
+INT000755,125,Andrew Roberts,Other,04/04/2023,97,Client satisfied
+INT000756,31,Andrew Roberts,Other,12/06/2022,102,Client satisfied
+INT000757,142,David Taylor,Video Call,13/04/2021,55,
+INT000758,151,Daniel Hughes,Chat,06/02/2023,30,
+INT000759,123,Michael Brown,Other,24/06/2023,108,
+INT000760,69,Daniel Hughes,Letter,09/08/2021,22,
+INT000761,136,Robert Smith,Phone Call,30/07/2023,103,Urgent matter
+INT000762,69,Andrew Roberts,Chat,29/08/2022,96,
+INT000763,94,Charles Thompson,Phone Call,14/01/2022,8,Urgent matter
+INT000764,124,Karen Edwards,Video Call,17/07/2023,30,Follow up required
+INT000765,96,Patricia White,Phone Call,04/05/2021,60,
+INT000766,95,Jennifer Thomas,Other,15/06/2021,12,Follow up required
+INT000767,146,Patricia White,Other,07/12/2022,102,Routine check-in
+INT000768,165,Robert Smith,Other,08/04/2022,78,
+INT000769,87,Sarah Jones,Phone Call,26/10/2022,71,
+INT000770,36,Robert Smith,Video Call,26/11/2023,42,Routine check-in
+INT000771,49,Patricia White,Other,31/03/2021,72,
+INT000772,9,Robert Smith,Meeting,26/01/2023,72,
+INT000773,163,David Taylor,Chat,10/10/2023,82,
+INT000774,94,Karen Edwards,Other,09/12/2023,55,
+INT000775,115,Andrew Roberts,Phone Call,09/03/2022,30,
+INT000776,159,Robert Smith,Email,08/04/2023,103,
+INT000777,162,Lisa Johnson,Phone Call,23/06/2022,78,
+INT000778,92,Karen Edwards,Video Call,22/10/2022,30,Routine check-in
+INT000779,24,Sarah Jones,Phone Call,04/10/2021,73,
+INT000780,168,Lisa Johnson,Video Call,30/06/2023,67,
+INT000781,169,Lisa Johnson,Letter,24/01/2021,30,Follow up required
+INT000782,153,David Taylor,Phone Call,30/11/2023,78,Client satisfied
+INT000783,83,Emma Wilson,Phone Call,30/09/2021,30,
+INT000784,75,Emma Wilson,Video Call,15/05/2021,23,
+INT000785,122,Lisa Johnson,Video Call,06/07/2022,88,Urgent matter
+INT000786,89,Karen Edwards,Letter,10/04/2022,72,
+INT000787,64,Andrew Roberts,Other,19/01/2022,30,
+INT000788,118,Patricia White,Email,25/04/2021,17,Urgent matter
+INT000789,149,Andrew Roberts,Chat,27/06/2021,30,
+INT000790,16,Patricia White,Chat,10/02/2023,9,Client satisfied
+INT000791,160,Charles Thompson,Other,23/02/2021,30,
+INT000792,156,Karen Edwards,Video Call,01/05/2022,30,Urgent matter
+INT000793,150,Robert Smith,Video Call,18/03/2022,11,
+INT000794,14,Daniel Hughes,Other,24/07/2022,87,
+INT000795,167,Daniel Hughes,Other,07/07/2021,30,Needs clarification
+INT000796,120,Andrew Roberts,Meeting,22/10/2022,31,
+INT000797,35,Charles Thompson,Other,26/04/2023,26,Routine check-in
+INT000798,152,Jennifer Thomas,Video Call,04/09/2022,37,Needs clarification
+INT000799,107,David Taylor,Meeting,03/07/2023,8,Urgent matter
+INT000800,8,Lisa Johnson,Video Call,02/07/2021,73,

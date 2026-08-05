@@ -17,7 +17,7 @@ Before you begin, ensure you have:
 - ✅ **Power BI Desktop** (latest version) for semantic model creation
 - ✅ **Azure CLI** installed (`az --version` to verify)
 - ✅ **Fabric login** configured (`az login`)
-- ✅ **Data files generated** (run `python generate_step1_data.py` and `python generate_step2_data.py`)
+- ✅ **Data files generated** (run `python step1/generate_step1_data.py` and `python step2/generate_step2_data.py`)
 - ✅ **Workspace permissions** (Contributor or Admin role)
 
 ---
@@ -112,11 +112,11 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 1. In the Lakehouse, go to **Tables**
 2. Click **Get data** → **Upload files**
 3. Upload all 5 Step 1 CSV files:
-   - `step1_raw_customers.csv`
-   - `step1_raw_cases.csv`
-   - `step1_raw_solicitors.csv`
-   - `step1_raw_transactions.csv`
-   - `step1_raw_interactions.csv`
+   - `step1/step1_raw_customers.csv`
+   - `step1/step1_raw_cases.csv`
+   - `step1/step1_raw_solicitors.csv`
+   - `step1/step1_raw_transactions.csv`
+   - `step1/step1_raw_interactions.csv`
 4. For each file:
    - Click **Load to new table**
    - Keep suggested table name (e.g., `step1_raw_customers`)
@@ -124,11 +124,11 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 
 #### 3. Upload Cleaned Data (Step 2)
 1. Repeat the same process for Step 2 files:
-   - `step2_cleaned_customers.csv`
-   - `step2_cleaned_cases.csv`
-   - `step2_cleaned_solicitors.csv`
-   - `step2_cleaned_transactions.csv`
-   - `step2_cleaned_interactions.csv`
+   - `step2/step2_cleaned_customers.csv`
+   - `step2/step2_cleaned_cases.csv`
+   - `step2/step2_cleaned_solicitors.csv`
+   - `step2/step2_cleaned_transactions.csv`
+   - `step2/step2_cleaned_interactions.csv`
 
 **Result:** You now have 10 tables in your Lakehouse (5 raw + 5 cleaned)
 
@@ -262,7 +262,7 @@ step2_cleaned_interactions      800
 
 #### **Option B: Using JSON Definition (Advanced)**
 
-The `step3_basic_semantic_model.json` file contains the model definition. You can use Power BI Project (PBIP) format:
+The `step3/step3_basic_semantic_model.json` file contains the model definition. You can use Power BI Project (PBIP) format:
 
 1. Create a new folder: `LegalFirmBasic`
 2. Place JSON contents in `definition.pbidataset` (PBIP format)
@@ -443,7 +443,7 @@ Thresholds:
 
 ### **Define Entities**
 
-Using the `step5_ontology_definition.json` as reference:
+Using the `step5/step5_ontology_definition.json` as reference:
 
 **Entity 1: Client**
 - Source: `step2_cleaned_customers` table
@@ -527,7 +527,7 @@ Using the `step5_ontology_definition.json` as reference:
 
 ### **Add Routing Rules**
 
-The `step6_data_agent_configuration.json` contains routing logic:
+The `step6/step6_data_agent_configuration.json` contains routing logic:
 
 ```json
 {

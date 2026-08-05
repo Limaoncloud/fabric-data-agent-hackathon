@@ -126,7 +126,7 @@ Percentage of queries that resulted in errors
 python evaluate_agent.py \
   --agent-id step3_agent \
   --dataset evaluation_dataset.json \
-  --output step3_results.json
+  --output step3/step3_results.json
 ```
 
 **Expected Metrics:**
@@ -141,7 +141,7 @@ python evaluate_agent.py \
 python evaluate_agent.py \
   --agent-id step4_agent \
   --dataset evaluation_dataset.json \
-  --output step4_results.json
+  --output step4/step4_results.json
 ```
 
 **Expected Metrics:**
@@ -157,7 +157,7 @@ python evaluate_agent.py \
 python evaluate_agent.py \
   --agent-id step6_agent \
   --dataset evaluation_dataset.json \
-  --output step6_results.json
+  --output step6/step6_results.json
 ```
 
 **Expected Metrics:**
@@ -288,9 +288,9 @@ Update `evaluate_query()` to parse run steps for:
 Create separate agents for Steps 3, 4, and 6, then evaluate each:
 
 ```bash
-python evaluate_agent.py --agent-id step3_agent --output step3_results.json
-python evaluate_agent.py --agent-id step4_agent --output step4_results.json
-python evaluate_agent.py --agent-id step6_agent --output step6_results.json
+python evaluate_agent.py --agent-id step3_agent --output step3/step3_results.json
+python evaluate_agent.py --agent-id step4_agent --output step4/step4_results.json
+python evaluate_agent.py --agent-id step6_agent --output step6/step6_results.json
 ```
 
 ### 2. Run Multiple Times

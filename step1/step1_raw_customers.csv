@@ -1,0 +1,201 @@
+id,n,typ,loc,dt,ph,em,stat,col9
+1,United PLC,Business,Edinburgh,23/09/2020,+441579083283,united.plc@example.co.uk,N/A,N/A
+2,United Group,Company,Cambridge,19/05/2020,0948 1983949,united.group@example.co.uk,I,Unknown
+,Premier Associates,Corp,Cambridge,11.09.2021,0367 5452263,premier.associates@example.co.uk,,Unknown
+4,Susan Clarke,Individual,London,03/09/2021,1449182228,susan.clarke@example.co.uk,active,N/A
+5,Enterprise Ltd,Business,Leicester,07/03/2021,0422 9836365,,Suspended,
+6,Daniel Robinson,Indiv,Liverpool,26/12/2021,(308) 9725532,daniel.robinson@example.co.uk,Inactive,X
+7,Phoenix PLC,Corp,Southampton,30-08-22,0434 4569983,phoenix.plc@example.co.uk,1,Y
+8,Matthew Davies,P,Edinburgh,2022-11-12,+442302495583,,1,N/A
+9,Richard Evans,Priv,London,21-08-23,8645063074,richard.evans@example.co.uk,Act,
+10,Richard Robinson,P,Nottingham,10.06.2022,09068499147,richard.robinson@example.co.uk,,
+11,Royal LLP,Corp,Newcastle,2020-01-03,01036492339,royal.llp@example.co.uk,1,X
+12,Capital Group,Company,Oxford,17.08.2022,0285 7145359,capital.group@example.co.uk,0,X
+13,Thomas Patel,P,London,2020-04-07,3981782712,,,Unknown
+14,Phoenix PLC,Corp,Southampton,19-09-22,+44 7041922394,phoenix.plc@example.co.uk,1,
+15,Linda Jones,Person,Bristol,2020-02-14,06102489607,linda.jones@example.co.uk,Inactive,X
+16,Emma White,P,Leicester,20/05/2021,+441524629721,emma.white@example.co.uk,A,Y
+17,Phoenix Limited,C,Edinburgh,13/10/2020,(887) 8746677,phoenix.limited@example.co.uk,0,Y
+18,United Ltd,Company,Birmingham,15.12.2022,+442263118686,united.ltd@example.co.uk,A,Y
+19,Premier Ltd,Org,Oxford,01-03-21,+44 9531506853,premier.ltd@example.co.uk,A,
+20,Elizabeth Thomas,P,Cardiff,05/17/2023,(152) 3584289,elizabeth.thomas@example.co.uk,I,Y
+21,Charles Brown,Indiv,Glasgow,04-05-21,2565359101,charles.brown@example.co.uk,1,X
+22,National PLC,Business,Cardiff,07/07/2020,+44 3634702534,,A,Unknown
+23,British & Co,Company,Sheffield,21.09.2021,03244404291,,Active,Y
+24,ACME PLC,Corp,Brighton,23.04.2021,(657) 7042273,acme.plc@example.co.uk,Suspended,Y
+25,David Edwards,Individual,Oxford,26-10-21,6474928179,david.edwards@example.co.uk,,Unknown
+26,Sarah Evans,Priv,Leeds,16.06.2023,06344016869,sarah.evans@example.co.uk,inactive,
+27,Enterprise Ltd,Business,Cambridge,28/12/2020,0568 8940230,,Suspended,N/A
+28,Elizabeth Hughes,Priv,London,2022-11-23,(298) 8955330,elizabeth.hughes@example.co.uk,N/A,Unknown
+29,National Group,Org,Nottingham,18-05-20,(212) 789197,national.group@example.co.uk,Act,Y
+30,Royal & Co,Company,Leicester,08-12-21,(821) 2852924,royal.and.co@example.co.uk,N/A,
+31,Global Group,Business,Nottingham,31-03-21,6482477414,global.group@example.co.uk,I,Y
+32,ACME Associates,Org,Cardiff,26-01-20,0711 7823005,acme.associates@example.co.uk,N/A,Y
+33,Daniel Clarke,Person,Belfast,02.09.2020,+443102341218,daniel.clarke@example.co.uk,,Unknown
+34,Sarah Johnson,Individual,Cardiff,09/01/2023,3726931057,sarah.johnson@example.co.uk,A,Unknown
+35,Capital Group,Company,Oxford,09/19/2023,(435) 5932256,capital.group@example.co.uk,ACTIVE,N/A
+36,Sarah Walker,P,Belfast,2021-05-02,06661198631,sarah.walker@example.co.uk,Inactive,Y
+37,Emma White,P,Leicester,24-04-20,(909) 7908837,,Act,Unknown
+38,Susan Roberts,Priv,Birmingham,2020-12-20,0860 7127335,susan.roberts@example.co.uk,,
+39,John Wilson,Individual,Leicester,2022-11-28,+44 7653378109,john.wilson@example.co.uk,I,Y
+40,Michael Hall,P,Glasgow,25-12-20,+447031521495,michael.hall@example.co.uk,N/A,N/A
+41,Susan Clarke,Individual,London,11.04.2020,+446352123986,susan.clarke@example.co.uk,N/A,
+42,Global & Co,Company,Belfast,2023-03-19,4481136234,global.and.co@example.co.uk,ACTIVE,Y
+43,Premier Ltd,Business,Cardiff,04/08/2021,4122848478,,inactive,Unknown
+44,ACME Group,Business,Nottingham,07-03-21,0302 7138229,acme.group@example.co.uk,Active,
+45,Sterling Limited,Company,Cambridge,23-09-23,(303) 4650468,sterling.limited@example.co.uk,Active,N/A
+46,Premier & Co,C,Oxford,16-03-22,(889) 6754721,premier.and.co@example.co.uk,active,Unknown
+47,United PLC,Company,Southampton,22.11.2021,0428 2884881,united.plc@example.co.uk,Inactive,Unknown
+48,Karen Smith,Priv,Leicester,27-09-22,0972 6968997,,Active,
+49,ACME & Co,Org,Cardiff,07.02.2020,+446426305994,acme.and.co@example.co.uk,N/A,N/A
+50,Royal PLC,Business,Leeds,27.09.2023,(883) 3536686,royal.plc@example.co.uk,I,
+,Imperial Ltd,Org,Southampton,28.06.2020,(715) 847994,imperial.ltd@example.co.uk,A,Unknown
+52,David Lewis,Priv,Cardiff,28-01-23,+44 1440047490,david.lewis@example.co.uk,1,Y
+53,Sarah Roberts,Person,Nottingham,25.05.2023,0450 2537215,sarah.roberts@example.co.uk,ACTIVE,N/A
+,David Walker,Person,Belfast,28.04.2023,+44 3197642477,david.walker@example.co.uk,A,Y
+55,Susan Clarke,Individual,London,27-03-20,+44 9687773603,susan.clarke@example.co.uk,Active,N/A
+56,United PLC,Corp,Leicester,2023-05-27,(275) 6898045,united.plc@example.co.uk,A,X
+57,British PLC,C,Leeds,04/29/2022,+441933160311,british.plc@example.co.uk,active,X
+58,Karen Roberts,Person,Leicester,22/01/2021,+444423190758,karen.roberts@example.co.uk,Inactive,
+59,Michael Green,Individual,Bristol,11.11.2021,06314110515,michael.green@example.co.uk,N/A,Y
+60,David Robinson,P,Manchester,07/21/2020,(481) 1601202,david.robinson@example.co.uk,Suspended,X
+61,Enterprise PLC,Business,Newcastle,2023-08-28,0402 8468533,enterprise.plc@example.co.uk,1,Y
+62,British PLC,Org,Southampton,2020-11-28,(305) 9731567,british.plc@example.co.uk,A,Y
+63,David Thomas,Priv,Southampton,06/09/2020,+444148987198,david.thomas@example.co.uk,1,Unknown
+64,Phoenix PLC,Corp,Southampton,02/02/2021,01756900393,phoenix.plc@example.co.uk,Inactive,Y
+65,Michael Wilson,Indiv,Southampton,11-07-20,0612 8526890,michael.wilson@example.co.uk,inactive,
+66,David Lewis,Person,Liverpool,04.04.2020,+449836734743,david.lewis@example.co.uk,inactive,N/A
+67,Crown PLC,Org,Leeds,09/21/2022,06209652034,crown.plc@example.co.uk,I,Y
+68,Capital Ltd,Business,Sheffield,11.07.2021,4345723163,capital.ltd@example.co.uk,0,Y
+69,Susan Edwards,Priv,Sheffield,13-12-21,0113 342619,susan.edwards@example.co.uk,1,Y
+70,Premier Limited,Org,Nottingham,2021-06-30,+447715445848,premier.limited@example.co.uk,A,Unknown
+71,Sterling Group,C,Bristol,10/23/2023,(329) 8422375,sterling.group@example.co.uk,Suspended,Unknown
+72,Capital & Co,Org,Belfast,07/14/2020,04377757205,,,N/A
+73,Premier & Co,C,London,03.08.2023,+442044099542,premier.and.co@example.co.uk,inactive,
+74,Crown Group,C,Edinburgh,17/12/2021,0904 5364378,crown.group@example.co.uk,0,Unknown
+75,Premier Ltd,Business,Leicester,16.07.2022,+443124348705,,I,Unknown
+76,Capital LLP,Org,Liverpool,12/06/2021,07073739731,capital.llp@example.co.uk,0,
+77,ACME Associates,Company,Manchester,09/10/2023,(970) 8899799,,A,Y
+78,John Roberts,Person,Cardiff,14.02.2022,2370630462,john.roberts@example.co.uk,I,N/A
+79,Sterling Limited,Corp,Sheffield,18-06-23,08042218606,sterling.limited@example.co.uk,Suspended,Y
+80,Elizabeth Thomas,Person,Liverpool,05/06/2021,0827 7187107,elizabeth.thomas@example.co.uk,Active,Unknown
+81,British Associates,Org,Sheffield,04/19/2021,5578590194,british.associates@example.co.uk,,X
+82,Michael Thomas,Indiv,Oxford,12/04/2021,0573 7712955,,N/A,
+83,Richard Jones,Priv,Belfast,06/18/2021,5532527717,,0,
+84,Imperial Ltd,C,Southampton,07/28/2022,+44 2286523775,imperial.ltd@example.co.uk,,Y
+85,Capital & Co,Business,Liverpool,21.02.2021,0486 1833030,capital.and.co@example.co.uk,A,Unknown
+86,British PLC,Company,Sheffield,19/01/2023,+448227109689,british.plc@example.co.uk,N/A,Y
+87,Phoenix LLP,Org,Newcastle,22.08.2022,5127191874,,Inactive,X
+88,Premier LLP,Company,Sheffield,06.08.2020,+441325221528,premier.llp@example.co.uk,N/A,Y
+89,British PLC,Business,Southampton,15.05.2021,+44 8144121568,british.plc@example.co.uk,A,N/A
+90,National Limited,Corp,Leeds,2022-01-25,(567) 9238672,national.limited@example.co.uk,I,Y
+91,Elizabeth Lewis,P,Manchester,10/07/2023,9308292890,elizabeth.lewis@example.co.uk,ACTIVE,Y
+92,Charles Edwards,P,Sheffield,01-06-21,3059608152,charles.edwards@example.co.uk,inactive,Unknown
+93,Richard Walker,Individual,Southampton,12.04.2020,(707) 4849184,richard.walker@example.co.uk,active,X
+,Patricia Hughes,Indiv,Newcastle,12-01-20,3399429955,patricia.hughes@example.co.uk,Suspended,Unknown
+95,Thomas Robinson,Individual,Leeds,14.01.2023,5039933717,thomas.robinson@example.co.uk,Suspended,
+96,Patricia Evans,Individual,Belfast,08-07-20,+445805937698,patricia.evans@example.co.uk,N/A,X
+97,National & Co,C,Leeds,22-06-23,+447266339576,national.and.co@example.co.uk,ACTIVE,X
+98,Phoenix Limited,C,Edinburgh,2021-02-03,0463 8877764,phoenix.limited@example.co.uk,0,
+99,Enterprise Ltd,Corp,Bristol,27.04.2021,9227005680,enterprise.ltd@example.co.uk,Inactive,X
+100,Crown Associates,Business,Cardiff,22.11.2020,+44 9979262580,crown.associates@example.co.uk,N/A,X
+101,Charles Lewis,Priv,Bristol,03.05.2020,04471011086,charles.lewis@example.co.uk,active,
+102,William Walker,P,Belfast,25/06/2022,+447564780544,william.walker@example.co.uk,,N/A
+103,Karen Thompson,Indiv,Birmingham,20/05/2022,4516382497,karen.thompson@example.co.uk,N/A,N/A
+104,Emma Lewis,P,London,09/08/2020,+449810018240,emma.lewis@example.co.uk,N/A,N/A
+105,Mary Green,Individual,London,02.05.2023,4894299198,mary.green@example.co.uk,1,
+106,Global PLC,Org,Brighton,03/18/2023,0603 6233060,global.plc@example.co.uk,,N/A
+107,Royal Limited,Company,Nottingham,24.08.2020,0111 6153669,royal.limited@example.co.uk,0,Unknown
+108,Sterling Group,Org,Edinburgh,19/04/2023,+44 4045716632,sterling.group@example.co.uk,0,Y
+109,Elizabeth Thomas,Individual,Liverpool,06/04/2023,(892) 281389,elizabeth.thomas@example.co.uk,A,N/A
+110,Richard Evans,Priv,London,05.02.2020,(141) 9446531,richard.evans@example.co.uk,Active,Y
+111,Enterprise & Co,Corp,Newcastle,20.08.2023,(288) 7510395,,Active,X
+112,Royal Limited,Org,Brighton,01-02-23,+44 6631371868,royal.limited@example.co.uk,Act,X
+113,Karen Jones,P,Oxford,04-07-21,(691) 8067257,karen.jones@example.co.uk,inactive,Unknown
+114,Crown Ltd,Org,Leicester,05/20/2022,(914) 2776723,crown.ltd@example.co.uk,A,X
+115,John Smith,Priv,Cardiff,27-04-20,+44 3030057818,john.smith@example.co.uk,Inactive,
+116,Elizabeth White,Priv,Manchester,02-10-21,+44 1674087301,elizabeth.white@example.co.uk,Act,Unknown
+117,Royal LLP,Corp,Newcastle,2020-09-29,(641) 5251266,royal.llp@example.co.uk,,Unknown
+118,Karen Smith,Indiv,Cardiff,28-04-22,02901991884,,active,N/A
+119,British & Co,Corp,Liverpool,11/06/2021,+44 3997744114,british.and.co@example.co.uk,Active,X
+,Global Group,C,Nottingham,08/05/2020,5025394201,,Inactive,
+121,United Group,Corp,Oxford,24.08.2022,(274) 9886127,united.group@example.co.uk,active,Y
+122,Emma Thompson,Priv,Cambridge,16-08-23,(632) 4616383,emma.thompson@example.co.uk,0,Unknown
+123,Global & Co,Org,Sheffield,04.08.2020,1527339262,global.and.co@example.co.uk,,N/A
+124,Phoenix PLC,Business,Edinburgh,13.06.2022,0804 3337480,phoenix.plc@example.co.uk,Suspended,
+125,Susan Wilson,Priv,Sheffield,26-12-20,(300) 7927549,,Suspended,Y
+126,Royal Associates,Business,Birmingham,25/07/2023,0751 7245819,royal.associates@example.co.uk,Active,X
+127,Charles Brown,Indiv,Glasgow,11/19/2020,0139 5226737,,ACTIVE,N/A
+128,ACME Group,Business,Belfast,16.04.2021,+442593597761,acme.group@example.co.uk,Inactive,N/A
+129,Crown Group,Company,Belfast,2023-02-16,+44 3726795622,crown.group@example.co.uk,inactive,
+130,Enterprise & Co,Business,Sheffield,07/01/2020,+449732053233,,N/A,N/A
+131,Robert Wood,Person,Cardiff,29/06/2020,(971) 3539515,robert.wood@example.co.uk,Inactive,Y
+132,Jennifer Hall,Priv,Bristol,06-12-22,+44 4675575564,jennifer.hall@example.co.uk,Act,X
+133,National Group,Company,Bristol,2021-11-09,8785905880,national.group@example.co.uk,N/A,N/A
+134,Richard Robinson,P,Liverpool,21.06.2021,7739515522,richard.robinson@example.co.uk,Suspended,Y
+135,Jennifer Roberts,Indiv,Glasgow,12/03/2022,(421) 5942952,,0,X
+136,Premier Ltd,Org,Oxford,10.12.2020,+44 6607066978,premier.ltd@example.co.uk,I,Y
+137,Crown & Co,Corp,Cardiff,30.03.2022,+445408701040,crown.and.co@example.co.uk,,X
+138,James Taylor,Individual,Manchester,2022-01-31,+449225815131,james.taylor@example.co.uk,inactive,Y
+139,Sterling Associates,Corp,Glasgow,2022-06-16,0936 9402458,sterling.associates@example.co.uk,I,Unknown
+140,National Associates,Corp,Newcastle,09/03/2023,+44 7144346581,national.associates@example.co.uk,inactive,Y
+141,ACME & Co,Company,Cambridge,24.02.2021,0182 5431319,acme.and.co@example.co.uk,inactive,
+142,Global & Co,Business,London,26/05/2020,+446642835498,global.and.co@example.co.uk,I,Unknown
+143,British PLC,Company,Southampton,06/15/2021,2007618461,british.plc@example.co.uk,,X
+144,National & Co,C,Glasgow,15-05-23,(755) 3996734,,active,X
+145,Sterling LLP,Business,Manchester,06/02/2021,0492 1491273,sterling.llp@example.co.uk,1,Unknown
+146,Premier LLP,Company,Oxford,11/04/2022,05561609366,premier.llp@example.co.uk,Suspended,X
+,Royal PLC,C,Nottingham,11.07.2020,9673617146,royal.plc@example.co.uk,N/A,Unknown
+148,Capital Associates,Company,Belfast,12/12/2020,(911) 2878109,capital.associates@example.co.uk,N/A,Unknown
+149,Crown Associates,Corp,Leicester,17-06-20,(434) 7038484,crown.associates@example.co.uk,A,Unknown
+150,Global Associates,Business,Liverpool,2020-03-09,(991) 5755787,,0,X
+151,Andrew Hall,P,Glasgow,2022-03-05,7532625621,andrew.hall@example.co.uk,,Unknown
+152,Elizabeth Edwards,Priv,Nottingham,01.07.2023,+44 7321901924,elizabeth.edwards@example.co.uk,1,X
+153,British Limited,Corp,London,22/05/2021,0117 578084,,inactive,X
+154,United PLC,C,Glasgow,11.04.2020,+445226121969,united.plc@example.co.uk,Inactive,N/A
+155,Capital PLC,Company,Oxford,11/08/2021,(121) 5993767,capital.plc@example.co.uk,inactive,X
+156,Sterling LLP,Org,Belfast,05-08-21,+44 8391669674,sterling.llp@example.co.uk,,N/A
+157,Matthew Davies,P,Edinburgh,10/23/2020,0418 329705,matthew.davies@example.co.uk,Inactive,Y
+158,National Associates,Corp,Brighton,01-09-23,(979) 2004149,national.associates@example.co.uk,,Y
+159,British Group,C,Sheffield,2022-10-27,(599) 8140797,british.group@example.co.uk,0,X
+160,James Davies,Indiv,Manchester,29-11-20,02485349349,james.davies@example.co.uk,I,N/A
+161,United PLC,Corp,Cardiff,03.01.2023,(666) 6022246,united.plc@example.co.uk,Act,Unknown
+,National LLP,Company,Belfast,26.08.2021,+448448764248,national.llp@example.co.uk,Act,Unknown
+163,Charles Clarke,Priv,Leeds,15.04.2023,(553) 7537641,charles.clarke@example.co.uk,A,N/A
+164,National Limited,Corp,Leeds,17-07-23,0467 9287443,national.limited@example.co.uk,active,X
+165,United Associates,Company,Glasgow,20-04-23,0662 2653644,united.associates@example.co.uk,0,
+166,Karen Hughes,Person,Glasgow,27-09-22,(988) 1888695,karen.hughes@example.co.uk,I,Unknown
+167,National Ltd,Corp,London,29-08-23,(380) 7179224,national.ltd@example.co.uk,0,
+168,Global Group,Business,Cardiff,09-10-22,+448866792938,global.group@example.co.uk,,N/A
+169,Sarah Walker,Person,Sheffield,05/01/2023,(681) 1069885,sarah.walker@example.co.uk,A,N/A
+170,Imperial Ltd,Business,Leicester,2020-09-02,4021857764,,Inactive,Y
+171,Richard Evans,Priv,London,07/01/2023,05137387579,richard.evans@example.co.uk,inactive,X
+172,Daniel Robinson,Indiv,Liverpool,08/16/2022,0373 9914448,daniel.robinson@example.co.uk,1,N/A
+173,Mary Clarke,Person,Belfast,13-03-22,0763 4175235,mary.clarke@example.co.uk,N/A,
+174,Sterling Group,Business,Glasgow,10-03-21,5040828965,sterling.group@example.co.uk,1,
+175,Susan Evans,Person,Southampton,2020-07-22,06294268191,susan.evans@example.co.uk,I,X
+176,Premier Ltd,Org,Oxford,05-01-23,+44 7739517996,premier.ltd@example.co.uk,,Unknown
+177,Charles Robinson,Priv,Edinburgh,22-01-22,+449713335178,charles.robinson@example.co.uk,I,Unknown
+178,Emma Davies,Person,Edinburgh,2022-10-27,+44 3034097677,emma.davies@example.co.uk,inactive,Y
+179,Mary Patel,Priv,Liverpool,01/29/2023,+44 4035788422,mary.patel@example.co.uk,A,N/A
+180,ACME & Co,Business,London,26.07.2023,(788) 3249404,acme.and.co@example.co.uk,N/A,N/A
+181,British Group,Business,Birmingham,13/02/2021,+448587311312,,ACTIVE,X
+182,British Ltd,Company,Bristol,04.10.2020,0934 5531447,british.ltd@example.co.uk,Suspended,X
+183,Imperial Associates,C,Oxford,21-11-21,0149 3854541,imperial.associates@example.co.uk,inactive,Y
+184,United Ltd,Company,Birmingham,02.02.2023,0613 6649293,united.ltd@example.co.uk,Active,Y
+185,Capital Group,Corp,Cardiff,02/19/2023,(777) 8859215,capital.group@example.co.uk,Active,
+186,Imperial Limited,Business,Birmingham,08/18/2021,(856) 3016197,,Inactive,
+187,Global Limited,C,Newcastle,22-07-23,3467114458,global.limited@example.co.uk,Suspended,
+188,Premier PLC,Business,Manchester,06.09.2020,0674 193770,premier.plc@example.co.uk,ACTIVE,Unknown
+189,Phoenix Limited,C,Edinburgh,19/11/2022,6334027649,phoenix.limited@example.co.uk,I,Y
+190,United & Co,Business,Bristol,06.04.2022,0273 6960545,united.and.co@example.co.uk,inactive,Unknown
+191,United LLP,Business,Leicester,2023-04-10,04233268917,united.llp@example.co.uk,Active,X
+,Premier LLP,C,Nottingham,01.06.2023,06808106621,premier.llp@example.co.uk,Act,N/A
+193,Linda Taylor,Indiv,Leicester,13/01/2022,0514 4809756,,A,N/A
+194,Susan Brown,Person,Newcastle,05.02.2020,+44 8252630964,susan.brown@example.co.uk,,Unknown
+195,National Limited,Org,Birmingham,20.04.2020,(538) 1728299,national.limited@example.co.uk,0,
+196,Capital Ltd,Corp,Newcastle,03/12/2022,+441944615517,,A,Y
+197,Imperial LLP,Company,Manchester,2020-06-25,03796466320,imperial.llp@example.co.uk,Inactive,Unknown
+198,Richard Davies,Individual,Bristol,11-03-21,(310) 1860872,richard.davies@example.co.uk,Inactive,X
+199,Phoenix Ltd,Company,Sheffield,2022-10-23,+447418407945,phoenix.ltd@example.co.uk,N/A,X
+200,British Ltd,Corp,Brighton,10/25/2023,05195958467,british.ltd@example.co.uk,Act,

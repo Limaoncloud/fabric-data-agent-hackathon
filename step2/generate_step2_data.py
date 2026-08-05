@@ -6,6 +6,10 @@ Demonstrates data quality improvements across all 5 tables
 import csv
 import random
 from datetime import datetime, timedelta
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+STEP1_DIR = SCRIPT_DIR.parent / 'step1'
 
 def clean_customers(input_file, output_file):
     """Clean customer data with proper column names and formats"""
@@ -451,11 +455,29 @@ if __name__ == "__main__":
     print("Cleaning Step 1 raw data → Step 2 cleaned data...\n")
     
     # Clean each table
-    customers = clean_customers('step1_raw_customers.csv', 'step2_cleaned_customers.csv')
-    cases = clean_cases('step1_raw_cases.csv', 'step2_cleaned_cases.csv', customers)
-    solicitors = clean_solicitors('step1_raw_solicitors.csv', 'step2_cleaned_solicitors.csv')
-    transactions = clean_transactions('step1_raw_transactions.csv', 'step2_cleaned_transactions.csv', cases)
-    interactions = clean_interactions('step1_raw_interactions.csv', 'step2_cleaned_interactions.csv', customers)
+    customers = clean_customers(
+        str(STEP1_DIR / 'step1_raw_customers.csv'),
+        str(SCRIPT_DIR / 'step2_cleaned_customers.csv')
+    )
+    cases = clean_cases(
+        str(STEP1_DIR / 'step1_raw_cases.csv'),
+        str(SCRIPT_DIR / 'step2_cleaned_cases.csv'),
+        customers
+    )
+    solicitors = clean_solicitors(
+        str(STEP1_DIR / 'step1_raw_solicitors.csv'),
+        str(SCRIPT_DIR / 'step2_cleaned_solicitors.csv')
+    )
+    transactions = clean_transactions(
+        str(STEP1_DIR / 'step1_raw_transactions.csv'),
+        str(SCRIPT_DIR / 'step2_cleaned_transactions.csv'),
+        cases
+    )
+    interactions = clean_interactions(
+        str(STEP1_DIR / 'step1_raw_interactions.csv'),
+        str(SCRIPT_DIR / 'step2_cleaned_interactions.csv'),
+        customers
+    )
     
     print(f"\n{'='*60}")
     print("SUMMARY:")

@@ -72,50 +72,50 @@
 
 ### Step 1: Generate Raw Data
 ```powershell
-python generate_step1_data.py
+python step1/generate_step1_data.py
 ```
 **Output:**
-- `step1_raw_customers.csv` (200 rows with ~10% duplicates)
-- `step1_raw_cases.csv` (500 rows)
-- `step1_raw_solicitors.csv` (15 rows)
-- `step1_raw_transactions.csv` (1,000 rows)
-- `step1_raw_interactions.csv` (800 rows)
+- `step1/step1_raw_customers.csv` (200 rows with ~10% duplicates)
+- `step1/step1_raw_cases.csv` (500 rows)
+- `step1/step1_raw_solicitors.csv` (15 rows)
+- `step1/step1_raw_transactions.csv` (1,000 rows)
+- `step1/step1_raw_interactions.csv` (800 rows)
 
 **Total: 2,515 records** with 9 intentional quality issues
 
 ### Step 2: Generate Cleaned Data
 ```powershell
-python generate_step2_data.py
+python step2/generate_step2_data.py
 ```
 **Output:**
-- `step2_cleaned_customers.csv` (166 rows - duplicates removed)
-- `step2_cleaned_cases.csv` (500 rows)
-- `step2_cleaned_solicitors.csv` (15 rows)
-- `step2_cleaned_transactions.csv` (1,000 rows)
-- `step2_cleaned_interactions.csv` (800 rows)
+- `step2/step2_cleaned_customers.csv` (166 rows - duplicates removed)
+- `step2/step2_cleaned_cases.csv` (500 rows)
+- `step2/step2_cleaned_solicitors.csv` (15 rows)
+- `step2/step2_cleaned_transactions.csv` (1,000 rows)
+- `step2/step2_cleaned_interactions.csv` (800 rows)
 
 **Total: 2,481 records** (34 duplicates removed)
 
 ## Key Files
 
 ### Data Files
-- `step1_raw_*.csv` (5 files) - Raw data with quality issues
-- `step2_cleaned_*.csv` (5 files) - Cleaned, standardized data
+- `step1/step1_raw_*.csv` (5 files) - Raw data with quality issues
+- `step2/step2_cleaned_*.csv` (5 files) - Cleaned, standardized data
 
 ### Model Files
-- `step3_basic_semantic_model.json` - Semantic model with anti-patterns
-- `step4_optimized_semantic_model.json` - Optimized with Prep for AI
-- `step5_ontology_definition.json` - Entity-relationship layer
-- `step6_data_agent_configuration.json` - Multi-source agent config
+- `step3/step3_basic_semantic_model.json` - Semantic model with anti-patterns
+- `step4/step4_optimized_semantic_model.json` - Optimized with Prep for AI
+- `step5/step5_ontology_definition.json` - Entity-relationship layer
+- `step6/step6_data_agent_configuration.json` - Multi-source agent config
 
 ### Evaluation Files
 - `evaluation_dataset.json` - 30 ground truth queries
 - `evaluate_agent.py` - Python evaluation framework
-- `step*_results.json` - Evaluation results per step
+- `step1/step1_results.json` to `step6/step6_results.json` - Evaluation results per step
 - `EVALUATION_COMPARISON.md` - Complete results analysis
 
 ### Documentation
-- `STEP1_MULTITABLE_ANALYSIS.md` - Detailed Step 1 analysis
+- `step1/STEP1_MULTITABLE_ANALYSIS.md` - Detailed Step 1 analysis
 - `TEST_QUERIES.md` - 30 manual test queries
 - `EVALUATION_GUIDE.md` - How to run evaluation
 
@@ -213,7 +213,7 @@ At scale across 2,515 records:
 for ($i=1; $i -le 6; $i++) {
     python evaluate_agent.py `
         --dataset evaluation_dataset.json `
-        --output step${i}_results.json `
+    --output step${i}/step${i}_results.json `
         --simulation --step $i
 }
 ```
@@ -256,24 +256,24 @@ Sample queries that work across the multi-table structure:
 ### 1. Create Lakehouse Tables
 ```sql
 -- Load cleaned CSV files into Fabric Lakehouse
-CREATE TABLE Customers AS SELECT * FROM 'step2_cleaned_customers.csv';
-CREATE TABLE Cases AS SELECT * FROM 'step2_cleaned_cases.csv';
-CREATE TABLE Solicitors AS SELECT * FROM 'step2_cleaned_solicitors.csv';
-CREATE TABLE Transactions AS SELECT * FROM 'step2_cleaned_transactions.csv';
-CREATE TABLE Interactions AS SELECT * FROM 'step2_cleaned_interactions.csv';
+CREATE TABLE Customers AS SELECT * FROM 'step2/step2_cleaned_customers.csv';
+CREATE TABLE Cases AS SELECT * FROM 'step2/step2_cleaned_cases.csv';
+CREATE TABLE Solicitors AS SELECT * FROM 'step2/step2_cleaned_solicitors.csv';
+CREATE TABLE Transactions AS SELECT * FROM 'step2/step2_cleaned_transactions.csv';
+CREATE TABLE Interactions AS SELECT * FROM 'step2/step2_cleaned_interactions.csv';
 ```
 
 ### 2. Create Semantic Model
-- Use `step4_optimized_semantic_model.json` as reference
+- Use `step4/step4_optimized_semantic_model.json` as reference
 - Define star schema relationships
 - Configure Prep for AI (AI Data Schema, Verified Answers, AI Instructions)
 
 ### 3. Create Ontology (Optional)
-- Use `step5_ontology_definition.json` as template
+- Use `step5/step5_ontology_definition.json` as template
 - Define entities, relationships, contextualizations
 
 ### 4. Create Data Agent
-- Use `step6_data_agent_configuration.json` as template
+- Use `step6/step6_data_agent_configuration.json` as template
 - Configure data sources, examples, routing rules
 
 ### 5. Test & Evaluate
@@ -301,8 +301,8 @@ CREATE TABLE Interactions AS SELECT * FROM 'step2_cleaned_interactions.csv';
 
 ## Next Steps
 
-1. ✅ Generate data: `python generate_step1_data.py` and `python generate_step2_data.py`
-2. ✅ Review analysis: Open `STEP1_MULTITABLE_ANALYSIS.md`
+1. ✅ Generate data: `python step1/generate_step1_data.py` and `python step2/generate_step2_data.py`
+2. ✅ Review analysis: Open `step1/STEP1_MULTITABLE_ANALYSIS.md`
 3. ✅ Run evaluation: Test all 6 steps
 4. ✅ Review results: Open `EVALUATION_COMPARISON.md`
 5. ⬜ Deploy to Fabric workspace
