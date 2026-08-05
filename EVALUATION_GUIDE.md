@@ -33,23 +33,48 @@ This will:
 - ✅ Calculate accuracy metrics
 - ✅ Generate a report
 
-### Option 2: Production Mode (Requires Fabric API)
+### Option 2: Official Fabric SDK Mode (Recommended)
 
-To test against an actual Fabric Data Agent:
+To test against an actual Fabric Data Agent using the Microsoft-recommended workflow:
 
 ```bash
 # Install dependencies
-pip install azure-identity azure-ai-projects pandas numpy
+pip install -U fabric-data-agent-sdk pandas
 
-# Run evaluation
+# Run SDK-backed evaluation
 python evaluate_agent.py \
-  --workspace-id <your_workspace_id> \
-  --agent-id <your_agent_id> \
+  --sdk-mode \
+  --agent-id <your_data_agent_name> \
+  --workspace-name <optional_workspace_name> \
+  --table-name demo_evaluation_output \
+  --stage production \
   --dataset evaluation_dataset.json \
-  --output results.json
+  --output results.json \
+  --save-official-details-csv
 ```
 
-**Note:** You'll need to update `evaluate_agent.py` with the actual Fabric Data Agent API calls. The current implementation has placeholder code.
+What this does:
+- Calls `evaluate_data_agent` from the Fabric SDK
+- Retrieves official summary via `get_evaluation_summary`
+- Retrieves official details via `get_evaluation_details`
+- Produces local JSON output plus optional CSV of official detail rows
+- Prints a compatibility report (custom metrics vs official summary)
+
+### Optional: Custom Critic Prompt in SDK Mode
+
+Use a stricter or domain-specific evaluator prompt:
+
+```bash
+python evaluate_agent.py \
+  --sdk-mode \
+  --agent-id <your_data_agent_name> \
+  --table-name demo_evaluation_output \
+  --dataset evaluation_dataset.json \
+  --output results.json \
+  --critic-prompt-file critic_prompt.txt
+```
+
+You can also pass inline text with `--critic-prompt`.
 
 ## Understanding the Dataset
 
@@ -235,52 +260,20 @@ If you prefer manual testing, use [TEST_QUERIES.md](TEST_QUERIES.md):
 
 This is more time-consuming but doesn't require code.
 
-## Integration with Actual Fabric API
+## Evaluation Modes in This Repo
 
-To connect to a real Fabric Data Agent, update `evaluate_agent.py`:
+### 1) Simulation mode
+- Fast dry-run for framework validation
+- Command: `python evaluate_agent.py --simulation --step 6 --dataset evaluation_dataset.json --output results.json`
 
-### 1. Install Fabric SDK
+### 2) SDK mode
+- Official Microsoft workflow using Fabric Data Agent SDK
+- Persists official evaluation tables in Fabric and saves local output
+- Supports custom critic prompts and compatibility reporting
 
-```bash
-pip install <fabric-data-agent-sdk>
-```
-
-### 2. Update execute_query Method
-
-Replace the placeholder in `DataAgentEvaluator.execute_query()`:
-
-```python
-def execute_query(self, question: str) -> QueryResult:
-    start_time = time.time()
-    
-    # Call actual Fabric Data Agent API
-    response = self.client.query(
-        workspace_id=self.workspace_id,
-        agent_id=self.agent_id,
-        question=question
-    )
-    
-    result = QueryResult(
-        query_id="",
-        question=question,
-        answer=response.answer,
-        source_used=response.data_source_used,
-        response_time_ms=(time.time() - start_time) * 1000,
-        dax_query=response.dax_query,
-        sql_query=response.sql_query,
-        error=response.error,
-        run_steps=response.run_steps
-    )
-    
-    return result
-```
-
-### 3. Parse Run Steps
-
-Update `evaluate_query()` to parse run steps for:
-- Verified Answer usage
-- Routing decisions
-- Measure selection
+### 3) Custom production mode (legacy placeholder)
+- Keeps backward compatibility but does not implement direct live query API calls
+- Prefer SDK mode for production evaluations
 
 ## Best Practices
 
@@ -311,11 +304,17 @@ If certain categories score low, dig into those specific queries
 
 ## Troubleshooting
 
-### "No module named 'azure'"
-Install dependencies: `pip install azure-identity`
+### "No module named 'fabric'" or SDK import errors
+Install dependencies: `pip install -U fabric-data-agent-sdk pandas`
 
-### "Actual API integration not implemented"
-Update `execute_query()` with real Fabric API calls
+### "fabric-data-agent-sdk is required for --sdk-mode"
+Install the package and rerun with the same command.
+
+### "No SDK detail row returned for this query"
+The script flags unmatched rows as explicit failures. Check:
+1. Agent accessibility and workspace scope
+2. Whether the evaluation finished and wrote all rows
+3. Table name/stage values used in the command
 
 ### Low Accuracy
 1. Check data source descriptions
@@ -334,7 +333,7 @@ Update `execute_query()` with real Fabric API calls
 ### Recommended Approach
 
 1. **Deploy Step 3 and Step 4 agents** to Fabric workspace
-2. **Run evaluation** on both
+2. **Run SDK evaluation** on both
 3. **Show before/after metrics** in your presentation
 4. **Use real numbers** instead of estimates
 
