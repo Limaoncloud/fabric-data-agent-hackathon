@@ -1,0 +1,16 @@
+solicitor_name,cases_handled,open_cases,total_case_value_gbp,total_hours_billed,total_invoice_amount_gbp,total_payment_amount_gbp,total_interactions,avg_interaction_duration_minutes,performance_tier
+Andrew Roberts,31,11,6832430.0,228.0,642949.0,199618.0,59,54.31,Strong
+Charles Thompson,41,14,7810398.0,213.3,549785.0,253753.0,54,54.8,Top
+Daniel Hughes,30,11,7974942.0,286.8,347389.0,216343.0,65,54.85,Strong
+David Taylor,31,11,7050720.0,326.1,140882.0,385593.0,39,45.54,Strong
+Emma Wilson,32,15,7986115.0,147.1,481449.0,226462.0,53,51.23,Strong
+James Davies,35,10,9920170.0,323.1,380667.0,356603.0,60,52.72,Top
+Jennifer Thomas,44,18,12122873.0,182.7,376491.0,717579.0,41,58.22,Top
+Karen Edwards,23,8,5874839.0,240.4,155162.0,290332.0,40,51.58,Strong
+Lisa Johnson,43,13,10738090.0,378.3,377118.0,494448.0,61,53.15,Top
+Michael Brown,29,6,6769404.0,113.4,230384.0,300095.0,44,47.02,Strong
+Patricia White,40,17,10301504.0,548.4,394674.0,375579.0,63,60.81,Top
+Richard Evans,31,10,7038957.0,145.0,354721.0,286078.0,49,57.27,Strong
+Robert Smith,35,14,8125991.0,249.9,365111.0,294809.0,66,53.45,Top
+Sarah Jones,26,8,7096488.0,160.0,341856.0,231357.0,47,60.04,Strong
+Susan Robinson,29,14,7947960.0,309.1,281579.0,410529.0,59,52.44,Strong

@@ -1,0 +1,172 @@
+customer_id,customer_name,customer_type,customer_status,total_interactions,last_interaction_date,avg_interaction_duration_minutes,dominant_interaction_type,engagement_segment
+1,United PLC,Corporate,Active,7,10/07/2023,47.43,Phone Call,Medium Engagement
+2,United Group,Corporate,Inactive,4,26/04/2022,74.25,Letter,Medium Engagement
+3,Premier Associates,Corporate,Active,5,22/11/2023,48.0,Phone Call,Medium Engagement
+4,Susan Clarke,Individual,Active,4,07/06/2022,43.5,Chat,Medium Engagement
+5,Enterprise Ltd,Corporate,Suspended,3,30/03/2023,52.67,Other,Low Engagement
+6,Daniel Robinson,Individual,Inactive,5,20/08/2023,52.6,Video Call,Medium Engagement
+7,Phoenix PLC,Corporate,Active,5,11/10/2023,60.2,Email,Medium Engagement
+8,Matthew Davies,Individual,Active,4,25/03/2023,78.25,Other,Medium Engagement
+9,Richard Evans,Individual,Active,3,26/04/2023,44.0,Other,Low Engagement
+10,Richard Robinson,Individual,Active,6,07/05/2023,43.67,Other,Medium Engagement
+11,Royal LLP,Corporate,Active,5,11/07/2022,64.6,Chat,Medium Engagement
+12,Capital Group,Corporate,Inactive,4,06/07/2023,26.0,Meeting,Medium Engagement
+13,Thomas Patel,Individual,Active,6,28/01/2023,77.17,Other,Medium Engagement
+14,Linda Jones,Individual,Inactive,7,24/07/2023,60.86,Phone Call,Medium Engagement
+15,Emma White,Individual,Active,5,12/10/2023,68.0,Letter,Medium Engagement
+16,Phoenix Limited,Corporate,Inactive,5,16/07/2023,48.2,Other,Medium Engagement
+17,United Ltd,Corporate,Active,0,,0,None,Low Engagement
+18,Premier Ltd,Corporate,Active,6,20/02/2023,58.17,Phone Call,Medium Engagement
+19,Elizabeth Thomas,Individual,Inactive,4,20/10/2023,46.5,Phone Call,Medium Engagement
+20,Charles Brown,Individual,Active,7,06/11/2023,45.86,Letter,Medium Engagement
+21,National PLC,Corporate,Active,7,30/10/2023,69.29,Phone Call,Medium Engagement
+22,British & Co,Corporate,Active,5,26/09/2023,49.6,Video Call,Medium Engagement
+23,ACME PLC,Corporate,Suspended,3,04/08/2022,42.33,Other,Low Engagement
+24,David Edwards,Individual,Active,8,11/07/2023,42.38,Phone Call,Medium Engagement
+25,Sarah Evans,Individual,Inactive,7,14/08/2023,75.86,Chat,Medium Engagement
+26,Elizabeth Hughes,Individual,Active,7,21/06/2022,76.43,Other,Medium Engagement
+27,National Group,Corporate,Active,2,30/06/2022,20.0,Video Call,Low Engagement
+28,Royal & Co,Corporate,Active,7,15/12/2023,38.0,Chat,Medium Engagement
+29,Global Group,Corporate,Inactive,6,31/10/2022,49.67,Meeting,Medium Engagement
+30,ACME Associates,Corporate,Active,3,12/07/2023,64.0,Phone Call,Low Engagement
+31,Daniel Clarke,Individual,Active,5,12/06/2022,75.0,Email,Medium Engagement
+32,Sarah Johnson,Individual,Active,6,13/04/2023,47.67,Other,Medium Engagement
+33,Sarah Walker,Individual,Inactive,1,07/09/2023,30.0,Email,Low Engagement
+34,Susan Roberts,Individual,Active,4,28/10/2022,41.75,Chat,Medium Engagement
+35,John Wilson,Individual,Inactive,7,29/07/2023,67.14,Other,Medium Engagement
+36,Michael Hall,Individual,Active,3,26/11/2023,47.0,Letter,Low Engagement
+37,Global & Co,Corporate,Active,3,24/11/2022,59.33,Video Call,Low Engagement
+38,Premier Ltd,Corporate,Inactive,6,06/12/2023,24.5,Letter,Medium Engagement
+39,ACME Group,Corporate,Active,3,21/05/2023,60.0,Video Call,Low Engagement
+40,Sterling Limited,Corporate,Active,3,10/03/2022,42.67,Other,Low Engagement
+41,Premier & Co,Corporate,Active,2,11/08/2022,34.0,Phone Call,Low Engagement
+42,United PLC,Corporate,Inactive,3,13/04/2023,63.0,Video Call,Low Engagement
+43,Karen Smith,Individual,Active,2,14/10/2021,67.5,Letter,Low Engagement
+44,ACME & Co,Corporate,Active,0,,0,None,Low Engagement
+45,Royal PLC,Corporate,Inactive,5,08/06/2023,45.0,Chat,Medium Engagement
+46,Imperial Ltd,Corporate,Active,2,27/04/2023,75.0,Video Call,Low Engagement
+47,David Lewis,Individual,Active,7,26/09/2023,48.86,Meeting,Medium Engagement
+48,Sarah Roberts,Individual,Active,4,09/10/2023,71.75,Email,Medium Engagement
+49,David Walker,Individual,Active,8,11/10/2023,43.88,Other,Medium Engagement
+50,United PLC,Corporate,Active,3,04/09/2023,37.33,Email,Low Engagement
+51,British PLC,Corporate,Active,1,04/05/2021,30.0,Meeting,Low Engagement
+52,Karen Roberts,Individual,Inactive,9,30/11/2023,59.78,Other,Medium Engagement
+53,Michael Green,Individual,Active,8,27/11/2023,55.5,Other,Medium Engagement
+54,David Robinson,Individual,Suspended,8,02/01/2023,53.5,Chat,Medium Engagement
+55,Enterprise PLC,Corporate,Active,2,07/02/2023,65.5,Meeting,Low Engagement
+56,British PLC,Corporate,Active,4,13/06/2023,52.75,Video Call,Medium Engagement
+57,David Thomas,Individual,Active,5,08/06/2023,56.0,Letter,Medium Engagement
+58,Michael Wilson,Individual,Inactive,3,05/04/2023,59.33,Phone Call,Low Engagement
+59,David Lewis,Individual,Inactive,7,29/03/2023,61.43,Chat,Medium Engagement
+60,Crown PLC,Corporate,Inactive,4,06/02/2023,50.5,Chat,Medium Engagement
+61,Capital Ltd,Corporate,Inactive,4,03/09/2023,110.0,Email,Medium Engagement
+62,Susan Edwards,Individual,Active,4,23/08/2023,68.5,Other,Medium Engagement
+63,Premier Limited,Corporate,Active,2,17/02/2021,41.0,Meeting,Low Engagement
+64,Sterling Group,Corporate,Suspended,3,19/04/2022,27.67,Phone Call,Low Engagement
+65,Capital & Co,Corporate,Active,7,30/11/2023,64.71,Phone Call,Medium Engagement
+66,Crown Group,Corporate,Inactive,6,16/08/2023,38.0,Chat,Medium Engagement
+67,Capital LLP,Corporate,Inactive,2,30/07/2023,53.5,Letter,Low Engagement
+68,ACME Associates,Corporate,Active,7,07/12/2023,49.14,Chat,Medium Engagement
+69,John Roberts,Individual,Inactive,10,09/12/2023,55.1,Other,High Engagement
+70,Sterling Limited,Corporate,Suspended,1,28/04/2023,30.0,Other,Low Engagement
+71,Elizabeth Thomas,Individual,Active,3,18/10/2022,18.33,Meeting,Low Engagement
+72,British Associates,Corporate,Active,6,23/10/2022,35.5,Email,Medium Engagement
+73,Michael Thomas,Individual,Active,2,23/01/2023,48.0,Other,Low Engagement
+74,Richard Jones,Individual,Inactive,5,09/12/2023,33.4,Letter,Medium Engagement
+75,Imperial Ltd,Corporate,Active,4,01/05/2023,67.0,Video Call,Medium Engagement
+76,Capital & Co,Corporate,Active,5,16/12/2023,51.6,Chat,Medium Engagement
+77,British PLC,Corporate,Active,2,25/09/2021,30.0,Email,Low Engagement
+78,Phoenix LLP,Corporate,Inactive,7,19/11/2023,40.14,Other,Medium Engagement
+79,Premier LLP,Corporate,Active,2,26/04/2023,17.5,Meeting,Low Engagement
+80,British PLC,Corporate,Active,6,17/11/2023,43.17,Phone Call,Medium Engagement
+81,National Limited,Corporate,Inactive,5,31/08/2023,85.6,Other,Medium Engagement
+82,Elizabeth Lewis,Individual,Active,5,03/09/2023,60.2,Phone Call,Medium Engagement
+83,Charles Edwards,Individual,Inactive,8,12/06/2023,59.88,Other,Medium Engagement
+84,Richard Walker,Individual,Active,6,02/11/2023,40.83,Other,Medium Engagement
+85,Patricia Hughes,Individual,Suspended,4,03/04/2023,61.75,Other,Medium Engagement
+86,Thomas Robinson,Individual,Suspended,9,15/07/2023,53.44,Phone Call,Medium Engagement
+87,Patricia Evans,Individual,Active,8,22/07/2023,42.88,Video Call,Medium Engagement
+88,National & Co,Corporate,Active,5,25/12/2023,48.6,Phone Call,Medium Engagement
+89,Enterprise Ltd,Corporate,Inactive,4,24/10/2023,70.75,Email,Medium Engagement
+90,Crown Associates,Corporate,Active,6,28/05/2023,70.83,Email,Medium Engagement
+91,Charles Lewis,Individual,Active,2,31/12/2022,40.5,Other,Low Engagement
+92,William Walker,Individual,Active,6,13/10/2023,36.33,Chat,Medium Engagement
+93,Karen Thompson,Individual,Active,2,04/04/2023,60.0,Meeting,Low Engagement
+94,Emma Lewis,Individual,Active,11,09/12/2023,54.18,Phone Call,High Engagement
+95,Mary Green,Individual,Active,5,25/07/2022,42.6,Other,Medium Engagement
+96,Global PLC,Corporate,Active,9,26/12/2023,51.67,Chat,Medium Engagement
+97,Royal Limited,Corporate,Inactive,4,31/07/2023,41.25,Other,Medium Engagement
+98,Sterling Group,Corporate,Inactive,5,31/12/2023,83.4,Email,Medium Engagement
+99,Elizabeth Thomas,Individual,Active,5,02/07/2023,52.6,Meeting,Medium Engagement
+100,Enterprise & Co,Corporate,Active,6,10/09/2022,45.33,Other,Medium Engagement
+101,Royal Limited,Corporate,Active,9,26/04/2023,39.78,Other,Medium Engagement
+102,Karen Jones,Individual,Inactive,4,15/03/2023,70.25,Phone Call,Medium Engagement
+103,Crown Ltd,Corporate,Active,4,21/05/2023,40.0,Chat,Medium Engagement
+104,John Smith,Individual,Inactive,5,18/08/2023,48.0,Video Call,Medium Engagement
+105,Elizabeth White,Individual,Active,2,19/10/2021,33.0,Email,Low Engagement
+106,Karen Smith,Individual,Active,2,22/11/2023,46.0,Email,Low Engagement
+107,British & Co,Corporate,Active,2,03/07/2023,13.0,Letter,Low Engagement
+108,Global Group,Corporate,Inactive,7,26/12/2023,36.0,Meeting,Medium Engagement
+109,United Group,Corporate,Active,7,15/07/2023,61.86,Phone Call,Medium Engagement
+110,Emma Thompson,Individual,Inactive,4,29/09/2023,24.0,Chat,Medium Engagement
+111,Global & Co,Corporate,Active,1,06/10/2022,20.0,Chat,Low Engagement
+112,Phoenix PLC,Corporate,Suspended,1,01/03/2022,30.0,Email,Low Engagement
+113,Susan Wilson,Individual,Suspended,7,02/03/2023,44.71,Chat,Medium Engagement
+114,Royal Associates,Corporate,Active,5,02/08/2022,80.6,Other,Medium Engagement
+115,Crown Group,Corporate,Inactive,6,16/12/2023,46.83,Other,Medium Engagement
+116,Enterprise & Co,Corporate,Active,1,17/11/2021,96.0,Video Call,Low Engagement
+117,Robert Wood,Individual,Inactive,3,04/06/2023,83.33,Phone Call,Low Engagement
+118,Jennifer Hall,Individual,Active,8,16/11/2023,68.5,Email,Medium Engagement
+119,National Group,Corporate,Active,6,09/04/2023,55.5,Other,Medium Engagement
+120,Jennifer Roberts,Individual,Inactive,6,03/06/2023,54.83,Meeting,Medium Engagement
+121,Crown & Co,Corporate,Active,5,12/07/2023,57.2,Other,Medium Engagement
+122,James Taylor,Individual,Inactive,6,26/11/2023,58.5,Video Call,Medium Engagement
+123,Sterling Associates,Corporate,Inactive,4,24/06/2023,65.25,Email,Medium Engagement
+124,National Associates,Corporate,Inactive,4,09/08/2023,49.25,Chat,Medium Engagement
+125,ACME & Co,Corporate,Inactive,3,04/04/2023,106.67,Other,Low Engagement
+126,Global & Co,Corporate,Inactive,0,,0,None,Low Engagement
+127,Sterling LLP,Corporate,Active,2,29/08/2022,18.5,Letter,Low Engagement
+128,Royal PLC,Corporate,Active,4,25/12/2023,29.25,Other,Medium Engagement
+129,Capital Associates,Corporate,Active,3,18/08/2023,56.67,Letter,Low Engagement
+130,Crown Associates,Corporate,Active,5,22/10/2023,35.2,Chat,Medium Engagement
+131,Global Associates,Corporate,Inactive,8,31/10/2023,41.12,Phone Call,Medium Engagement
+132,Andrew Hall,Individual,Active,2,31/07/2023,93.0,Phone Call,Low Engagement
+133,Elizabeth Edwards,Individual,Active,8,22/10/2023,43.88,Letter,Medium Engagement
+134,British Limited,Corporate,Inactive,3,23/11/2023,40.0,Other,Low Engagement
+135,United PLC,Corporate,Inactive,1,20/02/2022,39.0,Other,Low Engagement
+136,Capital PLC,Corporate,Inactive,6,18/12/2023,80.33,Chat,Medium Engagement
+137,Sterling LLP,Corporate,Active,6,23/07/2022,49.83,Video Call,Medium Engagement
+138,British Group,Corporate,Inactive,5,05/09/2023,51.4,Phone Call,Medium Engagement
+139,James Davies,Individual,Inactive,4,31/07/2023,53.25,Phone Call,Medium Engagement
+140,National LLP,Corporate,Active,3,30/05/2023,56.33,Video Call,Low Engagement
+141,Charles Clarke,Individual,Active,4,07/08/2023,55.25,Other,Medium Engagement
+142,United Associates,Corporate,Inactive,5,07/12/2023,69.0,Video Call,Medium Engagement
+143,Karen Hughes,Individual,Inactive,3,27/04/2022,71.0,Email,Low Engagement
+144,National Ltd,Corporate,Inactive,9,15/07/2023,58.33,Other,Medium Engagement
+145,Sarah Walker,Individual,Active,4,06/12/2022,79.25,Chat,Medium Engagement
+146,Imperial Ltd,Corporate,Inactive,7,04/12/2023,68.0,Phone Call,Medium Engagement
+147,Mary Clarke,Individual,Active,7,20/09/2023,41.14,Phone Call,Medium Engagement
+148,Sterling Group,Corporate,Active,5,12/12/2023,40.6,Other,Medium Engagement
+149,Susan Evans,Individual,Inactive,7,29/11/2023,65.14,Video Call,Medium Engagement
+150,Charles Robinson,Individual,Inactive,5,18/03/2022,47.2,Email,Medium Engagement
+151,Emma Davies,Individual,Inactive,4,19/05/2023,42.0,Chat,Medium Engagement
+152,Mary Patel,Individual,Active,2,04/09/2022,33.5,Letter,Low Engagement
+153,ACME & Co,Corporate,Active,3,30/11/2023,98.33,Email,Low Engagement
+154,British Group,Corporate,Active,5,08/09/2023,64.2,Email,Medium Engagement
+155,British Ltd,Corporate,Suspended,1,15/11/2022,30.0,Phone Call,Low Engagement
+156,Imperial Associates,Corporate,Inactive,6,11/03/2023,72.83,Email,Medium Engagement
+157,Capital Group,Corporate,Active,4,02/11/2022,72.75,Phone Call,Medium Engagement
+158,Imperial Limited,Corporate,Inactive,3,08/06/2023,67.33,Other,Low Engagement
+159,Global Limited,Corporate,Suspended,7,03/11/2023,50.14,Video Call,Medium Engagement
+160,Premier PLC,Corporate,Active,7,03/12/2023,63.14,Video Call,Medium Engagement
+161,United & Co,Corporate,Inactive,4,22/09/2022,48.75,Other,Medium Engagement
+162,United LLP,Corporate,Active,7,12/12/2023,41.14,Phone Call,Medium Engagement
+163,Premier LLP,Corporate,Active,4,10/10/2023,66.75,Phone Call,Medium Engagement
+164,Linda Taylor,Individual,Active,2,16/09/2022,70.5,Meeting,Low Engagement
+165,Susan Brown,Individual,Active,8,26/03/2023,60.88,Other,Medium Engagement
+166,National Limited,Corporate,Inactive,5,02/04/2023,53.6,Letter,Medium Engagement
+167,Capital Ltd,Corporate,Active,6,01/04/2023,51.83,Other,Medium Engagement
+168,Imperial LLP,Corporate,Inactive,4,30/06/2023,46.25,Phone Call,Medium Engagement
+169,Richard Davies,Individual,Inactive,5,05/11/2022,53.2,Letter,Medium Engagement
+170,Phoenix Ltd,Corporate,Active,2,21/03/2023,63.5,Chat,Low Engagement
+171,British Ltd,Corporate,Active,2,03/12/2022,75.0,Video Call,Low Engagement

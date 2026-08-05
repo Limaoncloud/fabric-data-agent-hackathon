@@ -1,0 +1,501 @@
+case_id,customer_id,solicitor_name,case_type,case_status,case_value_gbp,total_timesheet_amount_gbp,total_expense_amount_gbp,total_invoice_amount_gbp,total_payment_amount_gbp,total_hours_billed,outstanding_amount_gbp,payment_risk_band
+CASE0001,95,Richard Evans,Litigation,Pending,104709.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0002,15,Jennifer Thomas,Immigration,Closed,241518.0,35615.0,0.0,35615.0,0.0,39.0,35615.0,Medium
+CASE0003,86,Sarah Jones,Corporate,Closed,283275.0,31773.0,0.0,31773.0,0.0,27.5,31773.0,Medium
+CASE0004,100,Jennifer Thomas,Immigration,Open,431534.0,0.0,0.0,55312.0,40130.0,0.0,15182.0,Low
+CASE0005,46,Susan Robinson,General,Pending,373153.0,0.0,0.0,5001.0,15410.0,0.0,0.0,Low
+CASE0006,165,Robert Smith,Contract Law,Closed,247972.0,0.0,0.0,0.0,19610.0,0.0,0.0,Low
+CASE0007,149,Karen Edwards,Commercial,Closed,39337.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0008,19,Lisa Johnson,General,Open,463150.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0009,9,Richard Evans,Corporate,Closed,196887.0,0.0,0.0,64158.0,34213.0,0.0,29945.0,Medium
+CASE0010,28,Daniel Hughes,Contract Law,Pending,109073.0,35838.0,0.0,35838.0,0.0,57.7,35838.0,Medium
+CASE0011,93,Andrew Roberts,Property Law,Pending,490639.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0012,98,Andrew Roberts,Intellectual Property,Open,366061.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0013,45,Daniel Hughes,Litigation,Open,386886.0,0.0,43765.0,43765.0,0.0,0.0,43765.0,Medium
+CASE0014,138,Emma Wilson,General,Closed,118931.0,0.0,0.0,46263.0,42479.0,0.0,3784.0,Low
+CASE0015,75,Michael Brown,Employment,Pending,258988.0,29958.0,7395.0,44446.0,0.0,24.3,44446.0,Medium
+CASE0016,4,Richard Evans,Commercial,Closed,64682.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0017,122,Jennifer Thomas,General,Pending,424179.0,0.0,0.0,10856.0,0.0,0.0,10856.0,Low
+CASE0018,103,Richard Evans,Contract Law,Closed,11369.0,0.0,83488.0,83488.0,24448.0,0.0,59040.0,Medium
+CASE0019,36,Andrew Roberts,Wills & Probate,Pending,428845.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0020,19,Robert Smith,Contract Law,Open,414045.0,0.0,0.0,0.0,26921.0,0.0,0.0,Low
+CASE0021,134,Charles Thompson,Litigation,Open,91459.0,0.0,14532.0,52580.0,0.0,0.0,52580.0,Medium
+CASE0022,67,Richard Evans,Corporate,Pending,375516.0,4551.0,0.0,49989.0,47307.0,0.9,2682.0,Low
+CASE0023,41,Jennifer Thomas,Wills & Probate,Open,422670.0,23029.0,0.0,23029.0,0.0,32.9,23029.0,Low
+CASE0024,112,Susan Robinson,Conveyancing,Open,90776.0,32294.0,40206.0,72500.0,0.0,14.1,72500.0,Medium
+CASE0025,58,Emma Wilson,Wills & Probate,Pending,352055.0,0.0,35813.0,16450.0,50763.0,0.0,0.0,Low
+CASE0026,102,Robert Smith,General,Closed,127023.0,56082.0,0.0,56082.0,0.0,40.9,56082.0,Medium
+CASE0027,28,Charles Thompson,Wills & Probate,Pending,165763.0,0.0,21010.0,2878.0,0.0,0.0,2878.0,Low
+CASE0028,69,Sarah Jones,Immigration,Closed,71057.0,82482.0,0.0,97809.0,0.0,26.8,97809.0,Medium
+CASE0029,79,James Davies,Family Law,Closed,83856.0,600.0,24138.0,24738.0,13107.0,0.0,11631.0,Low
+CASE0030,102,David Taylor,Commercial,Pending,355328.0,43023.0,0.0,29393.0,0.0,34.8,29393.0,Medium
+CASE0031,164,James Davies,Commercial,Open,303597.0,41719.0,0.0,41719.0,13740.0,12.0,27979.0,Medium
+CASE0032,63,Susan Robinson,General,Open,410700.0,0.0,6110.0,6110.0,0.0,0.0,6110.0,Low
+CASE0033,169,Andrew Roberts,General,Closed,102118.0,0.0,20871.0,20871.0,0.0,0.0,20871.0,Low
+CASE0034,44,Karen Edwards,Conveyancing,Open,431449.0,7540.0,0.0,7540.0,0.0,10.0,7540.0,Low
+CASE0035,59,James Davies,Contract Law,Closed,219178.0,0.0,0.0,34978.0,0.0,0.0,34978.0,Medium
+CASE0036,144,Jennifer Thomas,Wills & Probate,Open,305850.0,0.0,0.0,3658.0,0.0,0.0,3658.0,Low
+CASE0037,166,Lisa Johnson,General,Pending,175644.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0038,53,Emma Wilson,Property Law,Open,6017.0,0.0,61195.0,44479.0,0.0,0.0,44479.0,Medium
+CASE0039,47,Jennifer Thomas,Property Law,Open,220590.0,31988.0,0.0,31988.0,0.0,12.3,31988.0,Medium
+CASE0040,140,David Taylor,Employment,Closed,336378.0,39292.0,28452.0,67744.0,28423.0,34.3,39321.0,Medium
+CASE0041,142,Jennifer Thomas,Dispute Resolution,Closed,432457.0,0.0,37171.0,37171.0,0.0,0.0,37171.0,Medium
+CASE0042,140,Lisa Johnson,Contract Law,Closed,214581.0,0.0,0.0,0.0,47151.0,0.0,0.0,Low
+CASE0043,83,Lisa Johnson,Litigation,Open,33688.0,0.0,0.0,0.0,23208.0,0.0,0.0,Low
+CASE0044,84,Charles Thompson,General,Closed,376951.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0045,18,Robert Smith,Intellectual Property,Pending,453864.0,20145.0,0.0,63780.0,0.0,31.4,63780.0,Medium
+CASE0046,33,Jennifer Thomas,Employment,Closed,26372.0,0.0,0.0,0.0,43242.0,0.0,0.0,Low
+CASE0047,97,Robert Smith,Corporate,Closed,328652.0,43162.0,0.0,43162.0,0.0,4.8,43162.0,Medium
+CASE0048,49,Michael Brown,Conveyancing,Pending,347900.0,0.0,0.0,0.0,15421.0,0.0,0.0,Low
+CASE0049,157,Emma Wilson,Intellectual Property,Open,407273.0,0.0,37157.0,27378.0,0.0,0.0,27378.0,Medium
+CASE0050,19,Richard Evans,Commercial,Pending,64751.0,17342.0,0.0,17342.0,0.0,38.0,17342.0,Low
+CASE0051,96,Lisa Johnson,General,Closed,215759.0,19854.0,0.0,19854.0,26786.0,15.9,0.0,Low
+CASE0052,65,Sarah Jones,Conveyancing,Open,317411.0,0.0,0.0,40649.0,0.0,0.0,40649.0,Medium
+CASE0053,169,Andrew Roberts,Property Law,Open,113994.0,0.0,0.0,36141.0,43748.0,0.0,0.0,Low
+CASE0054,43,Karen Edwards,Conveyancing,Pending,184176.0,0.0,30079.0,30079.0,0.0,0.0,30079.0,Medium
+CASE0055,163,Richard Evans,Litigation,Pending,408365.0,0.0,0.0,0.0,47849.0,0.0,0.0,Low
+CASE0056,44,Patricia White,Intellectual Property,Open,384071.0,28347.0,0.0,28347.0,0.0,42.7,28347.0,Medium
+CASE0057,120,Charles Thompson,Dispute Resolution,Open,13041.0,0.0,0.0,47669.0,0.0,0.0,47669.0,Medium
+CASE0058,121,Patricia White,Intellectual Property,Open,224306.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0059,7,David Taylor,Property Law,Open,38848.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0060,170,Lisa Johnson,General,Open,249085.0,0.0,0.0,31655.0,0.0,0.0,31655.0,Medium
+CASE0061,49,Susan Robinson,Family Law,Pending,302901.0,14851.0,0.0,14851.0,0.0,37.2,14851.0,Low
+CASE0062,127,Jennifer Thomas,Intellectual Property,Closed,440290.0,0.0,27439.0,27439.0,0.0,0.0,27439.0,Medium
+CASE0063,167,Emma Wilson,Corporate,Pending,17196.0,0.0,0.0,0.0,16793.0,0.0,0.0,Low
+CASE0064,6,Robert Smith,Corporate,Pending,414755.0,33702.0,0.0,33702.0,0.0,25.9,33702.0,Medium
+CASE0065,165,Susan Robinson,General,Open,499331.0,38978.0,0.0,29445.0,0.0,16.1,29445.0,Medium
+CASE0066,7,Lisa Johnson,Corporate,Pending,272133.0,9871.0,0.0,9871.0,0.0,28.8,9871.0,Low
+CASE0067,66,Charles Thompson,Contract Law,Open,109367.0,0.0,16875.0,38817.0,27168.0,0.0,11649.0,Low
+CASE0068,171,James Davies,Intellectual Property,Closed,412895.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0069,105,Lisa Johnson,Family Law,Closed,343367.0,0.0,0.0,0.0,17023.0,0.0,0.0,Low
+CASE0070,114,Jennifer Thomas,Dispute Resolution,Open,114986.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0071,63,Andrew Roberts,Employment,Closed,120209.0,0.0,0.0,77768.0,0.0,0.0,77768.0,Medium
+CASE0072,142,David Taylor,Conveyancing,Open,429166.0,0.0,41986.0,41986.0,37043.0,0.0,4943.0,Low
+CASE0073,153,Karen Edwards,Family Law,Closed,328840.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0074,80,Michael Brown,Dispute Resolution,Closed,178232.0,0.0,85783.0,85783.0,0.0,0.0,85783.0,Medium
+CASE0075,39,Charles Thompson,Family Law,Closed,193869.0,0.0,0.0,0.0,30292.0,0.0,0.0,Low
+CASE0076,46,James Davies,Property Law,Open,164282.0,0.0,0.0,37271.0,0.0,0.0,37271.0,Medium
+CASE0077,12,Susan Robinson,General,Open,213120.0,0.0,0.0,0.0,48213.0,0.0,0.0,Low
+CASE0078,79,Patricia White,General,Pending,482656.0,40289.0,0.0,40289.0,0.0,0.0,40289.0,Medium
+CASE0079,76,Susan Robinson,Conveyancing,Open,77605.0,24841.0,11760.0,39685.0,0.0,38.1,39685.0,Medium
+CASE0080,95,Richard Evans,Intellectual Property,Open,75292.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0081,22,Richard Evans,Employment,Open,150414.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0082,72,David Taylor,General,Open,146716.0,14304.0,0.0,14304.0,0.0,14.6,14304.0,Low
+CASE0083,132,Susan Robinson,Dispute Resolution,Pending,454401.0,2846.0,0.0,2846.0,22826.0,2.4,0.0,Low
+CASE0084,88,Patricia White,General,Pending,217842.0,1949.0,0.0,3898.0,0.0,37.1,3898.0,Low
+CASE0085,119,Jennifer Thomas,Corporate,Pending,375304.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0086,42,Susan Robinson,Contract Law,Open,203228.0,11874.0,0.0,11874.0,0.0,0.0,11874.0,Low
+CASE0087,108,Karen Edwards,Wills & Probate,Open,75891.0,0.0,42703.0,42703.0,0.0,0.0,42703.0,Medium
+CASE0088,22,Robert Smith,Employment,Closed,348523.0,0.0,0.0,0.0,6948.0,0.0,0.0,Low
+CASE0089,66,Emma Wilson,Property Law,Open,179169.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0090,166,Robert Smith,Employment,Open,65410.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0091,41,Patricia White,Dispute Resolution,Open,173767.0,27386.0,43911.0,71297.0,0.0,30.1,71297.0,Medium
+CASE0092,130,David Taylor,Conveyancing,Closed,90605.0,0.0,37313.0,43893.0,0.0,0.0,43893.0,Medium
+CASE0093,124,Charles Thompson,Employment,Closed,52254.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0094,103,Sarah Jones,Intellectual Property,Pending,175411.0,44086.0,0.0,44086.0,0.0,14.9,44086.0,Medium
+CASE0095,3,Charles Thompson,Commercial,Closed,142742.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0096,123,Emma Wilson,Family Law,Open,429019.0,0.0,38649.0,21073.0,0.0,0.0,21073.0,Low
+CASE0097,124,Lisa Johnson,Immigration,Pending,305313.0,11732.0,0.0,20489.0,0.0,0.0,20489.0,Low
+CASE0098,17,Patricia White,General,Pending,391456.0,62638.0,0.0,14069.0,0.0,56.0,14069.0,Low
+CASE0099,134,Lisa Johnson,Commercial,Closed,252225.0,20512.0,12653.0,33165.0,15936.0,0.0,17229.0,Low
+CASE0100,86,Andrew Roberts,Property Law,Closed,196508.0,0.0,0.0,13867.0,0.0,0.0,13867.0,Low
+CASE0101,82,Lisa Johnson,Dispute Resolution,Open,280714.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0102,72,Charles Thompson,Litigation,Closed,349883.0,37860.0,12938.0,15815.0,3195.0,7.0,12620.0,Low
+CASE0103,69,Sarah Jones,Employment,Open,103221.0,0.0,0.0,32849.0,0.0,0.0,32849.0,Medium
+CASE0104,31,Lisa Johnson,Litigation,Closed,330279.0,33804.0,43037.0,76841.0,0.0,19.2,76841.0,Medium
+CASE0105,39,Susan Robinson,Immigration,Pending,432970.0,12550.0,4812.0,17362.0,14232.0,26.5,3130.0,Low
+CASE0106,51,Jennifer Thomas,Commercial,Open,90729.0,0.0,22092.0,22092.0,0.0,0.0,22092.0,Low
+CASE0107,94,Karen Edwards,Immigration,Pending,445768.0,40032.0,0.0,40032.0,30028.0,35.9,10004.0,Low
+CASE0108,50,Robert Smith,Corporate,Open,35696.0,58740.0,0.0,27366.0,0.0,29.4,27366.0,Medium
+CASE0109,111,Robert Smith,General,Open,256565.0,88829.0,10394.0,99223.0,35065.0,25.1,64158.0,Medium
+CASE0110,85,Lisa Johnson,Conveyancing,Pending,367033.0,22774.0,17252.0,9895.0,6632.0,0.0,3263.0,Low
+CASE0111,4,Lisa Johnson,Employment,Closed,117021.0,0.0,44595.0,44595.0,48229.0,0.0,0.0,Low
+CASE0112,122,Emma Wilson,Contract Law,Open,93836.0,0.0,95145.0,37327.0,885.0,0.0,36442.0,Medium
+CASE0113,134,Lisa Johnson,Conveyancing,Open,484671.0,27644.0,0.0,27644.0,0.0,16.0,27644.0,Medium
+CASE0114,1,Andrew Roberts,Employment,Closed,434921.0,33602.0,26376.0,12875.0,0.0,11.2,12875.0,Low
+CASE0115,89,Michael Brown,Dispute Resolution,Closed,206088.0,44113.0,0.0,22171.0,32466.0,2.5,0.0,Low
+CASE0116,87,Daniel Hughes,Wills & Probate,Pending,384454.0,16062.0,15797.0,785.0,0.0,23.2,785.0,Low
+CASE0117,67,Michael Brown,Litigation,Pending,79697.0,17443.0,0.0,17443.0,0.0,14.9,17443.0,Low
+CASE0118,104,Richard Evans,General,Open,355599.0,32756.0,4543.0,26611.0,0.0,39.0,26611.0,Medium
+CASE0119,81,Jennifer Thomas,Conveyancing,Open,275374.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0120,89,Susan Robinson,Family Law,Open,229076.0,0.0,0.0,0.0,46506.0,0.0,0.0,Low
+CASE0121,27,Daniel Hughes,Immigration,Closed,370989.0,0.0,0.0,36814.0,0.0,0.0,36814.0,Medium
+CASE0122,139,Jennifer Thomas,General,Closed,337825.0,0.0,0.0,15203.0,50379.0,0.0,0.0,Low
+CASE0123,57,Sarah Jones,Family Law,Open,261850.0,0.0,0.0,37031.0,21098.0,0.0,15933.0,Low
+CASE0124,7,Daniel Hughes,Employment,Open,82250.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0125,33,Karen Edwards,Conveyancing,Pending,268677.0,0.0,67553.0,24808.0,19200.0,0.0,5608.0,Low
+CASE0126,39,Emma Wilson,Wills & Probate,Open,423147.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0127,15,Charles Thompson,General,Closed,326653.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0128,115,Patricia White,Conveyancing,Pending,278822.0,40086.0,0.0,10734.0,0.0,32.6,10734.0,Low
+CASE0129,73,Daniel Hughes,General,Pending,319249.0,0.0,0.0,17056.0,0.0,0.0,17056.0,Low
+CASE0130,112,David Taylor,Family Law,Pending,255927.0,2174.0,27250.0,29424.0,0.0,0.0,29424.0,Medium
+CASE0131,94,Robert Smith,Property Law,Pending,177041.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0132,2,David Taylor,General,Pending,95405.0,0.0,31577.0,10457.0,0.0,0.0,10457.0,Low
+CASE0133,57,Lisa Johnson,Contract Law,Closed,408260.0,8586.0,0.0,15582.0,49132.0,9.1,0.0,Low
+CASE0134,102,Michael Brown,Family Law,Pending,21457.0,44713.0,0.0,44713.0,0.0,25.9,44713.0,Medium
+CASE0135,104,Andrew Roberts,General,Pending,331920.0,0.0,12625.0,12625.0,0.0,0.0,12625.0,Low
+CASE0136,132,Susan Robinson,Wills & Probate,Pending,345438.0,0.0,0.0,0.0,29926.0,0.0,0.0,Low
+CASE0137,163,Susan Robinson,Commercial,Closed,46075.0,20347.0,38257.0,58604.0,0.0,36.4,58604.0,Medium
+CASE0138,65,Richard Evans,Commercial,Open,353000.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0139,122,Richard Evans,Conveyancing,Pending,116794.0,0.0,11610.0,11610.0,0.0,0.0,11610.0,Low
+CASE0140,131,Daniel Hughes,Intellectual Property,Closed,65669.0,0.0,49305.0,49305.0,0.0,0.0,49305.0,Medium
+CASE0141,20,Richard Evans,Immigration,Pending,159730.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0142,157,Karen Edwards,Litigation,Pending,348795.0,5634.0,0.0,5634.0,0.0,1.9,5634.0,Low
+CASE0143,35,Emma Wilson,Litigation,Pending,433639.0,41210.0,0.0,41210.0,0.0,21.6,41210.0,Medium
+CASE0144,140,Charles Thompson,Corporate,Open,101369.0,0.0,46481.0,46481.0,0.0,0.0,46481.0,Medium
+CASE0145,117,Lisa Johnson,Corporate,Open,45152.0,87504.0,0.0,87504.0,32372.0,92.6,55132.0,Medium
+CASE0146,56,Susan Robinson,Immigration,Pending,169194.0,0.0,0.0,20535.0,14178.0,0.0,6357.0,Low
+CASE0147,67,Daniel Hughes,Employment,Pending,163209.0,0.0,1553.0,35467.0,106902.0,0.0,0.0,Low
+CASE0148,128,Charles Thompson,Litigation,Pending,131684.0,0.0,0.0,33286.0,0.0,0.0,33286.0,Medium
+CASE0149,162,Richard Evans,Family Law,Open,466349.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0150,36,Richard Evans,Intellectual Property,Open,201401.0,0.0,0.0,45587.0,32442.0,0.0,13145.0,Low
+CASE0151,118,David Taylor,General,Open,18652.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0152,18,Michael Brown,Dispute Resolution,Closed,367713.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0153,38,Jennifer Thomas,Property Law,Open,167391.0,0.0,41748.0,3039.0,74254.0,0.0,0.0,Low
+CASE0154,94,James Davies,Corporate,Closed,289842.0,0.0,0.0,0.0,10562.0,0.0,0.0,Low
+CASE0155,78,Lisa Johnson,Immigration,Closed,287145.0,48333.0,0.0,38822.0,13111.0,24.9,25711.0,Medium
+CASE0156,44,Daniel Hughes,Corporate,Open,471082.0,34496.0,32976.0,67472.0,0.0,20.8,67472.0,Medium
+CASE0157,109,Patricia White,Wills & Probate,Open,7386.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0158,160,Susan Robinson,Contract Law,Open,224308.0,26106.0,2914.0,29020.0,0.0,14.1,29020.0,Medium
+CASE0159,130,Daniel Hughes,Property Law,Closed,231308.0,33289.0,0.0,33289.0,0.0,35.3,33289.0,Medium
+CASE0160,70,Daniel Hughes,Commercial,Pending,281526.0,25709.0,47198.0,38237.0,0.0,20.2,38237.0,Medium
+CASE0161,26,Andrew Roberts,Intellectual Property,Closed,205068.0,0.0,34576.0,34576.0,0.0,0.0,34576.0,Medium
+CASE0162,150,Lisa Johnson,Contract Law,Closed,242440.0,0.0,32188.0,32188.0,27199.0,0.0,4989.0,Low
+CASE0163,23,Richard Evans,Property Law,Closed,161656.0,0.0,0.0,1233.0,0.0,0.0,1233.0,Low
+CASE0164,70,Patricia White,Intellectual Property,Open,186060.0,37514.0,0.0,37514.0,0.0,37.5,37514.0,Medium
+CASE0165,6,Daniel Hughes,Corporate,Pending,115930.0,42845.0,0.0,19795.0,34749.0,3.4,0.0,Low
+CASE0166,24,Jennifer Thomas,Dispute Resolution,Open,164075.0,0.0,0.0,40640.0,11033.0,0.0,29607.0,Medium
+CASE0167,85,Michael Brown,Immigration,Closed,329780.0,0.0,976.0,976.0,0.0,0.0,976.0,Low
+CASE0168,122,Sarah Jones,Family Law,Closed,208306.0,0.0,0.0,26257.0,0.0,0.0,26257.0,Medium
+CASE0169,14,Susan Robinson,General,Open,32401.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0170,162,Karen Edwards,Intellectual Property,Pending,420106.0,25626.0,0.0,32659.0,33466.0,48.7,0.0,Low
+CASE0171,112,David Taylor,Dispute Resolution,Pending,343946.0,48641.0,0.0,48641.0,0.0,29.1,48641.0,Medium
+CASE0172,145,Charles Thompson,Intellectual Property,Closed,75363.0,0.0,31575.0,44543.0,0.0,0.0,44543.0,Medium
+CASE0173,45,Charles Thompson,Employment,Closed,247181.0,0.0,27090.0,27090.0,0.0,0.0,27090.0,Medium
+CASE0174,149,Charles Thompson,Employment,Closed,135819.0,0.0,0.0,49380.0,0.0,0.0,49380.0,Medium
+CASE0175,111,Charles Thompson,Family Law,Closed,137632.0,0.0,0.0,0.0,23465.0,0.0,0.0,Low
+CASE0176,162,Richard Evans,Intellectual Property,Closed,20147.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0177,58,David Taylor,Intellectual Property,Open,425958.0,0.0,43978.0,43978.0,29059.0,0.0,14919.0,Low
+CASE0178,57,Susan Robinson,Employment,Pending,42164.0,47389.0,0.0,47389.0,16920.0,4.9,30469.0,Medium
+CASE0179,56,Emma Wilson,Corporate,Open,284233.0,0.0,14774.0,14774.0,0.0,0.0,14774.0,Low
+CASE0180,93,Charles Thompson,General,Pending,74608.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0181,27,Richard Evans,Employment,Open,427595.0,49021.0,0.0,35225.0,0.0,12.9,35225.0,Medium
+CASE0182,11,Andrew Roberts,General,Closed,365694.0,0.0,42984.0,42088.0,0.0,0.0,42088.0,Medium
+CASE0183,102,Lisa Johnson,Intellectual Property,Closed,10414.0,0.0,0.0,0.0,1938.0,0.0,0.0,Low
+CASE0184,2,Jennifer Thomas,Commercial,Pending,149637.0,0.0,32981.0,82446.0,0.0,0.0,82446.0,Medium
+CASE0185,170,David Taylor,Immigration,Pending,426893.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0186,120,Michael Brown,Wills & Probate,Open,143433.0,0.0,28378.0,28378.0,0.0,0.0,28378.0,Medium
+CASE0187,146,Robert Smith,General,Pending,391178.0,12180.0,23081.0,29289.0,0.0,29.2,29289.0,Medium
+CASE0188,96,Susan Robinson,General,Open,31175.0,22937.0,0.0,45084.0,34536.0,30.5,10548.0,Low
+CASE0189,88,Robert Smith,General,Open,234196.0,69114.0,0.0,24945.0,0.0,0.8,24945.0,Low
+CASE0190,105,Jennifer Thomas,General,Pending,70128.0,0.0,30924.0,30924.0,0.0,0.0,30924.0,Medium
+CASE0191,65,Robert Smith,Wills & Probate,Open,448287.0,0.0,21797.0,34370.0,0.0,0.0,34370.0,Medium
+CASE0192,140,Robert Smith,Family Law,Pending,47320.0,3216.0,0.0,3216.0,0.0,6.0,3216.0,Low
+CASE0193,71,David Taylor,General,Pending,90773.0,0.0,47537.0,47537.0,37246.0,0.0,10291.0,Low
+CASE0194,66,Patricia White,Family Law,Open,335800.0,44237.0,0.0,25807.0,0.0,20.3,25807.0,Medium
+CASE0195,57,Patricia White,Corporate,Open,284949.0,0.0,51223.0,51223.0,0.0,0.0,51223.0,Medium
+CASE0196,131,Daniel Hughes,Immigration,Open,397632.0,0.0,0.0,49618.0,0.0,0.0,49618.0,Medium
+CASE0197,85,James Davies,Property Law,Closed,149601.0,43498.0,1610.0,7619.0,37315.0,5.2,0.0,Low
+CASE0198,120,Lisa Johnson,General,Open,36807.0,0.0,0.0,7961.0,0.0,0.0,7961.0,Low
+CASE0199,7,Patricia White,Wills & Probate,Pending,46292.0,0.0,46491.0,46491.0,34863.0,0.0,11628.0,Low
+CASE0200,117,Karen Edwards,Dispute Resolution,Open,217035.0,0.0,5549.0,5549.0,16043.0,0.0,0.0,Low
+CASE0201,85,Sarah Jones,Contract Law,Open,395931.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0202,67,Susan Robinson,Commercial,Open,436434.0,0.0,0.0,72818.0,5149.0,0.0,67669.0,Medium
+CASE0203,89,Sarah Jones,Conveyancing,Closed,469056.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0204,74,David Taylor,Intellectual Property,Closed,452198.0,48524.0,34385.0,82909.0,0.0,9.4,82909.0,Medium
+CASE0205,169,Michael Brown,Employment,Closed,12161.0,17473.0,0.0,17473.0,9463.0,6.1,8010.0,Low
+CASE0206,53,Patricia White,Family Law,Closed,407078.0,0.0,0.0,34370.0,45137.0,0.0,0.0,Low
+CASE0207,101,James Davies,Wills & Probate,Open,192234.0,29883.0,0.0,6397.0,0.0,38.7,6397.0,Low
+CASE0208,23,Andrew Roberts,Contract Law,Open,222640.0,26798.0,4055.0,6773.0,0.0,13.2,6773.0,Low
+CASE0209,71,Andrew Roberts,Corporate,Open,321116.0,0.0,28539.0,81827.0,30663.0,0.0,51164.0,Medium
+CASE0210,91,Richard Evans,Employment,Closed,155007.0,0.0,10651.0,10651.0,42534.0,0.0,0.0,Low
+CASE0211,127,Robert Smith,General,Closed,28308.0,0.0,0.0,31738.0,47314.0,0.0,0.0,Low
+CASE0212,48,Robert Smith,General,Pending,425966.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0213,94,Emma Wilson,Corporate,Open,433520.0,47335.0,0.0,28057.0,34935.0,3.6,0.0,Low
+CASE0214,49,Michael Brown,Intellectual Property,Pending,483179.0,0.0,48112.0,48112.0,0.0,0.0,48112.0,Medium
+CASE0215,68,Robert Smith,General,Open,16091.0,0.0,25806.0,25806.0,0.0,0.0,25806.0,Medium
+CASE0216,163,Jennifer Thomas,Immigration,Pending,417876.0,0.0,33653.0,23238.0,0.0,0.0,23238.0,Low
+CASE0217,15,Robert Smith,Immigration,Open,65150.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0218,154,Andrew Roberts,Employment,Open,26194.0,42231.0,0.0,13292.0,0.0,38.8,13292.0,Low
+CASE0219,32,Jennifer Thomas,Property Law,Closed,397879.0,0.0,26568.0,26568.0,0.0,0.0,26568.0,Medium
+CASE0220,166,Emma Wilson,Family Law,Open,242316.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0221,34,Sarah Jones,General,Open,288406.0,5970.0,28246.0,34216.0,0.0,4.9,34216.0,Medium
+CASE0222,23,Patricia White,Family Law,Pending,197757.0,0.0,0.0,25111.0,0.0,0.0,25111.0,Medium
+CASE0223,119,Jennifer Thomas,Commercial,Open,170657.0,0.0,0.0,26397.0,65939.0,0.0,0.0,Low
+CASE0224,11,Karen Edwards,General,Pending,469139.0,0.0,42440.0,42440.0,0.0,0.0,42440.0,Medium
+CASE0225,21,Patricia White,Wills & Probate,Open,140192.0,55511.0,0.0,4161.0,24857.0,47.0,0.0,Low
+CASE0226,98,Lisa Johnson,General,Pending,72185.0,0.0,29846.0,9831.0,0.0,0.0,9831.0,Low
+CASE0227,87,Richard Evans,Conveyancing,Open,436266.0,0.0,0.0,18593.0,0.0,0.0,18593.0,Low
+CASE0228,143,Charles Thompson,Corporate,Closed,133648.0,0.0,0.0,4736.0,0.0,0.0,4736.0,Low
+CASE0229,68,James Davies,Wills & Probate,Open,419318.0,12117.0,0.0,12117.0,4292.0,20.6,7825.0,Low
+CASE0230,104,Susan Robinson,General,Closed,272366.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0231,150,Michael Brown,Immigration,Pending,145157.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0232,32,Emma Wilson,Employment,Open,490147.0,0.0,40251.0,40251.0,0.0,0.0,40251.0,Medium
+CASE0233,83,Patricia White,Family Law,Closed,450831.0,0.0,16972.0,16972.0,45772.0,0.0,0.0,Low
+CASE0234,99,Daniel Hughes,Litigation,Pending,14030.0,0.0,13077.0,13077.0,0.0,0.0,13077.0,Low
+CASE0235,109,James Davies,Commercial,Closed,321637.0,0.0,36799.0,22967.0,0.0,0.0,22967.0,Low
+CASE0236,121,James Davies,Conveyancing,Pending,133887.0,0.0,0.0,71194.0,25280.0,0.0,45914.0,Medium
+CASE0237,84,Robert Smith,Property Law,Open,51243.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0238,42,Charles Thompson,Employment,Closed,159298.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0239,111,Susan Robinson,Intellectual Property,Pending,460187.0,39395.0,0.0,24495.0,45340.0,0.0,0.0,Low
+CASE0240,132,David Taylor,Employment,Open,35446.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0241,113,Andrew Roberts,General,Open,99284.0,0.0,0.0,0.0,23011.0,0.0,0.0,Low
+CASE0242,91,Andrew Roberts,Employment,Pending,76831.0,34915.0,0.0,83397.0,1997.0,29.0,81400.0,Medium
+CASE0243,110,Richard Evans,Commercial,Closed,264933.0,28145.0,0.0,44082.0,0.0,6.5,44082.0,Medium
+CASE0244,92,Lisa Johnson,Wills & Probate,Pending,393992.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0245,161,Jennifer Thomas,Dispute Resolution,Closed,117453.0,0.0,0.0,0.0,52505.0,0.0,0.0,Low
+CASE0246,91,Daniel Hughes,Intellectual Property,Closed,326100.0,752.0,39337.0,40089.0,0.0,12.9,40089.0,Medium
+CASE0247,17,Daniel Hughes,Litigation,Pending,21804.0,0.0,0.0,30395.0,0.0,0.0,30395.0,Medium
+CASE0248,154,Emma Wilson,General,Pending,223158.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0249,124,Lisa Johnson,Contract Law,Pending,331651.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0250,157,Jennifer Thomas,Property Law,Closed,237581.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0251,57,Daniel Hughes,Conveyancing,Open,283914.0,0.0,37282.0,37282.0,0.0,0.0,37282.0,Medium
+CASE0252,153,Charles Thompson,Dispute Resolution,Open,53287.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0253,61,Susan Robinson,Property Law,Open,137131.0,4010.0,10460.0,14470.0,0.0,18.0,14470.0,Low
+CASE0254,50,Karen Edwards,Property Law,Closed,81064.0,0.0,9252.0,9252.0,40752.0,0.0,0.0,Low
+CASE0255,82,Sarah Jones,Wills & Probate,Closed,377001.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0256,88,Michael Brown,Commercial,Open,458367.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0257,107,Jennifer Thomas,Family Law,Closed,68321.0,0.0,48842.0,48842.0,43014.0,0.0,5828.0,Low
+CASE0258,109,Patricia White,Family Law,Open,136471.0,0.0,0.0,0.0,31182.0,0.0,0.0,Low
+CASE0259,101,Sarah Jones,Commercial,Closed,334893.0,0.0,0.0,37649.0,38129.0,0.0,0.0,Low
+CASE0260,75,Robert Smith,Litigation,Closed,209644.0,18407.0,0.0,18407.0,20091.0,0.0,0.0,Low
+CASE0261,41,Robert Smith,Contract Law,Open,381856.0,0.0,0.0,65297.0,0.0,0.0,65297.0,Medium
+CASE0262,6,James Davies,Property Law,Open,128893.0,25811.0,0.0,25811.0,1405.0,25.0,24406.0,Low
+CASE0263,154,Jennifer Thomas,Intellectual Property,Open,164355.0,33190.0,15148.0,24202.0,13232.0,0.0,10970.0,Low
+CASE0264,55,James Davies,Corporate,Closed,496385.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0265,68,Michael Brown,Corporate,Open,73035.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0266,92,Andrew Roberts,Intellectual Property,Open,32053.0,0.0,0.0,46082.0,0.0,0.0,46082.0,Medium
+CASE0267,154,Andrew Roberts,Conveyancing,Closed,56403.0,0.0,0.0,0.0,49250.0,0.0,0.0,Low
+CASE0268,137,Jennifer Thomas,Commercial,Pending,327980.0,34231.0,45336.0,79567.0,0.0,35.9,79567.0,Medium
+CASE0269,138,Michael Brown,Employment,Open,37012.0,14659.0,37474.0,52133.0,0.0,19.2,52133.0,Medium
+CASE0270,81,Jennifer Thomas,Wills & Probate,Closed,397939.0,39268.0,0.0,20263.0,20267.0,0.0,0.0,Low
+CASE0271,67,James Davies,Litigation,Pending,321424.0,45355.0,17493.0,62848.0,0.0,8.0,62848.0,Medium
+CASE0272,137,Karen Edwards,Corporate,Open,394667.0,18456.0,0.0,39131.0,0.0,28.8,39131.0,Medium
+CASE0273,2,Lisa Johnson,Commercial,Open,360755.0,2079.0,0.0,14742.0,38834.0,26.0,0.0,Low
+CASE0274,12,Jennifer Thomas,Dispute Resolution,Closed,350612.0,0.0,38412.0,10775.0,0.0,0.0,10775.0,Low
+CASE0275,49,Emma Wilson,Employment,Open,33483.0,34191.0,4672.0,38863.0,5692.0,0.0,33171.0,Medium
+CASE0276,129,Lisa Johnson,Intellectual Property,Open,374444.0,43570.0,17783.0,29734.0,2295.0,39.7,27439.0,Medium
+CASE0277,116,Susan Robinson,Contract Law,Closed,475548.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0278,30,James Davies,General,Closed,441641.0,0.0,0.0,35921.0,33602.0,0.0,2319.0,Low
+CASE0279,37,Sarah Jones,Family Law,Pending,220983.0,0.0,49204.0,49204.0,0.0,0.0,49204.0,Medium
+CASE0280,149,Emma Wilson,Wills & Probate,Pending,449053.0,0.0,6200.0,6200.0,11970.0,0.0,0.0,Low
+CASE0281,103,Jennifer Thomas,Property Law,Open,386634.0,40304.0,31795.0,72099.0,0.0,0.0,72099.0,Medium
+CASE0282,48,James Davies,General,Pending,220423.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0283,65,Charles Thompson,Employment,Closed,102228.0,3174.0,0.0,36313.0,0.0,11.9,36313.0,Medium
+CASE0284,94,Patricia White,General,Pending,352717.0,19449.0,0.0,19449.0,0.0,0.0,19449.0,Low
+CASE0285,163,Charles Thompson,Conveyancing,Open,279649.0,15275.0,0.0,5980.0,15658.0,9.0,0.0,Low
+CASE0286,6,Andrew Roberts,General,Closed,303267.0,31098.0,0.0,31098.0,0.0,37.0,31098.0,Medium
+CASE0287,36,Karen Edwards,Wills & Probate,Closed,359537.0,7766.0,38082.0,45848.0,13830.0,39.3,32018.0,Medium
+CASE0288,47,Richard Evans,Corporate,Closed,297420.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0289,50,Lisa Johnson,Contract Law,Pending,54340.0,0.0,0.0,8427.0,0.0,0.0,8427.0,Low
+CASE0290,34,Michael Brown,Dispute Resolution,Closed,52028.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0291,72,James Davies,Conveyancing,Closed,388038.0,0.0,0.0,0.0,37751.0,0.0,0.0,Low
+CASE0292,72,Karen Edwards,General,Open,270733.0,0.0,0.0,38990.0,0.0,0.0,38990.0,Medium
+CASE0293,87,Patricia White,Family Law,Closed,109991.0,87564.0,17525.0,105089.0,0.0,34.1,105089.0,High
+CASE0294,161,Robert Smith,Property Law,Pending,280763.0,0.0,0.0,2732.0,0.0,0.0,2732.0,Low
+CASE0295,30,Robert Smith,Corporate,Closed,371701.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0296,114,Robert Smith,Litigation,Open,20783.0,28639.0,1723.0,35835.0,27495.0,38.7,8340.0,Low
+CASE0297,135,Daniel Hughes,Corporate,Open,427684.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0298,103,Charles Thompson,Family Law,Closed,91244.0,0.0,0.0,47239.0,0.0,0.0,47239.0,Medium
+CASE0299,21,Andrew Roberts,Wills & Probate,Pending,15978.0,0.0,42735.0,42735.0,0.0,0.0,42735.0,Medium
+CASE0300,25,Daniel Hughes,Litigation,Closed,79559.0,6579.0,0.0,6579.0,32002.0,34.1,0.0,Low
+CASE0301,27,Patricia White,Conveyancing,Pending,200996.0,44243.0,0.0,44243.0,2669.0,36.8,41574.0,Medium
+CASE0302,126,Charles Thompson,General,Closed,229388.0,64354.0,0.0,59309.0,0.0,34.1,59309.0,Medium
+CASE0303,93,Michael Brown,Commercial,Pending,58654.0,7280.0,30939.0,38219.0,39169.0,0.0,0.0,Low
+CASE0304,6,Lisa Johnson,Employment,Closed,325659.0,33909.0,0.0,33909.0,0.0,12.7,33909.0,Medium
+CASE0305,154,Jennifer Thomas,Intellectual Property,Open,140617.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0306,154,Emma Wilson,Conveyancing,Open,166522.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0307,46,Lisa Johnson,Employment,Closed,277607.0,1658.0,0.0,1658.0,0.0,0.8,1658.0,Low
+CASE0308,71,Michael Brown,Intellectual Property,Closed,188278.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0309,97,Lisa Johnson,Property Law,Open,91003.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0310,122,Robert Smith,Wills & Probate,Pending,442026.0,25021.0,0.0,25021.0,15543.0,0.0,9478.0,Low
+CASE0311,128,Andrew Roberts,Contract Law,Pending,191203.0,0.0,0.0,40205.0,0.0,0.0,40205.0,Medium
+CASE0312,161,Charles Thompson,Wills & Probate,Pending,411111.0,18207.0,0.0,18207.0,0.0,24.5,18207.0,Low
+CASE0313,126,Michael Brown,Employment,Closed,120550.0,0.0,0.0,0.0,26750.0,0.0,0.0,Low
+CASE0314,53,David Taylor,Commercial,Open,130347.0,0.0,0.0,10884.0,0.0,0.0,10884.0,Low
+CASE0315,148,James Davies,Conveyancing,Pending,347317.0,0.0,0.0,41637.0,0.0,0.0,41637.0,Medium
+CASE0316,125,Patricia White,Property Law,Pending,330025.0,33687.0,0.0,33687.0,0.0,22.3,33687.0,Medium
+CASE0317,100,Andrew Roberts,Commercial,Closed,325519.0,57998.0,0.0,31433.0,0.0,31.1,31433.0,Medium
+CASE0318,149,Patricia White,Litigation,Closed,416993.0,0.0,0.0,58483.0,0.0,0.0,58483.0,Medium
+CASE0319,101,Karen Edwards,Commercial,Open,262690.0,28492.0,33511.0,62003.0,35712.0,22.9,26291.0,Medium
+CASE0320,120,Jennifer Thomas,Family Law,Open,252691.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0321,99,Lisa Johnson,Intellectual Property,Closed,275483.0,0.0,0.0,3474.0,16594.0,0.0,0.0,Low
+CASE0322,18,Andrew Roberts,Intellectual Property,Pending,366790.0,49931.0,0.0,49931.0,0.0,38.1,49931.0,Medium
+CASE0323,126,Lisa Johnson,Wills & Probate,Pending,277031.0,24397.0,40536.0,64933.0,25718.0,11.5,39215.0,Medium
+CASE0324,96,Emma Wilson,General,Closed,179195.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0325,143,Charles Thompson,Corporate,Closed,91221.0,47882.0,0.0,47882.0,0.0,22.6,47882.0,Medium
+CASE0326,162,Charles Thompson,Property Law,Pending,9050.0,25086.0,44373.0,69459.0,44612.0,30.0,24847.0,Low
+CASE0327,97,Michael Brown,Dispute Resolution,Closed,81369.0,28900.0,28829.0,57729.0,20479.0,19.8,37250.0,Medium
+CASE0328,55,Robert Smith,Wills & Probate,Closed,273953.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0329,151,Lisa Johnson,Corporate,Pending,414232.0,0.0,12746.0,12746.0,0.0,0.0,12746.0,Low
+CASE0330,169,Robert Smith,Property Law,Closed,454018.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0331,49,David Taylor,Immigration,Open,106304.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0332,146,Daniel Hughes,Intellectual Property,Open,259447.0,97404.0,0.0,97404.0,28174.0,7.6,69230.0,Medium
+CASE0333,154,Charles Thompson,Wills & Probate,Pending,484391.0,0.0,13942.0,2047.0,0.0,0.0,2047.0,Low
+CASE0334,126,Patricia White,Intellectual Property,Pending,450311.0,40831.0,24336.0,65167.0,0.0,22.0,65167.0,Medium
+CASE0335,72,Robert Smith,Corporate,Closed,35866.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0336,40,Lisa Johnson,Commercial,Open,325037.0,0.0,13257.0,44558.0,0.0,0.0,44558.0,Medium
+CASE0337,15,Karen Edwards,Dispute Resolution,Pending,403139.0,0.0,0.0,0.0,38448.0,0.0,0.0,Low
+CASE0338,136,Robert Smith,Litigation,Open,132920.0,30843.0,0.0,3513.0,0.0,7.2,3513.0,Low
+CASE0339,123,Jennifer Thomas,Dispute Resolution,Pending,12571.0,0.0,11578.0,9714.0,88068.0,0.0,0.0,Low
+CASE0340,66,Patricia White,Litigation,Open,180053.0,28778.0,0.0,22559.0,0.0,26.2,22559.0,Low
+CASE0341,84,David Taylor,Conveyancing,Closed,160520.0,14981.0,0.0,14981.0,29104.0,5.3,0.0,Low
+CASE0342,10,Patricia White,General,Pending,195663.0,0.0,41005.0,41005.0,45834.0,0.0,0.0,Low
+CASE0343,43,Patricia White,General,Closed,222161.0,0.0,21332.0,21332.0,0.0,0.0,21332.0,Low
+CASE0344,67,James Davies,Corporate,Pending,415150.0,83501.0,0.0,83501.0,0.0,74.5,83501.0,Medium
+CASE0345,92,Michael Brown,Dispute Resolution,Pending,416974.0,0.0,0.0,0.0,10779.0,0.0,0.0,Low
+CASE0346,83,Charles Thompson,Property Law,Open,9931.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0347,68,Lisa Johnson,Property Law,Closed,485447.0,26379.0,20434.0,46813.0,0.0,32.7,46813.0,Medium
+CASE0348,87,James Davies,General,Closed,447592.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0349,136,Andrew Roberts,Corporate,Open,186003.0,19115.0,0.0,44305.0,38884.0,29.6,5421.0,Low
+CASE0350,100,Michael Brown,Commercial,Open,412695.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0351,121,Patricia White,Dispute Resolution,Closed,293610.0,41957.0,10158.0,52115.0,0.0,15.9,52115.0,Medium
+CASE0352,3,Daniel Hughes,Litigation,Open,484438.0,0.0,0.0,44754.0,0.0,0.0,44754.0,Medium
+CASE0353,150,David Taylor,General,Closed,48499.0,34531.0,0.0,34531.0,0.0,1.6,34531.0,Medium
+CASE0354,124,Daniel Hughes,General,Closed,126366.0,31602.0,0.0,31602.0,846.0,38.7,30756.0,Medium
+CASE0355,4,Michael Brown,General,Closed,389581.0,0.0,0.0,103986.0,0.0,0.0,103986.0,High
+CASE0356,104,Emma Wilson,Employment,Pending,181960.0,0.0,0.0,47415.0,0.0,0.0,47415.0,Medium
+CASE0357,53,David Taylor,Employment,Pending,14469.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0358,41,James Davies,Commercial,Open,334448.0,0.0,0.0,17760.0,36320.0,0.0,0.0,Low
+CASE0359,36,James Davies,Litigation,Closed,474813.0,0.0,22331.0,22331.0,0.0,0.0,22331.0,Low
+CASE0360,150,Michael Brown,Family Law,Open,494703.0,0.0,0.0,0.0,34270.0,0.0,0.0,Low
+CASE0361,125,Robert Smith,Immigration,Closed,331354.0,0.0,46844.0,46844.0,0.0,0.0,46844.0,Medium
+CASE0362,91,Susan Robinson,Dispute Resolution,Closed,189971.0,12689.0,0.0,31377.0,61468.0,24.0,0.0,Low
+CASE0363,135,James Davies,Commercial,Closed,410821.0,15623.0,0.0,15623.0,0.0,35.8,15623.0,Low
+CASE0364,136,Susan Robinson,Wills & Probate,Closed,253075.0,0.0,42245.0,42245.0,0.0,0.0,42245.0,Medium
+CASE0365,139,Michael Brown,Property Law,Pending,58431.0,0.0,0.0,46901.0,0.0,0.0,46901.0,Medium
+CASE0366,171,Sarah Jones,Contract Law,Pending,338078.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0367,139,Jennifer Thomas,Dispute Resolution,Closed,341052.0,0.0,0.0,28983.0,32344.0,0.0,0.0,Low
+CASE0368,55,Karen Edwards,General,Pending,109345.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0369,40,Lisa Johnson,Family Law,Open,7822.0,40932.0,0.0,23989.0,0.0,39.5,23989.0,Low
+CASE0370,69,Charles Thompson,Employment,Open,60135.0,840.0,0.0,840.0,0.0,0.0,840.0,Low
+CASE0371,14,Richard Evans,Commercial,Closed,471733.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0372,150,Jennifer Thomas,Conveyancing,Closed,130999.0,0.0,0.0,0.0,17226.0,0.0,0.0,Low
+CASE0373,9,Richard Evans,General,Closed,416483.0,0.0,26671.0,27662.0,0.0,0.0,27662.0,Medium
+CASE0374,136,Sarah Jones,Litigation,Open,29945.0,41212.0,0.0,41212.0,0.0,32.5,41212.0,Medium
+CASE0375,160,Robert Smith,General,Open,495591.0,18691.0,76139.0,46246.0,18645.0,10.5,27601.0,Medium
+CASE0376,94,Lisa Johnson,Conveyancing,Open,494686.0,0.0,43113.0,7381.0,13230.0,0.0,0.0,Low
+CASE0377,20,James Davies,Immigration,Open,356977.0,8380.0,7037.0,15417.0,3680.0,30.2,11737.0,Low
+CASE0378,124,Sarah Jones,Family Law,Open,164220.0,43507.0,54065.0,97572.0,0.0,0.0,97572.0,Medium
+CASE0379,24,Sarah Jones,Wills & Probate,Closed,377613.0,85519.0,0.0,85519.0,0.0,22.5,85519.0,Medium
+CASE0380,74,Patricia White,Litigation,Open,123448.0,0.0,0.0,0.0,104267.0,0.0,0.0,Low
+CASE0381,157,Charles Thompson,Commercial,Pending,494855.0,0.0,0.0,0.0,7162.0,0.0,0.0,Low
+CASE0382,47,Emma Wilson,Intellectual Property,Pending,219722.0,11423.0,0.0,32423.0,0.0,6.6,32423.0,Medium
+CASE0383,127,Lisa Johnson,Commercial,Closed,241820.0,7016.0,79056.0,17847.0,0.0,8.9,17847.0,Low
+CASE0384,111,Patricia White,General,Open,444366.0,0.0,0.0,26785.0,0.0,0.0,26785.0,Medium
+CASE0385,146,Patricia White,Litigation,Open,68658.0,74154.0,0.0,61009.0,0.0,26.5,61009.0,Medium
+CASE0386,93,Andrew Roberts,Litigation,Open,402617.0,0.0,22455.0,22455.0,0.0,0.0,22455.0,Low
+CASE0387,106,Emma Wilson,Litigation,Pending,346903.0,0.0,21202.0,21202.0,0.0,0.0,21202.0,Low
+CASE0388,30,Lisa Johnson,Family Law,Pending,157794.0,0.0,0.0,0.0,18845.0,0.0,0.0,Low
+CASE0389,100,Michael Brown,Commercial,Pending,259397.0,34535.0,0.0,34535.0,42449.0,0.7,0.0,Low
+CASE0390,3,James Davies,General,Closed,484733.0,0.0,22061.0,43660.0,0.0,0.0,43660.0,Medium
+CASE0391,20,Emma Wilson,Dispute Resolution,Closed,455968.0,42447.0,0.0,22818.0,0.0,52.5,22818.0,Low
+CASE0392,106,Sarah Jones,General,Closed,420202.0,0.0,45180.0,45180.0,46522.0,0.0,0.0,Low
+CASE0393,80,Michael Brown,General,Closed,314624.0,0.0,0.0,0.0,43561.0,0.0,0.0,Low
+CASE0394,47,David Taylor,General,Pending,414885.0,25482.0,3267.0,28749.0,0.0,11.5,28749.0,Medium
+CASE0395,43,Emma Wilson,Wills & Probate,Pending,132484.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0396,51,Michael Brown,Employment,Closed,287678.0,0.0,27868.0,27868.0,25288.0,0.0,2580.0,Low
+CASE0397,75,Emma Wilson,Dispute Resolution,Open,10452.0,0.0,0.0,34041.0,48683.0,0.0,0.0,Low
+CASE0398,68,David Taylor,Wills & Probate,Pending,138555.0,0.0,8012.0,25545.0,0.0,0.0,25545.0,Medium
+CASE0399,167,Charles Thompson,Commercial,Open,250849.0,5483.0,0.0,5483.0,32321.0,9.1,0.0,Low
+CASE0400,59,Daniel Hughes,Commercial,Closed,352477.0,0.0,0.0,29267.0,0.0,0.0,29267.0,Medium
+CASE0401,168,Daniel Hughes,Immigration,Open,349370.0,0.0,21889.0,21889.0,0.0,0.0,21889.0,Low
+CASE0402,126,James Davies,Corporate,Open,232503.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0403,49,David Taylor,General,Pending,171285.0,17850.0,20139.0,37989.0,37671.0,90.5,318.0,Low
+CASE0404,68,Charles Thompson,Conveyancing,Open,476170.0,78855.0,29430.0,48656.0,45812.0,33.2,2844.0,Low
+CASE0405,19,Emma Wilson,Employment,Pending,296052.0,0.0,0.0,0.0,10007.0,0.0,0.0,Low
+CASE0406,112,Richard Evans,General,Open,377318.0,16955.0,0.0,16955.0,0.0,0.0,16955.0,Low
+CASE0407,123,Richard Evans,Immigration,Open,339836.0,0.0,0.0,0.0,3159.0,0.0,0.0,Low
+CASE0408,65,Sarah Jones,Intellectual Property,Closed,351450.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0409,101,Emma Wilson,Corporate,Closed,426733.0,30209.0,0.0,30209.0,0.0,6.7,30209.0,Medium
+CASE0410,106,Richard Evans,General,Closed,181882.0,0.0,6490.0,6490.0,54126.0,0.0,0.0,Low
+CASE0411,157,Susan Robinson,General,Pending,463753.0,0.0,0.0,0.0,46222.0,0.0,0.0,Low
+CASE0412,90,Sarah Jones,Wills & Probate,Closed,406253.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0413,95,Richard Evans,Employment,Closed,64376.0,11925.0,16459.0,28384.0,0.0,23.3,28384.0,Medium
+CASE0414,39,David Taylor,Conveyancing,Closed,383803.0,0.0,0.0,16319.0,46569.0,0.0,0.0,Low
+CASE0415,20,Jennifer Thomas,Property Law,Open,494106.0,5745.0,26086.0,31831.0,0.0,0.0,31831.0,Medium
+CASE0416,44,David Taylor,Corporate,Closed,46174.0,0.0,3078.0,3078.0,46842.0,0.0,0.0,Low
+CASE0417,61,James Davies,Intellectual Property,Closed,171190.0,0.0,0.0,0.0,27678.0,0.0,0.0,Low
+CASE0418,149,Richard Evans,Employment,Pending,42332.0,24518.0,0.0,24518.0,0.0,24.4,24518.0,Low
+CASE0419,126,Richard Evans,Immigration,Pending,13572.0,0.0,0.0,41581.0,0.0,0.0,41581.0,Medium
+CASE0420,152,Patricia White,Employment,Closed,180810.0,0.0,17215.0,17215.0,0.0,0.0,17215.0,Low
+CASE0421,49,Charles Thompson,Conveyancing,Open,136862.0,0.0,0.0,0.0,3968.0,0.0,0.0,Low
+CASE0422,147,Patricia White,Dispute Resolution,Open,432889.0,23114.0,0.0,23114.0,0.0,0.0,23114.0,Low
+CASE0423,170,Patricia White,Wills & Probate,Open,383334.0,0.0,0.0,41762.0,8553.0,0.0,33209.0,Medium
+CASE0424,136,Andrew Roberts,Litigation,Closed,68564.0,0.0,0.0,47606.0,0.0,0.0,47606.0,Medium
+CASE0425,118,James Davies,Conveyancing,Pending,98803.0,49230.0,0.0,49230.0,0.0,24.6,49230.0,Medium
+CASE0426,104,David Taylor,General,Closed,379923.0,0.0,0.0,0.0,16821.0,0.0,0.0,Low
+CASE0427,78,Andrew Roberts,Litigation,Closed,32045.0,0.0,0.0,18265.0,0.0,0.0,18265.0,Low
+CASE0428,82,Andrew Roberts,Property Law,Open,194229.0,0.0,2071.0,10220.0,12065.0,0.0,0.0,Low
+CASE0429,170,James Davies,Immigration,Open,93602.0,0.0,17121.0,17121.0,89873.0,0.0,0.0,Low
+CASE0430,148,David Taylor,Employment,Closed,152332.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0431,84,Patricia White,Litigation,Open,179146.0,0.0,0.0,30012.0,32445.0,0.0,0.0,Low
+CASE0432,21,Daniel Hughes,Dispute Resolution,Closed,400834.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0433,32,Robert Smith,Litigation,Pending,75488.0,0.0,48802.0,48802.0,28931.0,0.0,19871.0,Low
+CASE0434,19,Sarah Jones,Family Law,Pending,455679.0,16191.0,47516.0,63707.0,31463.0,30.9,32244.0,Medium
+CASE0435,131,David Taylor,Property Law,Closed,489177.0,42634.0,47888.0,4391.0,45849.0,22.1,0.0,Low
+CASE0436,152,James Davies,Commercial,Closed,49846.0,32680.0,67254.0,99934.0,0.0,13.7,99934.0,Medium
+CASE0437,151,Patricia White,Employment,Closed,99479.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0438,115,Patricia White,Wills & Probate,Closed,421828.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0439,101,Andrew Roberts,Corporate,Open,299280.0,0.0,43961.0,43961.0,0.0,0.0,43961.0,Medium
+CASE0440,9,Patricia White,Corporate,Closed,250157.0,0.0,21888.0,35914.0,0.0,0.0,35914.0,Medium
+CASE0441,23,Karen Edwards,General,Closed,180726.0,75590.0,16806.0,92396.0,8731.0,29.6,83665.0,Medium
+CASE0442,160,Lisa Johnson,Contract Law,Closed,42169.0,0.0,0.0,0.0,17648.0,0.0,0.0,Low
+CASE0443,28,Charles Thompson,Family Law,Closed,220675.0,8497.0,5507.0,14004.0,0.0,30.9,14004.0,Low
+CASE0444,124,Sarah Jones,General,Closed,328499.0,0.0,26979.0,26979.0,48413.0,0.0,0.0,Low
+CASE0445,158,Charles Thompson,Conveyancing,Closed,256314.0,41816.0,0.0,41816.0,0.0,1.0,41816.0,Medium
+CASE0446,31,Emma Wilson,Corporate,Open,151757.0,6086.0,36652.0,34038.0,0.0,27.8,34038.0,Medium
+CASE0447,23,Charles Thompson,General,Pending,88702.0,0.0,16039.0,16039.0,0.0,0.0,16039.0,Low
+CASE0448,162,Andrew Roberts,Employment,Closed,305516.0,0.0,40880.0,36805.0,0.0,0.0,36805.0,Medium
+CASE0449,165,Lisa Johnson,General,Closed,188051.0,0.0,0.0,48025.0,52567.0,0.0,0.0,Low
+CASE0450,166,Susan Robinson,Corporate,Open,452366.0,39006.0,0.0,13139.0,9603.0,8.8,3536.0,Low
+CASE0451,17,Patricia White,Intellectual Property,Open,281819.0,92225.0,0.0,92225.0,0.0,22.8,92225.0,Medium
+CASE0452,27,Sarah Jones,Dispute Resolution,Closed,279400.0,0.0,20272.0,69612.0,8134.0,0.0,61478.0,Medium
+CASE0453,28,Emma Wilson,Property Law,Closed,24825.0,0.0,0.0,52583.0,0.0,0.0,52583.0,Medium
+CASE0454,53,Lisa Johnson,General,Pending,32460.0,0.0,17660.0,17660.0,0.0,0.0,17660.0,Low
+CASE0455,109,Lisa Johnson,Wills & Probate,Closed,379541.0,0.0,6702.0,44706.0,0.0,0.0,44706.0,Medium
+CASE0456,58,James Davies,Wills & Probate,Closed,390306.0,37052.0,44553.0,81605.0,21998.0,0.0,59607.0,Medium
+CASE0457,114,James Davies,Intellectual Property,Pending,51245.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0458,8,Jennifer Thomas,General,Closed,232815.0,23099.0,0.0,23099.0,0.0,20.8,23099.0,Low
+CASE0459,67,David Taylor,Immigration,Open,414424.0,0.0,15863.0,15863.0,29009.0,0.0,0.0,Low
+CASE0460,154,Karen Edwards,Employment,Pending,101953.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0461,47,Charles Thompson,Corporate,Closed,325344.0,0.0,0.0,0.0,20100.0,0.0,0.0,Low
+CASE0462,136,David Taylor,Corporate,Open,122423.0,41441.0,37311.0,78752.0,0.0,65.1,78752.0,Medium
+CASE0463,108,Emma Wilson,General,Closed,340174.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0464,167,Emma Wilson,Immigration,Open,328642.0,16887.0,0.0,16887.0,4255.0,28.3,12632.0,Low
+CASE0465,28,Karen Edwards,Intellectual Property,Open,168789.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0466,100,Charles Thompson,Wills & Probate,Open,152826.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0467,64,Patricia White,Intellectual Property,Closed,192997.0,26096.0,0.0,26096.0,0.0,38.5,26096.0,Medium
+CASE0468,121,Patricia White,Family Law,Closed,144317.0,0.0,15278.0,15278.0,0.0,0.0,15278.0,Low
+CASE0469,93,David Taylor,Contract Law,Open,335361.0,33521.0,0.0,33521.0,1957.0,7.8,31564.0,Medium
+CASE0470,17,James Davies,General,Pending,17920.0,0.0,26717.0,61263.0,0.0,0.0,61263.0,Medium
+CASE0471,79,Jennifer Thomas,Conveyancing,Pending,457661.0,39825.0,0.0,39825.0,0.0,36.4,39825.0,Medium
+CASE0472,141,Daniel Hughes,Employment,Open,451969.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0473,101,Jennifer Thomas,Conveyancing,Open,385461.0,43592.0,0.0,43592.0,0.0,0.0,43592.0,Medium
+CASE0474,65,James Davies,Wills & Probate,Open,451326.0,14418.0,0.0,14418.0,0.0,0.0,14418.0,Low
+CASE0475,156,Daniel Hughes,Family Law,Open,58796.0,0.0,70805.0,45201.0,0.0,0.0,45201.0,Medium
+CASE0476,166,Robert Smith,Conveyancing,Closed,19482.0,0.0,0.0,0.0,48246.0,0.0,0.0,Low
+CASE0477,153,Jennifer Thomas,Wills & Probate,Closed,489149.0,0.0,0.0,0.0,33193.0,0.0,0.0,Low
+CASE0478,5,Jennifer Thomas,Corporate,Closed,304195.0,0.0,0.0,1691.0,18663.0,0.0,0.0,Low
+CASE0479,139,Richard Evans,Wills & Probate,Pending,263543.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0480,39,James Davies,Contract Law,Closed,404447.0,49903.0,48787.0,98690.0,0.0,34.8,98690.0,Medium
+CASE0481,79,Susan Robinson,Employment,Closed,459136.0,0.0,79854.0,79854.0,0.0,0.0,79854.0,Medium
+CASE0482,131,Sarah Jones,Family Law,Open,140672.0,0.0,26917.0,26917.0,37598.0,0.0,0.0,Low
+CASE0483,62,Daniel Hughes,Employment,Closed,234519.0,0.0,0.0,0.0,13670.0,0.0,0.0,Low
+CASE0484,78,Michael Brown,Employment,Closed,492243.0,0.0,0.0,12880.0,0.0,0.0,12880.0,Low
+CASE0485,36,Susan Robinson,General,Open,169977.0,29510.0,0.0,29510.0,0.0,38.0,29510.0,Medium
+CASE0486,41,Sarah Jones,General,Closed,197508.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0487,74,Emma Wilson,Conveyancing,Closed,108534.0,0.0,0.0,37104.0,0.0,0.0,37104.0,Medium
+CASE0488,130,Daniel Hughes,General,Closed,471932.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0489,25,Jennifer Thomas,Commercial,Pending,448714.0,30477.0,0.0,30477.0,75064.0,0.0,0.0,Low
+CASE0490,67,Sarah Jones,Employment,Closed,100168.0,0.0,71408.0,71408.0,0.0,0.0,71408.0,Medium
+CASE0491,91,Jennifer Thomas,Commercial,Closed,312167.0,0.0,0.0,1524.0,0.0,0.0,1524.0,Low
+CASE0492,72,Karen Edwards,Contract Law,Open,299124.0,11313.0,0.0,11313.0,54122.0,23.3,0.0,Low
+CASE0493,139,Jennifer Thomas,Intellectual Property,Open,316535.0,19501.0,46709.0,18550.0,0.0,5.4,18550.0,Low
+CASE0494,158,Daniel Hughes,Intellectual Property,Closed,252446.0,16251.0,0.0,16251.0,0.0,32.9,16251.0,Low
+CASE0495,123,Andrew Roberts,Property Law,Closed,150921.0,0.0,16137.0,16137.0,0.0,0.0,16137.0,Low
+CASE0496,41,Jennifer Thomas,Corporate,Open,75944.0,0.0,15930.0,15930.0,39026.0,0.0,0.0,Low
+CASE0497,65,Robert Smith,Corporate,Open,23261.0,0.0,0.0,0.0,0.0,0.0,0.0,Low
+CASE0498,133,Charles Thompson,Litigation,Open,98788.0,0.0,13563.0,15997.0,0.0,0.0,15997.0,Low
+CASE0499,42,Karen Edwards,Contract Law,Closed,13859.0,0.0,0.0,19574.0,0.0,0.0,19574.0,Low
+CASE0500,32,Charles Thompson,Immigration,Open,468794.0,0.0,0.0,44540.0,0.0,0.0,44540.0,Medium

@@ -1,57 +1,57 @@
 {
-  "evaluation_date": "2026-08-04T15:04:33.490717",
+  "evaluation_date": "2026-08-05T11:51:48.081015",
   "agent_id": "<agent_id>",
   "workspace_id": "<workspace_id>",
   "aggregate_metrics": {
     "total_queries": 30,
     "exact_match_accuracy": 0.9333333333333333,
     "semantic_match_accuracy": 0.9333333333333333,
-    "routing_accuracy": 0.8333333333333334,
-    "measure_selection_accuracy": 0.75,
+    "routing_accuracy": 0.9666666666666667,
+    "measure_selection_accuracy": 1.0,
     "avg_response_time_ms": 0.0,
     "verified_answer_hit_rate": 0.0,
-    "error_rate": 0.06666666666666667,
+    "error_rate": 0.0,
     "by_category": {
       "financial_transactions": {
         "count": 10,
         "exact_match": 1.0,
         "semantic_match": 1.0,
-        "routing_correct": 0.9
+        "routing_correct": 1.0
       },
       "solicitor_performance": {
         "count": 3,
         "exact_match": 1.0,
         "semantic_match": 1.0,
-        "routing_correct": 1.0
+        "routing_correct": 0.6666666666666666
       },
       "customer_count": {
         "count": 4,
-        "exact_match": 1.0,
-        "semantic_match": 1.0,
+        "exact_match": 0.75,
+        "semantic_match": 0.75,
         "routing_correct": 1.0
       },
       "case_summary": {
         "count": 13,
-        "exact_match": 0.8461538461538461,
-        "semantic_match": 0.8461538461538461,
-        "routing_correct": 0.6923076923076923
+        "exact_match": 0.9230769230769231,
+        "semantic_match": 0.9230769230769231,
+        "routing_correct": 1.0
       }
     },
     "by_difficulty": {
-      "medium": {
-        "count": 14,
-        "exact_match": 1.0,
-        "semantic_match": 1.0
-      },
-      "easy": {
-        "count": 14,
-        "exact_match": 0.8571428571428571,
-        "semantic_match": 0.8571428571428571
-      },
       "hard": {
         "count": 2,
         "exact_match": 1.0,
         "semantic_match": 1.0
+      },
+      "medium": {
+        "count": 14,
+        "exact_match": 0.9285714285714286,
+        "semantic_match": 0.9285714285714286
+      },
+      "easy": {
+        "count": 14,
+        "exact_match": 0.9285714285714286,
+        "semantic_match": 0.9285714285714286
       }
     }
   },
@@ -80,14 +80,14 @@
     },
     {
       "query_id": "Q003",
-      "exact_match": false,
-      "semantic_match": false,
-      "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
+      "exact_match": true,
+      "semantic_match": true,
+      "routing_correct": true,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
       "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
+      "error_occurred": false,
+      "notes": "OK"
     },
     {
       "query_id": "Q004",
@@ -113,14 +113,14 @@
     },
     {
       "query_id": "Q006",
-      "exact_match": false,
-      "semantic_match": false,
-      "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
+      "exact_match": true,
+      "semantic_match": true,
+      "routing_correct": true,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
       "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
+      "error_occurred": false,
+      "notes": "OK"
     },
     {
       "query_id": "Q007",
@@ -146,8 +146,8 @@
     },
     {
       "query_id": "Q009",
-      "exact_match": true,
-      "semantic_match": true,
+      "exact_match": false,
+      "semantic_match": false,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -192,12 +192,12 @@
       "query_id": "Q013",
       "exact_match": true,
       "semantic_match": true,
-      "routing_correct": false,
+      "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
       "verified_answer_used": false,
       "error_occurred": false,
-      "notes": "Wrong source: ClientCasePortfolio vs FinancialTransactions"
+      "notes": "OK"
     },
     {
       "query_id": "Q014",
@@ -225,12 +225,12 @@
       "query_id": "Q016",
       "exact_match": true,
       "semantic_match": true,
-      "routing_correct": false,
+      "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
       "verified_answer_used": false,
       "error_occurred": false,
-      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
+      "notes": "OK"
     },
     {
       "query_id": "Q017",
@@ -300,8 +300,8 @@
     },
     {
       "query_id": "Q023",
-      "exact_match": true,
-      "semantic_match": true,
+      "exact_match": false,
+      "semantic_match": false,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -324,23 +324,23 @@
       "query_id": "Q025",
       "exact_match": true,
       "semantic_match": true,
-      "routing_correct": false,
-      "measure_selection_correct": true,
-      "response_time_acceptable": true,
-      "verified_answer_used": false,
-      "error_occurred": false,
-      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
-    },
-    {
-      "query_id": "Q026",
-      "exact_match": true,
-      "semantic_match": true,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
       "verified_answer_used": false,
       "error_occurred": false,
       "notes": "OK"
+    },
+    {
+      "query_id": "Q026",
+      "exact_match": true,
+      "semantic_match": true,
+      "routing_correct": false,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
+      "verified_answer_used": false,
+      "error_occurred": false,
+      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
     },
     {
       "query_id": "Q027",
