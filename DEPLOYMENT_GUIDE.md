@@ -17,7 +17,7 @@ Before you begin, ensure you have:
 - ✅ **Power BI Desktop** (latest version) for semantic model creation
 - ✅ **Azure CLI** installed (`az --version` to verify)
 - ✅ **Fabric login** configured (`az login`)
-- ✅ **Data files generated** (run `python step1/generate_step1_data.py` and `python step2/generate_step2_data.py`)
+- ✅ **Data files generated** (run `python step1/generate_step1_data.py`)
 - ✅ **Workspace permissions** (Contributor or Admin role)
 
 ---
@@ -33,16 +33,11 @@ Before you begin, ensure you have:
 │  ┌────────────────────────────────────────────┐             │
 │  │  Lakehouse: LegalFirmDemo                  │             │
 │  │  ├─ Tables/                                │             │
-│  │  │  ├─ step1_raw_customers (200)           │             │
-│  │  │  ├─ step1_raw_cases (500)               │             │
-│  │  │  ├─ step1_raw_solicitors (15)           │             │
-│  │  │  ├─ step1_raw_transactions (1000)       │             │
-│  │  │  ├─ step1_raw_interactions (800)        │             │
-│  │  │  ├─ step2_cleaned_customers (166)       │             │
-│  │  │  ├─ step2_cleaned_cases (500)           │             │
-│  │  │  ├─ step2_cleaned_solicitors (15)       │             │
-│  │  │  ├─ step2_cleaned_transactions (1000)   │             │
-│  │  │  └─ step2_cleaned_interactions (800)    │             │
+│  │  │  ├─ step1_cleaned_customers (166)       │             │
+│  │  │  ├─ step1_cleaned_cases (500)           │             │
+│  │  │  ├─ step1_cleaned_solicitors (15)       │             │
+│  │  │  ├─ step1_cleaned_transactions (1000)   │             │
+│  │  │  └─ step1_cleaned_interactions (800)    │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 │  STEP 3 & 4: SEMANTIC MODEL LAYER                           │
@@ -108,29 +103,26 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 2. Click **+ New** → **Lakehouse** → Name it `LegalFirmDemo`
 3. Click **Create**
 
-#### 2. Upload Raw Data (Step 1)
+#### 2. Upload Baseline Data (Step 1)
 1. In the Lakehouse, go to **Tables**
 2. Click **Get data** → **Upload files**
 3. Upload all 5 Step 1 CSV files:
-   - `step1/step1_raw_customers.csv`
-   - `step1/step1_raw_cases.csv`
-   - `step1/step1_raw_solicitors.csv`
-   - `step1/step1_raw_transactions.csv`
-   - `step1/step1_raw_interactions.csv`
+   - `step1/step1_cleaned_customers.csv`
+   - `step1/step1_cleaned_cases.csv`
+   - `step1/step1_cleaned_solicitors.csv`
+   - `step1/step1_cleaned_transactions.csv`
+   - `step1/step1_cleaned_interactions.csv`
 4. For each file:
    - Click **Load to new table**
-   - Keep suggested table name (e.g., `step1_raw_customers`)
+   - Keep suggested table name (e.g., `step1_cleaned_customers`)
    - Click **Load**
 
-#### 3. Upload Cleaned Data (Step 2)
-1. Repeat the same process for Step 2 files:
-   - `step2/step2_cleaned_customers.csv`
-   - `step2/step2_cleaned_cases.csv`
-   - `step2/step2_cleaned_solicitors.csv`
-   - `step2/step2_cleaned_transactions.csv`
-   - `step2/step2_cleaned_interactions.csv`
+#### 3. Apply Data Agent Best Practices (Step 2)
+1. Keep the same Step 1 tables (no additional file uploads).
+2. Configure tighter schema scope and source descriptions in the Data Agent.
+3. Add representative example queries and concise routing guidance.
 
-**Result:** You now have 10 tables in your Lakehouse (5 raw + 5 cleaned)
+**Result:** Step 2 is configuration-only and uses the same 5 Step 1 tables.
 
 ### **Option B: Via Notebook (Automated)**
 
@@ -141,80 +133,50 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 # Load CSV files into Lakehouse tables
 import notebookutils
 
-# Step 1: Raw data
-df_raw_customers = spark.read.csv("/lakehouse/default/Files/step1_raw_customers.csv", header=True, inferSchema=True)
-df_raw_customers.write.mode("overwrite").saveAsTable("step1_raw_customers")
+# Step 1: Cleaned baseline data
+df_cleaned_customers = spark.read.csv("/lakehouse/default/Files/step1_cleaned_customers.csv", header=True, inferSchema=True)
+df_cleaned_customers.write.mode("overwrite").saveAsTable("step1_cleaned_customers")
 
-df_raw_cases = spark.read.csv("/lakehouse/default/Files/step1_raw_cases.csv", header=True, inferSchema=True)
-df_raw_cases.write.mode("overwrite").saveAsTable("step1_raw_cases")
+df_cleaned_cases = spark.read.csv("/lakehouse/default/Files/step1_cleaned_cases.csv", header=True, inferSchema=True)
+df_cleaned_cases.write.mode("overwrite").saveAsTable("step1_cleaned_cases")
 
-df_raw_solicitors = spark.read.csv("/lakehouse/default/Files/step1_raw_solicitors.csv", header=True, inferSchema=True)
-df_raw_solicitors.write.mode("overwrite").saveAsTable("step1_raw_solicitors")
+df_cleaned_solicitors = spark.read.csv("/lakehouse/default/Files/step1_cleaned_solicitors.csv", header=True, inferSchema=True)
+df_cleaned_solicitors.write.mode("overwrite").saveAsTable("step1_cleaned_solicitors")
 
-df_raw_transactions = spark.read.csv("/lakehouse/default/Files/step1_raw_transactions.csv", header=True, inferSchema=True)
-df_raw_transactions.write.mode("overwrite").saveAsTable("step1_raw_transactions")
+df_cleaned_transactions = spark.read.csv("/lakehouse/default/Files/step1_cleaned_transactions.csv", header=True, inferSchema=True)
+df_cleaned_transactions.write.mode("overwrite").saveAsTable("step1_cleaned_transactions")
 
-df_raw_interactions = spark.read.csv("/lakehouse/default/Files/step1_raw_interactions.csv", header=True, inferSchema=True)
-df_raw_interactions.write.mode("overwrite").saveAsTable("step1_raw_interactions")
+df_cleaned_interactions = spark.read.csv("/lakehouse/default/Files/step1_cleaned_interactions.csv", header=True, inferSchema=True)
+df_cleaned_interactions.write.mode("overwrite").saveAsTable("step1_cleaned_interactions")
 
-# Step 2: Cleaned data
-df_cleaned_customers = spark.read.csv("/lakehouse/default/Files/step2_cleaned_customers.csv", header=True, inferSchema=True)
-df_cleaned_customers.write.mode("overwrite").saveAsTable("step2_cleaned_customers")
-
-df_cleaned_cases = spark.read.csv("/lakehouse/default/Files/step2_cleaned_cases.csv", header=True, inferSchema=True)
-df_cleaned_cases.write.mode("overwrite").saveAsTable("step2_cleaned_cases")
-
-df_cleaned_solicitors = spark.read.csv("/lakehouse/default/Files/step2_cleaned_solicitors.csv", header=True, inferSchema=True)
-df_cleaned_solicitors.write.mode("overwrite").saveAsTable("step2_cleaned_solicitors")
-
-df_cleaned_transactions = spark.read.csv("/lakehouse/default/Files/step2_cleaned_transactions.csv", header=True, inferSchema=True)
-df_cleaned_transactions.write.mode("overwrite").saveAsTable("step2_cleaned_transactions")
-
-df_cleaned_interactions = spark.read.csv("/lakehouse/default/Files/step2_cleaned_interactions.csv", header=True, inferSchema=True)
-df_cleaned_interactions.write.mode("overwrite").saveAsTable("step2_cleaned_interactions")
-
-print("✅ All 10 tables loaded successfully!")
-print(f"📊 Total records: {df_raw_customers.count() + df_raw_cases.count() + df_raw_solicitors.count() + df_raw_transactions.count() + df_raw_interactions.count()}")
+print("✅ All 5 Step 1 tables loaded successfully!")
+print(f"📊 Total records: {df_cleaned_customers.count() + df_cleaned_cases.count() + df_cleaned_solicitors.count() + df_cleaned_transactions.count() + df_cleaned_interactions.count()}")
 ```
 
 ### **Verify Data Load**
 
 ```sql
 -- Run in Lakehouse SQL Endpoint
-SELECT 'step1_raw_customers' as table_name, COUNT(*) as row_count FROM step1_raw_customers
+SELECT 'step1_cleaned_customers' as table_name, COUNT(*) as row_count FROM step1_cleaned_customers
 UNION ALL
-SELECT 'step1_raw_cases', COUNT(*) FROM step1_raw_cases
+SELECT 'step1_cleaned_cases', COUNT(*) FROM step1_cleaned_cases
 UNION ALL
-SELECT 'step1_raw_solicitors', COUNT(*) FROM step1_raw_solicitors
+SELECT 'step1_cleaned_solicitors', COUNT(*) FROM step1_cleaned_solicitors
 UNION ALL
-SELECT 'step1_raw_transactions', COUNT(*) FROM step1_raw_transactions
+SELECT 'step1_cleaned_transactions', COUNT(*) FROM step1_cleaned_transactions
 UNION ALL
-SELECT 'step1_raw_interactions', COUNT(*) FROM step1_raw_interactions
-UNION ALL
-SELECT 'step2_cleaned_customers', COUNT(*) FROM step2_cleaned_customers
-UNION ALL
-SELECT 'step2_cleaned_cases', COUNT(*) FROM step2_cleaned_cases
-UNION ALL
-SELECT 'step2_cleaned_solicitors', COUNT(*) FROM step2_cleaned_solicitors
-UNION ALL
-SELECT 'step2_cleaned_transactions', COUNT(*) FROM step2_cleaned_transactions
-UNION ALL
-SELECT 'step2_cleaned_interactions', COUNT(*) FROM step2_cleaned_interactions;
+SELECT 'step1_cleaned_interactions', COUNT(*) FROM step1_cleaned_interactions
+;
 ```
 
 **Expected Output:**
 ```
 table_name                      row_count
-step1_raw_customers             200
-step1_raw_cases                 500
-step1_raw_solicitors            15
-step1_raw_transactions          1000
-step1_raw_interactions          800
-step2_cleaned_customers         166
-step2_cleaned_cases             500
-step2_cleaned_solicitors        15
-step2_cleaned_transactions      1000
-step2_cleaned_interactions      800
+step1_cleaned_customers         166
+step1_cleaned_cases             500
+step1_cleaned_solicitors        15
+step1_cleaned_transactions      1000
+step1_cleaned_interactions      800
 ```
 
 ✅ **Checkpoint:** You now have all data in Fabric Lakehouse!
@@ -230,7 +192,7 @@ step2_cleaned_interactions      800
 1. **Open Power BI Desktop**
 2. **Get Data** → **Power Platform** → **Microsoft Fabric** → **Lakehouse**
 3. **Connect** to your `LegalFirmDemo` lakehouse
-4. **Select Step 1 raw tables only** (demonstrate poor data quality impact)
+4. **Select Step 1 cleaned tables only** (demonstrate baseline behavior before semantic model optimization)
 5. **Load** all 5 raw tables
 
 6. **Create a flat model (anti-pattern):**
@@ -239,17 +201,17 @@ step2_cleaned_interactions      800
 
 7. **Create duplicate measures (anti-pattern):**
    ```dax
-   Total Cases = COUNTROWS(step1_raw_cases)
-   TotalCases = COUNTROWS(step1_raw_cases)  
-   total_cases = COUNTROWS(step1_raw_cases)
-   Case Count = COUNTROWS(step1_raw_cases)
+   Total Cases = COUNTROWS(step1_cleaned_cases)
+   TotalCases = COUNTROWS(step1_cleaned_cases)  
+   total_cases = COUNTROWS(step1_cleaned_cases)
+   Case Count = COUNTROWS(step1_cleaned_cases)
    ```
 
 8. **Create ambiguous measures:**
    ```dax
-   Total = SUM(step1_raw_cases[val])
-   Count = COUNTROWS(step1_raw_customers)
-   Value = SUM(step1_raw_transactions[amt])
+   Total = SUM(step1_cleaned_cases[val])
+   Count = COUNTROWS(step1_cleaned_customers)
+   Value = SUM(step1_cleaned_transactions[amt])
    ```
 
 9. **Do NOT configure Prep for AI** (leave blank)
@@ -446,27 +408,27 @@ Thresholds:
 Using the `step5/step5_ontology_definition.json` as reference:
 
 **Entity 1: Client**
-- Source: `step2_cleaned_customers` table
+- Source: `step1_cleaned_customers` table
 - Key: `customer_id`
 - Properties: customer_name, customer_type, city, phone, email, status, signup_date
 
 **Entity 2: LegalCase**
-- Source: `step2_cleaned_cases` table
+- Source: `step1_cleaned_cases` table
 - Key: `case_id`
 - Properties: case_type, case_value_gbp, case_status, start_date
 
 **Entity 3: Solicitor**
-- Source: `step2_cleaned_solicitors` table
+- Source: `step1_cleaned_solicitors` table
 - Key: `solicitor_id`
 - Properties: solicitor_name, specialization, hire_date, hourly_rate_gbp, office_location
 
 **Entity 4: FinancialTransaction**
-- Source: `step2_cleaned_transactions` table
+- Source: `step1_cleaned_transactions` table
 - Key: `transaction_id`
 - Properties: transaction_type, transaction_date, amount_gbp, hours_worked, payment_status
 
 **Entity 5: CustomerInteraction**
-- Source: `step2_cleaned_interactions` table
+- Source: `step1_cleaned_interactions` table
 - Key: `interaction_id`
 - Properties: interaction_type, interaction_date, duration_minutes, notes
 
@@ -517,7 +479,7 @@ Using the `step5/step5_ontology_definition.json` as reference:
 ### **Configure Data Source 2: FinancialTransactions**
 
 - **Type:** Lakehouse Table
-- **Table:** `step2_cleaned_transactions`
+- **Table:** `step1_cleaned_transactions`
 - **Description:** "Contains financial transaction details including invoices, payments, timesheets, and expenses. Use this for billing, revenue, payment status, and financial analysis questions."
 - **Example Queries:**
   - "What's the total revenue in Q1 2023?"
@@ -753,3 +715,6 @@ If you encounter issues during deployment:
 5. Review Fabric service health status
 
 **Good luck with your demo!** 🎉
+
+
+

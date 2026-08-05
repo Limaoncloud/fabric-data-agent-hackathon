@@ -10,8 +10,8 @@
 
 | Step | Description | Records | Accuracy (Est.) | Files |
 |------|-------------|---------|-----------------|-------|
-| **Step 1** | Raw multi-table data with quality issues | 2,515 | ~47% | 5 CSV files (raw_*) |
-| **Step 2** | Cleaned multi-table data | 2,481 | ~60% | 5 CSV files (cleaned_*) |
+| **Step 1** | Cleaned multi-table data baseline | 2,481 | ~60% | 5 CSV files (step1_cleaned_*) |
+| **Step 2** | Data agent configuration best practices | 2,481 | ~67% | No new files |
 | **Step 3** | Basic semantic model (flat/duplicates) | 2,481 | ~57% | 1 JSON (basic model) |
 | **Step 4** | Optimized model + Prep for AI | 2,481 | **100%** | 1 JSON (optimized model) |
 | **Step 5** | With Ontology layer | 2,481 | **100%** | 1 JSON (ontology def) |
@@ -70,37 +70,23 @@
 
 ## Data Generation Scripts
 
-### Step 1: Generate Raw Data
+### Step 1: Validate Cleaned Baseline
 ```powershell
 python step1/generate_step1_data.py
 ```
 **Output:**
-- `step1/step1_raw_customers.csv` (200 rows with ~10% duplicates)
-- `step1/step1_raw_cases.csv` (500 rows)
-- `step1/step1_raw_solicitors.csv` (15 rows)
-- `step1/step1_raw_transactions.csv` (1,000 rows)
-- `step1/step1_raw_interactions.csv` (800 rows)
-
-**Total: 2,515 records** with 9 intentional quality issues
-
-### Step 2: Generate Cleaned Data
-```powershell
-python step2/generate_step2_data.py
-```
-**Output:**
-- `step2/step2_cleaned_customers.csv` (166 rows - duplicates removed)
-- `step2/step2_cleaned_cases.csv` (500 rows)
-- `step2/step2_cleaned_solicitors.csv` (15 rows)
-- `step2/step2_cleaned_transactions.csv` (1,000 rows)
-- `step2/step2_cleaned_interactions.csv` (800 rows)
+- `step1/step1_cleaned_customers.csv` (166 rows - duplicates removed)
+- `step1/step1_cleaned_cases.csv` (500 rows)
+- `step1/step1_cleaned_solicitors.csv` (15 rows)
+- `step1/step1_cleaned_transactions.csv` (1,000 rows)
+- `step1/step1_cleaned_interactions.csv` (800 rows)
 
 **Total: 2,481 records** (34 duplicates removed)
 
 ## Key Files
 
 ### Data Files
-- `step1/step1_raw_*.csv` (5 files) - Raw data with quality issues
-- `step2/step2_cleaned_*.csv` (5 files) - Cleaned, standardized data
+- `step1/step1_cleaned_*.csv` (5 files) - Cleaned, standardized data
 
 ### Model Files
 - `step3/step3_basic_semantic_model.json` - Semantic model with anti-patterns
@@ -115,7 +101,6 @@ python step2/generate_step2_data.py
 - `EVALUATION_COMPARISON.md` - Complete results analysis
 
 ### Documentation
-- `step1/STEP1_MULTITABLE_ANALYSIS.md` - Detailed Step 1 analysis
 - `TEST_QUERIES.md` - 30 manual test queries
 - `EVALUATION_GUIDE.md` - How to run evaluation
 
@@ -256,11 +241,11 @@ Sample queries that work across the multi-table structure:
 ### 1. Create Lakehouse Tables
 ```sql
 -- Load cleaned CSV files into Fabric Lakehouse
-CREATE TABLE Customers AS SELECT * FROM 'step2/step2_cleaned_customers.csv';
-CREATE TABLE Cases AS SELECT * FROM 'step2/step2_cleaned_cases.csv';
-CREATE TABLE Solicitors AS SELECT * FROM 'step2/step2_cleaned_solicitors.csv';
-CREATE TABLE Transactions AS SELECT * FROM 'step2/step2_cleaned_transactions.csv';
-CREATE TABLE Interactions AS SELECT * FROM 'step2/step2_cleaned_interactions.csv';
+CREATE TABLE Customers AS SELECT * FROM 'step1/step1_cleaned_customers.csv';
+CREATE TABLE Cases AS SELECT * FROM 'step1/step1_cleaned_cases.csv';
+CREATE TABLE Solicitors AS SELECT * FROM 'step1/step1_cleaned_solicitors.csv';
+CREATE TABLE Transactions AS SELECT * FROM 'step1/step1_cleaned_transactions.csv';
+CREATE TABLE Interactions AS SELECT * FROM 'step1/step1_cleaned_interactions.csv';
 ```
 
 ### 2. Create Semantic Model
@@ -301,7 +286,7 @@ CREATE TABLE Interactions AS SELECT * FROM 'step2/step2_cleaned_interactions.csv
 
 ## Next Steps
 
-1. ✅ Generate data: `python step1/generate_step1_data.py` and `python step2/generate_step2_data.py`
+1. ✅ Generate data: `python step1/generate_step1_data.py` and `python step1/generate_step1_data.py`
 2. ✅ Review analysis: Open `step1/STEP1_MULTITABLE_ANALYSIS.md`
 3. ✅ Run evaluation: Test all 6 steps
 4. ✅ Review results: Open `EVALUATION_COMPARISON.md`
@@ -311,3 +296,5 @@ CREATE TABLE Interactions AS SELECT * FROM 'step2/step2_cleaned_interactions.csv
 8. ⬜ Create ontology (Step 5)
 9. ⬜ Configure data agent (Step 6)
 10. ⬜ Present at hackathon! 🚀
+
+

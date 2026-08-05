@@ -1,48 +1,43 @@
 {
-  "evaluation_date": "2026-08-04T15:03:51.543804",
+  "evaluation_date": "2026-08-04T15:04:08.173689",
   "agent_id": "<agent_id>",
   "workspace_id": "<workspace_id>",
   "aggregate_metrics": {
     "total_queries": 30,
-    "exact_match_accuracy": 0.4666666666666667,
-    "semantic_match_accuracy": 0.4666666666666667,
-    "routing_accuracy": 0.5,
-    "measure_selection_accuracy": 1.0,
+    "exact_match_accuracy": 0.6,
+    "semantic_match_accuracy": 0.6,
+    "routing_accuracy": 0.4,
+    "measure_selection_accuracy": 0.5,
     "avg_response_time_ms": 0.0,
     "verified_answer_hit_rate": 0.0,
-    "error_rate": 0.23333333333333334,
+    "error_rate": 0.2,
     "by_category": {
-      "solicitor_performance": {
-        "count": 3,
-        "exact_match": 0.3333333333333333,
-        "semantic_match": 0.3333333333333333,
-        "routing_correct": 0.0
+      "case_summary": {
+        "count": 13,
+        "exact_match": 0.7692307692307693,
+        "semantic_match": 0.7692307692307693,
+        "routing_correct": 0.46153846153846156
       },
       "financial_transactions": {
         "count": 10,
-        "exact_match": 0.3,
-        "semantic_match": 0.3,
-        "routing_correct": 0.4
+        "exact_match": 0.5,
+        "semantic_match": 0.5,
+        "routing_correct": 0.3
       },
       "customer_count": {
         "count": 4,
-        "exact_match": 0.5,
-        "semantic_match": 0.5,
-        "routing_correct": 0.75
+        "exact_match": 0.25,
+        "semantic_match": 0.25,
+        "routing_correct": 0.5
       },
-      "case_summary": {
-        "count": 13,
-        "exact_match": 0.6153846153846154,
-        "semantic_match": 0.6153846153846154,
-        "routing_correct": 0.6153846153846154
+      "solicitor_performance": {
+        "count": 3,
+        "exact_match": 0.6666666666666666,
+        "semantic_match": 0.6666666666666666,
+        "routing_correct": 0.3333333333333333
       }
     },
     "by_difficulty": {
-      "easy": {
-        "count": 14,
-        "exact_match": 0.5,
-        "semantic_match": 0.5
-      },
       "hard": {
         "count": 2,
         "exact_match": 0.5,
@@ -50,16 +45,21 @@
       },
       "medium": {
         "count": 14,
-        "exact_match": 0.42857142857142855,
-        "semantic_match": 0.42857142857142855
+        "exact_match": 0.6428571428571429,
+        "semantic_match": 0.6428571428571429
+      },
+      "easy": {
+        "count": 14,
+        "exact_match": 0.5714285714285714,
+        "semantic_match": 0.5714285714285714
       }
     }
   },
   "detailed_metrics": [
     {
       "query_id": "Q001",
-      "exact_match": true,
-      "semantic_match": true,
+      "exact_match": false,
+      "semantic_match": false,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -80,8 +80,8 @@
     },
     {
       "query_id": "Q003",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -91,6 +91,17 @@
     },
     {
       "query_id": "Q004",
+      "exact_match": false,
+      "semantic_match": false,
+      "routing_correct": false,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
+      "verified_answer_used": false,
+      "error_occurred": false,
+      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
+    },
+    {
+      "query_id": "Q005",
       "exact_match": true,
       "semantic_match": true,
       "routing_correct": false,
@@ -101,20 +112,9 @@
       "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
     },
     {
-      "query_id": "Q005",
-      "exact_match": false,
-      "semantic_match": false,
-      "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
-      "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
-    },
-    {
       "query_id": "Q006",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": false,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -135,8 +135,8 @@
     },
     {
       "query_id": "Q008",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -146,8 +146,8 @@
     },
     {
       "query_id": "Q009",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -157,6 +157,17 @@
     },
     {
       "query_id": "Q010",
+      "exact_match": true,
+      "semantic_match": true,
+      "routing_correct": false,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
+      "verified_answer_used": false,
+      "error_occurred": false,
+      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
+    },
+    {
+      "query_id": "Q011",
       "exact_match": false,
       "semantic_match": false,
       "routing_correct": false,
@@ -167,18 +178,18 @@
       "notes": "Error: Query execution failed"
     },
     {
-      "query_id": "Q011",
+      "query_id": "Q012",
       "exact_match": false,
       "semantic_match": false,
-      "routing_correct": true,
-      "measure_selection_correct": true,
-      "response_time_acceptable": true,
+      "routing_correct": false,
+      "measure_selection_correct": false,
+      "response_time_acceptable": false,
       "verified_answer_used": false,
-      "error_occurred": false,
-      "notes": "OK"
+      "error_occurred": true,
+      "notes": "Error: Query execution failed"
     },
     {
-      "query_id": "Q012",
+      "query_id": "Q013",
       "exact_match": false,
       "semantic_match": false,
       "routing_correct": false,
@@ -189,29 +200,29 @@
       "notes": "Wrong source: ClientCasePortfolio vs FinancialTransactions"
     },
     {
-      "query_id": "Q013",
-      "exact_match": false,
-      "semantic_match": false,
-      "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
-      "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
-    },
-    {
       "query_id": "Q014",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
       "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
+      "error_occurred": false,
+      "notes": "Wrong source: ClientCasePortfolio vs FinancialTransactions"
     },
     {
       "query_id": "Q015",
+      "exact_match": true,
+      "semantic_match": true,
+      "routing_correct": false,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
+      "verified_answer_used": false,
+      "error_occurred": false,
+      "notes": "Wrong source: ClientCasePortfolio vs FinancialTransactions"
+    },
+    {
+      "query_id": "Q016",
       "exact_match": false,
       "semantic_match": false,
       "routing_correct": false,
@@ -222,26 +233,15 @@
       "notes": "Error: Query execution failed"
     },
     {
-      "query_id": "Q016",
-      "exact_match": true,
-      "semantic_match": true,
-      "routing_correct": true,
-      "measure_selection_correct": true,
-      "response_time_acceptable": true,
-      "verified_answer_used": false,
-      "error_occurred": false,
-      "notes": "OK"
-    },
-    {
       "query_id": "Q017",
-      "exact_match": true,
-      "semantic_match": true,
-      "routing_correct": true,
+      "exact_match": false,
+      "semantic_match": false,
+      "routing_correct": false,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
       "verified_answer_used": false,
       "error_occurred": false,
-      "notes": "OK"
+      "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
     },
     {
       "query_id": "Q018",
@@ -258,23 +258,23 @@
       "query_id": "Q019",
       "exact_match": true,
       "semantic_match": true,
+      "routing_correct": true,
+      "measure_selection_correct": true,
+      "response_time_acceptable": true,
+      "verified_answer_used": false,
+      "error_occurred": false,
+      "notes": "OK"
+    },
+    {
+      "query_id": "Q020",
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": false,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
       "verified_answer_used": false,
       "error_occurred": false,
       "notes": "Wrong source: FinancialTransactions vs ClientCasePortfolio"
-    },
-    {
-      "query_id": "Q020",
-      "exact_match": false,
-      "semantic_match": false,
-      "routing_correct": false,
-      "measure_selection_correct": false,
-      "response_time_acceptable": false,
-      "verified_answer_used": false,
-      "error_occurred": true,
-      "notes": "Error: Query execution failed"
     },
     {
       "query_id": "Q021",
@@ -289,8 +289,8 @@
     },
     {
       "query_id": "Q022",
-      "exact_match": true,
-      "semantic_match": true,
+      "exact_match": false,
+      "semantic_match": false,
       "routing_correct": false,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -311,8 +311,8 @@
     },
     {
       "query_id": "Q024",
-      "exact_match": false,
-      "semantic_match": false,
+      "exact_match": true,
+      "semantic_match": true,
       "routing_correct": true,
       "measure_selection_correct": true,
       "response_time_acceptable": true,
@@ -358,22 +358,22 @@
       "exact_match": false,
       "semantic_match": false,
       "routing_correct": false,
-      "measure_selection_correct": true,
-      "response_time_acceptable": true,
+      "measure_selection_correct": false,
+      "response_time_acceptable": false,
       "verified_answer_used": false,
-      "error_occurred": false,
-      "notes": "Wrong source: ClientCasePortfolio vs FinancialTransactions"
+      "error_occurred": true,
+      "notes": "Error: Query execution failed"
     },
     {
       "query_id": "Q029",
-      "exact_match": true,
-      "semantic_match": true,
-      "routing_correct": true,
-      "measure_selection_correct": true,
-      "response_time_acceptable": true,
+      "exact_match": false,
+      "semantic_match": false,
+      "routing_correct": false,
+      "measure_selection_correct": false,
+      "response_time_acceptable": false,
       "verified_answer_used": false,
-      "error_occurred": false,
-      "notes": "OK"
+      "error_occurred": true,
+      "notes": "Error: Query execution failed"
     },
     {
       "query_id": "Q030",

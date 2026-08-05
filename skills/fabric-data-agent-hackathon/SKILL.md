@@ -4,7 +4,7 @@ Companion quickstart:
 - See SKILL_QUICKSTART_30MIN.md for a fast event setup path.
 
 ## Purpose
-Use this skill to reproduce a complete Microsoft Fabric Data Agent hackathon demo for a Customer 360 scenario, with measurable quality improvements from raw data to multi-source routed answers.
+Use this skill to reproduce a complete Microsoft Fabric Data Agent hackathon demo for a Customer 360 scenario, with measurable quality improvements from a cleaned baseline to multi-source routed answers.
 
 Default scenario:
 - UK legal firm Customer 360 (can be replaced with any industry profile)
@@ -89,7 +89,6 @@ Use this folder structure:
 
 ```text
 step1/
-step2/
 step3/
 step4/
 step5/
@@ -97,16 +96,11 @@ step6/
 ```
 
 Key files used in this demo:
-- step1/step1_raw_customers.csv
-- step1/step1_raw_cases.csv
-- step1/step1_raw_solicitors.csv
-- step1/step1_raw_transactions.csv
-- step1/step1_raw_interactions.csv
-- step2/step2_cleaned_customers.csv
-- step2/step2_cleaned_cases.csv
-- step2/step2_cleaned_solicitors.csv
-- step2/step2_cleaned_transactions.csv
-- step2/step2_cleaned_interactions.csv
+- step1/step1_cleaned_customers.csv
+- step1/step1_cleaned_cases.csv
+- step1/step1_cleaned_solicitors.csv
+- step1/step1_cleaned_transactions.csv
+- step1/step1_cleaned_interactions.csv
 - step3/step3_basic_semantic_model.json
 - step4/step4_optimized_semantic_model.json
 - step5/step5_ontology_definition.json
@@ -122,12 +116,12 @@ Key files used in this demo:
 
 ## Authoring Workflow
 
-### Step 1 - Raw Multi-Table Baseline
+### Step 1 - Cleaned Multi-Table Baseline
 Actions:
-- Generate or provide raw industry-specific Customer 360 data with hundreds or thousands of rows.
+- Use the cleaned industry-specific Customer 360 baseline with hundreds or thousands of rows.
 - Use multiple related tables, not a single denormalized table.
 - Upload to Fabric Lakehouse and connect a Data Agent.
-- Run baseline prompts and record weak/variable outputs.
+- Run baseline prompts and record initial quality.
 
 Minimum data domains:
 - Customer entity table
@@ -136,18 +130,12 @@ Minimum data domains:
 - Financial events table
 - Engagement/interactions table
 
-### Step 2 - Cleaned Data
+### Step 2 - Data Agent Configuration Best Practices
 Actions:
-- Clean and standardize Step 1 data.
-- Keep table granularity and key relationships.
-- Repoint Data Agent to cleaned tables.
+- Keep Step 1 data unchanged.
+- Tighten schema scope and table/column selection.
+- Improve source descriptions, example queries, and agent instructions.
 - Re-run the same prompts for like-for-like comparison.
-
-Accepted execution paths:
-- Fabric Notebook
-- Copilot-assisted transformations
-- Manual cleaning
-- Pre-cleaned files in step2/
 
 ### Step 3 - Basic Semantic Model
 Actions:

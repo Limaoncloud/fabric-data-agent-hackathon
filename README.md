@@ -5,8 +5,8 @@
 This repository provides a complete, reusable Microsoft Fabric Data Agent hackathon package.
 
 It demonstrates how answer quality improves across a six-step maturity journey:
-1. Raw multi-table data baseline
-2. Cleaned multi-table data
+1. Cleaned multi-table data baseline
+2. Data agent configuration best practices
 3. Basic semantic model
 4. Optimized semantic model with Prep for AI
 5. Ontology layer
@@ -31,7 +31,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 
 ## Quick Start (30 Minutes)
 
-1. Upload cleaned files from step2 to a Fabric Lakehouse.
+1. Upload cleaned files from step1 to a Fabric Lakehouse.
 2. Create a Data Agent over cleaned tables.
 3. Connect to an optimized semantic model (step4 reference).
 4. Generate and upload Step 6 derived files.
@@ -52,17 +52,11 @@ Deployment details:
 
 ### Data generation and data files
 - step1/generate_step1_data.py
-- step1/step1_raw_customers.csv
-- step1/step1_raw_cases.csv
-- step1/step1_raw_solicitors.csv
-- step1/step1_raw_transactions.csv
-- step1/step1_raw_interactions.csv
-- step2/generate_step2_data.py
-- step2/step2_cleaned_customers.csv
-- step2/step2_cleaned_cases.csv
-- step2/step2_cleaned_solicitors.csv
-- step2/step2_cleaned_transactions.csv
-- step2/step2_cleaned_interactions.csv
+- step1/step1_cleaned_customers.csv
+- step1/step1_cleaned_cases.csv
+- step1/step1_cleaned_solicitors.csv
+- step1/step1_cleaned_transactions.csv
+- step1/step1_cleaned_interactions.csv
 - step6/generate_step6_data.py
 - step6/step6_client_engagement_summary.csv
 - step6/step6_case_finance_insights.csv
@@ -85,16 +79,10 @@ Deployment details:
 
 Prerequisite: Python 3.10+
 
-Generate Step 1 raw data:
+Generate or validate Step 1 cleaned baseline data:
 
 ```powershell
 python step1/generate_step1_data.py
-```
-
-Generate Step 2 cleaned data:
-
-```powershell
-python step2/generate_step2_data.py
 ```
 
 Generate Step 6 derived data sources:

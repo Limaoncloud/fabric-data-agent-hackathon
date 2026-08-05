@@ -127,5 +127,5 @@ By Difficulty:
 
 ================================================================================
 
-Results saved to step2_results.json
+Results saved to step1_results.json
 Ô£ù FAIL: Accuracy < 75%

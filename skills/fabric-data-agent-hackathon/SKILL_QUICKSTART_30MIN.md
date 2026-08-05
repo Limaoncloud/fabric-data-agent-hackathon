@@ -69,12 +69,12 @@ Use one of these prompts in Copilot Chat:
 
 ### 0 to 5 minutes: Load curated data
 1. Create or open a Lakehouse.
-2. Upload cleaned multi-table files from step2/:
-   - step2_cleaned_customers.csv
-   - step2_cleaned_cases.csv
-   - step2_cleaned_solicitors.csv
-   - step2_cleaned_transactions.csv
-   - step2_cleaned_interactions.csv
+2. Upload cleaned multi-table files from step1/:
+  - step1_cleaned_customers.csv
+  - step1_cleaned_cases.csv
+  - step1_cleaned_solicitors.csv
+  - step1_cleaned_transactions.csv
+  - step1_cleaned_interactions.csv
 3. Load each as a table.
 
 Success check:
@@ -156,7 +156,7 @@ UK legal default prompt substitutions:
 3. "Which solicitors are in top performance tier?"
 
 ## Minimal Artifacts Checklist
-- step2 cleaned CSVs loaded
+- step1 cleaned CSVs loaded
 - Optimized semantic model available
 - Step 6 derived CSVs loaded
 - step6_data_agent_configuration.json adapted to workspace names

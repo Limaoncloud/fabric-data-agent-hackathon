@@ -1,6 +1,6 @@
 """
 Generate Step 6 derived datasets for multi-source routing demos.
-Creates additional data sources from Step 2 cleaned tables.
+Creates additional data sources from Step 1 cleaned tables.
 """
 
 import csv
@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-STEP2_DIR = BASE_DIR.parent / "step2"
+STEP1_DIR = BASE_DIR.parent / "step1"
 
 
 def parse_uk_date(value):
@@ -245,10 +245,10 @@ def create_solicitor_performance_mart(cases, transactions, interactions):
 
 
 def main():
-    customers = load_csv(STEP2_DIR / "step2_cleaned_customers.csv")
-    cases = load_csv(STEP2_DIR / "step2_cleaned_cases.csv")
-    transactions = load_csv(STEP2_DIR / "step2_cleaned_transactions.csv")
-    interactions = load_csv(STEP2_DIR / "step2_cleaned_interactions.csv")
+    customers = load_csv(STEP1_DIR / "step1_cleaned_customers.csv")
+    cases = load_csv(STEP1_DIR / "step1_cleaned_cases.csv")
+    transactions = load_csv(STEP1_DIR / "step1_cleaned_transactions.csv")
+    interactions = load_csv(STEP1_DIR / "step1_cleaned_interactions.csv")
 
     engagement_rows = create_engagement_summary(customers, interactions)
     case_finance_rows = create_case_finance_insights(cases, transactions)
