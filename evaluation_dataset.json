@@ -2,14 +2,15 @@
   "metadata": {
     "name": "UK Legal Firm Data Agent Evaluation Dataset",
     "version": "1.0",
-    "description": "Ground truth questions and answers for evaluating data agent accuracy across steps 3-6",
-    "total_queries": 30,
+    "description": "Ground truth questions and answers for evaluating data agent accuracy across steps 1-6, including out-of-scope rejection tests",
+    "total_queries": 31,
     "categories": [
       "customer_count",
       "case_summary",
       "financial_transactions",
       "solicitor_performance",
-      "routing_test"
+      "routing_test",
+      "out_of_scope_rejection"
     ]
   },
   "evaluation_queries": [
@@ -202,7 +203,7 @@
       "question": "What's the total expenses for case CASE005?",
       "category": "financial_transactions",
       "expected_source": "FinancialTransactions",
-      "ground_truth_answer": 250.00,
+      "ground_truth_answer": 250.0,
       "answer_type": "number",
       "answer_unit": "GBP",
       "ground_truth_sql": "SELECT SUM(expense_amount_gbp) FROM FinancialTransactions WHERE case_id = 'CASE005' AND transaction_type = 'Expense'",
@@ -231,7 +232,7 @@
       "question": "What's the total payment received in Q2 2023?",
       "category": "financial_transactions",
       "expected_source": "FinancialTransactions",
-      "ground_truth_answer": 9479.50,
+      "ground_truth_answer": 9479.5,
       "answer_type": "number",
       "answer_unit": "GBP",
       "ground_truth_sql": "SELECT SUM(payment_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Payment' AND payment_date >= '2023-04-01' AND payment_date < '2023-07-01'",
@@ -334,7 +335,11 @@
       "question": "Show me all cases for ACME Corporation",
       "category": "case_summary",
       "expected_source": "ClientCasePortfolio",
-      "ground_truth_answer": ["CASE002", "CASE007", "CASE013"],
+      "ground_truth_answer": [
+        "CASE002",
+        "CASE007",
+        "CASE013"
+      ],
       "answer_type": "list",
       "ground_truth_sql": "SELECT c.case_id FROM Cases c JOIN Customers cu ON c.customer_id = cu.customer_id WHERE cu.customer_name LIKE '%ACME%'",
       "verified_answer_id": null,
@@ -377,7 +382,7 @@
       "question": "What's the total invoiced amount?",
       "category": "financial_transactions",
       "expected_source": "FinancialTransactions",
-      "ground_truth_answer": 84583.00,
+      "ground_truth_answer": 84583.0,
       "answer_type": "number",
       "answer_unit": "GBP",
       "ground_truth_sql": "SELECT SUM(payment_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Invoice'",
@@ -435,7 +440,7 @@
       "question": "What's the total expenses across all cases?",
       "category": "financial_transactions",
       "expected_source": "FinancialTransactions",
-      "ground_truth_answer": 1670.50,
+      "ground_truth_answer": 1670.5,
       "answer_type": "number",
       "answer_unit": "GBP",
       "ground_truth_sql": "SELECT SUM(expense_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Expense'",
@@ -472,6 +477,21 @@
       "tests_routing": true,
       "tests_measure_selection": false,
       "notes": "Tests transaction counting"
+    },
+    {
+      "id": "R001",
+      "question": "What is the weather forecast in London for tomorrow?",
+      "category": "out_of_scope_rejection",
+      "expected_source": null,
+      "ground_truth_answer": "Rejected",
+      "answer_type": "rejection",
+      "expected_behavior": "reject",
+      "rejection_reason": "Out of scope: weather data is not part of the UK legal Customer 360 dataset.",
+      "ground_truth_sql": null,
+      "difficulty": "easy",
+      "tests_routing": false,
+      "tests_measure_selection": false,
+      "notes": "Agent should explicitly refuse and indicate that only legal customer, case, solicitor, transaction, and interaction data are supported."
     }
   ]
 }
