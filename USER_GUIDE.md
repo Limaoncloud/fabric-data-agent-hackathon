@@ -6,8 +6,8 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 2. Configure the data agent with best practices and retest
 3. Build a semantic model and retest
 4. Optimize the semantic model and retest
-5. Add ontology and retest
-6. Add multiple data sources with routing best practices and retest
+5. Bonus: Add ontology and retest
+6. Bonus: Add multiple data sources with routing best practices and retest
 
 ---
 
@@ -43,6 +43,15 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 
 ### Test prompts
 - `TEST_QUERIES.md`
+
+### Verification reference
+- `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)
+
+Validation workflow:
+1. Run the test prompts for the current step.
+2. Record the agent output.
+3. Compare with the expected result for that step in `Verification.xlsx`.
+4. Mark pass/fail and note any mismatch before moving to the next step.
 
 ---
 
@@ -351,7 +360,7 @@ Run the same prompt set and compare with previous steps.
 
 ---
 
-## Step 5: Add Ontology Data, Retest
+## Step 5 (Bonus): Add Ontology Data, Retest
 
 ### Goal
 Add ontology layer for richer entity and relationship understanding.
@@ -379,7 +388,7 @@ Run relationship-heavy prompts:
 
 ---
 
-## Step 6: Add Multiple Data Sources, Apply Routing Best Practices, Retest
+## Step 6 (Bonus): Add Multiple Data Sources, Apply Routing Best Practices, Retest
 
 ### Goal
 Demonstrate that Fabric Data Agent can route questions across multiple sources reliably and improve performance.
@@ -435,8 +444,8 @@ Run prompts that should route to different sources:
 2. Step 2 config best practices: show improved consistency
 3. Step 3 basic model: show structured but imperfect answers
 4. Step 4 optimized model: show major jump
-5. Step 5 ontology: show advanced reasoning
-6. Step 6 multi-source routing: show reliable source selection and better cross-domain answers
+5. Bonus Step 5 ontology: show advanced reasoning
+6. Bonus Step 6 multi-source routing: show reliable source selection and better cross-domain answers
 
 ---
 
@@ -446,8 +455,8 @@ Run prompts that should route to different sources:
 - [ ] Step 2 data agent best-practice configuration applied and prompts rerun
 - [ ] Step 3 basic semantic model published and connected
 - [ ] Step 4 optimized model + Prep for AI configured
-- [ ] Step 5 ontology mapped and agent retested
-- [ ] Step 6 multiple data sources configured with routing best practices and retested
+- [ ] Bonus Step 5 ontology mapped and agent retested
+- [ ] Bonus Step 6 multiple data sources configured with routing best practices and retested
 - [ ] Side-by-side comparison recorded for your demo
 
 ---
