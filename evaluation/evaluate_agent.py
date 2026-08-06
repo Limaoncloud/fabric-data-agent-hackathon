@@ -6,8 +6,8 @@ This script supports two evaluation paths:
 - Official Fabric SDK path: evaluate_data_agent + summary/details retrieval
 
 Usage examples:
-    python evaluate_agent.py --simulation --dataset evaluation_dataset.json --output results.json
-    python evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --output results.json
+    python evaluation/evaluate_agent.py --simulation --dataset evaluation/evaluation_dataset.json --output results.json
+    python evaluation/evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --output results.json
 
 Requirements:
     pip install pandas
@@ -777,7 +777,7 @@ def main():
                        help="Fabric workspace ID")
     parser.add_argument("--agent-id", default="<agent_id>",
                        help="Data agent ID")
-    parser.add_argument("--dataset", default="evaluation_dataset.json",
+    parser.add_argument("--dataset", default="evaluation/evaluation_dataset.json",
                        help="Path to evaluation dataset")
     parser.add_argument("--output", default="evaluation_results.json",
                        help="Path to output results")
@@ -863,3 +863,5 @@ def main():
 if __name__ == "__main__":
     import sys
     sys.exit(main())
+
+

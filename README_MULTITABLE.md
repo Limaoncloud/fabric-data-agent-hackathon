@@ -95,14 +95,14 @@ python step1/generate_step1_data.py
 - `step6/step6_data_agent_configuration.json` - Multi-source agent config
 
 ### Evaluation Files
-- `evaluation_dataset.json` - 30 ground truth queries
-- `evaluate_agent.py` - Python evaluation framework
+- `evaluation/evaluation_dataset.json` - 30 ground truth queries
+- `evaluation/evaluate_agent.py` - Python evaluation framework
 - `step1/step1_results.json` to `step6/step6_results.json` - Evaluation results per step
 - `EVALUATION_COMPARISON.md` - Complete results analysis
 
 ### Documentation
-- `TEST_QUERIES.md` - 30 manual test queries
-- `EVALUATION_GUIDE.md` - How to run evaluation
+- `evaluation/TEST_QUERIES.md` - 30 manual test queries
+- `evaluation/EVALUATION_GUIDE.md` - How to run evaluation
 
 ## The 9 Data Quality Issues (Step 1)
 
@@ -196,8 +196,8 @@ At scale across 2,515 records:
 ```powershell
 # Evaluate each step
 for ($i=1; $i -le 6; $i++) {
-    python evaluate_agent.py `
-        --dataset evaluation_dataset.json `
+    python evaluation/evaluate_agent.py `
+        --dataset evaluation/evaluation_dataset.json `
     --output step${i}/step${i}_results.json `
         --simulation --step $i
 }
@@ -262,8 +262,8 @@ CREATE TABLE Interactions AS SELECT * FROM 'step1/step1_cleaned_interactions.csv
 - Configure data sources, examples, routing rules
 
 ### 5. Test & Evaluate
-- Run 30 test queries from `TEST_QUERIES.md`
-- Use `evaluate_agent.py` for automated testing
+- Run 30 test queries from `evaluation/TEST_QUERIES.md`
+- Use `evaluation/evaluate_agent.py` for automated testing
 - Measure actual accuracy vs. estimated
 
 ## Key Takeaways
@@ -296,5 +296,7 @@ CREATE TABLE Interactions AS SELECT * FROM 'step1/step1_cleaned_interactions.csv
 8. ⬜ Create ontology (Step 5)
 9. ⬜ Configure data agent (Step 6)
 10. ⬜ Present at hackathon! 🚀
+
+
 
 

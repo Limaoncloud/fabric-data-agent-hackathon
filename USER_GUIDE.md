@@ -42,7 +42,7 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 - `step6/generate_step6_data.py`
 
 ### Test prompts
-- `TEST_QUERIES.md`
+- `evaluation/TEST_QUERIES.md`
 
 ### Verification reference
 - `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)
@@ -470,5 +470,6 @@ python step1/generate_step1_data.py
 python step6/generate_step6_data.py
 
 ```
+
 
 

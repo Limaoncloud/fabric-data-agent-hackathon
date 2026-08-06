@@ -4,9 +4,9 @@ This guide explains how to use the evaluation framework to measure actual data a
 
 ## What's Included
 
-1. **evaluation_dataset.json** - 30 ground truth questions with expected answers
-2. **evaluate_agent.py** - Python framework to test and measure accuracy
-3. **TEST_QUERIES.md** - Manual testing guide with expected results
+1. **evaluation/evaluation_dataset.json** - 30 ground truth questions with expected answers
+2. **evaluation/evaluate_agent.py** - Python framework to test and measure accuracy
+3. **evaluation/TEST_QUERIES.md** - Manual testing guide with expected results
 
 ## Why Evaluate?
 
@@ -24,7 +24,7 @@ The demo documentation shows **estimated** accuracy improvements based on Micros
 Test the evaluation framework without connecting to Fabric:
 
 ```bash
-python evaluate_agent.py --simulation --dataset evaluation_dataset.json --output results_simulation.json
+python evaluation/evaluate_agent.py --simulation --dataset evaluation/evaluation_dataset.json --output results_simulation.json
 ```
 
 This will:
@@ -42,13 +42,13 @@ To test against an actual Fabric Data Agent using the Microsoft-recommended work
 pip install -U fabric-data-agent-sdk pandas
 
 # Run SDK-backed evaluation
-python evaluate_agent.py \
+python evaluation/evaluate_agent.py \
   --sdk-mode \
   --agent-id <your_data_agent_name> \
   --workspace-name <optional_workspace_name> \
   --table-name demo_evaluation_output \
   --stage production \
-  --dataset evaluation_dataset.json \
+  --dataset evaluation/evaluation_dataset.json \
   --output results.json \
   --save-official-details-csv
 ```
@@ -65,11 +65,11 @@ What this does:
 Use a stricter or domain-specific evaluator prompt:
 
 ```bash
-python evaluate_agent.py \
+python evaluation/evaluate_agent.py \
   --sdk-mode \
   --agent-id <your_data_agent_name> \
   --table-name demo_evaluation_output \
-  --dataset evaluation_dataset.json \
+  --dataset evaluation/evaluation_dataset.json \
   --output results.json \
   --critic-prompt-file critic_prompt.txt
 ```
@@ -78,7 +78,7 @@ You can also pass inline text with `--critic-prompt`.
 
 ## Understanding the Dataset
 
-### evaluation_dataset.json Structure
+### evaluation/evaluation_dataset.json Structure
 
 ```json
 {
@@ -148,9 +148,9 @@ Percentage of queries that resulted in errors
 
 ```bash
 # Test Step 3 agent
-python evaluate_agent.py \
+python evaluation/evaluate_agent.py \
   --agent-id step3_agent \
-  --dataset evaluation_dataset.json \
+  --dataset evaluation/evaluation_dataset.json \
   --output step3/step3_results.json
 ```
 
@@ -163,9 +163,9 @@ python evaluate_agent.py \
 
 ```bash
 # Test Step 4 agent
-python evaluate_agent.py \
+python evaluation/evaluate_agent.py \
   --agent-id step4_agent \
-  --dataset evaluation_dataset.json \
+  --dataset evaluation/evaluation_dataset.json \
   --output step4/step4_results.json
 ```
 
@@ -179,9 +179,9 @@ python evaluate_agent.py \
 
 ```bash
 # Test Step 6 agent
-python evaluate_agent.py \
+python evaluation/evaluate_agent.py \
   --agent-id step6_agent \
-  --dataset evaluation_dataset.json \
+  --dataset evaluation/evaluation_dataset.json \
   --output step6/step6_results.json
 ```
 
@@ -251,10 +251,10 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use [TEST_QUERIES.md](TEST_QUERIES.md):
+If you prefer manual testing, use [evaluation/TEST_QUERIES.md](evaluation/TEST_QUERIES.md):
 
 1. Open your Data Agent in Fabric
-2. Run each query from TEST_QUERIES.md
+2. Run each query from evaluation/TEST_QUERIES.md
 3. Compare actual answer to ground truth
 4. Record results in the log template
 
@@ -264,7 +264,7 @@ This is more time-consuming but doesn't require code.
 
 ### 1) Simulation mode
 - Fast dry-run for framework validation
-- Command: `python evaluate_agent.py --simulation --step 6 --dataset evaluation_dataset.json --output results.json`
+- Command: `python evaluation/evaluate_agent.py --simulation --step 6 --dataset evaluation/evaluation_dataset.json --output results.json`
 
 ### 2) SDK mode
 - Official Microsoft workflow using Fabric Data Agent SDK
@@ -281,22 +281,22 @@ This is more time-consuming but doesn't require code.
 Create separate agents for Steps 3, 4, and 6, then evaluate each:
 
 ```bash
-python evaluate_agent.py --agent-id step3_agent --output step3/step3_results.json
-python evaluate_agent.py --agent-id step4_agent --output step4/step4_results.json
-python evaluate_agent.py --agent-id step6_agent --output step6/step6_results.json
+python evaluation/evaluate_agent.py --agent-id step3_agent --output step3/step3_results.json
+python evaluation/evaluate_agent.py --agent-id step4_agent --output step4/step4_results.json
+python evaluation/evaluate_agent.py --agent-id step6_agent --output step6/step6_results.json
 ```
 
 ### 2. Run Multiple Times
 Run evaluation 3-5 times and average results (LLMs can be non-deterministic)
 
 ### 3. Add Custom Queries
-Extend `evaluation_dataset.json` with your own domain-specific queries
+Extend `evaluation/evaluation_dataset.json` with your own domain-specific queries
 
 ### 4. Track Over Time
 Save results with timestamps to track improvements:
 
 ```bash
-python evaluate_agent.py --output results_$(date +%Y%m%d_%H%M%S).json
+python evaluation/evaluate_agent.py --output results_$(date +%Y%m%d_%H%M%S).json
 ```
 
 ### 5. Focus on Categories
@@ -349,16 +349,16 @@ Add this to your demo:
 
 ### Presentation Tips
 
-1. Show the evaluation_dataset.json file (ground truth queries)
+1. Show the evaluation/evaluation_dataset.json file (ground truth queries)
 2. Run the evaluation script live (if time permits)
 3. Display the report with actual percentages
 4. Highlight specific query improvements
 
 ## Summary
 
-✅ **evaluation_dataset.json** - 30 ground truth queries  
-✅ **evaluate_agent.py** - Automated testing framework  
-✅ **TEST_QUERIES.md** - Manual testing guide  
+✅ **evaluation/evaluation_dataset.json** - 30 ground truth queries  
+✅ **evaluation/evaluate_agent.py** - Automated testing framework  
+✅ **evaluation/TEST_QUERIES.md** - Manual testing guide  
 ✅ **Measured metrics** replace estimated percentages  
 ✅ **Before/after comparison** proves improvements  
 
@@ -366,4 +366,6 @@ This transforms your demo from "best practices say this works" to "here's proof 
 
 ---
 
-**Need help?** Check the example queries in TEST_QUERIES.md or review the simulation mode output.
+**Need help?** Check the example queries in evaluation/TEST_QUERIES.md or review the simulation mode output.
+
+

@@ -69,10 +69,10 @@ Deployment details:
 - step6/step6_data_agent_configuration.json
 
 ### Evaluation and testing
-- evaluate_agent.py
-- evaluation_dataset.json
-- TEST_QUERIES.md
-- EVALUATION_GUIDE.md
+- evaluation/evaluate_agent.py
+- evaluation/evaluation_dataset.json
+- evaluation/TEST_QUERIES.md
+- evaluation/EVALUATION_GUIDE.md
 - EVALUATION_COMPARISON.md
 
 ## How To Run Local Scripts
@@ -95,7 +95,7 @@ Run simulation evaluation for all steps:
 
 ```powershell
 for ($i=1; $i -le 6; $i++) {
-    python evaluate_agent.py --dataset evaluation_dataset.json --output step${i}/step${i}_results.json --simulation --step $i
+    python evaluation/evaluate_agent.py --dataset evaluation/evaluation_dataset.json --output step${i}/step${i}_results.json --simulation --step $i
 }
 ```
 
@@ -135,3 +135,5 @@ This allows reuse across Retail, Insurance, Banking, Healthcare, Manufacturing, 
 - This repo intentionally focuses on multi-table artifacts for realistic Customer 360 behavior.
 - Keep prompt sets consistent across steps for fair quality comparison.
 - For event delivery, prioritize reproducibility over custom complexity.
+
+

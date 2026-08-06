@@ -109,9 +109,9 @@ Key files used in this demo:
 - step6/step6_client_engagement_summary.csv
 - step6/step6_case_finance_insights.csv
 - step6/step6_solicitor_performance_mart.csv
-- evaluate_agent.py
-- evaluation_dataset.json
-- TEST_QUERIES.md
+- evaluation/evaluate_agent.py
+- evaluation/evaluation_dataset.json
+- evaluation/TEST_QUERIES.md
 - USER_GUIDE.md
 
 ## Authoring Workflow
@@ -192,8 +192,8 @@ References:
 Use the same test prompts across all six steps so quality movement is attributable.
 
 Recommended assets:
-- evaluation_dataset.json
-- evaluate_agent.py
+- evaluation/evaluation_dataset.json
+- evaluation/evaluate_agent.py
 - step1/step1_results.json ... step6/step6_results.json
 
 Evaluation dimensions:
@@ -265,3 +265,4 @@ Industry adaptation add-ons:
 - If a user asks for realism, expand finance and engagement behavior before tuning prompts.
 - If a user asks for event readiness, prioritize deployment reproducibility and clear documentation over additional model complexity.
 - If a user changes industry, keep table roles and evaluation structure constant, and only swap domain lexicon, KPIs, and example prompts.
+

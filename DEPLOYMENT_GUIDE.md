@@ -522,11 +522,11 @@ Try these queries in the Data Agent chat:
 
 ### **Test Each Step**
 
-Use queries from `TEST_QUERIES.md`:
+Use queries from `evaluation/TEST_QUERIES.md`:
 
 ```powershell
 # Load test queries
-$queries = Get-Content TEST_QUERIES.md
+$queries = Get-Content evaluation/TEST_QUERIES.md
 
 # Test each step manually in Fabric
 # Step 1: Query raw data (expect ~47% accuracy)
@@ -539,14 +539,14 @@ $queries = Get-Content TEST_QUERIES.md
 
 ### **Run Automated Evaluation**
 
-Once deployed, update `evaluate_agent.py` with actual IDs:
+Once deployed, update `evaluation/evaluate_agent.py` with actual IDs:
 
 ```powershell
 # Update with your actual workspace and agent IDs
-python evaluate_agent.py `
+python evaluation/evaluate_agent.py `
     --workspace-id "your-workspace-id" `
     --agent-id "your-agent-id" `
-    --dataset evaluation_dataset.json `
+    --dataset evaluation/evaluation_dataset.json `
     --output production_results.json
 
 # Compare to simulation
@@ -715,6 +715,8 @@ If you encounter issues during deployment:
 5. Review Fabric service health status
 
 **Good luck with your demo!** 🎉
+
+
 
 
 
