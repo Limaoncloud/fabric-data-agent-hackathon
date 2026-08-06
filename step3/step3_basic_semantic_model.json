@@ -87,24 +87,6 @@
             "name": "payment_status",
             "dataType": "string",
             "isHidden": false
-          },
-          {
-            "name": "MonthNum",
-            "dataType": "int64",
-            "isHidden": true,
-            "expression": "MONTH([case_start_date])"
-          },
-          {
-            "name": "YearNum",
-            "dataType": "int64",
-            "isHidden": true,
-            "expression": "YEAR([case_start_date])"
-          },
-          {
-            "name": "QtrNum",
-            "dataType": "int64",
-            "isHidden": true,
-            "expression": "QUARTER([case_start_date])"
           }
         ],
         "measures": [
@@ -188,13 +170,13 @@
           },
           {
             "name": "M_01",
-            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), tbl_data[MonthNum] = 1)",
+            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), FILTER(tbl_data, MONTH(tbl_data[case_start_date]) = 1))",
             "formatString": "£#,##0",
             "description": ""
           },
           {
             "name": "M_02",
-            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), tbl_data[MonthNum] = 2)",
+            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), FILTER(tbl_data, MONTH(tbl_data[case_start_date]) = 2))",
             "formatString": "£#,##0",
             "description": ""
           },
@@ -206,7 +188,7 @@
           },
           {
             "name": "Q1_Val",
-            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), tbl_data[QtrNum] = 1)",
+            "expression": "CALCULATE(SUM(tbl_data[case_value_gbp]), FILTER(tbl_data, QUARTER(tbl_data[case_start_date]) = 1))",
             "formatString": "£#,##0",
             "description": ""
           }

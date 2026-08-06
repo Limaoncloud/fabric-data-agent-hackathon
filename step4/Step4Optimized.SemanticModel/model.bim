@@ -114,6 +114,21 @@
             "formatString": "0.0%",
             "description": "Percentage of cases that have been completed (have a completion date). Use for productivity, efficiency, or throughput questions"
           }
+        ],
+        "partitions": [
+          {
+            "name": "Cases",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #table(type table [case_id = text, customer_id = text, case_type = text, case_value_gbp = Int64.Type, case_start_date = datetime, case_completion_date = datetime, assigned_solicitor_name = text, high_value_case_flag = text, payment_status = text], {}),",
+                "in",
+                "    Source"
+              ]
+            }
+          }
         ]
       },
       {
@@ -194,6 +209,21 @@
             "formatString": "#,##0",
             "description": "Count of individual person customers. Use for consumer clients or B2C questions. Synonyms: personal clients, individual clients"
           }
+        ],
+        "partitions": [
+          {
+            "name": "Customers",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #table(type table [customer_id = text, customer_name = text, customer_type = text, customer_address = text, customer_postcode = text, customer_phone = text, customer_email = text, customer_status = text], {}),",
+                "in",
+                "    Source"
+              ]
+            }
+          }
         ]
       }
     ],
@@ -214,163 +244,5 @@
         "value": "Legal Services"
       }
     ]
-  },
-  "prepForAI": {
-    "configured": true,
-    "aiDataSchema": {
-      "description": "AI Data Schema configured to focus on the most relevant tables, columns, and measures for common business questions",
-      "selectedTables": [
-        {
-          "tableName": "Cases",
-          "selectedColumns": [
-            "case_id",
-            "customer_id",
-            "case_type",
-            "case_value_gbp",
-            "case_start_date",
-            "case_completion_date",
-            "assigned_solicitor_name",
-            "high_value_case_flag",
-            "payment_status"
-          ],
-          "selectedMeasures": [
-            "Total Case Value",
-            "Average Case Value",
-            "Number of Cases",
-            "Number of Active Cases",
-            "Pending Payment Value",
-            "Overdue Payment Value",
-            "High Value Cases Count",
-            "Case Completion Rate"
-          ]
-        },
-        {
-          "tableName": "Customers",
-          "selectedColumns": [
-            "customer_id",
-            "customer_name",
-            "customer_type",
-            "customer_status",
-            "customer_postcode"
-          ],
-          "selectedMeasures": [
-            "Number of Customers",
-            "Number of Active Customers",
-            "Number of Corporate Customers",
-            "Number of Individual Customers"
-          ]
-        }
-      ]
-    },
-    "verifiedAnswers": [
-      {
-        "id": "VA001",
-        "triggerQuestions": [
-          "What is the total value of all cases?",
-          "Show me total case value",
-          "What's our total revenue?",
-          "How much total billing do we have?",
-          "What's the total worth of our case portfolio?"
-        ],
-        "visualMetadata": {
-          "visualType": "card",
-          "measures": ["Total Case Value"],
-          "columns": [],
-          "filters": []
-        },
-        "description": "Returns the total value of all cases in GBP"
-      },
-      {
-        "id": "VA002",
-        "triggerQuestions": [
-          "Show me case value by case type",
-          "What's the breakdown of revenue by practice area?",
-          "Which case types generate the most revenue?",
-          "How do case types compare by value?",
-          "Show me revenue by legal service type"
-        ],
-        "visualMetadata": {
-          "visualType": "barChart",
-          "measures": ["Total Case Value"],
-          "columns": ["Cases[case_type]"],
-          "filters": [],
-          "sortBy": "Total Case Value",
-          "sortOrder": "descending"
-        },
-        "description": "Shows total case value grouped by case type, sorted by value descending"
-      },
-      {
-        "id": "VA003",
-        "triggerQuestions": [
-          "Who are our top solicitors by case value?",
-          "Show me solicitors ranked by revenue",
-          "Which lawyers handle the most valuable cases?",
-          "Top solicitors by billing",
-          "Show me solicitor performance by case value"
-        ],
-        "visualMetadata": {
-          "visualType": "table",
-          "measures": ["Total Case Value", "Number of Cases", "Average Case Value"],
-          "columns": ["Cases[assigned_solicitor_name]"],
-          "filters": [],
-          "sortBy": "Total Case Value",
-          "sortOrder": "descending",
-          "topN": 10
-        },
-        "description": "Shows solicitors with their total case value, case count, and average case value"
-      },
-      {
-        "id": "VA004",
-        "triggerQuestions": [
-          "How many active customers do we have?",
-          "Show me active client count",
-          "What's our current active client base?",
-          "Number of active clients",
-          "How many customers are currently active?"
-        ],
-        "visualMetadata": {
-          "visualType": "card",
-          "measures": ["Number of Active Customers"],
-          "columns": [],
-          "filters": []
-        },
-        "description": "Returns count of customers with Active status"
-      },
-      {
-        "id": "VA005",
-        "triggerQuestions": [
-          "What's the value of overdue payments?",
-          "Show me overdue case value",
-          "How much money is overdue?",
-          "What's our overdue receivables?",
-          "Total value of late payments"
-        ],
-        "visualMetadata": {
-          "visualType": "card",
-          "measures": ["Overdue Payment Value"],
-          "columns": [],
-          "filters": []
-        },
-        "description": "Returns total value of cases with Overdue payment status"
-      },
-      {
-        "id": "VA006",
-        "triggerQuestions": [
-          "Show me cases by customer type",
-          "Compare corporate vs individual clients",
-          "What's the breakdown between business and personal clients?",
-          "How do corporate and individual customers compare?",
-          "Show me customer type analysis"
-        ],
-        "visualMetadata": {
-          "visualType": "pieChart",
-          "measures": ["Number of Cases", "Total Case Value"],
-          "columns": ["Customers[customer_type]"],
-          "filters": []
-        },
-        "description": "Shows case count and value split by Individual vs Corporate customers"
-      }
-    ],
-    "aiInstructions": "## Business Context and Terminology\n\n**Fiscal Year vs Calendar Year:**\n- When users ask about \"this year\", \"YTD\", or annual figures, use calendar year (January to December) unless explicitly asked for fiscal year.\n- The firm follows a calendar year for financial reporting.\n- When analyzing trends, use case_start_date as the primary date field unless the user specifically asks about completion dates.\n\n**High Value Cases:**\n- A \"high value case\" is defined as any case with a value of £50,000 or greater.\n- Use the high_value_case_flag field or filter case_value_gbp >= 50000.\n- Synonyms: strategic cases, major matters, large cases.\n\n**Customer Types:**\n- \"Individual\" refers to personal clients (consumers, individuals).\n- \"Corporate\" refers to business clients (companies, corporations, organizations).\n- Synonyms for Individual: personal clients, B2C, consumers, people.\n- Synonyms for Corporate: business clients, B2B, companies, organizations, enterprises.\n\n**Case Types (Practice Areas):**\n- Conveyancing: property transactions, real estate law.\n- Corporate Law: business law, mergers, acquisitions, company law.\n- Family Law: divorce, custody, matrimonial matters.\n- Litigation: disputes, court cases, legal disputes.\n- Employment Law: workplace law, employment disputes, HR legal matters.\n- Wills and Probate: estate planning, inheritance, probate matters.\n- Commercial Property: business real estate, commercial leasing, property development.\n- Personal Injury: accident claims, injury compensation.\n- Immigration Law: visa applications, citizenship, immigration matters.\n- Intellectual Property: IP rights, patents, trademarks, copyright.\n\n**Payment Status Definitions:**\n- \"Paid\": Invoice fully settled, payment received in full.\n- \"Pending\": Invoice sent, awaiting payment, not yet received.\n- \"Overdue\": Payment past the due date, requires follow-up.\n- \"Closed\": Case completed and payment fully settled, case file closed.\n\n**Default Analysis Preferences:**\n- When asked about \"revenue\" or \"fees\", use the \"Total Case Value\" measure.\n- When asked about \"caseload\" or \"workload\", use the \"Number of Cases\" measure.\n- When asked about \"solicitor performance\", show both case count and total case value.\n- When comparing time periods, use case_start_date unless specifically asked about completion.\n- For \"top solicitors\" questions, sort by Total Case Value descending.\n- For \"overdue\" or \"collections\" questions, filter by payment_status = \"Overdue\".\n\n**Common Question Patterns:**\n- \"Who is our biggest client?\" → Customer with highest Total Case Value\n- \"What's our most common case type?\" → Case type with highest Number of Cases\n- \"Show me pending work\" → Cases where payment_status = \"Pending\" OR case_completion_date is blank\n- \"Active cases\" → Cases where case_completion_date is blank OR payment_status NOT IN (\"Closed\")\n\n**Data Quality Notes:**\n- Some cases may have blank case_completion_date indicating they are still ongoing.\n- Some customer addresses, phones, or emails may be blank - this is acceptable.\n- All financial values are in British Pounds (GBP).\n\n## Query Generation Guidance\n\n**When users ask about time periods:**\n- \"This month\" → Filter case_start_date to current month\n- \"Last quarter\" → Filter case_start_date to previous calendar quarter\n- \"This year\" or \"YTD\" → Filter case_start_date from January 1 to today\n\n**When users ask about specific solicitors:**\n- Match assigned_solicitor_name using LIKE or exact match.\n- Names in the system: Sarah Jones, Robert Smith, Michael Brown.\n\n**When users ask about geographic analysis:**\n- Use customer_postcode for regional analysis.\n- Extract first characters of postcode for area-level grouping (e.g., SW for Southwest London).\n\n**Metric Preferences:**\n- For profitability questions, use \"Total Case Value\" (note: this is revenue, not profit).\n- For workload/capacity questions, use \"Number of Cases\" or \"Number of Active Cases\".\n- For efficiency questions, use \"Case Completion Rate\" or \"Average Case Value\"."
   }
 }

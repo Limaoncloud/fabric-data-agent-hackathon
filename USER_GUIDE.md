@@ -30,8 +30,8 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 - `step1/step1_cleaned_interactions.csv`
 
 ### Step 3 to 6 model/config files
-- `step3/step3_basic_semantic_model.json`
-- `step4/step4_optimized_semantic_model.json`
+- `step3/LegalFirmBasic Direct Lake Instructions.docx` (manual Power BI Service build guide)
+- `step4/LegalFirmOptimized Direct Lake Instructions.docx` (manual Power BI Service optimization guide)
 - `step5/step5_ontology_definition.json`
 - `step6/step6_data_agent_configuration.json`
 
@@ -71,6 +71,10 @@ Try 5 prompts:
 - "How many unpaid invoices?"
 - "Which solicitor handles most cases?"
 
+Also test these advanced prompts:
+- "Find count of customers with no interactions in the last 60 days but with unpaid"
+- "Calculate unpaid invoice ratio by case type: unpaid invoice count divided by total invoices."
+
 ### Expected
 - Better than raw-data quality, but still room to improve
 - Some ambiguity on source usage and answer style
@@ -101,33 +105,10 @@ Improve response consistency and quality by configuring the data agent using Mic
 ### Step 2 Examples You Can Reuse
 
 #### A) Business Terms To Define Explicitly
-Use this as a starter glossary in the agent instructions:
-
-- Active customer: customer where `status = Active`
-- Open case: case where `case_status = Open`
-- High-value case: case where `case_value_gbp >= 100000`
-- Unpaid invoice: transaction where `transaction_type = Invoice` and `payment_status = Unpaid`
-- Overdue invoice: unpaid invoice where `transaction_date` is older than 30 days
-- Revenue: sum of `amount_gbp` where `transaction_type = Invoice`
-- Payment collected: sum of `amount_gbp` where `transaction_type = Payment`
-- Billed hours: sum of `hours_worked` where `transaction_type = Timesheet`
-- Outstanding amount: `Revenue - Payment collected`
+Use this compact glossary in agent instructions (keep as one block): Active customer = `status='Active'`; Open case = `case_status='Open'`; High-value case = `case_value_gbp>=100000`; Unpaid invoice = `transaction_type='Invoice' AND payment_status='Unpaid'`; Overdue invoice = unpaid invoice older than 30 days; Revenue = sum(`amount_gbp`) for invoices; Payment collected = sum(`amount_gbp`) for payments; Billed hours = sum(`hours_worked`) for timesheets; Outstanding = Revenue - Payment collected.
 
 #### B) Abbreviations And Synonyms
-Add canonical mappings so the agent normalizes user language before query generation.
-
-| User term | Canonical meaning |
-|---|---|
-| client | customer |
-| matter | case |
-| fee earner | solicitor |
-| WIP | work in progress, open case effort |
-| AR | accounts receivable, unpaid invoices |
-| billed | invoice amount |
-| collected | payment amount |
-| top lawyer | solicitor with highest selected KPI |
-| open matters | open cases |
-| meetings/calls/touchpoints | interactions |
+Use these canonical mappings: client->customer; matter->case; fee earner->solicitor; WIP->open case effort; AR->unpaid invoices; billed->invoice amount; collected->payment amount; top lawyer->solicitor with highest selected KPI; open matters->open cases; meetings/calls/touchpoints->interactions.
 
 #### C) Clear Focused Instruction For The Data Agent
 Copy-paste and adapt this block:
@@ -157,19 +138,7 @@ Response style:
 - Keep responses concise and evidence-based.
 ```
 
-#### D) Example Queries That Express Complex Logic
-Use these as few-shot examples in Step 2 so the agent learns multi-condition logic:
-
-- "Show open high-value cases where outstanding amount is above 25000, grouped by solicitor."
-- "Among corporate customers, list those with more than 3 open cases and at least 1 overdue invoice."
-- "For each solicitor, compare billed hours vs collected payments in the last 90 days and flag negative gap."
-- "Find customers with no interactions in the last 60 days but with unpaid invoices over 10000."
-- "Return top 10 customers by total case value where at least one case is still open and unpaid invoices exist."
-- "Calculate unpaid invoice ratio by case type: unpaid invoice count divided by total invoices."
-- "Show cases opened this quarter that have zero payments but more than 20 billed hours."
-- "List solicitors handling both high-value open cases and customers marked Inactive."
-
-#### E) SQL Query Examples To Answer Questions
+#### D) SQL Query Examples To Answer Questions
 Use these SQL examples as the expected logic behind common business questions.
 
 1. How many active customers do we have?
@@ -312,7 +281,7 @@ ORDER BY c.case_value_gbp DESC;
 ```
 
 ### Test
-Run the same 5 prompts from Step 1 and compare quality.
+Run the same 7 prompts from Step 1 and compare quality.
 
 Add 3 to 5 complex prompts from section D above and compare:
 - consistency of terminology mapping
@@ -332,21 +301,18 @@ Optional validation:
 ## Step 3: Build Basic Semantic Model, Retest
 
 ### Goal
-Add a semantic model (basic, non-optimized) and see behavior.
+Create a new Data Agent that uses a basic semantic model (non-optimized) as its data source, then observe behavior.
 
 ### Actions
-1. Choose one option:
-   - Manually create a basic semantic model in Power BI Desktop.
-   - Use the already built raw semantic model file: `step3/step3_basic_semantic_model.json`.
-2. If creating manually, connect to cleaned Lakehouse tables and build a basic model (minimal relationships, basic measures).
+1. For manual creation in **Power BI Service**, follow the Word guide: `step3/LegalFirmBasic Direct Lake Instructions.docx`.
+2. In Power BI Service, connect to cleaned Lakehouse tables and build a basic model (minimal relationships, basic measures).
 3. Publish the semantic model to your Fabric workspace.
-4. Configure the agent to use this semantic model.
-5. Keep test prompts unchanged from Steps 1 and 2.
+4. Create a **new Data Agent** for Step 3 (do not reuse Step 1/Step 2 agent).
+5. In the new agent, add the **published basic semantic model** as the data source.
+6. Keep test prompts unchanged from Steps 1 and 2.
 
 ### Test
-Run the same prompts plus:
-- "Show case value by case type"
-- "Show top 5 customers by total case value"
+Run the same prompts 
 
 ### Expected
 - Some improvement in structure-based queries
@@ -363,7 +329,7 @@ Apply best practices and validate major accuracy improvement.
 - You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
 - You can also use any tools listed in Microsoft Learn here:
    [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- A ready optimized model exists in the repo at `step4/step4_optimized_semantic_model.json`, but it is recommended to try building/optimizing your own model first.
+- For manual optimization in **Power BI Service**, follow: `step4/LegalFirmOptimized Direct Lake Instructions.docx`.
 
 ### Actions
 1. Improve model design to a clean star schema.

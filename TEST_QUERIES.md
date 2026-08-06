@@ -283,6 +283,32 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ---
 
+## Category 8: Collections / Unpaid Risk Queries
+
+### Q31: "Find count of customers with no interactions in the last 60 days but with unpaid"
+**Expected Sources:** Both (ClientCasePortfolio + FinancialTransactions)  
+**Expected Behavior:**
+1. Identify unpaid customers from FinancialTransactions (invoice exists, no matching payment)
+2. Identify latest interaction date per customer (from transaction_date and/or case activity date)
+3. Filter customers whose latest interaction is older than 60 days
+4. Return distinct customer count
+**Expected Query Pattern:** `SELECT COUNT(DISTINCT u.customer_id) FROM unpaid_customers u JOIN customer_last_interaction i ON u.customer_id = i.customer_id WHERE i.last_interaction_date < DATEADD(day, -60, CURRENT_DATE)`  
+**Expected Answer:** Count of at-risk customers with unpaid balances and stale engagement
+
+---
+
+### Q32: "Calculate unpaid invoice ratio by case type: unpaid invoice count divided by total invoices."
+**Expected Sources:** Both (ClientCasePortfolio + FinancialTransactions)  
+**Expected Behavior:**
+1. Join invoices to cases via case_id
+2. For each case_type, compute total invoices
+3. For each case_type, compute unpaid invoices (no matching payment)
+4. Return ratio = unpaid_invoice_count / total_invoice_count
+**Expected Query Pattern:** `SELECT c.case_type, SUM(CASE WHEN p.invoice_number IS NULL THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS unpaid_invoice_ratio FROM FinancialTransactions i JOIN Cases c ON i.case_id = c.case_id LEFT JOIN FinancialTransactions p ON p.invoice_number = i.invoice_number AND p.transaction_type = 'Payment' WHERE i.transaction_type = 'Invoice' GROUP BY c.case_type`  
+**Expected Answer:** Case type level unpaid invoice ratio, highest risk case types at top
+
+---
+
 ## Testing Checklist
 
 ### Step 3 Testing (Basic Model)
