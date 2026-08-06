@@ -21,7 +21,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q1: "How many active customers do we have?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT COUNT(DISTINCT customer_id) FROM Customers WHERE customer_status = 'Active'`  
+**Expected Query:** `SELECT COUNT(DISTINCT customer_id) FROM step1_cleaned_customers WHERE status = 'Active'`  
 **Expected Answer:** ~15 active customers  
 **Measure Used:** Number of Active Customers  
 **Verified Answer:** VA004
@@ -30,16 +30,16 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q2: "Show me all corporate clients"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT customer_id, customer_name FROM Customers WHERE customer_type = 'Corporate'`  
-**Expected Answer:** List of corporate customers (ACME Corporation, TechStart Ltd, BuildRight Construction, etc.)  
+**Expected Query:** `SELECT customer_id, customer_name FROM step1_cleaned_customers WHERE customer_type = 'Corporate'`  
+**Expected Answer:** List of corporate customers from `step1_cleaned_customers`  
 **Measure Used:** Number of Corporate Customers
 
 ---
 
 ### Q3: "Which clients are in London?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT customer_name, customer_postcode FROM Customers WHERE customer_postcode LIKE 'SW%' OR customer_postcode LIKE 'EC%' OR customer_postcode LIKE 'W1%'`  
-**Expected Answer:** Clients with London postcodes (SW, EC, W1, etc.)
+**Expected Query:** `SELECT customer_name, city FROM step1_cleaned_customers WHERE city = 'London'`  
+**Expected Answer:** Clients with city = London
 
 ---
 
@@ -48,7 +48,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q4: "What case types do we handle?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT DISTINCT case_type, COUNT(*) FROM Cases GROUP BY case_type ORDER BY COUNT(*) DESC`  
+**Expected Query:** `SELECT case_type, COUNT(*) FROM step1_cleaned_cases GROUP BY case_type ORDER BY COUNT(*) DESC`  
 **Expected Answer:** List of case types (Conveyancing, Corporate Law, Family Law, etc.)  
 **Example Query Match:** Example #3 in ClientCasePortfolio
 
@@ -56,7 +56,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q5: "Show me all cases assigned to Sarah Jones"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT case_id, case_type, case_value_gbp, payment_status FROM Cases WHERE assigned_solicitor_name = 'Sarah Jones'`  
+**Expected Query:** `SELECT case_id, case_type, case_value_gbp, case_status FROM step1_cleaned_cases WHERE solicitor_name = 'Sarah Jones'`  
 **Expected Answer:** List of Sarah Jones' cases  
 **Example Query Match:** Example #2 in ClientCasePortfolio
 
@@ -73,15 +73,15 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q7: "Which clients have high-value cases?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT DISTINCT c.customer_name FROM Customers c JOIN Cases cs ON c.customer_id = cs.customer_id WHERE cs.high_value_case_flag = 'Yes'`  
-**Expected Answer:** ACME Corporation, Heritage Properties Group, etc.  
+**Expected Query:** `SELECT DISTINCT c.customer_name FROM step1_cleaned_customers c JOIN step1_cleaned_cases cs ON c.customer_id = cs.customer_id WHERE cs.case_value_gbp >= 100000`  
+**Expected Answer:** Customers linked to cases where `case_value_gbp >= 100000`  
 **Example Query Match:** Example #4 in ClientCasePortfolio
 
 ---
 
 ### Q8: "How many cases were started in Q1 2023?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT COUNT(*) FROM Cases WHERE case_start_date >= '2023-01-01' AND case_start_date < '2023-04-01'`  
+**Expected Query:** `SELECT COUNT(*) FROM step1_cleaned_cases WHERE TRY_CONVERT(date, start_date, 103) >= '2023-01-01' AND TRY_CONVERT(date, start_date, 103) < '2023-04-01'`  
 **Expected Answer:** Count of cases in Q1 2023  
 **Example Query Match:** Example #5 in ClientCasePortfolio
 
@@ -97,7 +97,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q10: "What cases have payment status overdue?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT case_id, customer_id, case_value_gbp FROM Cases WHERE payment_status = 'Overdue'`  
+**Expected Query:** `SELECT DISTINCT c.case_id, c.customer_id, c.case_value_gbp FROM step1_cleaned_cases c JOIN step1_cleaned_transactions t ON c.case_id = t.case_id WHERE t.transaction_type = 'Invoice' AND t.payment_status = 'Overdue'`  
 **Expected Answer:** List of overdue cases  
 **Measure Used:** Overdue Payment Value
 
@@ -108,7 +108,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q11: "How many hours did Sarah Jones bill in March 2023?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT SUM(hours_worked) FROM FinancialTransactions WHERE solicitor_name = 'Sarah Jones' AND transaction_type = 'Timesheet' AND transaction_date >= '2023-03-01' AND transaction_date < '2023-04-01'`  
+**Expected Query:** `SELECT SUM(t.hours_worked) FROM step1_cleaned_transactions t JOIN step1_cleaned_cases c ON t.case_id = c.case_id WHERE c.solicitor_name = 'Sarah Jones' AND t.transaction_type = 'Timesheet' AND TRY_CONVERT(date, t.transaction_date, 103) >= '2023-03-01' AND TRY_CONVERT(date, t.transaction_date, 103) < '2023-04-01'`  
 **Expected Answer:** Sum of hours (e.g., 14.5 hours)  
 **Example Query Match:** Example #1 in FinancialTransactions
 
@@ -116,7 +116,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q12: "What's the total of all expenses for case CASE005?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT SUM(expense_amount_gbp) FROM FinancialTransactions WHERE case_id = 'CASE005' AND transaction_type = 'Expense'`  
+**Expected Query:** `SELECT SUM(amount_gbp) FROM step1_cleaned_transactions WHERE case_id = 'CASE005' AND transaction_type = 'Expense'`  
 **Expected Answer:** £250.00  
 **Example Query Match:** Example #2 in FinancialTransactions
 
@@ -124,15 +124,15 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q13: "Show me all unpaid invoices"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT DISTINCT invoice_number, payment_amount_gbp, customer_id FROM FinancialTransactions WHERE transaction_type = 'Invoice' AND invoice_number NOT IN (SELECT invoice_number FROM FinancialTransactions WHERE transaction_type = 'Payment')`  
-**Expected Answer:** List of invoices without corresponding payment records  
+**Expected Query:** `SELECT transaction_id, case_id, amount_gbp, payment_status FROM step1_cleaned_transactions WHERE transaction_type = 'Invoice' AND payment_status = 'Unpaid'`  
+**Expected Answer:** List of unpaid invoice transactions  
 **Example Query Match:** Example #3 in FinancialTransactions (Exact)
 
 ---
 
 ### Q14: "What's Robert Smith's hourly rate?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT DISTINCT hourly_rate_gbp FROM FinancialTransactions WHERE solicitor_name = 'Robert Smith' AND transaction_type = 'Timesheet'`  
+**Expected Query:** `SELECT hourly_rate_gbp FROM step1_cleaned_solicitors WHERE solicitor_name = 'Robert Smith'`  
 **Expected Answer:** £350  
 **Example Query Match:** Example #4 in FinancialTransactions
 
@@ -140,7 +140,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q15: "How much total payment did we receive in Q2 2023?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT SUM(payment_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Payment' AND payment_date >= '2023-04-01' AND payment_date < '2023-07-01'`  
+**Expected Query:** `SELECT SUM(amount_gbp) FROM step1_cleaned_transactions WHERE transaction_type = 'Payment' AND TRY_CONVERT(date, transaction_date, 103) >= '2023-04-01' AND TRY_CONVERT(date, transaction_date, 103) < '2023-07-01'`  
 **Expected Answer:** Sum of Q2 payments  
 **Example Query Match:** Example #5 in FinancialTransactions
 
@@ -148,14 +148,14 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q16: "What expenses were incurred on CASE011?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT transaction_date, description, expense_amount_gbp FROM FinancialTransactions WHERE case_id = 'CASE011' AND transaction_type = 'Expense'`  
+**Expected Query:** `SELECT transaction_date, amount_gbp, payment_status FROM step1_cleaned_transactions WHERE case_id = 'CASE011' AND transaction_type = 'Expense'`  
 **Expected Answer:** £125.00 for document certification
 
 ---
 
 ### Q17: "Show me all timesheets for February 2023"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT solicitor_name, hours_worked, hourly_rate_gbp FROM FinancialTransactions WHERE transaction_type = 'Timesheet' AND transaction_date >= '2023-02-01' AND transaction_date < '2023-03-01'`  
+**Expected Query:** `SELECT c.solicitor_name, t.hours_worked, s.hourly_rate_gbp FROM step1_cleaned_transactions t JOIN step1_cleaned_cases c ON t.case_id = c.case_id LEFT JOIN step1_cleaned_solicitors s ON c.solicitor_name = s.solicitor_name WHERE t.transaction_type = 'Timesheet' AND TRY_CONVERT(date, t.transaction_date, 103) >= '2023-02-01' AND TRY_CONVERT(date, t.transaction_date, 103) < '2023-03-01'`  
 **Expected Answer:** List of timesheet entries for February
 
 ---
@@ -173,14 +173,14 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q19: "Show me each solicitor's caseload"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT assigned_solicitor_name, COUNT(*) as case_count FROM Cases GROUP BY assigned_solicitor_name`  
+**Expected Query:** `SELECT solicitor_name, COUNT(*) as case_count FROM step1_cleaned_cases GROUP BY solicitor_name`  
 **Expected Answer:** Sarah Jones: X cases, Robert Smith: Y cases, Michael Brown: Z cases
 
 ---
 
 ### Q20: "How many hours did each solicitor bill last month?"
 **Expected Source:** FinancialTransactions  
-**Expected Query:** `SELECT solicitor_name, SUM(hours_worked) FROM FinancialTransactions WHERE transaction_type = 'Timesheet' AND transaction_date >= [last_month_start] GROUP BY solicitor_name`  
+**Expected Query:** `SELECT c.solicitor_name, SUM(t.hours_worked) FROM step1_cleaned_transactions t JOIN step1_cleaned_cases c ON t.case_id = c.case_id WHERE t.transaction_type = 'Timesheet' AND TRY_CONVERT(date, t.transaction_date, 103) >= [last_month_start] GROUP BY c.solicitor_name`  
 **Expected Answer:** Total hours by solicitor
 
 ---
@@ -262,24 +262,24 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q28: "What's our YTD revenue?"
 **Expected Source:** ClientCasePortfolio or FinancialTransactions (depends on definition of "revenue")  
-**Expected Query (Cases):** `SELECT SUM(case_value_gbp) FROM Cases WHERE case_start_date >= '2023-01-01'`  
-**Expected Query (Invoices):** `SELECT SUM(payment_amount_gbp) FROM FinancialTransactions WHERE transaction_type = 'Invoice' AND transaction_date >= '2023-01-01'`  
+**Expected Query (Cases):** `SELECT SUM(case_value_gbp) FROM step1_cleaned_cases WHERE TRY_CONVERT(date, start_date, 103) >= '2023-01-01'`  
+**Expected Query (Invoices):** `SELECT SUM(amount_gbp) FROM step1_cleaned_transactions WHERE transaction_type = 'Invoice' AND TRY_CONVERT(date, transaction_date, 103) >= '2023-01-01'`  
 **Expected Answer:** Total case value or invoiced amount YTD
 
 ---
 
 ### Q29: "How many cases were completed in July 2023?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** `SELECT COUNT(*) FROM Cases WHERE case_completion_date >= '2023-07-01' AND case_completion_date < '2023-08-01'`  
-**Expected Answer:** Count of completed cases in July
+**Expected Query:** `SELECT COUNT(*) FROM step1_cleaned_cases WHERE case_status = 'Closed' AND TRY_CONVERT(date, start_date, 103) >= '2023-07-01' AND TRY_CONVERT(date, start_date, 103) < '2023-08-01'`  
+**Expected Answer:** Count of closed cases with July 2023 start date
 
 ---
 
 ### Q30: "What's our case completion rate?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** DAX: `Case Completion Rate`  
-**Expected Answer:** Percentage of cases with completion dates  
-**Measure Used:** Case Completion Rate
+**Expected Query:** `SELECT CAST(SUM(CASE WHEN case_status = 'Closed' THEN 1 ELSE 0 END) AS float) / NULLIF(COUNT(*), 0) FROM step1_cleaned_cases`  
+**Expected Answer:** Percentage of cases with status = Closed  
+**Measure Used:** Closed cases / total cases
 
 ---
 
@@ -292,7 +292,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 2. Identify latest interaction date per customer (from transaction_date and/or case activity date)
 3. Filter customers whose latest interaction is older than 60 days
 4. Return distinct customer count
-**Expected Query Pattern:** `SELECT COUNT(DISTINCT u.customer_id) FROM unpaid_customers u JOIN customer_last_interaction i ON u.customer_id = i.customer_id WHERE i.last_interaction_date < DATEADD(day, -60, CURRENT_DATE)`  
+**Expected Query Pattern:** `WITH unpaid_customers AS (SELECT DISTINCT c.customer_id FROM step1_cleaned_transactions t JOIN step1_cleaned_cases c ON t.case_id = c.case_id WHERE t.transaction_type = 'Invoice' AND t.payment_status = 'Unpaid'), customer_last_interaction AS (SELECT customer_id, MAX(TRY_CONVERT(date, interaction_date, 103)) AS last_interaction_date FROM step1_cleaned_interactions GROUP BY customer_id) SELECT COUNT(DISTINCT u.customer_id) FROM unpaid_customers u JOIN customer_last_interaction i ON u.customer_id = i.customer_id WHERE i.last_interaction_date < DATEADD(day, -60, CAST(GETDATE() AS date))`  
 **Expected Answer:** Count of at-risk customers with unpaid balances and stale engagement
 
 ---
@@ -302,9 +302,9 @@ This file contains test queries to validate each step of the demo and demonstrat
 **Expected Behavior:**
 1. Join invoices to cases via case_id
 2. For each case_type, compute total invoices
-3. For each case_type, compute unpaid invoices (no matching payment)
+3. For each case_type, compute unpaid invoices (`payment_status = 'Unpaid'`)
 4. Return ratio = unpaid_invoice_count / total_invoice_count
-**Expected Query Pattern:** `SELECT c.case_type, SUM(CASE WHEN p.invoice_number IS NULL THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS unpaid_invoice_ratio FROM FinancialTransactions i JOIN Cases c ON i.case_id = c.case_id LEFT JOIN FinancialTransactions p ON p.invoice_number = i.invoice_number AND p.transaction_type = 'Payment' WHERE i.transaction_type = 'Invoice' GROUP BY c.case_type`  
+**Expected Query Pattern:** `SELECT c.case_type, SUM(CASE WHEN t.payment_status = 'Unpaid' THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS unpaid_invoice_ratio FROM step1_cleaned_transactions t JOIN step1_cleaned_cases c ON t.case_id = c.case_id WHERE t.transaction_type = 'Invoice' GROUP BY c.case_type`  
 **Expected Answer:** Case type level unpaid invoice ratio, highest risk case types at top
 
 ---
