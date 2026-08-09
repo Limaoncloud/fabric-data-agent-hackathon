@@ -64,7 +64,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q6: "What's the total value of all cases?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** DAX: `Total Case Value`  
+**Expected Query:** `SELECT SUM(case_value_gbp) AS total_case_value_gbp FROM step1_cleaned_cases`  
 **Expected Answer:** ~£1,085,200  
 **Measure Used:** Total Case Value  
 **Verified Answer:** VA001 (Exact Match)
@@ -89,7 +89,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q9: "Show me case value by case type"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** DAX: `Total Case Value` grouped by `case_type`  
+**Expected Query:** `SELECT case_type, SUM(case_value_gbp) AS total_case_value_gbp FROM step1_cleaned_cases GROUP BY case_type ORDER BY total_case_value_gbp DESC`  
 **Expected Answer:** Bar chart or table with case types and values  
 **Verified Answer:** VA002 (Exact Match)
 
@@ -164,7 +164,7 @@ This file contains test queries to validate each step of the demo and demonstrat
 
 ### Q18: "Who are our top solicitors by case value?"
 **Expected Source:** ClientCasePortfolio  
-**Expected Query:** DAX with grouping by solicitor  
+**Expected Query:** `SELECT solicitor_name, SUM(case_value_gbp) AS total_case_value_gbp, COUNT(*) AS case_count, AVG(case_value_gbp) AS avg_case_value_gbp FROM step1_cleaned_cases GROUP BY solicitor_name ORDER BY total_case_value_gbp DESC`  
 **Expected Answer:** Table with solicitors ranked by Total Case Value  
 **Measure Used:** Total Case Value, Number of Cases, Average Case Value  
 **Verified Answer:** VA003 (Exact Match)
