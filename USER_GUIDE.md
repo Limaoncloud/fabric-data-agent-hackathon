@@ -81,7 +81,7 @@ Try 5 prompts:
 - "Which solicitor handles most cases?"
 
 Also test these advanced prompts:
-- "Find count of customers with no interactions in the last 60 days but with unpaid"
+- "Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000."
 - "Calculate unpaid invoice ratio by case type: unpaid invoice count divided by total invoices."
 
 ### Expected
