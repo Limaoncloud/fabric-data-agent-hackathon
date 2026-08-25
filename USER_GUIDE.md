@@ -30,8 +30,8 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 - `step1/step1_cleaned_interactions.csv`
 
 ### Step 3 to 6 model/config files
-- `step3/LegalFirmBasic Direct Lake Instructions.docx` (manual Power BI Service build guide)
-- `step4/LegalFirmOptimized Direct Lake Instructions.docx` (manual Power BI Service optimization guide)
+- [Step 3: LegalFirmBasic Direct Lake instructions](step3/README.md) (manual Power BI Service build guide)
+- [Step 4: LegalFirmOptimized Direct Lake instructions](step4/README.md) (manual Power BI Service optimization guide)
 - `step5/step5_ontology_definition.json`
 - `step6/step6_data_agent_configuration.json`
 
@@ -313,7 +313,7 @@ Optional validation:
 Create a new Data Agent that uses a basic semantic model (non-optimized) as its data source, then observe behavior.
 
 ### Actions
-1. For manual creation in **Power BI Service**, follow the Word guide: `step3/LegalFirmBasic Direct Lake Instructions.docx`.
+1. For manual creation in **Power BI Service**, follow the [Step 3 Direct Lake instructions](step3/README.md).
 2. In Power BI Service, connect to cleaned Lakehouse tables and build a basic model (minimal relationships, basic measures).
 3. Publish the semantic model to your Fabric workspace.
 4. Create a **new Data Agent** for Step 3 (do not reuse Step 1/Step 2 agent).
@@ -338,7 +338,7 @@ Apply best practices and validate major accuracy improvement.
 - You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
 - You can also use any tools listed in Microsoft Learn here:
    [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- For manual optimization in **Power BI Service**, follow: `step4/LegalFirmOptimized Direct Lake Instructions.docx`.
+- For manual optimization in **Power BI Service**, follow the [Step 4 Direct Lake instructions](step4/README.md).
 
 ### Actions
 1. Improve model design to a clean star schema.
