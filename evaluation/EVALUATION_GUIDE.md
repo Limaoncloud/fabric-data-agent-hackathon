@@ -251,7 +251,7 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use [evaluation/TEST_QUERIES.md](evaluation/TEST_QUERIES.md):
+If you prefer manual testing, use [TEST_QUERIES.md](TEST_QUERIES.md):
 
 1. Open your Data Agent in Fabric
 2. Run each query from evaluation/TEST_QUERIES.md

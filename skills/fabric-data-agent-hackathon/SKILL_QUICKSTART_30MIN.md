@@ -62,20 +62,15 @@ Use one of these prompts in Copilot Chat:
 
 ## Inputs Required
 - A Fabric workspace with permission to create Lakehouse, semantic model, and Data Agent
-- Repository files already present
-- Optional: Power BI Desktop
+- `NB_Deploy_Data_Agent_Hackathon.ipynb`
+- Repository assets accessible from GitHub
 
 ## 30-Minute Runbook
 
 ### 0 to 5 minutes: Load curated data
-1. Create or open a Lakehouse.
-2. Upload cleaned multi-table files from step1/:
-  - step1_cleaned_customers.csv
-  - step1_cleaned_cases.csv
-  - step1_cleaned_solicitors.csv
-  - step1_cleaned_transactions.csv
-  - step1_cleaned_interactions.csv
-3. Load each as a table.
+1. Import and open `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target workspace.
+2. Keep `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default scenario.
+3. Run through the Lakehouse and data-loading sections.
 
 Success check:
 - All 5 tables loaded and queryable.
@@ -92,8 +87,7 @@ Success check:
 - Agent returns data-backed answers for all baseline prompts.
 
 ### 10 to 15 minutes: Attach semantic model fast path
-Option A (fastest): Use step4/step4_optimized_semantic_model.json as implementation reference.
-Option B: Manually build minimal star schema and publish.
+Run the semantic-model and Prep for AI sections of the deployment notebook. The notebook generates both models as TMDL and deploys them without PBIP/PBIX files.
 
 Then:
 1. Connect Data Agent to the semantic model.
@@ -103,13 +97,9 @@ Success check:
 - Answers become more consistent and business-aware.
 
 ### 15 to 22 minutes: Enable Step 6 multi-source demo
-1. Generate Step 6 derived files:
-   - Run: python step6/generate_step6_data.py
-2. Upload and load:
-   - step6_client_engagement_summary.csv
-   - step6_case_finance_insights.csv
-   - step6_solicitor_performance_mart.csv
-3. Use step6/step6_data_agent_configuration.json as template for source setup.
+1. Confirm the notebook loaded the three Step 6 tables.
+2. Set `ENABLE_DATA_AGENT=True` to stage the profile-defined semantic-model and Lakehouse sources.
+3. Review staging, then set `PUBLISH_DATA_AGENT=True` when ready.
 
 Success check:
 - All Step 6 tables exist and are connected.
@@ -156,10 +146,11 @@ UK legal default prompt substitutions:
 3. "Which solicitors are in top performance tier?"
 
 ## Minimal Artifacts Checklist
-- step1 cleaned CSVs loaded
-- Optimized semantic model available
-- Step 6 derived CSVs loaded
-- step6_data_agent_configuration.json adapted to workspace names
+- Deployment notebook completed
+- Profile-defined Lakehouse tables loaded
+- Basic and Optimized Direct Lake semantic models available
+- Prep for AI metadata applied
+- Data Agent staged or published when enabled
 - Demo prompts ready
 
 ## Troubleshooting In Event Time

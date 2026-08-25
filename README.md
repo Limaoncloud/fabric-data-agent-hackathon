@@ -31,11 +31,16 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 
 ## Quick Start (30 Minutes)
 
-1. Upload cleaned files from step1 to a Fabric Lakehouse.
-2. Create a Data Agent over cleaned tables.
-3. Connect to an optimized semantic model (step4 reference).
-4. Generate and upload Step 6 derived files.
-5. Apply Step 6 routing template and run test prompts.
+1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into a capacity-backed Fabric workspace.
+2. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default deployment.
+3. Run all cells to create the Lakehouse, Delta tables, and both Direct Lake semantic models.
+4. Review the generated Prep for AI configuration and manual Verified Answer candidates.
+5. Optionally enable the Ontology and Data Agent preview stages, then run test prompts.
+
+The notebook generates semantic models as TMDL through Fabric APIs. It does not require PBIP or PBIX files.
+
+Notebook deployment details:
+- [deployment/README.md](deployment/README.md)
 
 Use this guide:
 - skills/fabric-data-agent-hackathon/SKILL_QUICKSTART_30MIN.md
@@ -63,8 +68,12 @@ Deployment details:
 - step6/step6_solicitor_performance_mart.csv
 
 ### Model and agent configuration
-- step3/step3_basic_semantic_model.json
-- step4/step4_optimized_semantic_model.json
+- NB_Deploy_Data_Agent_Hackathon.ipynb
+- config/domain-profile.schema.json
+- config/domains/uk-legal.json
+- deployment/hackathon_deployer.py
+- step3/README.md
+- step4/README.md
 - step5/step5_ontology_definition.json
 - step6/step6_data_agent_configuration.json
 
@@ -113,15 +122,15 @@ Example prompts to invoke:
 
 ## Adapting To Other Industries
 
-Keep the same six-step method and replace only domain profile elements:
+Keep the same six-step method and create a validated domain profile containing:
 - Customer entity name
 - Service/workflow entity name
 - Staff/owner entity name
 - Financial entity name
 - Interaction entity name
-- Currency and KPI names
+- Source schemas, relationships, measures, currency, AI instructions, and routing
 
-This allows reuse across Retail, Insurance, Banking, Healthcare, Manufacturing, and more.
+Set `DOMAIN_PROFILE` to a committed profile name, or provide `CUSTOM_PROFILE_URL` and `ASSET_BASE_URL`. This allows reuse across Retail, Insurance, Banking, Healthcare, Manufacturing, and more without changing notebook code.
 
 ## Suggested Demo Flow (15 Minutes)
 

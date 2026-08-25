@@ -1,3 +1,9 @@
+---
+name: fabric-data-agent-hackathon
+description: "Build and deploy a reusable Microsoft Fabric Data Agent hackathon from a domain profile. Use when asked to create a Customer 360 demo, provision the Lakehouse and Direct Lake semantic models from a Fabric notebook, adapt the six-step journey to Legal, Retail, Insurance, Healthcare, Banking, or Manufacturing, configure optional Ontology/Data Agent assets, or generate a new domain package without PBIP/PBIX files."
+argument-hint: "Describe the target domain and whether Ontology or Data Agent preview deployment is required"
+---
+
 # Fabric Data Agent Hackathon Playbook Skill
 
 Companion quickstart:
@@ -30,10 +36,18 @@ Trigger phrases:
 
 ### Operator flow
 1. Confirm target industry (or keep UK legal default).
-2. Create a short `INDUSTRY_PROFILE` in the chat response or a repo note.
-3. Execute the six-step workflow in order (Step 1 through Step 6).
+2. Create or validate `config/domains/<domain>.json` against `config/domain-profile.schema.json`.
+3. Run `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target Fabric workspace.
 4. Reuse the same evaluation prompts across all steps.
 5. Publish final outputs and share deployment/user guides.
+
+### Notebook-first deployment
+- Default `WORKSPACE_ID=""` so the notebook deploys to its current workspace.
+- Default `DOMAIN_PROFILE="uk-legal"`.
+- Generate Direct Lake semantic models as TMDL in memory; do not create PBIP, PBIX, BIM, or report-template artifacts.
+- Keep Ontology and Data Agent SDK stages feature-gated because they are preview-dependent.
+- Treat Verified Answers as a manual live-authoring step because they require saved report visuals.
+- Use a release tag or commit SHA for `REPOSITORY_REF` during an event.
 
 ### Direct invocation prompts
 Use one of these prompts in Copilot Chat:
@@ -46,6 +60,17 @@ Use one of these prompts in Copilot Chat:
 - Demo duration (15-minute showcase or longer workshop)
 - Whether to use prepared repo assets or generate new data
 - Whether ontology (Step 5) is mandatory or optional
+
+### New-domain procedure
+1. Inspect the source files or existing Lakehouse schema; do not invent columns or keys.
+2. Copy the structural contract from `config/domain-profile.schema.json`, not the legal values.
+3. Create `config/domains/<domain>.json` with domain-specific grains, relationships, DAX, descriptions, AI scope, routing, and evaluation intent.
+4. Add or map source data for every `tables[].sourcePath` and make profile columns exactly match source headers.
+5. Run `python -m unittest discover -s tests -v` and add domain-specific profile tests when the new package is committed.
+6. Set `DOMAIN_PROFILE` in `NB_Deploy_Data_Agent_Hackathon.ipynb` and keep `WORKSPACE_ID=""` unless deploying elsewhere.
+7. Run the stable core first. Enable Ontology and Data Agent only after reviewing their generated scope.
+
+Do not implement a new domain as vocabulary-only search and replace. Different domains require their own table grains, relationships, metric definitions, sample distributions, and routing examples.
 
 ### Minimum completion bar
 - All step folders have corresponding artifacts
@@ -70,15 +95,14 @@ Deliver a progressive six-step demonstration that shows answer-quality uplift:
 ## Industry Flexibility (Required)
 Treat industry as a configurable input.
 
-Define an `INDUSTRY_PROFILE` before execution:
-- industry_name: example "UK Legal", "Retail", "Banking", "Healthcare", "Insurance", "Manufacturing"
-- customer_entity_name: example "Client", "Customer", "Patient", "Policyholder", "Account"
-- service_entity_name: example "Case", "Order", "Claim", "Visit", "Ticket"
-- staff_entity_name: example "Solicitor", "Advisor", "Agent", "Clinician", "RelationshipManager"
-- finance_entity_name: example "Transaction", "Invoice", "Payment", "Charge"
-- interaction_entity_name: example "Interaction", "Call", "Appointment", "Touchpoint"
-- currency: example "GBP", "USD", "EUR"
-- core_metrics: top 6 to 10 business KPIs for that industry
+Define a complete domain profile before execution. It must include:
+- Domain identity, culture, and currency
+- Source files, exact columns, data types, and physical Lakehouse table names
+- Business-facing semantic-model table and column names
+- Relationships, measures, formats, and descriptions
+- AI schema, AI instructions, and Verified Answer candidates
+- Optional Ontology entities and relationships
+- Data Agent sources, object scope, descriptions, instructions, and examples
 
 Design rule:
 - Keep the six-step methodology unchanged.
@@ -96,13 +120,17 @@ step6/
 ```
 
 Key files used in this demo:
+- NB_Deploy_Data_Agent_Hackathon.ipynb
+- config/domain-profile.schema.json
+- config/domains/uk-legal.json
+- deployment/hackathon_deployer.py
 - step1/step1_cleaned_customers.csv
 - step1/step1_cleaned_cases.csv
 - step1/step1_cleaned_solicitors.csv
 - step1/step1_cleaned_transactions.csv
 - step1/step1_cleaned_interactions.csv
-- step3/step3_basic_semantic_model.json
-- step4/step4_optimized_semantic_model.json
+- step3/README.md
+- step4/README.md
 - step5/step5_ontology_definition.json
 - step6/step6_data_agent_configuration.json
 - step6/generate_step6_data.py
@@ -139,17 +167,19 @@ Actions:
 
 ### Step 3 - Basic Semantic Model
 Actions:
-- Manually create a basic semantic model, or use step3/step3_basic_semantic_model.json.
+- Generate the Basic Direct Lake semantic model from the selected domain profile.
+- Keep relationships disabled and use intentionally ambiguous/duplicate measures for the teaching baseline.
 - Publish and connect the Data Agent.
 - Re-run test suite and log quality changes.
 
 ### Step 4 - Optimized Semantic Model
 Actions:
-- Refactor to clear star schema and unambiguous measures.
+- Generate the Optimized Direct Lake semantic model from the same profile.
+- Apply a clear star schema, descriptions, formats, and unambiguous measures.
 - Configure Prep for AI:
   - AI Data Schema
-  - Verified Answers
   - AI Instructions
+- Configure Verified Answers manually from saved report visuals.
 - Reconnect Data Agent and retest.
 
 Guidance:
@@ -219,7 +249,8 @@ UK legal default prompt examples:
 - "How many client meetings happened in Q1?"
 
 ## Deployment Expectations
-- Provide a complete deployment guide that includes lakehouse load, model publish, agent wiring, and test run.
+- Use the root deployment notebook for Lakehouse load, model publish, optional agent wiring, and verification.
+- Validate the profile against source headers before any Fabric write.
 - Ensure all paths and instructions reflect folderized steps.
 - Include reproducible commands where practical.
 
@@ -228,7 +259,8 @@ UK legal default prompt examples:
 - Remove legacy single-table assets.
 - Group all outputs by step folders.
 - Keep user-facing guide concise and practical.
-- Keep machine-readable configuration files in step3-6 folders.
+- Keep reusable domain profiles under `config/domains/` and generated deployment logic under `deployment/`.
+- Do not commit generated PBIP, PBIX, BIM, or report-template artifacts.
 
 ## Success Criteria
 - A participant can run the walkthrough end-to-end without hidden dependencies.
@@ -239,8 +271,8 @@ UK legal default prompt examples:
 ## Reusable Deliverables Checklist
 - Multi-table raw CSV package
 - Multi-table cleaned CSV package
-- Basic semantic model definition
-- Optimized semantic model definition
+- Validated domain profile
+- Notebook-generated Basic and Optimized Direct Lake semantic models
 - Ontology definition
 - Multi-source routing configuration
 - Step 6 derived data generator and outputs

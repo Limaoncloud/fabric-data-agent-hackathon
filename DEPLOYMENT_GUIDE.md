@@ -14,11 +14,22 @@ This guide walks you through deploying all 6 steps of the UK Legal Firm Customer
 Before you begin, ensure you have:
 
 - ✅ **Fabric Workspace** with adequate capacity (F2 or higher recommended)
-- ✅ **Power BI Desktop** (latest version) for semantic model creation
-- ✅ **Azure CLI** installed (`az --version` to verify)
-- ✅ **Fabric login** configured (`az login`)
+- ✅ **Contributor or Admin access** to create Fabric items
 - ✅ **Data files generated** (run `python step1/generate_step1_data.py`)
-- ✅ **Workspace permissions** (Contributor or Admin role)
+
+## Recommended: Deploy from the Fabric Notebook
+
+Use `NB_Deploy_Data_Agent_Hackathon.ipynb` for the reproducible deployment path:
+
+1. Import the notebook into the target capacity-backed workspace.
+2. Leave `WORKSPACE_ID=""` to deploy to the notebook's current workspace.
+3. Leave `DOMAIN_PROFILE="uk-legal"` for the legal scenario.
+4. Run all cells to create the Lakehouse, managed Delta tables, Basic model, Optimized model, and Prep for AI metadata.
+5. Enable the Ontology and Data Agent stages only when required and supported by the tenant.
+
+The notebook generates semantic models as TMDL through Fabric APIs. It does not require Power BI Desktop, PBIP, PBIX, BIM, or template files. See [deployment/README.md](deployment/README.md) for custom-domain deployment.
+
+The remaining sections document the equivalent manual workflow and troubleshooting details.
 
 ---
 
@@ -222,14 +233,9 @@ step1_cleaned_interactions      800
 
 **Result:** Low accuracy semantic model for Step 3 comparison
 
-#### **Option B: Using JSON Definition (Advanced)**
+#### **Option B: Generated TMDL (Recommended)**
 
-The `step3/step3_basic_semantic_model.json` file contains the model definition. You can use Power BI Project (PBIP) format:
-
-1. Create a new folder: `LegalFirmBasic`
-2. Place JSON contents in `definition.pbidataset` (PBIP format)
-3. Open with Power BI Desktop
-4. Publish to workspace
+Run the semantic-model section of `NB_Deploy_Data_Agent_Hackathon.ipynb`. It generates and deploys the Basic Direct Lake model from `config/domains/uk-legal.json`.
 
 ---
 

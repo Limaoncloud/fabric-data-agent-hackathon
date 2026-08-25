@@ -15,8 +15,18 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 
 - Microsoft Fabric workspace with enough capacity
 - Access to create Lakehouse, Semantic Model, and Data Agent
-- Power BI Desktop (for semantic model steps)
+- Power BI Desktop or Fabric report authoring only if configuring Verified Answers
 - Files already in this repo
+
+## Automated Deployment (Recommended)
+
+1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into the target Fabric workspace.
+2. Leave `WORKSPACE_ID=""` to use the notebook's current workspace.
+3. Leave `DOMAIN_PROFILE="uk-legal"` for the default scenario.
+4. Run all cells to create the Lakehouse, load all profile tables, and deploy both Direct Lake semantic models.
+5. Review the deployment summary. Enable Ontology or Data Agent stages only when those preview features are available in the tenant.
+
+See [deployment/README.md](deployment/README.md) for parameters and custom-domain packaging.
 
 ---
 
@@ -30,6 +40,8 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 - `step1/step1_cleaned_interactions.csv`
 
 ### Step 3 to 6 model/config files
+- [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
+- [UK Legal domain profile](config/domains/uk-legal.json)
 - [Step 3: LegalFirmBasic Direct Lake instructions](step3/README.md) (manual Power BI Service build guide)
 - [Step 4: LegalFirmOptimized Direct Lake instructions](step4/README.md) (manual Power BI Service optimization guide)
 - `step5/step5_ontology_definition.json`

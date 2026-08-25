@@ -26,6 +26,7 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
+!NB_Deploy_Data_Agent_Hackathon.ipynb
 
 # IDEs
 .vscode/

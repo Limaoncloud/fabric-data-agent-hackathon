@@ -89,8 +89,8 @@ python step1/generate_step1_data.py
 - `step1/step1_cleaned_*.csv` (5 files) - Cleaned, standardized data
 
 ### Model Files
-- `step3/step3_basic_semantic_model.json` - Semantic model with anti-patterns
-- `step4/step4_optimized_semantic_model.json` - Optimized with Prep for AI
+- `NB_Deploy_Data_Agent_Hackathon.ipynb` - Generates and deploys both Direct Lake semantic models
+- `config/domains/uk-legal.json` - UK Legal source schema, measures, AI metadata, and routing profile
 - `step5/step5_ontology_definition.json` - Entity-relationship layer
 - `step6/step6_data_agent_configuration.json` - Multi-source agent config
 
@@ -249,7 +249,7 @@ CREATE TABLE Interactions AS SELECT * FROM 'step1/step1_cleaned_interactions.csv
 ```
 
 ### 2. Create Semantic Model
-- Use `step4/step4_optimized_semantic_model.json` as reference
+- Run `NB_Deploy_Data_Agent_Hackathon.ipynb` with `DOMAIN_PROFILE="uk-legal"`
 - Define star schema relationships
 - Configure Prep for AI (AI Data Schema, Verified Answers, AI Instructions)
 

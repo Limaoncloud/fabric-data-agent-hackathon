@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0",
+  "domain": {
+    "id": "uk-legal",
+    "displayName": "UK Legal Customer 360",
+    "description": "Customer, legal matter, solicitor, financial transaction, and engagement analytics for a UK legal firm.",
+    "culture": "en-GB",
+    "currency": "GBP"
+  },
+  "artifacts": {
+    "folder": "data_agent_hackathon",
+    "lakehouse": "LegalFirmDemo",
+    "basicModel": "LegalFirmBasic",
+    "optimizedModel": "LegalFirmOptimized",
+    "ontology": "LegalFirmOntology",
+    "dataAgent": "LegalFirmCustomer360Agent"
+  },
+  "tables": [
+    {
+      "sourcePath": "step1/step1_cleaned_customers.csv",
+      "lakehouseName": "step1_cleaned_customers",
+      "modelName": "Customers",
+      "description": "One row per legal-firm customer, including type, location, signup date, and current relationship status.",
+      "includeInModels": true,
+      "columns": [
+        { "source": "customer_id", "name": "Customer ID", "type": "int64", "description": "Unique customer identifier.", "hidden": true },
+        { "source": "customer_name", "name": "Customer Name", "type": "string", "description": "Customer or organization name." },
+        { "source": "customer_type", "name": "Customer Type", "type": "string", "description": "Individual or Corporate customer classification." },
+        { "source": "city", "name": "City", "type": "string", "description": "Customer city." },
+        { "source": "signup_date", "name": "Signup Date", "type": "date", "description": "Date the customer relationship began.", "formatString": "dd/MM/yyyy" },
+        { "source": "phone", "name": "Phone", "type": "string", "description": "Customer contact telephone number." },
+        { "source": "email", "name": "Email", "type": "string", "description": "Customer contact email address." },
+        { "source": "status", "name": "Customer Status", "type": "string", "description": "Current customer status; Active indicates a current relationship." }
+      ]
+    },
+    {
+      "sourcePath": "step1/step1_cleaned_cases.csv",
+      "lakehouseName": "step1_cleaned_cases",
+      "modelName": "Cases",
+      "description": "One row per legal case or matter, with customer, assigned solicitor, type, value, start date, and status.",
+      "includeInModels": true,
+      "columns": [
+        { "source": "case_id", "name": "Case ID", "type": "string", "description": "Unique legal case identifier." },
+        { "source": "customer_id", "name": "Customer ID", "type": "int64", "description": "Customer associated with the case.", "hidden": true },
+        { "source": "solicitor_name", "name": "Solicitor Name", "type": "string", "description": "Solicitor assigned to the case.", "hidden": true },
+        { "source": "case_type", "name": "Case Type", "type": "string", "description": "Legal practice area or matter type." },
+        { "source": "case_value_gbp", "name": "Case Value", "type": "double", "description": "Financial value of the case in GBP.", "formatString": "GBP #,##0.00" },
+        { "source": "start_date", "name": "Start Date", "type": "date", "description": "Date the case started.", "formatString": "dd/MM/yyyy" },
+        { "source": "case_status", "name": "Case Status", "type": "string", "description": "Current legal case status." }
+      ]
+    },
+    {
+      "sourcePath": "step1/step1_cleaned_solicitors.csv",
+      "lakehouseName": "step1_cleaned_solicitors",
+      "modelName": "Solicitors",
+      "description": "One row per solicitor, including specialization, hire date, hourly rate, office, and employment status.",
+      "includeInModels": true,
+      "columns": [
+        { "source": "solicitor_id", "name": "Solicitor ID", "type": "int64", "description": "Unique solicitor identifier.", "hidden": true },
+        { "source": "solicitor_name", "name": "Solicitor Name", "type": "string", "description": "Solicitor full name." },
+        { "source": "specialization", "name": "Specialization", "type": "string", "description": "Primary legal specialization." },
+        { "source": "hire_date", "name": "Hire Date", "type": "date", "description": "Date the solicitor joined the firm.", "formatString": "dd/MM/yyyy" },
+        { "source": "hourly_rate_gbp", "name": "Hourly Rate", "type": "double", "description": "Standard hourly billing rate in GBP.", "formatString": "GBP #,##0.00" },
+        { "source": "office_location", "name": "Office Location", "type": "string", "description": "Solicitor office location." },
+        { "source": "status", "name": "Solicitor Status", "type": "string", "description": "Current employment status." }
+      ]
+    },
+    {
+      "sourcePath": "step1/step1_cleaned_transactions.csv",
+      "lakehouseName": "step1_cleaned_transactions",
+      "modelName": "Transactions",
+      "description": "One row per case-related invoice, payment, timesheet, or expense transaction.",
+      "includeInModels": true,
+      "columns": [
+        { "source": "transaction_id", "name": "Transaction ID", "type": "string", "description": "Unique transaction identifier.", "hidden": true },
+        { "source": "case_id", "name": "Case ID", "type": "string", "description": "Case associated with the transaction.", "hidden": true },
+        { "source": "transaction_type", "name": "Transaction Type", "type": "string", "description": "Invoice, Payment, Timesheet, or Expense." },
+        { "source": "transaction_date", "name": "Transaction Date", "type": "date", "description": "Transaction posting date.", "formatString": "dd/MM/yyyy" },
+        { "source": "amount_gbp", "name": "Transaction Amount", "type": "double", "description": "Transaction amount in GBP.", "formatString": "GBP #,##0.00" },
+        { "source": "hours_worked", "name": "Hours Worked", "type": "double", "description": "Hours recorded for Timesheet transactions.", "formatString": "0.00" },
+        { "source": "payment_status", "name": "Payment Status", "type": "string", "description": "Payment state for applicable transactions." }
+      ]
+    },
+    {
+      "sourcePath": "step1/step1_cleaned_interactions.csv",
+      "lakehouseName": "step1_cleaned_interactions",
+      "modelName": "Interactions",
+      "description": "One row per customer interaction, including channel, date, duration, solicitor, and notes.",
+      "includeInModels": true,
+      "columns": [
+        { "source": "interaction_id", "name": "Interaction ID", "type": "string", "description": "Unique interaction identifier.", "hidden": true },
+        { "source": "customer_id", "name": "Customer ID", "type": "int64", "description": "Customer associated with the interaction.", "hidden": true },
+        { "source": "solicitor_name", "name": "Solicitor Name", "type": "string", "description": "Solicitor involved in the interaction." },
+        { "source": "interaction_type", "name": "Interaction Type", "type": "string", "description": "Interaction channel such as meeting, call, or email." },
+        { "source": "interaction_date", "name": "Interaction Date", "type": "date", "description": "Date of the interaction.", "formatString": "dd/MM/yyyy" },
+        { "source": "duration_minutes", "name": "Duration Minutes", "type": "int64", "description": "Interaction duration in minutes.", "formatString": "0" },
+        { "source": "notes", "name": "Notes", "type": "string", "description": "Short interaction notes." }
+      ]
+    },
+    {
+      "sourcePath": "step6/step6_client_engagement_summary.csv",
+      "lakehouseName": "step6_client_engagement_summary",
+      "modelName": "Client Engagement Summary",
+      "description": "Customer-level engagement metrics for multi-source routing demonstrations.",
+      "includeInModels": false,
+      "columns": [
+        { "source": "customer_id", "name": "Customer ID", "type": "int64" },
+        { "source": "customer_name", "name": "Customer Name", "type": "string" },
+        { "source": "customer_type", "name": "Customer Type", "type": "string" },
+        { "source": "customer_status", "name": "Customer Status", "type": "string" },
+        { "source": "total_interactions", "name": "Total Interactions", "type": "int64" },
+        { "source": "last_interaction_date", "name": "Last Interaction Date", "type": "date" },
+        { "source": "avg_interaction_duration_minutes", "name": "Average Interaction Duration Minutes", "type": "double" },
+        { "source": "dominant_interaction_type", "name": "Dominant Interaction Type", "type": "string" },
+        { "source": "engagement_segment", "name": "Engagement Segment", "type": "string" }
+      ]
+    },
+    {
+      "sourcePath": "step6/step6_case_finance_insights.csv",
+      "lakehouseName": "step6_case_finance_insights",
+      "modelName": "Case Finance Insights",
+      "description": "Case-level financial outcome metrics for cross-domain routing demonstrations.",
+      "includeInModels": false,
+      "columns": [
+        { "source": "case_id", "name": "Case ID", "type": "string" },
+        { "source": "customer_id", "name": "Customer ID", "type": "int64" },
+        { "source": "solicitor_name", "name": "Solicitor Name", "type": "string" },
+        { "source": "case_type", "name": "Case Type", "type": "string" },
+        { "source": "case_status", "name": "Case Status", "type": "string" },
+        { "source": "case_value_gbp", "name": "Case Value", "type": "double" },
+        { "source": "total_timesheet_amount_gbp", "name": "Total Timesheet Amount", "type": "double" },
+        { "source": "total_expense_amount_gbp", "name": "Total Expense Amount", "type": "double" },
+        { "source": "total_invoice_amount_gbp", "name": "Total Invoice Amount", "type": "double" },
+        { "source": "total_payment_amount_gbp", "name": "Total Payment Amount", "type": "double" },
+        { "source": "total_hours_billed", "name": "Total Hours Billed", "type": "double" },
+        { "source": "outstanding_amount_gbp", "name": "Outstanding Amount", "type": "double" },
+        { "source": "payment_risk_band", "name": "Payment Risk Band", "type": "string" }
+      ]
+    },
+    {
+      "sourcePath": "step6/step6_solicitor_performance_mart.csv",
+      "lakehouseName": "step6_solicitor_performance_mart",
+      "modelName": "Solicitor Performance",
+      "description": "Solicitor-level performance metrics for routing and ranking demonstrations.",
+      "includeInModels": false,
+      "columns": [
+        { "source": "solicitor_name", "name": "Solicitor Name", "type": "string" },
+        { "source": "cases_handled", "name": "Cases Handled", "type": "int64" },
+        { "source": "open_cases", "name": "Open Cases", "type": "int64" },
+        { "source": "total_case_value_gbp", "name": "Total Case Value", "type": "double" },
+        { "source": "total_hours_billed", "name": "Total Hours Billed", "type": "double" },
+        { "source": "total_invoice_amount_gbp", "name": "Total Invoice Amount", "type": "double" },
+        { "source": "total_payment_amount_gbp", "name": "Total Payment Amount", "type": "double" },
+        { "source": "total_interactions", "name": "Total Interactions", "type": "int64" },
+        { "source": "avg_interaction_duration_minutes", "name": "Average Interaction Duration Minutes", "type": "double" },
+        { "source": "performance_tier", "name": "Performance Tier", "type": "string" }
+      ]
+    }
+  ],
+  "relationships": [
+    { "name": "Cases to Customers", "fromTable": "Cases", "fromColumn": "Customer ID", "toTable": "Customers", "toColumn": "Customer ID", "crossFilter": "oneDirection" },
+    { "name": "Transactions to Cases", "fromTable": "Transactions", "fromColumn": "Case ID", "toTable": "Cases", "toColumn": "Case ID", "crossFilter": "oneDirection" },
+    { "name": "Interactions to Customers", "fromTable": "Interactions", "fromColumn": "Customer ID", "toTable": "Customers", "toColumn": "Customer ID", "crossFilter": "oneDirection" },
+    { "name": "Cases to Solicitors", "fromTable": "Cases", "fromColumn": "Solicitor Name", "toTable": "Solicitors", "toColumn": "Solicitor Name", "crossFilter": "oneDirection" }
+  ],
+  "semanticModels": {
+    "basic": {
+      "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
+      "useRelationships": false,
+      "measures": [
+        { "table": "Cases", "name": "Total Cases", "expression": "COUNTROWS(Cases)", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
+        { "table": "Cases", "name": "TotalCases", "expression": "COUNTROWS(Cases)", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
+        { "table": "Cases", "name": "total_cases", "expression": "COUNTROWS(Cases)", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
+        { "table": "Cases", "name": "Case Count", "expression": "COUNTROWS(Cases)", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
+        { "table": "Cases", "name": "Total", "expression": "SUM(Cases[Case Value])", "formatString": "GBP #,##0.00", "description": "Intentionally ambiguous baseline measure." },
+        { "table": "Customers", "name": "Count", "expression": "COUNTROWS(Customers)", "formatString": "#,##0", "description": "Intentionally ambiguous baseline measure." },
+        { "table": "Transactions", "name": "Value", "expression": "SUM(Transactions[Transaction Amount])", "formatString": "GBP #,##0.00", "description": "Intentionally ambiguous baseline measure." }
+      ]
+    },
+    "optimized": {
+      "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
+      "useRelationships": true,
+      "measures": [
+        { "table": "Customers", "name": "Total Customers", "expression": "COUNTROWS(Customers)", "formatString": "#,##0", "description": "Number of customers in the model." },
+        { "table": "Customers", "name": "Active Customers", "expression": "CALCULATE(COUNTROWS(Customers), Customers[Customer Status] = \"Active\")", "formatString": "#,##0", "description": "Number of customers whose current status is Active." },
+        { "table": "Customers", "name": "Corporate Customers", "expression": "CALCULATE(COUNTROWS(Customers), Customers[Customer Type] = \"Corporate\")", "formatString": "#,##0", "description": "Number of Corporate customers." },
+        { "table": "Cases", "name": "Total Cases", "expression": "COUNTROWS(Cases)", "formatString": "#,##0", "description": "Number of legal cases." },
+        { "table": "Cases", "name": "Open Cases", "expression": "CALCULATE(COUNTROWS(Cases), Cases[Case Status] = \"Open\")", "formatString": "#,##0", "description": "Number of legal cases whose current status is Open." },
+        { "table": "Cases", "name": "High Value Cases", "expression": "CALCULATE(COUNTROWS(Cases), Cases[Case Value] >= 100000)", "formatString": "#,##0", "description": "Number of cases with a Case Value of at least GBP 100,000." },
+        { "table": "Cases", "name": "Total Case Value", "expression": "SUM(Cases[Case Value])", "formatString": "GBP #,##0.00", "description": "Sum of Case Value in GBP." },
+        { "table": "Cases", "name": "Average Case Value", "expression": "AVERAGE(Cases[Case Value])", "formatString": "GBP #,##0.00", "description": "Average Case Value in GBP." },
+        { "table": "Transactions", "name": "Total Revenue", "expression": "CALCULATE(SUM(Transactions[Transaction Amount]), Transactions[Transaction Type] = \"Invoice\")", "formatString": "GBP #,##0.00", "description": "Invoice transaction amount in GBP; use this measure when users ask for revenue." },
+        { "table": "Transactions", "name": "Total Expenses", "expression": "CALCULATE(SUM(Transactions[Transaction Amount]), Transactions[Transaction Type] = \"Expense\")", "formatString": "GBP #,##0.00", "description": "Expense transaction amount in GBP." },
+        { "table": "Transactions", "name": "Total Payments", "expression": "CALCULATE(SUM(Transactions[Transaction Amount]), Transactions[Transaction Type] = \"Payment\")", "formatString": "GBP #,##0.00", "description": "Payment transaction amount received in GBP." },
+        { "table": "Transactions", "name": "Total Hours Billed", "expression": "CALCULATE(SUM(Transactions[Hours Worked]), Transactions[Transaction Type] = \"Timesheet\")", "formatString": "#,##0.00", "description": "Hours Worked from Timesheet transactions." },
+        { "table": "Transactions", "name": "Outstanding Invoices", "expression": "CALCULATE(COUNTROWS(Transactions), Transactions[Transaction Type] = \"Invoice\", Transactions[Payment Status] = \"Unpaid\")", "formatString": "#,##0", "description": "Number of Invoice transactions whose Payment Status is Unpaid." },
+        { "table": "Solicitors", "name": "Total Solicitors", "expression": "COUNTROWS(Solicitors)", "formatString": "#,##0", "description": "Number of solicitors." },
+        { "table": "Solicitors", "name": "Average Hourly Rate", "expression": "AVERAGE(Solicitors[Hourly Rate])", "formatString": "GBP #,##0.00", "description": "Average solicitor Hourly Rate in GBP." },
+        { "table": "Solicitors", "name": "Cases Per Solicitor", "expression": "DIVIDE([Total Cases], [Total Solicitors], 0)", "formatString": "#,##0.00", "description": "Average number of cases per solicitor." },
+        { "table": "Interactions", "name": "Total Interactions", "expression": "COUNTROWS(Interactions)", "formatString": "#,##0", "description": "Number of customer interactions." },
+        { "table": "Interactions", "name": "Average Interaction Duration", "expression": "AVERAGE(Interactions[Duration Minutes])", "formatString": "#,##0.00", "description": "Average customer interaction duration in minutes." }
+      ]
+    }
+  },
+  "ai": {
+    "instructions": "Business context:\n- This is a UK legal firm specializing in conveyancing, employment law, family law, and commercial law.\n- Customers can be Individual or Corporate.\n- Cases are assigned to solicitors with different specializations.\n- Fiscal year runs April to March.\n\nTerminology and rules:\n- Revenue means Invoice transactions only; use [Total Revenue].\n- Billed hours means Hours Worked from Timesheet transactions; use [Total Hours Billed].\n- Outstanding means Invoice transactions with Payment Status = Unpaid.\n- Active customers have Customer Status = Active.\n- High-value case means Case Value >= GBP 100,000.\n- Dates use UK date format.\n- For top, highest, most, or best, sort descending.\n- For this year, use the current calendar year unless fiscal year is explicitly requested.",
+    "schema": {
+      "Customers": ["Customer ID", "Customer Name", "Customer Type", "City", "Customer Status", "Total Customers", "Active Customers", "Corporate Customers"],
+      "Cases": ["Case ID", "Case Type", "Case Value", "Case Status", "Start Date", "Total Cases", "Open Cases", "High Value Cases", "Total Case Value", "Average Case Value"],
+      "Solicitors": ["Solicitor Name", "Specialization", "Hourly Rate", "Total Solicitors", "Average Hourly Rate", "Cases Per Solicitor"],
+      "Transactions": ["Transaction Type", "Transaction Date", "Transaction Amount", "Payment Status", "Hours Worked", "Total Revenue", "Total Expenses", "Total Payments", "Total Hours Billed", "Outstanding Invoices"],
+      "Interactions": ["Interaction Type", "Interaction Date", "Duration Minutes", "Total Interactions", "Average Interaction Duration"]
+    },
+    "verifiedAnswerCandidates": [
+      { "question": "How many customers do we have?", "measure": "Total Customers", "description": "Total customer population." },
+      { "question": "What is the total case value?", "measure": "Total Case Value", "description": "Total value of all legal cases in GBP." },
+      { "question": "How many open cases do we have?", "measure": "Open Cases", "description": "Current open legal cases." },
+      { "question": "What is the total revenue?", "measure": "Total Revenue", "description": "Invoice transaction revenue in GBP." },
+      { "question": "How many unpaid invoices do we have?", "measure": "Outstanding Invoices", "description": "Unpaid invoice count." }
+    ]
+  },
+  "ontology": {
+    "entities": [
+      { "name": "Customer", "table": "step1_cleaned_customers", "key": "customer_id", "displayProperty": "customer_name" },
+      { "name": "LegalCase", "table": "step1_cleaned_cases", "key": "case_id", "displayProperty": "case_type" },
+      { "name": "Solicitor", "table": "step1_cleaned_solicitors", "key": "solicitor_name", "displayProperty": "solicitor_name" }
+    ],
+    "relationships": [
+      { "name": "CustomerHasCase", "from": "Customer", "to": "LegalCase", "table": "step1_cleaned_cases", "fromColumn": "customer_id", "toColumn": "case_id" },
+      { "name": "SolicitorHandlesCase", "from": "Solicitor", "to": "LegalCase", "table": "step1_cleaned_cases", "fromColumn": "solicitor_name", "toColumn": "case_id" }
+    ]
+  },
+  "agent": {
+    "description": "Multi-source UK legal Customer 360 agent for customer, case, finance, engagement, and solicitor-performance questions.",
+    "instructions": "Use LegalFirmOptimized for customer, case, solicitor, transaction, and interaction questions that can be answered by model measures. Use the Lakehouse engagement summary for engagement segments, Case Finance Insights for questions combining case and financial outcomes, and Solicitor Performance for rankings and performance tiers. Prefer one source when the topic is clear. Never invent missing data; ask for clarification when the requested metric or period is ambiguous.",
+    "sources": [
+      {
+        "name": "LegalFirmOptimized",
+        "artifact": "optimizedModel",
+        "objects": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
+        "description": "Optimized Direct Lake semantic model for customer, legal case, solicitor, transaction, and interaction analysis.",
+        "instructions": "Use explicit measures for business metrics. Revenue is [Total Revenue], billed hours is [Total Hours Billed], and high-value cases use [High Value Cases].",
+        "examples": [
+          { "question": "How many active customers do we have?", "query": "EVALUATE ROW(\"Active Customers\", [Active Customers])" },
+          { "question": "Which solicitor handles the most cases?", "query": "EVALUATE TOPN(1, SUMMARIZECOLUMNS(Solicitors[Solicitor Name], \"Case Count\", [Total Cases]), [Case Count], DESC)" },
+          { "question": "What is total revenue?", "query": "EVALUATE ROW(\"Total Revenue\", [Total Revenue])" }
+        ]
+      },
+      {
+        "name": "LegalFirmDemo",
+        "artifact": "lakehouse",
+        "objects": ["step6_client_engagement_summary", "step6_case_finance_insights", "step6_solicitor_performance_mart"],
+        "description": "Curated legal-firm marts for engagement, combined case-finance outcomes, and solicitor performance.",
+        "instructions": "Use step6_client_engagement_summary for engagement segments, step6_case_finance_insights for combined case-finance risk, and step6_solicitor_performance_mart for solicitor ranking and performance tiers.",
+        "examples": [
+          { "question": "Which customers are in the low engagement segment?", "query": "SELECT customer_id, customer_name FROM step6_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name" },
+          { "question": "Which high-value open cases have outstanding balances?", "query": "SELECT case_id, case_value_gbp, outstanding_amount_gbp FROM step6_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC" },
+          { "question": "Which solicitors are in the top performance tier?", "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM step6_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC" }
+        ]
+      }
+    ]
+  }
+}
