@@ -44,11 +44,12 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  ┌────────────────────────────────────────────┐             │
 │  │  Lakehouse: LegalFirmDemo                  │             │
 │  │  ├─ Tables/                                │             │
-│  │  │  ├─ step1_cleaned_customers (166)       │             │
+│  │  │  ├─ step1_cleaned_customers (171)       │             │
 │  │  │  ├─ step1_cleaned_cases (500)           │             │
 │  │  │  ├─ step1_cleaned_solicitors (15)       │             │
 │  │  │  ├─ step1_cleaned_transactions (1000)   │             │
 │  │  │  └─ step1_cleaned_interactions (800)    │             │
+│  │  └─ 3 Step 6 routing marts                 │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 │  STEP 3 & 4: SEMANTIC MODEL LAYER                           │
@@ -59,8 +60,8 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  │  Semantic Model: LegalFirmOptimized (Step 4)│            │
 │  │  ├─ Star schema (5 tables)                 │             │
 │  │  ├─ Prep for AI configured                 │             │
-│  │  │  ├─ AI Data Schema (20 cols, 15 measures)│           │
-│  │  │  ├─ Verified Answers (6 answers)        │             │
+│  │  │  ├─ Scoped AI Data Schema               │             │
+│  │  │  ├─ 5 Verified Answer candidates       │             │
 │  │  │  └─ AI Instructions (business rules)    │             │
 │  │  └─ Relationships & hierarchies            │             │
 │  └────────────────────────────────────────────┘             │
@@ -68,18 +69,16 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  STEP 5: ONTOLOGY LAYER (Optional - Preview)               │
 │  ┌────────────────────────────────────────────┐             │
 │  │  Ontology: LegalFirmOntology               │             │
-│  │  ├─ Entities: Client, Case, Solicitor,    │             │
-│  │  │            Transaction, Interaction     │             │
-│  │  ├─ Relationships: ClientHasCase, etc.    │             │
-│  │  └─ Contextualizations                    │             │
+│  │  ├─ Entities: Customer, LegalCase, Solicitor│            │
+│  │  └─ 2 core relationships                  │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 │  STEP 6: DATA AGENT                                         │
 │  ┌────────────────────────────────────────────┐             │
-│  │  Data Agent: LegalFirmAgent                │             │
-│  │  ├─ Source 1: ClientCasePortfolio          │             │
-│  │  ├─ Source 2: FinancialTransactions        │             │
-│  │  └─ Routing rules & examples               │             │
+│  │  Data Agent: LegalFirmCustomer360Agent     │             │
+│  │  ├─ Source 1: LegalFirmOptimized           │             │
+│  │  ├─ Source 2: LegalFirmDemo marts          │             │
+│  │  └─ Source instructions & examples         │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
@@ -90,6 +89,8 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 ## 🚀 Step-by-Step Deployment
 
 ### **Step 0: Setup Environment Variables**
+
+Skip this section when running the Fabric notebook with `WORKSPACE_ID=""`; the notebook resolves its current workspace automatically. Use the following only for manual REST or CLI work.
 
 ```powershell
 # Set your workspace details
@@ -107,7 +108,7 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 
 ## 📊 STEP 1 & 2: Deploy Data Layer (Lakehouse)
 
-### **Option A: Via Fabric Portal (Recommended for Demo)**
+### **Option A: Via Fabric Portal (Manual)**
 
 #### 1. Create Lakehouse
 1. Open your Fabric workspace: https://app.fabric.microsoft.com/
@@ -135,34 +136,9 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 
 **Result:** Step 2 is configuration-only and uses the same 5 Step 1 tables.
 
-### **Option B: Via Notebook (Automated)**
+### **Option B: Via Notebook (Recommended)**
 
-1. Create a new **Fabric Notebook** in your workspace
-2. Run this code:
-
-```python
-# Load CSV files into Lakehouse tables
-import notebookutils
-
-# Step 1: Cleaned baseline data
-df_cleaned_customers = spark.read.csv("/lakehouse/default/Files/step1_cleaned_customers.csv", header=True, inferSchema=True)
-df_cleaned_customers.write.mode("overwrite").saveAsTable("step1_cleaned_customers")
-
-df_cleaned_cases = spark.read.csv("/lakehouse/default/Files/step1_cleaned_cases.csv", header=True, inferSchema=True)
-df_cleaned_cases.write.mode("overwrite").saveAsTable("step1_cleaned_cases")
-
-df_cleaned_solicitors = spark.read.csv("/lakehouse/default/Files/step1_cleaned_solicitors.csv", header=True, inferSchema=True)
-df_cleaned_solicitors.write.mode("overwrite").saveAsTable("step1_cleaned_solicitors")
-
-df_cleaned_transactions = spark.read.csv("/lakehouse/default/Files/step1_cleaned_transactions.csv", header=True, inferSchema=True)
-df_cleaned_transactions.write.mode("overwrite").saveAsTable("step1_cleaned_transactions")
-
-df_cleaned_interactions = spark.read.csv("/lakehouse/default/Files/step1_cleaned_interactions.csv", header=True, inferSchema=True)
-df_cleaned_interactions.write.mode("overwrite").saveAsTable("step1_cleaned_interactions")
-
-print("✅ All 5 Step 1 tables loaded successfully!")
-print(f"📊 Total records: {df_cleaned_customers.count() + df_cleaned_cases.count() + df_cleaned_solicitors.count() + df_cleaned_transactions.count() + df_cleaned_interactions.count()}")
-```
+Import and run `NB_Deploy_Data_Agent_Hackathon.ipynb`. It reads all tables declared in `config/domains/uk-legal.json` and writes them as managed Delta tables. The current profile loads the five Step 1 tables plus three Step 6 routing marts.
 
 ### **Verify Data Load**
 
@@ -183,20 +159,22 @@ SELECT 'step1_cleaned_interactions', COUNT(*) FROM step1_cleaned_interactions
 **Expected Output:**
 ```
 table_name                      row_count
-step1_cleaned_customers         166
+step1_cleaned_customers         171
 step1_cleaned_cases             500
 step1_cleaned_solicitors        15
 step1_cleaned_transactions      1000
 step1_cleaned_interactions      800
 ```
 
-✅ **Checkpoint:** You now have all data in Fabric Lakehouse!
+The three Step 6 marts contain 171 engagement rows, 500 case-finance rows, and 15 solicitor-performance rows, for 3,172 rows across all eight profile-managed tables.
+
+✅ **Checkpoint:** You now have all profile-managed data in the Fabric Lakehouse.
 
 ---
 
 ## 🎨 STEP 3: Create Basic Semantic Model (Anti-Patterns)
 
-### **Purpose:** Demonstrate poor practices and low accuracy (~57%)
+### **Purpose:** Demonstrate poor practices and lower answer quality
 
 #### **Recommended: Deploy from the Notebook**
 
@@ -212,164 +190,38 @@ To demonstrate the build manually, create a new Direct Lake semantic model from 
 
 ---
 
-## 🌟 STEP 4: Create Optimized Semantic Model (100% Accuracy!)
+## 🌟 STEP 4: Create Optimized Semantic Model
 
-### **Purpose:** Demonstrate best practices and achieve 100% accuracy
+### **Purpose:** Demonstrate semantic-model and AI-readiness best practices
 
-#### **Create Star Schema Model**
+#### **Recommended: Deploy from the Notebook**
 
-1. **Open Power BI Desktop**
-2. **Get Data** → **Microsoft Fabric** → **Lakehouse**
-3. **Connect** to `LegalFirmDemo`
-4. **Select Step 2 cleaned tables** (all 5 tables)
-5. **Load** tables
+Run the semantic-model and Prep for AI sections of `NB_Deploy_Data_Agent_Hackathon.ipynb`, or run the full notebook from the beginning. The notebook generates `LegalFirmOptimized` as TMDL and deploys it through the Fabric API with:
 
-#### **Create Relationships (Star Schema)**
+- Five business-named Direct Lake tables.
+- Four one-direction relationships from the domain profile.
+- Eighteen explicit business measures.
+- AI instructions and a scoped AI Data Schema.
 
-Go to **Model View** and create these relationships:
+No Power BI Desktop or PBIX file is required.
 
-```
-Customers (1) → (*) Cases
-  - From: Customers[customer_id]
-  - To: Cases[customer_id]
-  - Cardinality: One to Many
-  - Cross filter: Both directions
+#### **Required Manual Follow-up: Verified Answers**
 
-Cases (1) → (*) Transactions
-  - From: Cases[case_id]
-  - To: Transactions[case_id]
-  - Cardinality: One to Many
-  - Cross filter: Single
+Verified Answers are not deployed automatically because each answer must reference a saved report visual and be tested in the live Fabric authoring experience. Create a QA report and visual-backed answers for the five candidates printed by the notebook:
 
-Customers (1) → (*) Interactions
-  - From: Customers[customer_id]
-  - To: Interactions[customer_id]
-  - Cardinality: One to Many
-  - Cross filter: Single
+1. How many customers do we have?
+2. What is the total case value?
+3. How many open cases do we have?
+4. What is the total revenue?
+5. How many unpaid invoices do we have?
 
-Solicitors (1) → (*) Cases
-  - From: Solicitors[solicitor_name]
-  - To: Cases[solicitor_name]
-  - Cardinality: One to Many (Note: Not ideal, should use ID)
-  - Cross filter: Single
-```
+Follow [step4/README.md](step4/README.md) for the complete Fabric web UI workflow. Do not paste raw DAX into a Verified Answer.
 
-#### **Create Measures Table**
+#### **Optional: Create the Entire Model Manually in Fabric**
 
-1. Create a new **blank table** named `_Measures`
-2. Add these measures:
+For a training demonstration, follow [step4/README.md](step4/README.md) to create the Direct Lake model, relationships, measures, Prep for AI metadata, QA report, and Verified Answers in the Fabric web UI.
 
-```dax
--- Customer Metrics
-Total Customers = COUNTROWS(Customers)
-Active Customers = CALCULATE(COUNTROWS(Customers), Customers[status] = "Active")
-Corporate Customers = CALCULATE(COUNTROWS(Customers), Customers[customer_type] = "Corporate")
-
--- Case Metrics
-Total Cases = COUNTROWS(Cases)
-Open Cases = CALCULATE(COUNTROWS(Cases), Cases[case_status] = "Open")
-Total Case Value = SUM(Cases[case_value_gbp])
-Average Case Value = AVERAGE(Cases[case_value_gbp])
-
--- Transaction Metrics
-Total Revenue = SUMX(FILTER(Transactions, Transactions[transaction_type] = "Invoice"), Transactions[amount_gbp])
-Total Expenses = SUMX(FILTER(Transactions, Transactions[transaction_type] = "Expense"), Transactions[amount_gbp])
-Total Hours Billed = SUM(Transactions[hours_worked])
-Outstanding Invoices = CALCULATE(
-    COUNTROWS(Transactions),
-    Transactions[transaction_type] = "Invoice",
-    Transactions[payment_status] = "Unpaid"
-)
-
--- Solicitor Metrics
-Total Solicitors = COUNTROWS(Solicitors)
-Average Hourly Rate = AVERAGE(Solicitors[hourly_rate_gbp])
-Cases Per Solicitor = DIVIDE([Total Cases], [Total Solicitors], 0)
-
--- Interaction Metrics
-Total Interactions = COUNTROWS(Interactions)
-Average Interaction Duration = AVERAGE(Interactions[duration_minutes])
-```
-
-#### **Configure Prep for AI** ⭐ **CRITICAL STEP**
-
-1. **Go to Model View** → Select any table
-2. Open **Model Settings** (may need to enable in Preview Features)
-3. Navigate to **Prep for AI** section
-
-**A. Configure AI Data Schema:**
-
-Select these columns (20 columns total):
-- Customers: customer_id, customer_name, customer_type, city, status
-- Cases: case_id, case_type, case_value_gbp, case_status, start_date
-- Solicitors: solicitor_name, specialization, hourly_rate_gbp
-- Transactions: transaction_type, amount_gbp, payment_status
-- Interactions: interaction_type, interaction_date
-
-Select these measures (15 measures):
-- All measures from _Measures table (Total Customers, Active Customers, Total Cases, etc.)
-
-**B. Create Verified Answers:**
-
-Click **+ New Verified Answer** for each:
-
-1. **How many customers do we have?**
-   - Answer: Use measure `[Total Customers]`
-   - Description: "Total count of unique customers in the system"
-
-2. **What's the total case value?**
-   - Answer: Use measure `[Total Case Value]`
-   - Description: "Sum of case_value_gbp for all cases in GBP"
-
-3. **How many open cases?**
-   - Answer: Use measure `[Open Cases]`
-   - Description: "Count of cases with status='Open'"
-
-4. **What's the total revenue?**
-   - Answer: Use measure `[Total Revenue]`
-   - Description: "Sum of Invoice transaction amounts in GBP"
-
-5. **Which solicitor has the most cases?**
-   - Answer: Use DAX: `TOPN(1, SUMMARIZE(Cases, Cases[solicitor_name], "CaseCount", [Total Cases]), [CaseCount], DESC)`
-   - Description: "Solicitor with highest case count"
-
-6. **How many active corporate customers?**
-   - Answer: Use DAX: `CALCULATE([Total Customers], Customers[customer_type]="Corporate", Customers[status]="Active")`
-   - Description: "Count of customers where type=Corporate and status=Active"
-
-**C. Add AI Instructions:**
-
-```
-Business Context:
-- This is a UK legal firm specializing in conveyancing, employment law, family law, and commercial law
-- Customers can be Individual or Corporate
-- Cases are assigned to solicitors with different specializations
-- Financial transactions include Invoices, Payments, Timesheets, and Expenses
-- Fiscal year runs April-March (UK standard)
-
-Terminology:
-- "Revenue" means Invoice transactions only, not Payments
-- "Billed hours" means hours_worked from Timesheet transactions
-- "Outstanding" means Invoices with payment_status = 'Unpaid'
-- "Active" customers have status = 'Active' (not 'Inactive' or 'Suspended')
-
-Calculation Rules:
-- Always filter transactions by transaction_type when calculating revenue/expenses
-- Case values are in GBP (£)
-- Dates use DD/MM/YYYY format (UK standard)
-- When calculating "top" or "best", use descending order
-- When asked about "this year", use current year only
-
-Thresholds:
-- High-value case: > £100,000
-- Large customer: > 5 cases
-- Senior solicitor: hourly_rate_gbp > £300
-```
-
-4. **Save** as `LegalFirmOptimized.pbix`
-5. **Publish** to your Fabric workspace
-
-✅ **Checkpoint:** You now have an optimized semantic model with Prep for AI!
+✅ **Checkpoint:** You now have an optimized model with Prep for AI metadata and a clear manual follow-up for Verified Answers.
 
 ---
 
@@ -377,123 +229,44 @@ Thresholds:
 
 **Note:** Fabric IQ Ontology is currently in preview. Check availability in your region.
 
-### **Using Fabric Portal**
+The notebook deploys Ontology only when both `ENABLE_ONTOLOGY=True` and `CONFIRM_PREVIEW_DEPLOYMENTS=True`. Review the proposal printed by the notebook before confirming deployment.
 
-1. In your workspace, click **+ New** → **Ontology** (if available)
-2. Name it `LegalFirmOntology`
+The current domain profile creates these entities:
 
-### **Define Entities**
+| Entity | Source table | Key |
+| --- | --- | --- |
+| Customer | `step1_cleaned_customers` | `customer_id` |
+| LegalCase | `step1_cleaned_cases` | `case_id` |
+| Solicitor | `step1_cleaned_solicitors` | `solicitor_name` |
 
-Using the `step5/step5_ontology_definition.json` as reference:
+It creates two relationships: `CustomerHasCase` and `SolicitorHandlesCase`.
 
-**Entity 1: Client**
-- Source: `step1_cleaned_customers` table
-- Key: `customer_id`
-- Properties: customer_name, customer_type, city, phone, email, status, signup_date
-
-**Entity 2: LegalCase**
-- Source: `step1_cleaned_cases` table
-- Key: `case_id`
-- Properties: case_type, case_value_gbp, case_status, start_date
-
-**Entity 3: Solicitor**
-- Source: `step1_cleaned_solicitors` table
-- Key: `solicitor_id`
-- Properties: solicitor_name, specialization, hire_date, hourly_rate_gbp, office_location
-
-**Entity 4: FinancialTransaction**
-- Source: `step1_cleaned_transactions` table
-- Key: `transaction_id`
-- Properties: transaction_type, transaction_date, amount_gbp, hours_worked, payment_status
-
-**Entity 5: CustomerInteraction**
-- Source: `step1_cleaned_interactions` table
-- Key: `interaction_id`
-- Properties: interaction_type, interaction_date, duration_minutes, notes
-
-### **Define Relationships**
-
-1. **ClientHasCase**: Client → LegalCase (customer_id)
-2. **SolicitorAssignedToCase**: Solicitor → LegalCase (solicitor_name)
-3. **CaseHasTransaction**: LegalCase → FinancialTransaction (case_id)
-4. **ClientHasInteraction**: Client → CustomerInteraction (customer_id)
-5. **SolicitorHandlesInteraction**: Solicitor → CustomerInteraction (solicitor_name)
-
-### **Add Contextualizations**
-
-**ClientPortfolioContext:**
-- Aggregates: Total cases, total case value, open cases count
-- Description: "Client's complete portfolio of legal cases and their values"
-
-**SolicitorWorkloadContext:**
-- Aggregates: Cases handled, total hours billed, revenue generated
-- Description: "Solicitor's workload and performance metrics"
-
-**CaseFinancialContext:**
-- Aggregates: Total invoiced, total paid, outstanding amount
-- Description: "Financial summary for a legal case"
+`config/domains/uk-legal.json` is the deployment source of truth. `step5/step5_ontology_definition.json` is a legacy design reference and does not match the current profile schema closely enough to deploy unchanged.
 
 ---
 
 ## 🤖 STEP 6: Configure Data Agent (Multi-Source)
 
-**Note:** Data Agent configuration depends on Fabric's agent builder (preview).
+**Note:** Data Agent deployment uses a preview SDK and is disabled by default. Set `ENABLE_DATA_AGENT=True` after reviewing the staged source configuration. Set `PUBLISH_DATA_AGENT=True` only when you are ready to publish.
 
-### **Manual Configuration via Fabric Portal**
+The notebook creates or updates `LegalFirmCustomer360Agent` with two Fabric item sources:
 
-1. In workspace, click **+ New** → **Data Agent** (if available)
-2. Name it `LegalFirmAgent`
+| Source | Objects | Use for |
+| --- | --- | --- |
+| `LegalFirmOptimized` semantic model | Customers, Cases, Solicitors, Transactions, Interactions | Model measures and general customer, case, solicitor, transaction, and interaction questions |
+| `LegalFirmDemo` Lakehouse | `step6_client_engagement_summary`, `step6_case_finance_insights`, `step6_solicitor_performance_mart` | Engagement segments, combined case-finance outcomes, and solicitor performance |
 
-### **Configure Data Source 1: ClientCasePortfolio**
-
-- **Type:** Semantic Model
-- **Model:** `LegalFirmOptimized`
-- **Description:** "Contains customer information, legal cases, solicitors, and customer interactions. Use this for questions about clients, cases, solicitor performance, or customer engagement."
-- **Example Queries:**
-  - "How many active customers do we have?"
-  - "Show me all conveyancing cases"
-  - "Which solicitor handles the most cases?"
-  - "List all interactions with customer CUST0023"
-
-### **Configure Data Source 2: FinancialTransactions**
-
-- **Type:** Lakehouse Table
-- **Table:** `step1_cleaned_transactions`
-- **Description:** "Contains financial transaction details including invoices, payments, timesheets, and expenses. Use this for billing, revenue, payment status, and financial analysis questions."
-- **Example Queries:**
-  - "What's the total revenue in Q1 2023?"
-  - "How many unpaid invoices?"
-  - "Total hours billed by solicitor Sarah Jones"
-  - "Show me all expenses for case CASE0042"
-
-### **Add Routing Rules**
-
-The `step6/step6_data_agent_configuration.json` contains routing logic:
-
-```json
-{
-  "routing_rules": [
-    {
-      "keywords": ["customer", "client", "case", "solicitor", "interaction"],
-      "target_source": "ClientCasePortfolio"
-    },
-    {
-      "keywords": ["financial", "transaction", "invoice", "payment", "billing", "revenue", "expense"],
-      "target_source": "FinancialTransactions"
-    }
-  ]
-}
-```
+The source instructions and examples come from `config/domains/uk-legal.json`. `step6/step6_data_agent_configuration.json` is a more detailed legacy design reference; it is not the configuration consumed by the notebook.
 
 ### **Test the Agent**
 
 Try these queries in the Data Agent chat:
 
-1. "How many customers do we have?" → ClientCasePortfolio
-2. "What's our total revenue?" → FinancialTransactions
-3. "Show me high-value cases over £100k" → ClientCasePortfolio
-4. "How many unpaid invoices?" → FinancialTransactions
-5. "Which solicitor has the best performance?" → Both sources (JOIN)
+1. "How many active customers do we have?" → `LegalFirmOptimized`
+2. "What is our total revenue?" → `LegalFirmOptimized`
+3. "Which customers are in the low engagement segment?" → `LegalFirmDemo`
+4. "Which high-value open cases have outstanding balances?" → `LegalFirmDemo`
+5. "Which solicitors are in the top performance tier?" → `LegalFirmDemo`
 
 ---
 
@@ -508,13 +281,14 @@ Use queries from `evaluation/TEST_QUERIES.md`:
 $queries = Get-Content evaluation/TEST_QUERIES.md
 
 # Test each step manually in Fabric
-# Step 1: Query raw data (expect ~47% accuracy)
-# Step 2: Query cleaned data (expect ~60% accuracy)
-# Step 3: Query basic model (expect ~57% accuracy)
-# Step 4: Query optimized model (expect ~100% accuracy!)
-# Step 5: Query with ontology (expect ~100% accuracy)
-# Step 6: Query with agent routing (expect ~93% accuracy)
+# Step 1-2: Validate data preparation and source descriptions
+# Step 3: Establish the Basic model baseline
+# Step 4: Evaluate the Optimized model and Prep for AI
+# Step 5: Evaluate entity traversal when Ontology is enabled
+# Step 6: Evaluate source selection when Data Agent is enabled
 ```
+
+Accuracy percentages in the evaluation documents are demo benchmarks, not deployment guarantees. Re-run the evaluation against your deployed artifacts and tenant features.
 
 ### **Run Automated Evaluation**
 
@@ -553,7 +327,7 @@ ORDER BY t.name;
 
 ### **2. Semantic Model Validation**
 
-In Power BI Desktop connected to published model:
+Run a DAX query against the published `LegalFirmOptimized` model using the Fabric or Power BI semantic-model query experience:
 
 ```dax
 // Test measures
@@ -566,10 +340,10 @@ EVALUATE ROW(
 ```
 
 Expected results:
-- Total Customers: 166
+- Total Customers: 171
 - Total Cases: 500
-- Total Revenue: ~£2.5M - £3M
-- Active Customers: ~120
+- Total Revenue: £5,420,217
+- Active Customers: 101
 
 ### **3. Data Agent Validation**
 
@@ -577,19 +351,19 @@ Test these queries and verify routing:
 
 | Query | Expected Source | Expected Answer |
 |-------|----------------|-----------------|
-| "How many customers?" | ClientCasePortfolio | 166 |
-| "Total revenue?" | FinancialTransactions | £2.8M (approx) |
-| "Open cases?" | ClientCasePortfolio | 285 |
-| "Unpaid invoices?" | FinancialTransactions | ~45 |
+| "How many customers?" | LegalFirmOptimized | 171 |
+| "Total revenue?" | LegalFirmOptimized | £5,420,217 |
+| "Open cases?" | LegalFirmOptimized | 180 |
+| "Unpaid invoices?" | LegalFirmOptimized | 54 |
 
 ---
 
 ## 🎤 Demo Presentation Tips
 
 ### **Opening (2 min)**
-- "We have 2,500+ records across 5 normalized tables"
+- "We have 3,172 rows across 8 managed Delta tables"
 - "Real-world UK legal firm scenario with Customer 360"
-- "Progressive improvement from 47% to 100% accuracy"
+- "We compare a deliberately weak model with an optimized, AI-ready model"
 
 ### **Step 1 Demo (3 min)**
 - Show raw data with vague columns (`id`, `typ`, `col9`)
@@ -598,7 +372,7 @@ Test these queries and verify routing:
 
 ### **Step 2 Demo (2 min)**
 - Show cleaned data with descriptive columns
-- Run same query → Still not great (~60% accuracy)
+- Explain how source descriptions and scope improve interpretation
 - Key message: "Cleaning helps but isn't enough"
 
 ### **Step 3 Demo (2 min)**
@@ -609,22 +383,22 @@ Test these queries and verify routing:
 ### **Step 4 Demo (5 min)** ⭐ **THE BREAKTHROUGH**
 - Show star schema with relationships
 - Show Prep for AI configuration (AI Data Schema, Verified Answers)
-- Run queries → 100% accuracy!
-- Key message: "Best practices deliver perfect results"
+- Run the evaluated query set against the optimized model
+- Key message: "Explicit relationships, measures, and AI metadata improve reliability"
 
 ### **Step 5 Demo (2 min)**
 - Show ontology layer with entities
 - Run entity-based query: "Show me clients with high-value cases"
-- Key message: "Entity intelligence maintained 100% accuracy"
+- Key message: "Entity relationships support traversal-style questions"
 
 ### **Step 6 Demo (2 min)**
 - Run multi-source query: "Compare customer revenue by type"
 - Show routing to both sources
-- Key message: "93% accuracy with cross-source complexity"
+- Key message: "Source instructions make multi-source routing testable"
 
 ### **Closing (2 min)**
-- Show evaluation results chart (47% → 100%)
-- "77% improvement at Step 4 proves Prep for AI works"
+- Show results from the current evaluation run
+- Compare measured Basic and Optimized model outcomes
 - "Ready for production at enterprise scale"
 
 ---
@@ -642,8 +416,7 @@ Test these queries and verify routing:
 - Ensure cardinality is correct (1:many)
 
 ### **Issue: Prep for AI not available**
-- Update Power BI Desktop to latest version
-- Enable "Preview Features" in Options
+- Confirm Prep for AI is available for the semantic model in the Fabric service
 - Verify workspace has Fabric capacity (not Pro)
 
 ### **Issue: Ontology not available**
@@ -671,13 +444,13 @@ Test these queries and verify routing:
 
 Once all steps are deployed, you have:
 
-- ✅ 10 tables in Lakehouse (2,515 raw + 2,481 cleaned records)
+- ✅ 8 managed Delta tables with 3,172 current rows
 - ✅ 2 semantic models (basic vs optimized)
-- ✅ Prep for AI configured with 6 verified answers
-- ✅ Ontology with 5 entities (optional)
-- ✅ Data Agent with multi-source routing
+- ✅ Prep for AI metadata plus 5 manual Verified Answer candidates
+- ✅ Ontology with 3 entities and 2 relationships (optional)
+- ✅ Data Agent with semantic-model and Lakehouse sources (optional)
 - ✅ 30 test queries to demonstrate improvement
-- ✅ Evaluation framework showing 47% → 100% accuracy
+- ✅ Evaluation framework for measuring model quality and routing
 
 **Time to impress at the hackathon!** 🚀🏆
 

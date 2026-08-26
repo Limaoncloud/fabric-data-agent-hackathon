@@ -76,10 +76,9 @@ Verified answers should be based on saved report visuals, not raw DAX pasted int
 | --- | --- | --- |
 | How many customers do we have? | Card | Measure: [Total Customers] |
 | What is the total case value? | Card | Measure: [Total Case Value] |
-| How many open cases? | Card | Measure: [Open Cases] |
+| How many open cases do we have? | Card | Measure: [Open Cases] |
 | What is the total revenue? | Card | Measure: [Total Revenue] |
-| Which solicitor has most cases? | Matrix | Rows: Cases[solicitor_name]; Values: [Total Cases]; Sort descending by [Total Cases]. |
-| How many active corporate customers? | Matrix | Rows: Customers[customer_type], Customers[status]; Values: [Total Customers]. Use the Corporate + Active row. |
+| How many unpaid invoices do we have? | Card | Measure: [Outstanding Invoices] |
 
 ## 6. Configure Prep data for AI
 
@@ -136,10 +135,9 @@ In Prep data for AI > Verified answers, create verified answers from the saved r
 | --- | --- |
 | How many customers do we have? | Card visual using [Total Customers] |
 | What is the total case value? | Card visual using [Total Case Value] |
-| How many open cases? | Card visual using [Open Cases] |
+| How many open cases do we have? | Card visual using [Open Cases] |
 | What is the total revenue? | Card visual using [Total Revenue] |
-| Which solicitor has most cases? | Matrix visual with solicitor_name and [Total Cases], sorted descending |
-| How many active corporate customers? | Matrix visual with customer_type, status, and [Total Customers]; use Corporate + Active row |
+| How many unpaid invoices do we have? | Card visual using [Outstanding Invoices] |
 
 1. Click New verified answer.
 1. Enter the natural-language question.
