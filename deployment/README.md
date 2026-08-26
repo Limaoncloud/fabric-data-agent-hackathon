@@ -9,10 +9,9 @@ The default run creates or reuses:
 - A workspace folder and Lakehouse.
 - All managed Delta tables declared by the profile.
 - A deliberately weak Basic Direct Lake semantic model.
-- An Optimized Direct Lake semantic model with relationships and explicit measures.
-- AI instructions, example prompts, and a scoped AI Data Schema.
+- An Optimized Direct Lake semantic model with relationships, explicit measures, and descriptions.
 
-Prep for AI requires the Optimized model to be deployed in the workspace. The notebook generates stable lineage tags in the TMDL, then uses those tags to apply the AI Data Schema without waiting for asynchronous service metadata.
+The default participant-ready deployment intentionally leaves synonyms, Prep for AI, Verified Answers, and Data Agent configuration empty. Set `ENABLE_PREP_FOR_AI=True` only for an organizer demonstration that needs preconfigured AI instructions, example prompts, and a scoped AI Data Schema.
 
 After all definition updates, the notebook refreshes each deployed semantic model and waits for completion. This initializes every Direct Lake partition so the model does not remain in a `NoData` state after deployment.
 
@@ -22,6 +21,7 @@ Semantic models are generated as TMDL and sent through the Fabric Semantic Model
 
 These stages are disabled by default:
 
+- Organizer Prep for AI automation: set `ENABLE_PREP_FOR_AI=True` only when participants are not expected to author the AI configuration.
 - Fabric IQ Ontology: set `ENABLE_ONTOLOGY=True` and `CONFIRM_PREVIEW_DEPLOYMENTS=True` after reviewing the proposed entities and relationships.
 - Fabric Data Agent SDK: set `ENABLE_DATA_AGENT=True`; set `PUBLISH_DATA_AGENT=True` only when staging is ready to publish.
 
@@ -31,8 +31,9 @@ Verified Answers are not generated automatically. They require saved report visu
 
 1. Download or import the root notebook into a capacity-backed Fabric workspace.
 2. Leave `WORKSPACE_ID=""` to deploy to the notebook's current workspace.
-3. Run all cells with `DOMAIN_PROFILE="uk-legal"` for the default scenario.
-4. Review the deployment summary and complete the listed manual follow-ups.
+3. Keep AI, Data Agent, and preview automation flags disabled for participant-ready deployment.
+4. Run all cells with `DOMAIN_PROFILE="uk-legal"` for the default scenario.
+5. Review the deployment summary and begin the participant exercises.
 
 Use a release tag or commit SHA for `REPOSITORY_REF` during an event so the notebook and its profile remain immutable.
 

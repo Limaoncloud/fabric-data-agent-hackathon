@@ -24,8 +24,8 @@ Use `NB_Deploy_Data_Agent_Hackathon.ipynb` for the reproducible deployment path:
 1. Import the notebook into the target capacity-backed workspace.
 2. Leave `WORKSPACE_ID=""` to deploy to the notebook's current workspace.
 3. Leave `DOMAIN_PROFILE="uk-legal"` for the legal scenario.
-4. Run all cells to create the Lakehouse, managed Delta tables, Basic model, Optimized model, and Prep for AI metadata.
-5. Enable the Ontology and Data Agent stages only when required and supported by the tenant.
+4. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled for a participant-ready deployment.
+5. Run all cells to create the Lakehouse, managed Delta tables, Basic model, and Optimized model.
 
 The notebook generates semantic models as TMDL through Fabric APIs. It does not require Power BI Desktop, PBIP, PBIX, BIM, or template files. See [deployment/README.md](deployment/README.md) for custom-domain deployment.
 
@@ -59,11 +59,9 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  │                                             │             │
 │  │  Semantic Model: LegalFirmOptimized (Step 4)│            │
 │  │  ├─ Star schema (5 tables)                 │             │
-│  │  ├─ Prep for AI configured                 │             │
-│  │  │  ├─ Scoped AI Data Schema               │             │
-│  │  │  ├─ 5 Verified Answer candidates       │             │
-│  │  │  └─ AI Instructions (business rules)    │             │
-│  │  └─ Relationships & hierarchies            │             │
+│  │  ├─ Explicit measures and descriptions     │             │
+│  │  ├─ Relationships configured               │             │
+│  │  └─ AI configuration left to participants  │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 │  STEP 5: ONTOLOGY LAYER (Optional - Preview)               │
@@ -192,36 +190,36 @@ To demonstrate the build manually, create a new Direct Lake semantic model from 
 
 ## 🌟 STEP 4: Create Optimized Semantic Model
 
-### **Purpose:** Demonstrate semantic-model and AI-readiness best practices
+### **Purpose:** Provide a technically sound model for participant-led AI tuning
 
 #### **Recommended: Deploy from the Notebook**
 
-Run the semantic-model and Prep for AI sections of `NB_Deploy_Data_Agent_Hackathon.ipynb`, or run the full notebook from the beginning. The notebook generates `LegalFirmOptimized` as TMDL and deploys it through the Fabric API with:
+Run `NB_Deploy_Data_Agent_Hackathon.ipynb` with `ENABLE_PREP_FOR_AI=False`. The notebook generates `LegalFirmOptimized` as TMDL and deploys it through the Fabric API with:
 
 - Five business-named Direct Lake tables.
 - Four one-direction relationships from the domain profile.
 - Eighteen explicit business measures.
-- AI instructions and a scoped AI Data Schema.
+- Business-friendly names and descriptions.
 
-No Power BI Desktop or PBIX file is required.
+The participant-ready model intentionally has no synonyms, AI Data Schema selection, AI instructions, Verified Answers, or Data Agent. No Power BI Desktop or PBIX file is required for deployment.
 
-#### **Required Manual Follow-up: Verified Answers**
+#### **Participant Challenge: Improve Agent Understanding**
 
-Verified Answers are not deployed automatically because each answer must reference a saved report visual and be tested in the live Fabric authoring experience. Create a QA report and visual-backed answers for the five candidates printed by the notebook:
+Participants create a Data Agent using the Basic or Optimized model, run baseline questions, diagnose incorrect or inconsistent behavior, and decide which durable control to improve:
 
-1. How many customers do we have?
-2. What is the total case value?
-3. How many open cases do we have?
-4. What is the total revenue?
-5. How many unpaid invoices do we have?
+- Semantic-model synonyms.
+- AI Data Schema scope.
+- AI instructions and example prompts.
+- Data Agent source descriptions and instructions.
+- Verified Answers based on saved report visuals.
 
-Follow [step4/README.md](step4/README.md) for the complete Fabric web UI workflow. Do not paste raw DAX into a Verified Answer.
+Provide one worked example, then use questions and diagnostic hints without mapping each question to an exact fix. Participants should retest after every change and record what improved or did not improve.
 
-#### **Optional: Create the Entire Model Manually in Fabric**
+#### **Optional Organizer Automation**
 
-For a training demonstration, follow [step4/README.md](step4/README.md) to create the Direct Lake model, relationships, measures, Prep for AI metadata, QA report, and Verified Answers in the Fabric web UI.
+Set `ENABLE_PREP_FOR_AI=True` only when an organizer needs a completed demonstration environment. This optional path attempts to deploy AI instructions, example prompts, and AI schema metadata. Verified Answers remain manual because Fabric requires saved report visuals.
 
-✅ **Checkpoint:** You now have an optimized model with Prep for AI metadata and a clear manual follow-up for Verified Answers.
+✅ **Checkpoint:** Participants receive an optimized, described model whose AI-specific configuration is intentionally incomplete.
 
 ---
 
@@ -283,7 +281,7 @@ $queries = Get-Content evaluation/TEST_QUERIES.md
 # Test each step manually in Fabric
 # Step 1-2: Validate data preparation and source descriptions
 # Step 3: Establish the Basic model baseline
-# Step 4: Evaluate the Optimized model and Prep for AI
+# Step 4: Tune the Optimized model with participant-authored Prep for AI
 # Step 5: Evaluate entity traversal when Ontology is enabled
 # Step 6: Evaluate source selection when Data Agent is enabled
 ```
@@ -382,8 +380,8 @@ Test these queries and verify routing:
 
 ### **Step 4 Demo (5 min)** ⭐ **THE BREAKTHROUGH**
 - Show star schema with relationships
-- Show Prep for AI configuration (AI Data Schema, Verified Answers)
-- Run the evaluated query set against the optimized model
+- Show the Optimized model before AI-specific tuning
+- Let participants add selected Prep for AI controls and rerun the evaluated query set
 - Key message: "Explicit relationships, measures, and AI metadata improve reliability"
 
 ### **Step 5 Demo (2 min)**
@@ -446,7 +444,8 @@ Once all steps are deployed, you have:
 
 - ✅ 8 managed Delta tables with 3,172 current rows
 - ✅ 2 semantic models (basic vs optimized)
-- ✅ Prep for AI metadata plus 5 manual Verified Answer candidates
+- ✅ Optimized model with relationships, measures, and descriptions
+- ✅ Synonyms, Prep for AI, Verified Answers, and agent instructions left as participant exercises
 - ✅ Ontology with 3 entities and 2 relationships (optional)
 - ✅ Data Agent with semantic-model and Lakehouse sources (optional)
 - ✅ 30 test queries to demonstrate improvement

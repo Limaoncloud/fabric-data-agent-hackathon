@@ -1,6 +1,12 @@
 # Fabric Data Agent User Guide (Simple Step-by-Step)
 
-This guide walks you through **Steps 1 to 6** in a simple flow:
+This guide supports a three-hour, hands-on learning loop:
+
+> Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
+
+The environment starts with Lakehouse data and two semantic models. `LegalFirmBasic` is deliberately weak. `LegalFirmOptimized` has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent.
+
+Participants work through these stages:
 
 1. Load cleaned data and create an agent baseline
 2. Configure the data agent with best practices and retest
@@ -23,10 +29,22 @@ This guide walks you through **Steps 1 to 6** in a simple flow:
 1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into the target Fabric workspace.
 2. Leave `WORKSPACE_ID=""` to use the notebook's current workspace.
 3. Leave `DOMAIN_PROFILE="uk-legal"` for the default scenario.
-4. Run all cells to create the Lakehouse, load all profile tables, and deploy both Direct Lake semantic models.
-5. Review the deployment summary. Enable Ontology or Data Agent stages only when those preview features are available in the tenant.
+4. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled.
+5. Run all cells to create the participant-ready Lakehouse and both Direct Lake semantic models.
+6. Review the deployment summary, then begin the participant exercises in Fabric.
 
 See [deployment/README.md](deployment/README.md) for parameters and custom-domain packaging.
+
+## Suggested Three-Hour Schedule
+
+| Time | Activity |
+| --- | --- |
+| 0:00-0:20 | Scenario, Data Agent creation, and baseline questions |
+| 0:20-1:00 | Diagnose the Basic model and record failure types |
+| 1:00-1:30 | Compare the same questions against the Optimized model |
+| 1:30-2:20 | Add selected synonyms, Prep for AI, and agent instructions one change at a time |
+| 2:20-2:45 | Rerun baseline and unseen challenge questions |
+| 2:45-3:00 | Team debrief: what helped, what did not, and why |
 
 ---
 
@@ -43,7 +61,7 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
 - [Step 3: LegalFirmBasic Direct Lake instructions](step3/README.md) (manual Power BI Service build guide)
-- [Step 4: LegalFirmOptimized Direct Lake instructions](step4/README.md) (manual Power BI Service optimization guide)
+- [Step 4 facilitator reference](step4/README.md) (contains a complete solution path; do not distribute during the participant challenge)
 - `step5/step5_ontology_definition.json`
 - `step6/step6_data_agent_configuration.json`
 
@@ -123,194 +141,33 @@ Improve response consistency and quality by configuring the data agent using Mic
    - assumptions and constraints
 6. Keep data unchanged and rerun the same prompt set.
 
-### Step 2 Examples You Can Reuse
+### One Worked Example
 
-#### A) Business Terms To Define Explicitly
-Use this compact glossary in agent instructions (keep as one block): Active customer = `status='Active'`; Open case = `case_status='Open'`; High-value case = `case_value_gbp>=100000`; Unpaid invoice = `transaction_type='Invoice' AND payment_status='Unpaid'`; Overdue invoice = unpaid invoice older than 30 days; Revenue = sum(`amount_gbp`) for invoices; Payment collected = sum(`amount_gbp`) for payments; Billed hours = sum(`hours_worked`) for timesheets; Outstanding = Revenue - Payment collected.
+1. Ask: **"How many open matters do we have?"**
+2. Record the answer and which model object the agent appears to use.
+3. If the legal term *matter* is not understood, add one relevant synonym rather than changing several controls at once.
+4. Ask the exact question again, then test a paraphrase.
+5. Record whether the change helped and what evidence supports that conclusion.
 
-#### B) Abbreviations And Synonyms
-Use these canonical mappings: client->customer; matter->case; fee earner->solicitor; WIP->open case effort; AR->unpaid invoices; billed->invoice amount; collected->payment amount; top lawyer->solicitor with highest selected KPI; open matters->open cases; meetings/calls/touchpoints->interactions.
+### Diagnostic Hints For The Remaining Questions
 
-#### C) Clear Focused Instruction For The Data Agent
-Copy-paste and adapt this block:
-
-```text
-You are a Fabric Data Agent for UK legal Customer 360.
-
-Scope:
-- Use only the Step 1 cleaned tables in this source.
-- Do not invent fields, entities, or metrics outside the schema.
-
-Terminology rules:
-- Treat client = customer, matter = case, fee earner = solicitor.
-- Revenue means Invoice amounts only.
-- Outstanding means Invoice - Payment.
-- Unpaid invoice means transaction_type=Invoice and payment_status=Unpaid.
-
-Reasoning rules:
-- For counts, return integer values.
-- For money, return GBP with 2 decimals.
-- When a request is ambiguous, state the assumption in one short line.
-- If a required field is missing, say exactly what is missing.
-
-Response style:
-- Start with a direct answer in one sentence.
-- Then provide a short calculation summary (max 3 bullets).
-- Keep responses concise and evidence-based.
-```
-
-#### D) SQL Query Examples To Answer Questions
-Use these SQL examples as the expected logic behind common business questions.
-
-1. How many active customers do we have?
-
-```sql
-SELECT COUNT(*) AS active_customers
-FROM step1_cleaned_customers
-WHERE status = 'Active';
-```
-
-2. How many open cases do we have?
-
-```sql
-SELECT COUNT(*) AS open_cases
-FROM step1_cleaned_cases
-WHERE case_status = 'Open';
-```
-
-3. How many unpaid invoices do we have?
-
-```sql
-SELECT COUNT(*) AS unpaid_invoices
-FROM step1_cleaned_transactions
-WHERE transaction_type = 'Invoice'
-   AND payment_status = 'Unpaid';
-```
-
-4. What is total outstanding amount?
-
-```sql
-WITH inv AS (
-      SELECT COALESCE(SUM(amount_gbp), 0) AS total_invoiced
-      FROM step1_cleaned_transactions
-      WHERE transaction_type = 'Invoice'
-),
-pay AS (
-      SELECT COALESCE(SUM(amount_gbp), 0) AS total_paid
-      FROM step1_cleaned_transactions
-      WHERE transaction_type = 'Payment'
-)
-SELECT CAST(inv.total_invoiced - pay.total_paid AS DECIMAL(18,2)) AS outstanding_amount_gbp
-FROM inv
-CROSS JOIN pay;
-```
-
-5. Which solicitors handle the most open cases?
-
-```sql
-SELECT
-      solicitor_name,
-      COUNT(*) AS open_case_count
-FROM step1_cleaned_cases
-WHERE case_status = 'Open'
-GROUP BY solicitor_name
-ORDER BY open_case_count DESC;
-```
-
-6. Corporate customers with more than 3 open cases and at least 1 unpaid invoice
-
-```sql
-WITH open_case_counts AS (
-      SELECT
-            c.customer_id,
-            COUNT(*) AS open_cases
-      FROM step1_cleaned_cases c
-      WHERE c.case_status = 'Open'
-      GROUP BY c.customer_id
-),
-unpaid_invoice_customers AS (
-      SELECT DISTINCT
-            c.customer_id
-      FROM step1_cleaned_cases c
-      JOIN step1_cleaned_transactions t
-         ON t.case_id = c.case_id
-      WHERE t.transaction_type = 'Invoice'
-         AND t.payment_status = 'Unpaid'
-)
-SELECT
-      cu.customer_id,
-      cu.customer_name,
-      occ.open_cases
-FROM step1_cleaned_customers cu
-JOIN open_case_counts occ
-   ON occ.customer_id = cu.customer_id
-JOIN unpaid_invoice_customers uic
-   ON uic.customer_id = cu.customer_id
-WHERE cu.customer_type = 'Corporate'
-   AND occ.open_cases > 3
-ORDER BY occ.open_cases DESC, cu.customer_name;
-```
-
-7. Cases opened this quarter with zero payments and more than 20 billed hours
-
-```sql
-WITH tx_rollup AS (
-      SELECT
-            case_id,
-            SUM(CASE WHEN transaction_type = 'Payment' THEN amount_gbp ELSE 0 END) AS total_payments,
-            SUM(CASE WHEN transaction_type = 'Timesheet' THEN hours_worked ELSE 0 END) AS total_hours
-      FROM step1_cleaned_transactions
-      GROUP BY case_id
-)
-SELECT
-      c.case_id,
-      c.customer_id,
-      c.solicitor_name,
-      c.case_type,
-      c.case_status,
-      c.start_date,
-      COALESCE(t.total_payments, 0) AS total_payments,
-      COALESCE(t.total_hours, 0) AS total_hours
-FROM step1_cleaned_cases c
-LEFT JOIN tx_rollup t
-   ON t.case_id = c.case_id
-WHERE YEAR(TRY_CONVERT(date, c.start_date, 103)) = YEAR(GETDATE())
-   AND DATEPART(QUARTER, TRY_CONVERT(date, c.start_date, 103)) = DATEPART(QUARTER, GETDATE())
-   AND COALESCE(t.total_payments, 0) = 0
-   AND COALESCE(t.total_hours, 0) > 20
-ORDER BY c.start_date;
-```
-
-8. High-value open cases that also have overdue unpaid invoices (30+ days)
-
-```sql
-SELECT DISTINCT
-      c.case_id,
-      c.customer_id,
-      c.solicitor_name,
-      c.case_value_gbp,
-      c.case_status
-FROM step1_cleaned_cases c
-JOIN step1_cleaned_transactions t
-   ON t.case_id = c.case_id
-WHERE c.case_status = 'Open'
-   AND c.case_value_gbp >= 100000
-   AND t.transaction_type = 'Invoice'
-   AND t.payment_status = 'Unpaid'
-   AND TRY_CONVERT(date, t.transaction_date, 103) < DATEADD(day, -30, CAST(GETDATE() AS date))
-ORDER BY c.case_value_gbp DESC;
-```
+- Is the failure caused by model structure, naming, business terminology, source selection, or answer style?
+- Does the requested metric already exist as an explicit measure?
+- Is the term an alternative name, or does it encode a business rule?
+- Would narrowing the AI Data Schema reduce ambiguity?
+- Should the guidance live in the semantic model, Prep for AI, or Data Agent instructions?
+- Is the question stable and important enough to justify a Verified Answer?
+- Can you test the hypothesis by changing only one control?
 
 ### Test
 Run the same 7 prompts from Step 1 and compare quality.
 
-Add 3 to 5 complex prompts from section D above and compare:
+Add 3 to 5 complex prompts from the challenge set and compare:
 - consistency of terminology mapping
 - correctness of filter logic
 - clarity of assumptions in responses
 
-Optional validation:
-- Run matching SQL from section E and compare agent answers against SQL outputs.
+Use the facilitator-provided evaluation results only after recording your own answer and diagnosis.
 
 ### Expected
 - Better consistency
@@ -344,23 +201,21 @@ Run the same prompts
 ## Step 4: Optimize Semantic Model, Retest
 
 ### Goal
-Apply best practices and validate major accuracy improvement.
+Compare a technically optimized model with and without participant-authored AI metadata.
 
 ### Hint
 - You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
 - You can also use any tools listed in Microsoft Learn here:
    [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- For manual optimization in **Power BI Service**, follow the [Step 4 Direct Lake instructions](step4/README.md).
+- Facilitators may use the [Step 4 reference](step4/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
 
 ### Actions
-1. Improve model design to a clean star schema.
-2. Create clear, unique measures (no duplicates/ambiguous names).
-3. Configure Prep for AI:
-   - AI Data Schema
-   - Verified Answers
-   - AI Instructions
-4. Publish updated model.
-5. Reconnect the agent to this optimized model.
+1. Create a new Data Agent using the predeployed `LegalFirmOptimized` model.
+2. Run the unchanged baseline questions before adding AI-specific configuration.
+3. Inspect the existing relationships, measures, names, and descriptions.
+4. Choose one observed failure and improve one control: synonym, AI Data Schema scope, AI instruction, example prompt, source description, or agent instruction.
+5. Retest the same question and a paraphrase before making another change.
+6. Add a Verified Answer only when a stable, high-value question warrants a saved visual response.
 
 ### Test
 Run the same prompt set and compare with previous steps.
@@ -369,6 +224,7 @@ Run the same prompt set and compare with previous steps.
 - Significant quality jump
 - Better business logic understanding
 - More accurate and repeatable answers
+- Evidence showing which specific changes affected behavior
 
 ---
 
@@ -455,7 +311,7 @@ Run prompts that should route to different sources:
 1. Step 1 cleaned baseline: show initial quality
 2. Step 2 config best practices: show improved consistency
 3. Step 3 basic model: show structured but imperfect answers
-4. Step 4 optimized model: show major jump
+4. Step 4 optimized model: show the before/after effect of participant AI tuning
 5. Bonus Step 5 ontology: show advanced reasoning
 6. Bonus Step 6 multi-source routing: show reliable source selection and better cross-domain answers
 
@@ -466,7 +322,7 @@ Run prompts that should route to different sources:
 - [ ] Step 1 cleaned tables loaded and agent baseline answers captured
 - [ ] Step 2 data agent best-practice configuration applied and prompts rerun
 - [ ] Step 3 basic semantic model published and connected
-- [ ] Step 4 optimized model + Prep for AI configured
+- [ ] Step 4 optimized model tested before and after selected participant-authored AI improvements
 - [ ] Bonus Step 5 ontology mapped and agent retested
 - [ ] Bonus Step 6 multiple data sources configured with routing best practices and retested
 - [ ] Side-by-side comparison recorded for your demo

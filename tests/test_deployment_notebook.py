@@ -40,7 +40,7 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertEqual("dev", values["REPOSITORY_REF"])
         self.assertTrue(values["DEPLOY_BASIC_MODEL"])
         self.assertTrue(values["DEPLOY_OPTIMIZED_MODEL"])
-        self.assertTrue(values["ENABLE_PREP_FOR_AI"])
+        self.assertFalse(values["ENABLE_PREP_FOR_AI"])
         self.assertTrue(values["REFRESH_SEMANTIC_MODELS"])
         self.assertFalse(values["ENABLE_ONTOLOGY"])
         self.assertFalse(values["CONFIRM_PREVIEW_DEPLOYMENTS"])
