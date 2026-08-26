@@ -41,12 +41,14 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertTrue(values["DEPLOY_BASIC_MODEL"])
         self.assertTrue(values["DEPLOY_OPTIMIZED_MODEL"])
         self.assertTrue(values["ENABLE_PREP_FOR_AI"])
+        self.assertTrue(values["REFRESH_SEMANTIC_MODELS"])
         self.assertFalse(values["ENABLE_ONTOLOGY"])
         self.assertFalse(values["CONFIRM_PREVIEW_DEPLOYMENTS"])
         self.assertFalse(values["ENABLE_DATA_AGENT"])
         self.assertFalse(values["PUBLISH_DATA_AGENT"])
         self.assertEqual(1800, values["LRO_TIMEOUT_SECONDS"])
         self.assertEqual(180, values["ITEM_DISCOVERY_TIMEOUT_SECONDS"])
+        self.assertEqual(900, values["SEMANTIC_REFRESH_TIMEOUT_SECONDS"])
 
     def test_required_deployment_patterns(self):
         for section in range(1, 9):
@@ -58,6 +60,9 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertIn("updateDefinition", self.source)
         self.assertIn("deployer.definition_payload", self.source)
         self.assertNotIn("Waiting for semantic-model lineage tags", self.source)
+        self.assertIn("https://api.powerbi.com/v1.0/myorg", self.source)
+        self.assertIn('status == "Completed"', self.source)
+        self.assertIn("refresh_semantic_model(model_id, model_name)", self.source)
         self.assertIn("CONFIRM_PREVIEW_DEPLOYMENTS", self.source)
         self.assertIn("fabric-data-agent-sdk==0.1.28a0", self.source)
 

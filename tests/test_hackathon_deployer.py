@@ -25,6 +25,15 @@ class ProfileTests(unittest.TestCase):
     def test_profile_cross_references_and_csv_headers(self):
         validate_profile(PROFILE, ROOT)
 
+    def test_reserved_cases_table_is_quoted_in_dax(self):
+        expressions = [
+            measure["expression"]
+            for model in PROFILE["semanticModels"].values()
+            for measure in model["measures"]
+        ]
+        for expression in expressions:
+            self.assertNotRegex(expression, r"(?<!')\bCases\s*(?:\[|\))")
+
     def test_deployer_uses_fabric_compatible_python_syntax(self):
         source = (ROOT / "deployment" / "hackathon_deployer.py").read_text(encoding="utf-8")
         ast.parse(source, filename="hackathon_deployer.py", feature_version=(3, 10))

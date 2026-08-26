@@ -14,6 +14,8 @@ The default run creates or reuses:
 
 Prep for AI requires the Optimized model to be deployed in the workspace. The notebook generates stable lineage tags in the TMDL, then uses those tags to apply the AI Data Schema without waiting for asynchronous service metadata.
 
+After all definition updates, the notebook refreshes each deployed semantic model and waits for completion. This initializes every Direct Lake partition so the model does not remain in a `NoData` state after deployment.
+
 Semantic models are generated as TMDL and sent through the Fabric Semantic Model definition API. The workflow does not use PBIP, PBIX, BIM, or report-template files.
 
 ## Preview Stages
