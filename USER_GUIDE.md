@@ -226,6 +226,44 @@ Run the same prompt set and compare with previous steps.
 - More accurate and repeatable answers
 - Evidence showing which specific changes affected behavior
 
+### Agent Testing Challenge
+
+#### Worked example
+
+Ask: **How many open matters do we have?**
+
+1. Record the answer and which model object the agent appears to use.
+2. Decide whether *matter* describes a new business rule or another name for an existing concept.
+3. Make the smallest relevant metadata change.
+4. Ask the same question again, then test: **How many matters are currently open?**
+5. Record what changed and what evidence supports your conclusion.
+
+#### Your questions
+
+Do not change several controls at once. For each question, capture the baseline, form a hypothesis, make one change, and retest the question plus its paraphrase.
+
+| Question | Paraphrase | Hint |
+| --- | --- | --- |
+| How many active clients do we have? | What is our current active customer count? | Is every business term represented in the model language? |
+| What is the total value of all matters? | What is our complete case portfolio worth? | Did the agent select an explicit measure or aggregate a field itself? |
+| How much revenue have we generated? | What is the total amount invoiced? | Could revenue mean invoices, payments, or all transactions? |
+| How many invoices remain unpaid? | What is our unpaid invoice count? | Does an existing measure already match the intent? |
+| How many legal cases are currently open? | How many open matters are on our books? | Does behavior remain consistent when terminology changes? |
+| How many customers do we have? | What is our total client count? | If this fails, inspect scope and grounding before adding instructions. |
+
+#### Results worksheet
+
+| Question | Baseline answer | Hypothesis | One change made | Retest answer | Paraphrase result | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 |  |  |  |  |  |  |
+| 2 |  |  |  |  |  |  |
+| 3 |  |  |  |  |  |  |
+| 4 |  |  |  |  |  |  |
+| 5 |  |  |  |  |  |  |
+| 6 |  |  |  |  |  |  |
+
+Facilitators should use [evaluation/FACILITATOR_GUIDE.md](evaluation/FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
+
 ---
 
 ## Step 5 (Bonus): Add Ontology Data, Retest

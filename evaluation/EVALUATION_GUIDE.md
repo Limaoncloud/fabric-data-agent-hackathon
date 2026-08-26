@@ -4,9 +4,13 @@ This guide explains how to use the evaluation framework to measure actual data a
 
 ## What's Included
 
-1. **evaluation/evaluation_dataset.json** - 30 ground truth questions with expected answers
-2. **evaluation/evaluate_agent.py** - Python framework to test and measure accuracy
-3. **evaluation/TEST_QUERIES.md** - Manual testing guide with expected results
+1. **evaluation/hackathon_challenge_dataset.json** - Current six-question participant challenge with checked ground truths and paraphrases
+2. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+3. **evaluation/evaluation_dataset.json** - Extended legacy question bank; regenerate all ground truths before formal use with changed source data
+4. **evaluation/evaluate_agent.py** - Python framework to test and measure accuracy
+5. **evaluation/TEST_QUERIES.md** - Extended manual testing reference
+
+For the three-hour hackathon, use `hackathon_challenge_dataset.json`. Its expected answers are tested directly against the checked-in CSV files.
 
 ## Why Evaluate?
 
@@ -24,7 +28,7 @@ The demo documentation shows **estimated** accuracy improvements based on Micros
 Test the evaluation framework without connecting to Fabric:
 
 ```bash
-python evaluation/evaluate_agent.py --simulation --dataset evaluation/evaluation_dataset.json --output results_simulation.json
+python evaluation/evaluate_agent.py --simulation --dataset evaluation/hackathon_challenge_dataset.json --output results_simulation.json
 ```
 
 This will:
@@ -48,7 +52,7 @@ python evaluation/evaluate_agent.py \
   --workspace-name <optional_workspace_name> \
   --table-name demo_evaluation_output \
   --stage production \
-  --dataset evaluation/evaluation_dataset.json \
+  --dataset evaluation/hackathon_challenge_dataset.json \
   --output results.json \
   --save-official-details-csv
 ```
@@ -69,7 +73,7 @@ python evaluation/evaluate_agent.py \
   --sdk-mode \
   --agent-id <your_data_agent_name> \
   --table-name demo_evaluation_output \
-  --dataset evaluation/evaluation_dataset.json \
+  --dataset evaluation/hackathon_challenge_dataset.json \
   --output results.json \
   --critic-prompt-file critic_prompt.txt
 ```
@@ -78,21 +82,22 @@ You can also pass inline text with `--critic-prompt`.
 
 ## Understanding the Dataset
 
-### evaluation/evaluation_dataset.json Structure
+### evaluation/hackathon_challenge_dataset.json Structure
 
 ```json
 {
   "metadata": {
-    "name": "UK Legal Firm Data Agent Evaluation",
-    "total_queries": 30
+    "name": "UK Legal Data Agent Hackathon Challenge",
+    "total_queries": 6
   },
   "evaluation_queries": [
     {
-      "id": "Q001",
-      "question": "How many active customers do we have?",
-      "category": "customer_count",
-      "expected_source": "ClientCasePortfolio",
-      "ground_truth_answer": 15,
+      "id": "HC001",
+      "question": "How many active clients do we have?",
+      "paraphrase": "What is our current active customer count?",
+      "category": "terminology",
+      "expected_source": "LegalFirmOptimized",
+      "ground_truth_answer": 101,
       "answer_type": "number",
       "difficulty": "easy",
       "tests_routing": true,
@@ -231,15 +236,15 @@ Results are saved to JSON for further analysis:
   "evaluation_date": "2026-08-04T10:30:00",
   "agent_id": "step4_agent",
   "aggregate_metrics": {
-    "total_queries": 30,
-    "exact_match_accuracy": 0.9333,
-    "semantic_match_accuracy": 0.9667,
-    "routing_accuracy": 0.9444,
+    "total_queries": 6,
+    "exact_match_accuracy": 0.8333,
+    "semantic_match_accuracy": 0.8333,
+    "routing_accuracy": 1.0,
     "by_category": { ... }
   },
   "detailed_metrics": [
     {
-      "query_id": "Q001",
+      "query_id": "HC001",
       "exact_match": true,
       "semantic_match": true,
       "routing_correct": true,
@@ -251,10 +256,10 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use [TEST_QUERIES.md](TEST_QUERIES.md):
+If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md). Use [TEST_QUERIES.md](TEST_QUERIES.md) only for an extended follow-up:
 
 1. Open your Data Agent in Fabric
-2. Run each query from evaluation/TEST_QUERIES.md
+2. Run each question and paraphrase from the six-question challenge
 3. Compare actual answer to ground truth
 4. Record results in the log template
 
@@ -264,7 +269,7 @@ This is more time-consuming but doesn't require code.
 
 ### 1) Simulation mode
 - Fast dry-run for framework validation
-- Command: `python evaluation/evaluate_agent.py --simulation --step 6 --dataset evaluation/evaluation_dataset.json --output results.json`
+- Command: `python evaluation/evaluate_agent.py --simulation --step 4 --dataset evaluation/hackathon_challenge_dataset.json --output results.json`
 
 ### 2) SDK mode
 - Official Microsoft workflow using Fabric Data Agent SDK

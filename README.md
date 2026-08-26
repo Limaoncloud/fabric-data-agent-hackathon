@@ -79,6 +79,8 @@ Deployment details:
 
 ### Evaluation and testing
 - evaluation/evaluate_agent.py
+- evaluation/hackathon_challenge_dataset.json
+- evaluation/FACILITATOR_GUIDE.md
 - evaluation/evaluation_dataset.json
 - evaluation/TEST_QUERIES.md
 - evaluation/EVALUATION_GUIDE.md
