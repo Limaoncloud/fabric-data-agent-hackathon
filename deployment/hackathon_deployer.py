@@ -165,8 +165,9 @@ def _semantic_model_uuid(scope: str) -> str:
 
 def _render_measure(measure: dict[str, Any], lineage_scope: str) -> list[str]:
     expression = measure["expression"]
+    lineage_tag = _semantic_model_uuid(f"{lineage_scope}:measure:{measure['name']}")
     lines = [f"\t{_description(measure['description'])}", f"\tmeasure {_tmdl_name(measure['name'])} = {expression}"]
-    lines.append(f"\t\tlineageTag: {_semantic_model_uuid(f'{lineage_scope}:measure:{measure['name']}')}")
+    lines.append(f"\t\tlineageTag: {lineage_tag}")
     lines.append(f"\t\tformatString: {measure['formatString']}")
     return lines
 
@@ -174,13 +175,14 @@ def _render_measure(measure: dict[str, Any], lineage_scope: str) -> list[str]:
 def _render_column(column: dict[str, Any], lineage_scope: str) -> list[str]:
     # Tabular models represent both source dates and timestamps as dateTime.
     tmdl_type = "dateTime" if column["type"] == "date" else column["type"]
+    lineage_tag = _semantic_model_uuid(f"{lineage_scope}:column:{column['name']}")
     lines = []
     if column.get("description"):
         lines.append(f"\t{_description(column['description'])}")
     lines.extend(
         [
             f"\tcolumn {_tmdl_name(column['name'])}",
-            f"\t\tlineageTag: {_semantic_model_uuid(f'{lineage_scope}:column:{column['name']}')}",
+            f"\t\tlineageTag: {lineage_tag}",
             f"\t\tdataType: {tmdl_type}",
             "\t\tsummarizeBy: none",
             f"\t\tsourceColumn: {column['source']}",

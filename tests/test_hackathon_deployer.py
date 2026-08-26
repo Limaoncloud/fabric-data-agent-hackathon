@@ -1,3 +1,4 @@
+import ast
 import json
 import re
 import unittest
@@ -23,6 +24,10 @@ LAKEHOUSE_ID = "22222222-2222-2222-2222-222222222222"
 class ProfileTests(unittest.TestCase):
     def test_profile_cross_references_and_csv_headers(self):
         validate_profile(PROFILE, ROOT)
+
+    def test_deployer_uses_fabric_compatible_python_syntax(self):
+        source = (ROOT / "deployment" / "hackathon_deployer.py").read_text(encoding="utf-8")
+        ast.parse(source, filename="hackathon_deployer.py", feature_version=(3, 10))
 
 
 class SemanticModelTests(unittest.TestCase):
