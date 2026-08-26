@@ -453,6 +453,23 @@ If a question routes incorrectly, change one control and retest:
 
 ---
 
+## Evaluate Your Agent
+
+Use [NB_Evaluate_Data_Agent_Hackathon.ipynb](NB_Evaluate_Data_Agent_Hackathon.ipynb) after completing the six-question Agent Testing Challenge.
+
+1. Import the evaluation notebook into the Fabric workspace.
+2. In the Data Agent chat, ask each original question and its paraphrase.
+3. Record the baseline and final answers and the Fabric item selected as the source.
+4. Expand the run steps and inspect the generated SQL or DAX. Mark the logic `True` only when the table or measure, filters, and aggregation are correct.
+5. Enter those observations in the notebook's **Enter Test Results** cell.
+6. Run all cells. Fix any actionable validation errors.
+7. Review the per-question scorecard and the baseline and final totals out of 24.
+8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
+
+The notebook performs deterministic scoring from participant-entered observations; it does not call the live Data Agent API. Facilitators can use the SDK workflow in [evaluation/EVALUATION_GUIDE.md](evaluation/EVALUATION_GUIDE.md) for independent automated runs after the event.
+
+---
+
 ## Optional: Regenerate Data Locally
 
 From repo root:

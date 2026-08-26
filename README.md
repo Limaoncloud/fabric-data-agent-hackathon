@@ -81,6 +81,7 @@ Deployment details:
 - step6/step6_data_agent_configuration.json
 
 ### Evaluation and testing
+- NB_Evaluate_Data_Agent_Hackathon.ipynb
 - evaluation/evaluate_agent.py
 - evaluation/hackathon_challenge_dataset.json
 - evaluation/FACILITATOR_GUIDE.md

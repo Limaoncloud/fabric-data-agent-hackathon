@@ -4,11 +4,12 @@ This guide explains how to use the evaluation framework to measure actual data a
 
 ## What's Included
 
-1. **evaluation/hackathon_challenge_dataset.json** - Current six-question participant challenge with checked ground truths and paraphrases
-2. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-3. **evaluation/evaluation_dataset.json** - Extended legacy question bank; regenerate all ground truths before formal use with changed source data
-4. **evaluation/evaluate_agent.py** - Python framework to test and measure accuracy
-5. **evaluation/TEST_QUERIES.md** - Extended manual testing reference
+1. **NB_Evaluate_Data_Agent_Hackathon.ipynb** - Participant notebook for entering observed results and generating a scored report
+2. **evaluation/hackathon_challenge_dataset.json** - Current six-question participant challenge with checked ground truths and paraphrases
+3. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+4. **evaluation/evaluation_dataset.json** - Extended legacy question bank; regenerate all ground truths before formal use with changed source data
+5. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
+6. **evaluation/TEST_QUERIES.md** - Extended manual testing reference
 
 For the three-hour hackathon, use `hackathon_challenge_dataset.json`. Its expected answers are tested directly against the checked-in CSV files.
 
@@ -23,7 +24,17 @@ The demo documentation shows **estimated** accuracy improvements based on Micros
 
 ## Quick Start: Run Evaluation
 
-### Option 1: Simulation Mode (No Fabric API)
+### Option 1: Participant Results Notebook (Recommended During The Event)
+
+1. Import `NB_Evaluate_Data_Agent_Hackathon.ipynb` into Fabric.
+2. Enter observed baseline and final results in its single participant input cell.
+3. Mark query/measure logic only after inspecting the Data Agent run steps.
+4. Run all cells to receive baseline and final scores out of 24.
+5. Submit the exported CSV and JSON with query evidence.
+
+This path does not call the Data Agent API and requires no SDK setup.
+
+### Option 2: Simulation Mode (Framework Test Only)
 
 Test the evaluation framework without connecting to Fabric:
 
@@ -32,12 +43,12 @@ python evaluation/evaluate_agent.py --simulation --dataset evaluation/hackathon_
 ```
 
 This will:
-- ✅ Test all 30 queries
+- ✅ Test all 6 challenge queries
 - ✅ Simulate routing logic
 - ✅ Calculate accuracy metrics
 - ✅ Generate a report
 
-### Option 2: Official Fabric SDK Mode (Recommended)
+### Option 3: Official Fabric SDK Mode (Facilitator Automation)
 
 To test against an actual Fabric Data Agent using the Microsoft-recommended workflow:
 
