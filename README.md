@@ -35,7 +35,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 2. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default deployment.
 3. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and preview stages disabled.
 4. Run all cells to create the Lakehouse, Delta tables, and both Direct Lake semantic models.
-5. Participants create Data Agents, run baseline prompts, and add selected synonyms, Prep for AI, Verified Answers, and agent instructions.
+5. Participants tune Lakehouse agents with source scope, descriptions, instructions, and SQL examples; later they add semantic-model synonyms, Prep for AI, Verified Answers, and agent instructions.
 
 The notebook generates semantic models as TMDL through Fabric APIs. It does not require PBIP or PBIX files.
 

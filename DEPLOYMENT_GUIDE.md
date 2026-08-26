@@ -207,7 +207,7 @@ The participant-ready model intentionally has no synonyms, AI Data Schema select
 
 Participants create a Data Agent using the Basic or Optimized model, run baseline questions, diagnose incorrect or inconsistent behavior, and decide which durable control to improve:
 
-- Semantic-model synonyms.
+- Semantic-model synonyms in Prep for AI (not Lakehouse table synonyms).
 - AI Data Schema scope.
 - AI instructions and example prompts.
 - Data Agent source descriptions and instructions.

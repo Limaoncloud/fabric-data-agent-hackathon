@@ -14,13 +14,24 @@ Participants should learn to choose the lowest durable layer for a fix:
 
 The expected loop is: test, observe, form a hypothesis, change one control, retest, and test a paraphrase.
 
+## Controls By Source Type
+
+| Source | Available tuning controls for this exercise |
+| --- | --- |
+| Lakehouse | Selected tables/columns, source description, Data Agent instructions, validated SQL example queries |
+| Power BI semantic model | Model names/descriptions, Prep for AI synonyms, AI Data Schema, AI instructions, Verified Answers, Data Agent instructions |
+
+Do not tell participants to add synonyms to Lakehouse tables. Fabric exposes model-object synonyms through Prep for AI on Power BI semantic models. Data Agent example question/query pairs support Lakehouse SQL sources, but not Power BI semantic-model sources.
+
 ## Worked Example
 
 **Question:** How many open matters do we have?
 
 **Expected answer:** 180.
 
-Demonstrate only this example. Ask whether *matter* is a new calculation or another name for *case*. Add `matter` and `matters` as synonyms for the Cases table, retest the original question, and then test: **How many matters are currently open?**
+In Step 2, demonstrate only the Lakehouse version: ask whether *matter* is a new calculation or another name for *case*, add a concise Data Agent instruction mapping matter to case, retest, and inspect the generated SQL.
+
+In Step 4, participants should discover the more durable semantic-model option themselves: add `matter` and `matters` as synonyms for the Cases table in Prep for AI, then retest **How many matters are currently open?** Do not demonstrate this second fix in advance.
 
 Do not demonstrate additional fixes.
 
@@ -55,7 +66,7 @@ Give only one hint at a time.
 
 ### Level 3: Choose A Control
 
-- Would one synonym address the terminology gap?
+- Is this a semantic-model source where a synonym is available, or a Lakehouse source where instructions/descriptions are the relevant controls?
 - Is the AI Data Schema too broad or missing a required object?
 - Does the business rule belong in a measure description or AI instruction?
 - Is the issue specific to one source and better placed in Data Agent source instructions?
@@ -69,8 +80,8 @@ These are not mandatory solutions. Accept alternatives when teams can explain an
 
 | ID | Candidate intervention | Evidence to request |
 | --- | --- | --- |
-| HC001 | Add `client` as a customer synonym or clarify terminology | Original and paraphrase both select Active Customers |
-| HC002 | Add `matter` as a case synonym and expose Total Case Value | Agent uses the explicit measure for both phrasings |
+| HC001 | On the semantic model, add `client` as a customer synonym or clarify terminology in AI instructions | Original and paraphrase both select Active Customers |
+| HC002 | On the semantic model, add `matter` as a case synonym and expose Total Case Value | Agent uses the explicit measure for both phrasings |
 | HC003 | State that revenue means Invoice amounts and use Total Revenue | Agent does not substitute payments or all transactions |
 | HC004 | Improve visibility or description of Outstanding Invoices | Agent selects the existing measure consistently |
 | HC005 | Compare case and matter terminology behavior | Both phrasings return 180 without contradictory assumptions |

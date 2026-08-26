@@ -67,17 +67,18 @@ Use one of these prompts in Copilot Chat:
 
 ## 30-Minute Runbook
 
-### 0 to 5 minutes: Load curated data
+### 0 to 5 minutes: Deploy participant-ready assets
 1. Import and open `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target workspace.
 2. Keep `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default scenario.
-3. Run through the Lakehouse and data-loading sections.
+3. Keep `ENABLE_PREP_FOR_AI=False` and `ENABLE_DATA_AGENT=False`.
+4. Run all cells to deploy the Lakehouse tables and both semantic models.
 
 Success check:
-- All 5 tables loaded and queryable.
+- Eight Lakehouse tables and both semantic models are available; Direct Lake partitions are refreshed.
 
 ### 5 to 10 minutes: Stand up a baseline agent
 1. Create a Data Agent over the cleaned Lakehouse tables.
-2. Add short instructions: industry context, currency, concise answers.
+2. Select only the five `step1_cleaned_*` tables and leave instructions/examples empty for the baseline.
 3. Run baseline prompts:
    - How many active customers do we have?
   - How many open service records do we have?
@@ -87,11 +88,9 @@ Success check:
 - Agent returns data-backed answers for all baseline prompts.
 
 ### 10 to 15 minutes: Attach semantic model fast path
-Run the semantic-model and Prep for AI sections of the deployment notebook. The notebook generates both models as TMDL and deploys them without PBIP/PBIX files.
-
-Then:
-1. Connect Data Agent to the semantic model.
-2. Re-run baseline prompts and compare quality.
+1. Create a new Data Agent using the predeployed `LegalFirmOptimized` semantic model.
+2. Re-run baseline prompts before adding AI metadata.
+3. Add one semantic-model synonym or AI instruction in Prep for AI, then retest.
 
 Success check:
 - Answers become more consistent and business-aware.
@@ -108,7 +107,7 @@ Success check:
 Apply in this order:
 1. Tight schema selection per source
 2. Focused source descriptions
-3. Source-specific example queries
+3. Validated example query pairs for Lakehouse/KQL sources only
 4. Concise topic routing rules
 
 Reference:

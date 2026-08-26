@@ -88,7 +88,7 @@ Deliver a progressive six-step demonstration that shows answer-quality uplift:
 - Step 1: Raw multi-table data baseline
 - Step 2: Cleaned multi-table data
 - Step 3: Basic semantic model
-- Step 4: Optimized semantic model with Prep for AI
+- Step 4: Optimized semantic model followed by participant-authored Prep for AI
 - Step 5: Ontology layer
 - Step 6: Multiple data sources with routing best practices
 
@@ -148,7 +148,8 @@ Key files used in this demo:
 Actions:
 - Use the cleaned industry-specific Customer 360 baseline with hundreds or thousands of rows.
 - Use multiple related tables, not a single denormalized table.
-- Upload to Fabric Lakehouse and connect a Data Agent.
+- Deploy the Lakehouse with the organizer notebook, then connect a participant-created Data Agent.
+- Leave Data Agent instructions and example queries empty for the first baseline run.
 - Run baseline prompts and record initial quality.
 
 Minimum data domains:
@@ -163,6 +164,8 @@ Actions:
 - Keep Step 1 data unchanged.
 - Tighten schema scope and table/column selection.
 - Improve source descriptions, example queries, and agent instructions.
+- For Lakehouse sources, teach terminology through source descriptions and Data Agent instructions; do not describe this as adding table synonyms.
+- Use validated SQL example query pairs only for supported SQL sources.
 - Re-run the same prompts for like-for-like comparison.
 
 ### Step 3 - Basic Semantic Model
@@ -176,7 +179,9 @@ Actions:
 Actions:
 - Generate the Optimized Direct Lake semantic model from the same profile.
 - Apply a clear star schema, descriptions, formats, and unambiguous measures.
-- Configure Prep for AI:
+- Leave AI-specific metadata empty in the participant-ready deployment.
+- Have participants configure Prep for AI:
+  - Semantic-model table/column/measure synonyms
   - AI Data Schema
   - AI Instructions
 - Configure Verified Answers manually from saved report visuals.
@@ -205,7 +210,7 @@ Actions:
 Required Step 6 routing sequence:
 1. Tighten schema scope per source
 2. Add concise source descriptions
-3. Add source-specific example queries
+3. Add validated example query pairs for Lakehouse, Warehouse, or KQL sources; do not add them to Power BI semantic-model sources
 4. Add short topic-based routing rules
 
 References:
@@ -288,7 +293,7 @@ Industry adaptation add-ons:
 1. Show Step 1 baseline errors and ambiguity
 2. Show Step 2 stabilization from cleaning
 3. Show Step 3 structural gains from semantic model
-4. Show Step 4 major uplift from optimization + Prep for AI
+4. Show Step 4 before/after results from participant-authored semantic-model synonyms and Prep for AI
 5. Show Step 5 relationship reasoning with ontology
 6. Show Step 6 orchestrator routing improvements across sources
 

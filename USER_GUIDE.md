@@ -42,7 +42,7 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 | 0:00-0:20 | Scenario, Data Agent creation, and baseline questions |
 | 0:20-1:00 | Diagnose the Basic model and record failure types |
 | 1:00-1:30 | Compare the same questions against the Optimized model |
-| 1:30-2:20 | Add selected synonyms, Prep for AI, and agent instructions one change at a time |
+| 1:30-2:20 | Add semantic-model synonyms, Prep for AI, and agent instructions one change at a time |
 | 2:20-2:45 | Rerun baseline and unseen challenge questions |
 | 2:45-3:00 | Team debrief: what helped, what did not, and why |
 
@@ -150,19 +150,21 @@ Improve response consistency and quality by configuring the data agent using Mic
 ### One Worked Example
 
 1. Ask: **"How many open matters do we have?"**
-2. Record the answer and which model object the agent appears to use.
-3. If the legal term *matter* is not understood, add one relevant synonym rather than changing several controls at once.
-4. Ask the exact question again, then test a paraphrase.
-5. Record whether the change helped and what evidence supports that conclusion.
+2. Record the answer and inspect the generated SQL or agent steps.
+3. If *matter* is not understood, open **Data agent instructions** and add one concise rule: `In legal terminology, matter and matters mean case and cases. Use step1_cleaned_cases.`
+4. Ask the exact question again, then test: **"How many cases are currently open?"**
+5. Record whether the generated SQL and answer improved.
+
+Lakehouse tables do not have the semantic-model synonym editor. For Lakehouse sources, use Data Agent instructions, data-source descriptions, schema selection, and validated SQL example queries. You will add true model-object synonyms later in Step 4 with `LegalFirmOptimized`.
 
 ### Diagnostic Hints For The Remaining Questions
 
 - Is the failure caused by model structure, naming, business terminology, source selection, or answer style?
-- Does the requested metric already exist as an explicit measure?
-- Is the term an alternative name, or does it encode a business rule?
-- Would narrowing the AI Data Schema reduce ambiguity?
-- Should the guidance live in the semantic model, Prep for AI, or Data Agent instructions?
-- Is the question stable and important enough to justify a Verified Answer?
+- Did the generated SQL use the expected table, columns, filters, and aggregation?
+- Is the term an alternative name that should be defined in Data Agent instructions?
+- Would narrowing the selected Lakehouse tables or columns reduce ambiguity?
+- Would a clearer Lakehouse source description help the agent choose this source?
+- Would a validated SQL example demonstrate logic that instructions alone cannot express?
 - Can you test the hypothesis by changing only one control?
 
 ### Test
@@ -221,7 +223,7 @@ Compare a technically optimized model with and without participant-authored AI m
 1. Create a new Data Agent using the predeployed `LegalFirmOptimized` model.
 2. Run the unchanged baseline questions before adding AI-specific configuration.
 3. Inspect the existing relationships, measures, names, and descriptions.
-4. Choose one observed failure and improve one control: synonym, AI Data Schema scope, AI instruction, example prompt, source description, or agent instruction.
+4. Choose one observed failure and improve one control: semantic-model synonym, AI Data Schema scope, AI instruction, source description, or Data Agent instruction.
 5. Retest the same question and a paraphrase before making another change.
 6. Add a Verified Answer only when a stable, high-value question warrants a saved visual response.
 
@@ -242,7 +244,7 @@ Ask: **How many open matters do we have?**
 
 1. Record the answer and which model object the agent appears to use.
 2. Decide whether *matter* describes a new business rule or another name for an existing concept.
-3. Make the smallest relevant metadata change.
+3. In **Prep data for AI**, add `matter` and `matters` as synonyms for the `Cases` table. This synonym control is available because Step 4 uses a Power BI semantic model, not a Lakehouse source.
 4. Ask the same question again, then test: **How many matters are currently open?**
 5. Record what changed and what evidence supports your conclusion.
 
