@@ -1,4 +1,5 @@
 import csv
+import json
 import unittest
 from pathlib import Path
 
@@ -44,6 +45,30 @@ class DocumentationContractTests(unittest.TestCase):
             "do not describe this as adding table synonyms",
             skill,
         )
+
+    def test_step6_reference_matches_two_source_profile(self):
+        profile = json.loads(
+            (ROOT / "config" / "domains" / "uk-legal.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        reference = json.loads(
+            (ROOT / "step6" / "step6_data_agent_configuration.json").read_text(
+                encoding="utf-8"
+            )
+        )["dataAgentConfiguration"]
+
+        self.assertEqual(
+            ["LegalFirmOptimized", "LegalFirmDemo"],
+            [source["name"] for source in reference["dataSources"]],
+        )
+        profile_lakehouse_tables = profile["agent"]["sources"][1]["objects"]
+        reference_lakehouse_tables = reference["dataSources"][1]["selectedTables"]
+        self.assertEqual(profile_lakehouse_tables, reference_lakehouse_tables)
+
+        user_guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
+        self.assertIn("one Data Agent with two complementary sources", user_guide)
+        self.assertNotIn("Add at least 4-5 data sources", user_guide)
 
 
 if __name__ == "__main__":

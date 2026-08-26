@@ -328,53 +328,105 @@ Run relationship-heavy prompts:
 
 ---
 
-## Step 6 (Bonus): Add Multiple Data Sources, Apply Routing Best Practices, Retest
+## Step 6 (Bonus): Route Between The Optimized Model And Lakehouse Tables
 
 ### Goal
-Demonstrate that Fabric Data Agent can route questions across multiple sources reliably and improve performance.
+Create one Data Agent with two complementary sources and teach it when to use each:
+
+1. `LegalFirmOptimized` for standard customer, case, solicitor, transaction, and interaction questions backed by model relationships and measures.
+2. `LegalFirmDemo` for questions that require the three prepared Step 6 analysis tables.
 
 ### Hint
 - Use Microsoft Learn routing guidance:
    [Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
-- Key sequence to follow:
-   1. Tighten schema selection
-   2. Add focused data source descriptions
-   3. Add example queries (few-shot)
-   4. Add concise routing rules in agent instructions
-- Use `step6/step6_data_agent_configuration.json` as your starting template.
+- Remember that SQL example question/query pairs can be added to the Lakehouse source, but not to the Power BI semantic-model source.
 
 ### Actions
-1. Create the Step 6 additional data files (if not already generated):
-   - Run: `python step6/generate_step6_data.py`
-2. Upload these Step 6 files into Lakehouse tables:
-   - `step6/step6_client_engagement_summary.csv`
-   - `step6/step6_case_finance_insights.csv`
-   - `step6/step6_solicitor_performance_mart.csv`
-3. Add at least 4-5 data sources (for example):
-    - Client/case portfolio source
-    - Financial transactions source
-    - Client engagement/interactions source
-    - Cross-domain case-finance source for combined analysis
-   - Solicitor performance source
-4. For each source, select only required tables/columns (avoid noisy schema).
-5. Write a short source description that explains exactly when to use it.
-6. Add source-specific example questions that are clearly distinct.
-7. Add concise routing rules in agent instructions grouped by topic.
-8. Use `step6/step6_data_agent_configuration.json` as the routing template and adapt IDs/table names for your workspace.
-9. In Fabric run steps, inspect which source the orchestrator selected and adjust schema/description/examples/rules if routing is wrong.
+1. Select **+ New item → Fabric data agent**.
+2. Name it `LegalFirmRoutingAgent`.
+3. Add the `LegalFirmOptimized` Power BI semantic model as the first source.
+4. Make all five model tables available: `Customers`, `Cases`, `Solicitors`, `Transactions`, and `Interactions`.
+5. Add the `LegalFirmDemo` Lakehouse as the second source.
+6. For the Lakehouse source, make only these three tables available:
+   - `step6_client_engagement_summary`
+   - `step6_case_finance_insights`
+   - `step6_solicitor_performance_mart`
+7. Leave the five `step1_cleaned_*` Lakehouse tables unselected. Their standard business questions are already covered by `LegalFirmOptimized`.
+8. Add a focused description for each source:
 
-### Test
-Run prompts that should route to different sources:
-- "How many active customers do we have?" (client/case source)
-- "How many unpaid invoices do we have?" (financial source)
-- "How many client meetings happened in Q1?" (engagement source)
-- "Which high-value open cases also have overdue invoices?" (cross-domain)
-- "Which solicitors are in top performance tier?" (solicitor performance source)
+   **LegalFirmOptimized**
+
+   > Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer its explicit measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.
+
+   **LegalFirmDemo**
+
+   > Use only for engagement segments, questions combining case context with financial outcomes, payment-risk analysis, and solicitor performance tiers. The selected Step 6 tables are already prepared at customer, case, and solicitor grain.
+
+9. Add concise **Data agent instructions**:
+
+   ```text
+   Use LegalFirmOptimized for ordinary customer, case, solicitor, transaction,
+   and interaction questions that can be answered by model fields or measures.
+
+   Use LegalFirmDemo only when the question asks about engagement segments,
+   combined case-finance outcomes, payment risk, outstanding balances by case,
+   or solicitor performance tiers.
+
+   Prefer one source when the question is clear. Do not combine sources unless
+   the requested result cannot be answered by one selected source.
+   ```
+
+10. Add and validate one SQL example for each selected Lakehouse table. Use the examples in the routing scenario table below as a starting point.
+11. Ask each routing question, expand the run steps, and record which source and table were selected.
+
+### Routing Scenarios
+
+| Question | Expected source | Expected object | Why |
+| --- | --- | --- | --- |
+| How many active customers do we have? | `LegalFirmOptimized` | `[Active Customers]` | Standard model measure |
+| What is our total revenue? | `LegalFirmOptimized` | `[Total Revenue]` | Standard financial measure |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `step6_client_engagement_summary` | Prepared engagement classification |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `step6_case_finance_insights` | Combined case and financial outcome |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `step6_solicitor_performance_mart` | Prepared solicitor tier |
+
+Use these Lakehouse SQL examples:
+
+```sql
+-- Low-engagement customers
+SELECT customer_id, customer_name, total_interactions, last_interaction_date
+FROM step6_client_engagement_summary
+WHERE engagement_segment = 'Low Engagement'
+ORDER BY customer_name;
+
+-- High-value open cases with outstanding balances
+SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp
+FROM step6_case_finance_insights
+WHERE case_status = 'Open'
+  AND case_value_gbp >= 100000
+  AND outstanding_amount_gbp > 0
+ORDER BY outstanding_amount_gbp DESC;
+
+-- Top-tier solicitors
+SELECT solicitor_name, cases_handled, total_case_value_gbp
+FROM step6_solicitor_performance_mart
+WHERE performance_tier = 'Top'
+ORDER BY total_case_value_gbp DESC;
+```
+
+### Diagnose Incorrect Routing
+
+If a question routes incorrectly, change one control and retest:
+
+1. Confirm only the intended objects are selected for each source.
+2. Make the two source descriptions more distinct rather than longer.
+3. Check that the Data Agent instruction names the correct source and topic.
+4. For a Lakehouse question, add or correct one validated SQL example pair.
+5. Clear the chat and test both the original question and a paraphrase.
 
 ### Expected
-- More consistent source selection
-- Better answers for ambiguous questions
-- Improved multi-source query quality and stability
+- Standard metrics route to `LegalFirmOptimized`.
+- Engagement, case-finance, risk, and performance-tier questions route to the selected `step6_*` Lakehouse tables.
+- Participants can explain which source was selected and which configuration influenced the routing decision.
 
 ---
 
@@ -396,7 +448,7 @@ Run prompts that should route to different sources:
 - [ ] Step 3 basic semantic model published and connected
 - [ ] Step 4 optimized model tested before and after selected participant-authored AI improvements
 - [ ] Bonus Step 5 ontology mapped and agent retested
-- [ ] Bonus Step 6 multiple data sources configured with routing best practices and retested
+- [ ] Bonus Step 6 agent configured with `LegalFirmOptimized` plus the three selected `step6_*` Lakehouse tables and routing retested
 - [ ] Side-by-side comparison recorded for your demo
 
 ---

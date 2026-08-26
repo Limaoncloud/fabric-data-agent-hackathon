@@ -50,6 +50,9 @@ Use this guide:
 Follow the complete end-to-end user flow:
 - USER_GUIDE.md
 
+Current table and two-source routing architecture:
+- README_MULTITABLE.md
+
 Deployment details:
 - DEPLOYMENT_GUIDE.md
 

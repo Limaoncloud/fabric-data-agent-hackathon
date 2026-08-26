@@ -49,7 +49,7 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  │  │  ├─ step1_cleaned_solicitors (15)       │             │
 │  │  │  ├─ step1_cleaned_transactions (1000)   │             │
 │  │  │  └─ step1_cleaned_interactions (800)    │             │
-│  │  └─ 3 Step 6 routing marts                 │             │
+│  │  └─ 3 Step 6 analysis tables              │             │
 │  └────────────────────────────────────────────┘             │
 │                                                              │
 │  STEP 3 & 4: SEMANTIC MODEL LAYER                           │
@@ -136,7 +136,7 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 
 ### **Option B: Via Notebook (Recommended)**
 
-Import and run `NB_Deploy_Data_Agent_Hackathon.ipynb`. It reads all tables declared in `config/domains/uk-legal.json` and writes them as managed Delta tables. The current profile loads the five Step 1 tables plus three Step 6 routing marts.
+Import and run `NB_Deploy_Data_Agent_Hackathon.ipynb`. It reads all tables declared in `config/domains/uk-legal.json` and writes them as managed Delta tables. The current profile loads the five Step 1 tables plus three Step 6 analysis tables.
 
 ### **Verify Data Load**
 
@@ -164,7 +164,7 @@ step1_cleaned_transactions      1000
 step1_cleaned_interactions      800
 ```
 
-The three Step 6 marts contain 171 engagement rows, 500 case-finance rows, and 15 solicitor-performance rows, for 3,172 rows across all eight profile-managed tables.
+The three Step 6 analysis tables contain 171 engagement rows, 500 case-finance rows, and 15 solicitor-performance rows, for 3,172 rows across all eight profile-managed tables.
 
 ✅ **Checkpoint:** You now have all profile-managed data in the Fabric Lakehouse.
 
@@ -254,7 +254,7 @@ The notebook creates or updates `LegalFirmCustomer360Agent` with two Fabric item
 | `LegalFirmOptimized` semantic model | Customers, Cases, Solicitors, Transactions, Interactions | Model measures and general customer, case, solicitor, transaction, and interaction questions |
 | `LegalFirmDemo` Lakehouse | `step6_client_engagement_summary`, `step6_case_finance_insights`, `step6_solicitor_performance_mart` | Engagement segments, combined case-finance outcomes, and solicitor performance |
 
-The source instructions and examples come from `config/domains/uk-legal.json`. `step6/step6_data_agent_configuration.json` is a more detailed legacy design reference; it is not the configuration consumed by the notebook.
+The notebook consumes `config/domains/uk-legal.json` as its source of truth. `step6/step6_data_agent_configuration.json` is the matching human-readable two-source routing reference for participants and facilitators.
 
 ### **Test the Agent**
 
