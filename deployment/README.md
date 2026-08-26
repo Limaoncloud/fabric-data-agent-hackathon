@@ -12,7 +12,7 @@ The default run creates or reuses:
 - An Optimized Direct Lake semantic model with relationships and explicit measures.
 - AI instructions, example prompts, and a scoped AI Data Schema.
 
-Prep for AI requires the Optimized model to be deployed in the workspace. The notebook waits for Fabric to assign the lineage tags needed by the AI Data Schema before applying the second definition update.
+Prep for AI requires the Optimized model to be deployed in the workspace. The notebook generates stable lineage tags in the TMDL, then uses those tags to apply the AI Data Schema without waiting for asynchronous service metadata.
 
 Semantic models are generated as TMDL and sent through the Fabric Semantic Model definition API. The workflow does not use PBIP, PBIX, BIM, or report-template files.
 

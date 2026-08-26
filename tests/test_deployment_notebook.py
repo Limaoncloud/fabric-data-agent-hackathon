@@ -47,7 +47,6 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertFalse(values["PUBLISH_DATA_AGENT"])
         self.assertEqual(1800, values["LRO_TIMEOUT_SECONDS"])
         self.assertEqual(180, values["ITEM_DISCOVERY_TIMEOUT_SECONDS"])
-        self.assertEqual(300, values["LINEAGE_TIMEOUT_SECONDS"])
 
     def test_required_deployment_patterns(self):
         for section in range(1, 9):
@@ -58,6 +57,7 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertIn('f"{FABRIC_API}/operations/{operation_id}"', self.source)
         self.assertIn("updateDefinition", self.source)
         self.assertIn("deployer.definition_payload", self.source)
+        self.assertNotIn("Waiting for semantic-model lineage tags", self.source)
         self.assertIn("CONFIRM_PREVIEW_DEPLOYMENTS", self.source)
         self.assertIn("fabric-data-agent-sdk==0.1.28a0", self.source)
 

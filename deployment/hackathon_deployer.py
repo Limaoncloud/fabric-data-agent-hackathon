@@ -12,6 +12,7 @@ from typing import Any, Iterable
 
 PROFILE_SCHEMA_VERSION = "1.0"
 ONTOLOGY_NAMESPACE = uuid.UUID("6d54b7e0-a028-45e9-b621-276429753dd8")
+SEMANTIC_MODEL_NAMESPACE = uuid.UUID("4f5c08d6-c125-42a5-a79c-c18ccb8f363f")
 
 
 def load_json(path: str | Path) -> dict[str, Any]:
@@ -158,14 +159,19 @@ def _description(value: str) -> str:
     return "\n".join(f"/// {line}" for line in value.splitlines() if line.strip())
 
 
-def _render_measure(measure: dict[str, Any]) -> list[str]:
+def _semantic_model_uuid(scope: str) -> str:
+    return str(uuid.uuid5(SEMANTIC_MODEL_NAMESPACE, scope))
+
+
+def _render_measure(measure: dict[str, Any], lineage_scope: str) -> list[str]:
     expression = measure["expression"]
     lines = [f"\t{_description(measure['description'])}", f"\tmeasure {_tmdl_name(measure['name'])} = {expression}"]
+    lines.append(f"\t\tlineageTag: {_semantic_model_uuid(f'{lineage_scope}:measure:{measure['name']}')}")
     lines.append(f"\t\tformatString: {measure['formatString']}")
     return lines
 
 
-def _render_column(column: dict[str, Any]) -> list[str]:
+def _render_column(column: dict[str, Any], lineage_scope: str) -> list[str]:
     # Tabular models represent both source dates and timestamps as dateTime.
     tmdl_type = "dateTime" if column["type"] == "date" else column["type"]
     lines = []
@@ -174,6 +180,7 @@ def _render_column(column: dict[str, Any]) -> list[str]:
     lines.extend(
         [
             f"\tcolumn {_tmdl_name(column['name'])}",
+            f"\t\tlineageTag: {_semantic_model_uuid(f'{lineage_scope}:column:{column['name']}')}",
             f"\t\tdataType: {tmdl_type}",
             "\t\tsummarizeBy: none",
             f"\t\tsourceColumn: {column['source']}",
@@ -190,13 +197,20 @@ def render_table_tmdl(
     table: dict[str, Any],
     measures: list[dict[str, Any]],
     expression_name: str,
+    lineage_scope: str,
 ) -> str:
-    lines = [_description(table["description"]), f"table {_tmdl_name(table['modelName'])}", ""]
+    table_scope = f"{lineage_scope}:table:{table['modelName']}"
+    lines = [
+        _description(table["description"]),
+        f"table {_tmdl_name(table['modelName'])}",
+        f"\tlineageTag: {_semantic_model_uuid(table_scope)}",
+        "",
+    ]
     for measure in measures:
-        lines.extend(_render_measure(measure))
+        lines.extend(_render_measure(measure, table_scope))
         lines.append("")
     for column in table["columns"]:
-        lines.extend(_render_column(column))
+        lines.extend(_render_column(column, table_scope))
         lines.append("")
     lines.extend(
         [
@@ -273,7 +287,10 @@ def render_semantic_model_parts(
             if measure["table"] == table_name
         ]
         parts[f"definition/tables/{table_name}.tmdl"] = render_table_tmdl(
-            table_map[table_name], measures, expression_name
+            table_map[table_name],
+            measures,
+            expression_name,
+            f"{profile['domain']['id']}:{model_key}",
         )
     if model.get("useRelationships") and profile.get("relationships"):
         parts["definition/relationships.tmdl"] = render_relationships_tmdl(profile)
@@ -281,7 +298,7 @@ def render_semantic_model_parts(
 
 
 def render_copilot_parts(profile: dict[str, Any]) -> dict[str, str]:
-    """Render Copilot parts that do not depend on service-assigned lineage tags."""
+    """Render Copilot parts that do not depend on semantic-model lineage tags."""
     prompts = [candidate["question"] for candidate in profile["ai"]["verifiedAnswerCandidates"]]
     return {
         "Copilot/Instructions/instructions.md": "# AI Instructions for Semantic Model\n\n" + profile["ai"]["instructions"].strip() + "\n",
@@ -333,7 +350,7 @@ def _extract_lineage_tags(tmdl_parts: dict[str, str]) -> dict[str, dict[str, Any
 
 
 def render_copilot_schema(profile: dict[str, Any], tmdl_parts: dict[str, str]) -> str:
-    """Build Copilot/schema.json from service-assigned TMDL lineage tags."""
+    """Build Copilot/schema.json from TMDL lineage tags."""
     lineage = _extract_lineage_tags(tmdl_parts)
     tables = []
     missing = []
@@ -382,7 +399,7 @@ def render_copilot_schema(profile: dict[str, Any], tmdl_parts: dict[str, str]) -
             }
         )
     if missing:
-        raise ValueError("Missing service-assigned lineage tags for: " + ", ".join(missing))
+        raise ValueError("Missing lineage tags for: " + ", ".join(missing))
     return json.dumps(
         {
             "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/semanticModel/copilot/schema/1.0.0/schema.json",

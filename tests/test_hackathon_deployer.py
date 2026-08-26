@@ -53,22 +53,25 @@ class SemanticModelTests(unittest.TestCase):
         json.loads(parts["Copilot/examplePrompts.json"])
 
         optimized = render_semantic_model_parts(PROFILE, "optimized", WORKSPACE_ID, LAKEHOUSE_ID)
-        tagged = {}
-        tag_number = 1
-        for path, content in optimized.items():
-            if not path.startswith("definition/tables/"):
-                tagged[path] = content
-                continue
-            output = []
-            for line in content.splitlines():
-                output.append(line)
-                if re.match(r"^\s*(table|column|measure)\s+", line):
-                    output.append(f"\tlineageTag: 00000000-0000-0000-0000-{tag_number:012d}")
-                    tag_number += 1
-            tagged[path] = "\n".join(output) + "\n"
-        schema = json.loads(render_copilot_schema(PROFILE, tagged))
+        schema = json.loads(render_copilot_schema(PROFILE, optimized))
         self.assertEqual(5, len(schema["tables"]))
         self.assertTrue(all(table["id"] for table in schema["tables"]))
+
+        declarations = "\n".join(
+            content
+            for path, content in optimized.items()
+            if path.startswith("definition/tables/")
+        )
+        declaration_count = len(re.findall(r"^\s*(?:table|column|measure)\s+", declarations, re.MULTILINE))
+        lineage_tags = re.findall(
+            r"^\s*lineageTag:\s*([0-9a-fA-F-]+)\s*$", declarations, re.MULTILINE
+        )
+        self.assertEqual(declaration_count, len(lineage_tags))
+        self.assertEqual(len(lineage_tags), len(set(lineage_tags)))
+        self.assertEqual(
+            optimized,
+            render_semantic_model_parts(PROFILE, "optimized", WORKSPACE_ID, LAKEHOUSE_ID),
+        )
 
 
 class OntologyTests(unittest.TestCase):
