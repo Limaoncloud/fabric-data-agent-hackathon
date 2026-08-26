@@ -54,7 +54,7 @@ The remaining sections document the equivalent manual workflow and troubleshooti
 │  STEP 3 & 4: SEMANTIC MODEL LAYER                           │
 │  ┌────────────────────────────────────────────┐             │
 │  │  Semantic Model: LegalFirmBasic (Step 3)   │             │
-│  │  └─ Single table, anti-patterns, flat      │             │
+│  │  └─ 5 disconnected tables, anti-patterns   │             │
 │  │                                             │             │
 │  │  Semantic Model: LegalFirmOptimized (Step 4)│            │
 │  │  ├─ Star schema (5 tables)                 │             │
@@ -198,44 +198,17 @@ step1_cleaned_interactions      800
 
 ### **Purpose:** Demonstrate poor practices and low accuracy (~57%)
 
-#### **Option A: Power BI Desktop (Manual)**
+#### **Recommended: Deploy from the Notebook**
 
-1. **Open Power BI Desktop**
-2. **Get Data** → **Power Platform** → **Microsoft Fabric** → **Lakehouse**
-3. **Connect** to your `LegalFirmDemo` lakehouse
-4. **Select Step 1 cleaned tables only** (demonstrate baseline behavior before semantic model optimization)
-5. **Load** all 5 raw tables
+Run the semantic-model section of `NB_Deploy_Data_Agent_Hackathon.ipynb`, or run the full notebook from the beginning. It generates the `LegalFirmBasic` Direct Lake model as TMDL from `config/domains/uk-legal.json` and deploys it directly through the Fabric API.
 
-6. **Create a flat model (anti-pattern):**
-   - Do NOT create relationships between tables
-   - Keep all tables independent
+No Power BI Desktop or PBIX file is required. The generated Basic model deliberately contains five disconnected Step 1 tables, duplicate measures, ambiguous measures, and no Prep for AI configuration.
 
-7. **Create duplicate measures (anti-pattern):**
-   ```dax
-   Total Cases = COUNTROWS(step1_cleaned_cases)
-   TotalCases = COUNTROWS(step1_cleaned_cases)  
-   total_cases = COUNTROWS(step1_cleaned_cases)
-   Case Count = COUNTROWS(step1_cleaned_cases)
-   ```
+#### **Optional: Create Manually in Fabric**
 
-8. **Create ambiguous measures:**
-   ```dax
-   Total = SUM(step1_cleaned_cases[val])
-   Count = COUNTROWS(step1_cleaned_customers)
-   Value = SUM(step1_cleaned_transactions[amt])
-   ```
+To demonstrate the build manually, create a new Direct Lake semantic model from the `LegalFirmDemo` Lakehouse in the Fabric web UI, select the five Step 1 cleaned tables, and follow [step3/README.md](step3/README.md) for the anti-pattern measures and configuration.
 
-9. **Do NOT configure Prep for AI** (leave blank)
-
-10. **Save** as `LegalFirmBasic.pbix`
-
-11. **Publish** to your Fabric workspace
-
-**Result:** Low accuracy semantic model for Step 3 comparison
-
-#### **Option B: Generated TMDL (Recommended)**
-
-Run the semantic-model section of `NB_Deploy_Data_Agent_Hackathon.ipynb`. It generates and deploys the Basic Direct Lake model from `config/domains/uk-legal.json`.
+**Result:** A deliberately low-quality semantic model for the Step 3 comparison.
 
 ---
 
