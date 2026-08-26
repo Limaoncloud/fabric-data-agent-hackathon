@@ -8,7 +8,7 @@ The environment starts with Lakehouse data and two semantic models. `LegalFirmBa
 
 Participants work through these stages:
 
-1. Load cleaned data and create an agent baseline
+1. Create an agent baseline from the predeployed Lakehouse
 2. Configure the data agent with best practices and retest
 3. Build a semantic model and retest
 4. Optimize the semantic model and retest
@@ -60,7 +60,7 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 ### Step 3 to 6 model/config files
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
-- [Step 3: LegalFirmBasic Direct Lake instructions](step3/README.md) (manual Power BI Service build guide)
+- [Step 3 facilitator reference](step3/README.md) (manual model details; participants use the predeployed model)
 - [Step 4 facilitator reference](step4/README.md) (contains a complete solution path; do not distribute during the participant challenge)
 - `step5/step5_ontology_definition.json`
 - `step6/step6_data_agent_configuration.json`
@@ -85,22 +85,28 @@ Validation workflow:
 
 ---
 
-## Step 1: Upload Cleaned Data, Build Agent, Test
+## Step 1: Build A Lakehouse Baseline Agent, Test
 
 ### Goal
-Create a baseline agent on cleaned multi-table data before semantic-model and ontology tuning.
+Create a baseline Data Agent using the `LegalFirmDemo` Lakehouse that the organizer notebook already deployed. Do not recreate the Lakehouse or upload files.
 
 ### Actions
-1. In Fabric, create a new Lakehouse (example name: `LegalFirmDemo`).
-2. Upload all 5 cleaned CSV files from `step1/`:
-   - `step1_cleaned_customers.csv`
-   - `step1_cleaned_cases.csv`
-   - `step1_cleaned_solicitors.csv`
-   - `step1_cleaned_transactions.csv`
-   - `step1_cleaned_interactions.csv`
-3. Load each file to a new table.
-4. Create a Data Agent connected to this Lakehouse/tables.
-5. Add simple instructions and sample questions.
+1. Open the Fabric workspace containing the deployed hackathon items.
+2. Select **+ New item**.
+3. In **All items**, search for and select **Fabric data agent**.
+4. Name it `LegalFirmLakehouseBaselineAgent`, then create it.
+5. In the OneLake catalog, select the `LegalFirmDemo` Lakehouse and select **Add**.
+6. In the left **Explorer**, expand `LegalFirmDemo` and make only these tables available to the AI:
+   - `step1_cleaned_customers`
+   - `step1_cleaned_cases`
+   - `step1_cleaned_solicitors`
+   - `step1_cleaned_transactions`
+   - `step1_cleaned_interactions`
+7. Do not add the three `step6_*` marts in this baseline step.
+8. Leave **Data agent instructions** and **Example queries** empty for the first test. This preserves an untuned baseline.
+9. Start asking questions in the agent chat. Expand the generated steps or query when diagnosing an answer.
+
+The agent can contain up to five data sources, but this baseline uses only one: `LegalFirmDemo`.
 
 ### Test (in agent chat)
 Try 5 prompts:
@@ -176,18 +182,20 @@ Use the facilitator-provided evaluation results only after recording your own an
 
 ---
 
-## Step 3: Build Basic Semantic Model, Retest
+## Step 3: Build A Basic-Model Agent, Retest
 
 ### Goal
 Create a new Data Agent that uses a basic semantic model (non-optimized) as its data source, then observe behavior.
 
 ### Actions
-1. For manual creation in **Power BI Service**, follow the [Step 3 Direct Lake instructions](step3/README.md).
-2. In Power BI Service, connect to cleaned Lakehouse tables and build a basic model (minimal relationships, basic measures).
-3. Publish the semantic model to your Fabric workspace.
-4. Create a **new Data Agent** for Step 3 (do not reuse Step 1/Step 2 agent).
-5. In the new agent, add the **published basic semantic model** as the data source.
-6. Keep test prompts unchanged from Steps 1 and 2.
+1. Select **+ New item → Fabric data agent**.
+2. Name it `LegalFirmBasicModelAgent`.
+3. In the OneLake catalog, select the predeployed `LegalFirmBasic` semantic model and select **Add**.
+4. In the Explorer, make its five model tables available to the AI.
+5. Leave agent instructions empty for the first test.
+6. Keep the test prompts unchanged from Steps 1 and 2.
+
+Do not rebuild or publish the semantic model. The organizer notebook already deployed `LegalFirmBasic`. The [Step 3 reference](step3/README.md) is facilitator background only.
 
 ### Test
 Run the same prompts 
