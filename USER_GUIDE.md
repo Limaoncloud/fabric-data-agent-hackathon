@@ -102,7 +102,7 @@ Create a baseline Data Agent using the `LegalFirmDemo` Lakehouse that the organi
    - `step1_cleaned_solicitors`
    - `step1_cleaned_transactions`
    - `step1_cleaned_interactions`
-7. Do not add the three `step6_*` marts in this baseline step.
+7. Leave the three tables beginning with `step6_` unselected in this baseline step.
 8. Leave **Data agent instructions** and **Example queries** empty for the first test. This preserves an untuned baseline.
 9. Start asking questions in the agent chat. Expand the generated steps or query when diagnosing an answer.
 
