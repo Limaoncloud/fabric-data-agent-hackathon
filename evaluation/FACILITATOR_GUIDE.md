@@ -31,9 +31,21 @@ Do not tell participants to add synonyms to Lakehouse tables. Fabric exposes mod
 
 In Step 2, demonstrate only the Lakehouse version: ask whether *matter* is a new calculation or another name for *case*, add a concise Data Agent instruction mapping matter to case, retest, and inspect the generated SQL.
 
+Also demonstrate one Lakehouse SQL example pair that is not in the scored challenge:
+
+**Question:** How many payment transactions were recorded?
+
+```sql
+SELECT COUNT(*) AS payment_transaction_count
+FROM step1_cleaned_transactions
+WHERE transaction_type = 'Payment';
+```
+
+The expected answer is **199**. Show participants how to add, validate, and save this pair under **Example queries** for `LegalFirmDemo`, then test the paraphrase **How many payments are in the transaction table?** Stop after this example; do not provide SQL for the six scored questions.
+
 In Step 4, participants should discover the more durable semantic-model option themselves: add `matter` and `matters` as synonyms for the Cases table in Prep for AI, then retest **How many matters are currently open?** Do not demonstrate this second fix in advance.
 
-Do not demonstrate additional fixes.
+Do not demonstrate additional fixes or query solutions.
 
 ## Answer Key
 

@@ -1,3 +1,4 @@
+import csv
 import unittest
 from pathlib import Path
 
@@ -10,7 +11,18 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Lakehouse tables do not have the semantic-model synonym editor", guide)
         self.assertIn("Data agent instructions", guide)
         self.assertIn("add `matter` and `matters` as synonyms for the `Cases` table", guide)
+        self.assertIn("How many payment transactions were recorded?", guide)
+        self.assertIn("WHERE transaction_type = 'Payment'", guide)
+        self.assertIn("not for the `LegalFirmBasic` or `LegalFirmOptimized`", guide)
         self.assertNotIn("add one relevant synonym rather than changing", guide)
+
+    def test_lakehouse_sql_example_matches_current_data(self):
+        with (ROOT / "step1" / "step1_cleaned_transactions.csv").open(
+            encoding="utf-8", newline=""
+        ) as handle:
+            rows = list(csv.DictReader(handle))
+        payment_count = sum(row["transaction_type"] == "Payment" for row in rows)
+        self.assertEqual(199, payment_count)
 
     def test_facilitator_guide_separates_lakehouse_and_model_controls(self):
         guide = (ROOT / "evaluation" / "FACILITATOR_GUIDE.md").read_text(

@@ -147,7 +147,7 @@ Improve response consistency and quality by configuring the data agent using Mic
    - assumptions and constraints
 6. Keep data unchanged and rerun the same prompt set.
 
-### One Worked Example
+### Worked Example 1: Teach A Business Term With Instructions
 
 1. Ask: **"How many open matters do we have?"**
 2. Record the answer and inspect the generated SQL or agent steps.
@@ -156,6 +156,30 @@ Improve response consistency and quality by configuring the data agent using Mic
 5. Record whether the generated SQL and answer improved.
 
 Lakehouse tables do not have the semantic-model synonym editor. For Lakehouse sources, use Data Agent instructions, data-source descriptions, schema selection, and validated SQL example queries. You will add true model-object synonyms later in Step 4 with `LegalFirmOptimized`.
+
+### Worked Example 2: Add A Lakehouse SQL Example Query
+
+Participants are not expected to know the table schema or write their first SQL example from scratch. Add this non-challenge example together:
+
+**Question:** How many payment transactions were recorded?
+
+**Expected answer:** 199
+
+```sql
+SELECT COUNT(*) AS payment_transaction_count
+FROM step1_cleaned_transactions
+WHERE transaction_type = 'Payment';
+```
+
+1. In the Data Agent, select **Example queries**.
+2. For the `LegalFirmDemo` Lakehouse source, select **Add or Edit Example Queries**.
+3. Enter the question and SQL exactly as shown above.
+4. Validate and save the example. Fabric only uses examples that pass validation.
+5. Ask the question in chat and inspect the generated SQL and answer.
+6. Test the paraphrase: **How many payments are in the transaction table?**
+7. Confirm that both questions return `199`, then continue with the challenge questions without giving participants more SQL solutions.
+
+This question is deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmBasic` or `LegalFirmOptimized` Power BI semantic-model sources.
 
 ### Diagnostic Hints For The Remaining Questions
 
