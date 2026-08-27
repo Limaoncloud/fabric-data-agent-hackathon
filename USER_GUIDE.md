@@ -4,16 +4,15 @@ This guide supports a three-hour, hands-on learning loop:
 
 > Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
 
-The environment starts with Lakehouse data and two semantic models. `LegalFirmBasic` is deliberately weak. `LegalFirmOptimized` has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent.
+The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. A deliberately weak `LegalFirmBasic` model is also deployed for optional side-by-side comparison; it is background only and not part of the core walkthrough.
 
 Participants work through these stages:
 
 1. Create an agent baseline from the predeployed Lakehouse
 2. Configure the data agent with best practices and retest
-3. Build a semantic model and retest
-4. Optimize the semantic model and retest
-5. Bonus: Add ontology and retest
-6. Bonus: Add multiple data sources with routing best practices and retest
+3. Optimize the semantic model and retest
+4. Bonus: Add ontology and retest
+5. Bonus: Add multiple data sources with routing best practices and retest
 
 ---
 
@@ -40,10 +39,10 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 | Time | Activity |
 | --- | --- |
 | 0:00-0:20 | Scenario, Data Agent creation, and baseline questions |
-| 0:20-1:00 | Diagnose the Basic model and record failure types |
-| 1:00-1:30 | Compare the same questions against the Optimized model |
-| 1:30-2:20 | Add semantic-model synonyms, Prep for AI, and agent instructions one change at a time |
-| 2:20-2:45 | Rerun baseline and unseen challenge questions |
+| 0:20-1:00 | Configure the Lakehouse data agent with best practices and retest |
+| 1:00-1:45 | Build the Optimized-model agent, then configure Prep for AI and Data Agent instructions |
+| 1:45-2:30 | Add the Lakehouse as a second source and configure routing |
+| 2:30-2:45 | Rerun baseline and unseen challenge questions |
 | 2:45-3:00 | Team debrief: what helped, what did not, and why |
 
 ---
@@ -57,15 +56,15 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 - `step1/step1_cleaned_transactions.csv`
 - `step1/step1_cleaned_interactions.csv`
 
-### Step 3 to 6 model/config files
+### Semantic model and config files
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
-- [Step 3 facilitator reference](step3/README.md) (manual model details; participants use the predeployed model)
-- [Step 4 facilitator reference](step4/README.md) (contains a complete solution path; do not distribute during the participant challenge)
+- [Basic model reference](step3/README.md) (background only; not part of the participant walkthrough)
+- [Optimized model facilitator reference](step4/README.md) (contains a complete solution path; do not distribute during the participant challenge)
 - `step5/step5_ontology_definition.json`
 - `step6/step6_data_agent_configuration.json`
 
-### Step 6 additional data files
+### Lakehouse routing data files
 - `step6/step6_client_engagement_summary.csv`
 - `step6/step6_case_finance_insights.csv`
 - `step6/step6_solicitor_performance_mart.csv`
@@ -208,31 +207,7 @@ Use the facilitator-provided evaluation results only after recording your own an
 
 ---
 
-## Step 3: Build A Basic-Model Agent, Retest
-
-### Goal
-Create a new Data Agent that uses a basic semantic model (non-optimized) as its data source, then observe behavior.
-
-### Actions
-1. Select **+ New item → Fabric data agent**.
-2. Name it `LegalFirmBasicModelAgent`.
-3. In the OneLake catalog, select the predeployed `LegalFirmBasic` semantic model and select **Add**.
-4. In the Explorer, make its five model tables available to the AI.
-5. Leave agent instructions empty for the first test.
-6. Keep the test prompts unchanged from Steps 1 and 2.
-
-Do not rebuild or publish the semantic model. The organizer notebook already deployed `LegalFirmBasic`. The [Step 3 reference](step3/README.md) is facilitator background only.
-
-### Test
-Run the same prompts 
-
-### Expected
-- Some improvement in structure-based queries
-- Still confusion on certain measure selections
-
----
-
-## Step 4: Optimize Semantic Model, Retest
+## Step 3: Optimize Semantic Model, Retest
 
 ### Goal
 Compare a technically optimized model with and without participant-authored AI metadata.
@@ -241,15 +216,19 @@ Compare a technically optimized model with and without participant-authored AI m
 - You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
 - You can also use any tools listed in Microsoft Learn here:
    [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- Facilitators may use the [Step 4 reference](step4/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
+- Facilitators may use the [Optimized model reference](step4/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
 
 ### Actions
 1. Create a new Data Agent using the predeployed `LegalFirmOptimized` model.
 2. Run the unchanged baseline questions before adding AI-specific configuration.
 3. Inspect the existing relationships, measures, names, and descriptions.
-4. Choose one observed failure and improve one control: semantic-model synonym, AI Data Schema scope, AI instruction, source description, or Data Agent instruction.
-5. Retest the same question and a paraphrase before making another change.
-6. Add a Verified Answer only when a stable, high-value question warrants a saved visual response.
+
+### Example Prompts, Including Two That Should Stumble
+Ask these before making any AI configuration changes and record each answer plus the model object used:
+- "How many active customers do we have?"
+- "What is the total case value?"
+- "How much money have we made?" — deliberately ambiguous; watch whether the agent uses Invoices only or every transaction type.
+- "How many senior solicitors do we have?" — deliberately undefined; "senior" is not a model field or measure.
 
 ### Test
 Run the same prompt set and compare with previous steps.
@@ -260,21 +239,48 @@ Run the same prompt set and compare with previous steps.
 - More accurate and repeatable answers
 - Evidence showing which specific changes affected behavior
 
-### Agent Testing Challenge
+### Configure Prep Data For AI
+Open **LegalFirmOptimized → Model settings → Prep data for AI**. It has three controls; two get a full worked example below, one you diagnose yourself:
+- **Table/column selection (AI Data Schema)** — scope which tables and columns the agent can see.
+- **Synonyms** — teach alternate business words for existing model objects.
+- **AI instructions** — teach business rules that no single field or measure already expresses.
 
-#### Worked example
+A fourth control lives on the **Data Agent** item itself, separate from the semantic model: **Data Agent instructions**, which shapes source selection and answer style rather than model semantics.
 
-Ask: **How many open matters do we have?**
+#### Worked example 1: Verified answer from a report visual
+1. Ask **"What is the total case value?"** and note the current answer and source.
+2. From `LegalFirmOptimized`, select **Create report**, add a page named **Verified Answers**, and add a Card visual bound to the `[Total Case Value]` measure. Save the report.
+3. In **Prep data for AI → Verified answers**, select **New verified answer**, enter the question, then select the saved report, page, and Card visual. Add a short description and save.
+4. Ask the same question again in the agent chat and confirm it now answers from the verified visual instead of generating a new query.
 
+#### Worked example 2: Tweak an AI instruction
+1. Ask **"How many senior solicitors do we have?"** and record the result. The model has no field or measure for seniority, so the agent must guess or refuse.
+2. In **Prep data for AI → AI instructions**, add one concise rule: `Senior solicitor means hourly_rate_gbp greater than 300.`
+3. Ask the same question again, then test the paraphrase **"How many solicitors charge a high hourly rate?"**
+4. Record whether the answer and generated filter now match the rule, and note this was a business-rule gap, not a naming gap.
+
+#### Two more examples of the same method: synonyms and Data Agent instructions
+
+We won't spoon-feed every control. These two examples show how to analyse a failure and pick the right place to fix it, so you can apply the same method to table/column selection.
+
+**Example A — synonym.** Ask: **How many open matters do we have?**
 1. Record the answer and which model object the agent appears to use.
 2. Decide whether *matter* describes a new business rule or another name for an existing concept.
-3. In **Prep data for AI**, add `matter` and `matters` as synonyms for the `Cases` table. This synonym control is available because Step 4 uses a Power BI semantic model, not a Lakehouse source.
+3. In **Prep data for AI**, add `matter` and `matters` as synonyms for the `Cases` table. This synonym control is available because Step 3 uses a Power BI semantic model, not a Lakehouse source.
 4. Ask the same question again, then test: **How many matters are currently open?**
 5. Record what changed and what evidence supports your conclusion.
 
+**Example B — Data Agent instruction.** Ask: **What is our average case value?**
+1. Check the number formatting in the answer.
+2. Open the Data Agent item (not the semantic model) and add one **Data Agent instruction**: `Present all monetary answers in GBP with two decimal places.`
+3. Retest the same question and confirm the answer style changed without changing the underlying measure.
+4. Decide yourself whether a similar answer-style or source-preference rule belongs here rather than in the semantic model's AI instructions.
+
+Now apply the same analyse → pick the control → change one thing → retest method to **table/column selection**: find a question where the agent uses an irrelevant or hidden column, narrow the AI Data Schema to the business-facing fields and measures only, and retest.
+
 #### Your questions
 
-Do not change several controls at once. For each question, capture the baseline, form a hypothesis, make one change, and retest the question plus its paraphrase.
+Do not change several controls at once. For each question, capture the baseline, form a hypothesis, make one change, and retest the question plus its paraphrase. Keep going until you consider the agent AI-ready.
 
 | Question | Paraphrase | Hint |
 | --- | --- | --- |
@@ -298,9 +304,16 @@ Do not change several controls at once. For each question, capture the baseline,
 
 Facilitators should use [evaluation/FACILITATOR_GUIDE.md](evaluation/FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
 
+### Two Questions That Will Still Stumble
+Ask these once your AI configuration is otherwise stable:
+- "Which customers are in the low engagement segment?"
+- "Which solicitors are in the top performance tier?"
+
+Both should stumble or be refused. `LegalFirmOptimized` has no engagement-segment or performance-tier classification at any grain; that derived, row-level context only exists in the Lakehouse tables added in Step 5. This is the motivation for Step 5.
+
 ---
 
-## Step 5 (Bonus): Add Ontology Data, Retest
+## Step 4 (Bonus): Add Ontology Data, Retest
 
 ### Goal
 Add ontology layer for richer entity and relationship understanding.
@@ -328,90 +341,81 @@ Run relationship-heavy prompts:
 
 ---
 
-## Step 6 (Bonus): Route Between The Optimized Model And Lakehouse Tables
+## Step 5 (Bonus): Route Between The Optimized Model And Lakehouse Tables
 
 ### Goal
 Create one Data Agent with two complementary sources and teach it when to use each:
 
 1. `LegalFirmOptimized` for standard customer, case, solicitor, transaction, and interaction questions backed by model relationships and measures.
-2. `LegalFirmDemo` for questions that require the three prepared Step 6 analysis tables.
+2. `LegalFirmDemo` for questions that require the three prepared Lakehouse analysis tables.
 
-### Hint
-- Use Microsoft Learn routing guidance:
-   [Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
-- Remember that SQL example question/query pairs can be added to the Lakehouse source, but not to the Power BI semantic-model source.
-
-### Actions
+### Actions: Add The Sources First
 1. Select **+ New item → Fabric data agent**.
 2. Name it `LegalFirmRoutingAgent`.
-3. Add the `LegalFirmOptimized` Power BI semantic model as the first source.
-4. Make all five model tables available: `Customers`, `Cases`, `Solicitors`, `Transactions`, and `Interactions`.
-5. Add the `LegalFirmDemo` Lakehouse as the second source.
-6. For the Lakehouse source, make only these three tables available:
+3. Add the `LegalFirmOptimized` Power BI semantic model as the first source and make all five model tables available: `Customers`, `Cases`, `Solicitors`, `Transactions`, and `Interactions`.
+4. Add the `LegalFirmDemo` Lakehouse as the second source and make only these three tables available:
    - `step6_client_engagement_summary`
    - `step6_case_finance_insights`
    - `step6_solicitor_performance_mart`
-7. Leave the five `step1_cleaned_*` Lakehouse tables unselected. Their standard business questions are already covered by `LegalFirmOptimized`.
-8. Add a focused description for each source:
+5. Leave the five `step1_cleaned_*` Lakehouse tables unselected. Their standard business questions are already covered by `LegalFirmOptimized`.
+6. Leave descriptions, instructions, and example queries empty for now.
 
-   **LegalFirmOptimized**
+### Ask A Few Questions Before Configuring Anything
+- "Which customers are in the low engagement segment?"
+- "Which high-value open cases have outstanding balances?"
+- "Which solicitors are in the top performance tier?"
 
-   > Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer its explicit measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.
+Record the answer, the source selected, and whether routing was correct or ambiguous. With two unscoped sources available, expect inconsistent or unexplained source selection.
 
-   **LegalFirmDemo**
+### Read The Routing Best Practices
+[Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
 
-   > Use only for engagement segments, questions combining case context with financial outcomes, payment-risk analysis, and solicitor performance tiers. The selected Step 6 tables are already prepared at customer, case, and solicitor grain.
+Remember that SQL example question/query pairs can be added to the Lakehouse source, but not to the Power BI semantic-model source.
 
-9. Add concise **Data agent instructions**:
+### Worked Example 1: Source Description And SQL Example
 
-   ```text
-   Use LegalFirmOptimized for ordinary customer, case, solicitor, transaction,
-   and interaction questions that can be answered by model fields or measures.
+**`LegalFirmOptimized` description:**
+> Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer its explicit measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.
 
-   Use LegalFirmDemo only when the question asks about engagement segments,
-   combined case-finance outcomes, payment risk, outstanding balances by case,
-   or solicitor performance tiers.
+**`step6_client_engagement_summary` description (on `LegalFirmDemo`):**
+> Use only for engagement segment questions. This table is already prepared at customer grain with `engagement_segment`, `total_interactions`, and `last_interaction_date`.
 
-   Prefer one source when the question is clear. Do not combine sources unless
-   the requested result cannot be answered by one selected source.
-   ```
-
-10. Add and validate one SQL example for each selected Lakehouse table. Use the examples in the routing scenario table below as a starting point.
-11. Ask each routing question, expand the run steps, and record which source and table were selected.
-
-### Routing Scenarios
-
-| Question | Expected source | Expected object | Why |
-| --- | --- | --- | --- |
-| How many active customers do we have? | `LegalFirmOptimized` | `[Active Customers]` | Standard model measure |
-| What is our total revenue? | `LegalFirmOptimized` | `[Total Revenue]` | Standard financial measure |
-| Which customers are in the low engagement segment? | `LegalFirmDemo` | `step6_client_engagement_summary` | Prepared engagement classification |
-| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `step6_case_finance_insights` | Combined case and financial outcome |
-| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `step6_solicitor_performance_mart` | Prepared solicitor tier |
-
-Use these Lakehouse SQL examples:
+Add and validate this SQL example for `step6_client_engagement_summary`:
 
 ```sql
--- Low-engagement customers
 SELECT customer_id, customer_name, total_interactions, last_interaction_date
 FROM step6_client_engagement_summary
 WHERE engagement_segment = 'Low Engagement'
 ORDER BY customer_name;
-
--- High-value open cases with outstanding balances
-SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp
-FROM step6_case_finance_insights
-WHERE case_status = 'Open'
-  AND case_value_gbp >= 100000
-  AND outstanding_amount_gbp > 0
-ORDER BY outstanding_amount_gbp DESC;
-
--- Top-tier solicitors
-SELECT solicitor_name, cases_handled, total_case_value_gbp
-FROM step6_solicitor_performance_mart
-WHERE performance_tier = 'Top'
-ORDER BY total_case_value_gbp DESC;
 ```
+
+Ask **"Which customers are in the low engagement segment?"** again and confirm it now routes to `LegalFirmDemo` and uses this table.
+
+### Worked Example 2: Data Agent Instruction
+
+Add this concise **Data agent instruction** at the Data Agent level:
+
+```text
+Use LegalFirmOptimized for ordinary customer, case, solicitor, transaction,
+and interaction questions that can be answered by model fields or measures.
+
+Use LegalFirmDemo only when the question asks about engagement segments,
+combined case-finance outcomes, payment risk, outstanding balances by case,
+or solicitor performance tiers.
+
+Prefer one source when the question is clear. Do not combine sources unless
+the requested result cannot be answered by one selected source.
+```
+
+Retest the same question plus a paraphrase and record whether the instruction, not just the example, influenced the routing decision.
+
+### Now Do The Rest Yourself
+
+Using the same method, write your own description and one validated SQL example for:
+- `step6_case_finance_insights` (case-level financial outcome and payment-risk questions)
+- `step6_solicitor_performance_mart` (solicitor ranking and performance-tier questions)
+
+Retest the two remaining questions from the baseline set above after each change.
 
 ### Diagnose Incorrect Routing
 
@@ -422,6 +426,18 @@ If a question routes incorrectly, change one control and retest:
 3. Check that the Data Agent instruction names the correct source and topic.
 4. For a Lakehouse question, add or correct one validated SQL example pair.
 5. Clear the chat and test both the original question and a paraphrase.
+
+### Evaluate Your Routing
+
+Use this table to check whether your configuration routes each question to the intended source and object.
+
+| Question | Expected source | Expected object | Why |
+| --- | --- | --- | --- |
+| How many active customers do we have? | `LegalFirmOptimized` | `[Active Customers]` | Standard model measure |
+| What is our total revenue? | `LegalFirmOptimized` | `[Total Revenue]` | Standard financial measure |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `step6_client_engagement_summary` | Prepared engagement classification |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `step6_case_finance_insights` | Combined case and financial outcome |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `step6_solicitor_performance_mart` | Prepared solicitor tier |
 
 ### Expected
 - Standard metrics route to `LegalFirmOptimized`.
@@ -434,10 +450,9 @@ If a question routes incorrectly, change one control and retest:
 
 1. Step 1 cleaned baseline: show initial quality
 2. Step 2 config best practices: show improved consistency
-3. Step 3 basic model: show structured but imperfect answers
-4. Step 4 optimized model: show the before/after effect of participant AI tuning
-5. Bonus Step 5 ontology: show advanced reasoning
-6. Bonus Step 6 multi-source routing: show reliable source selection and better cross-domain answers
+3. Step 3 optimized model: show the before/after effect of participant AI tuning
+4. Bonus Step 4 ontology: show advanced reasoning
+5. Bonus Step 5 multi-source routing: show reliable source selection and better cross-domain answers
 
 ---
 
@@ -445,10 +460,9 @@ If a question routes incorrectly, change one control and retest:
 
 - [ ] Step 1 cleaned tables loaded and agent baseline answers captured
 - [ ] Step 2 data agent best-practice configuration applied and prompts rerun
-- [ ] Step 3 basic semantic model published and connected
-- [ ] Step 4 optimized model tested before and after selected participant-authored AI improvements
-- [ ] Bonus Step 5 ontology mapped and agent retested
-- [ ] Bonus Step 6 agent configured with `LegalFirmOptimized` plus the three selected `step6_*` Lakehouse tables and routing retested
+- [ ] Step 3 optimized model tested before and after selected participant-authored AI improvements
+- [ ] Bonus Step 4 ontology mapped and agent retested
+- [ ] Bonus Step 5 agent configured with `LegalFirmOptimized` plus the three selected `step6_*` Lakehouse tables and routing retested
 - [ ] Side-by-side comparison recorded for your demo
 
 ---
