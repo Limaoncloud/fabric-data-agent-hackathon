@@ -62,13 +62,20 @@ Use one of these prompts in Copilot Chat:
 - Whether ontology (Step 5) is mandatory or optional
 
 ### New-domain procedure
-1. Inspect the source files or existing Lakehouse schema; do not invent columns or keys.
-2. Copy the structural contract from `config/domain-profile.schema.json`, not the legal values.
-3. Create `config/domains/<domain>.json` with domain-specific grains, relationships, DAX, descriptions, AI scope, routing, and evaluation intent.
-4. Add or map source data for every `tables[].sourcePath` and make profile columns exactly match source headers.
-5. Run `python -m unittest discover -s tests -v` and add domain-specific profile tests when the new package is committed.
-6. Set `DOMAIN_PROFILE` in `NB_Deploy_Data_Agent_Hackathon.ipynb` and keep `WORKSPACE_ID=""` unless deploying elsewhere.
-7. Run the stable core first. Enable Ontology and Data Agent only after reviewing their generated scope.
+1. Create or review `config/domain-briefs/<domain>.json`. Use `python deployment/create_domain_package.py --domain <domain> --init --display-name "<name>"` for a new brief.
+2. Render the complete generation contract with `python deployment/create_domain_package.py --domain <domain>` or run `/Generate Hackathon Domain <domain>` in VS Code Chat.
+3. Inspect source files or the proposed synthetic schema; do not invent unreviewed columns, keys, KPIs, privacy rules, or safety rules.
+4. Create `config/domains/<domain>.json` from `config/domain-profile.schema.json`, using domain-specific grains, relationships, DAX, descriptions, AI scope, routing, and evaluation intent.
+5. Add or map source data for every `tables[].sourcePath` and make profile columns exactly match source headers.
+6. Calculate evaluation expected answers from the generated data and add focused domain tests.
+7. Run `python -m unittest discover -s tests -v` when the new package is committed.
+8. Set `DOMAIN_PROFILE` in `NB_Deploy_Data_Agent_Hackathon.ipynb` and keep `WORKSPACE_ID=""` unless deploying elsewhere.
+9. Run the stable core first. Enable Ontology and Data Agent only after reviewing their generated scope.
+
+Network Rail example:
+- Brief: `config/domain-briefs/network-rail.json`
+- Command: `python deployment/create_domain_package.py --domain network-rail`
+- CSA runbook: `REUSE_FOR_NEW_INDUSTRY.md`
 
 Do not implement a new domain as vocabulary-only search and replace. Different domains require their own table grains, relationships, metric definitions, sample distributions, and routing examples.
 
