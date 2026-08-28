@@ -28,12 +28,23 @@ Participants work through these stages:
 
 ## Automated Deployment (Recommended)
 
-1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into the target Fabric workspace.
-2. Leave `WORKSPACE_ID=""` to use the notebook's current workspace.
-3. Leave `DOMAIN_PROFILE="uk-legal"` for the default scenario.
-4. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled.
-5. Run all cells to create the participant-ready Lakehouse and the Optimized Direct Lake semantic model.
-6. Review the deployment summary, then begin the participant exercises in Fabric.
+### Import The Deployment Notebook Into Fabric
+
+New to Fabric? Follow these steps exactly:
+
+1. Download the deployment notebook from this repo: [NB_Deploy_Data_Agent_Hackathon.ipynb](https://github.com/Limaoncloud/fabric-data-agent-hackathon/blob/dev/NB_Deploy_Data_Agent_Hackathon.ipynb). On the GitHub page, use **Download raw file** to save the `.ipynb` file to your computer.
+2. Open Microsoft Fabric at [https://app.fabric.microsoft.com](https://app.fabric.microsoft.com).
+3. Open the target workspace.
+4. Select **Import → Notebook**, then upload the `.ipynb` file you downloaded.
+5. Open the imported notebook once it appears in the workspace.
+6. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default run.
+7. Run all cells.
+
+### Before You Run
+
+- Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled for a participant-ready deployment.
+- Running all cells creates the participant-ready Lakehouse and the Optimized Direct Lake semantic model.
+- Review the deployment summary printed at the end, then begin the participant exercises in Fabric.
 
 See [deployment/README.md](deployment/README.md) for parameters and custom-domain packaging.
 

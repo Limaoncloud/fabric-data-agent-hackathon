@@ -28,7 +28,7 @@ Verified Answers are not generated automatically. They require saved report visu
 
 ## Run
 
-1. Download or import the root notebook into a capacity-backed Fabric workspace.
+1. Download [../NB_Deploy_Data_Agent_Hackathon.ipynb](../NB_Deploy_Data_Agent_Hackathon.ipynb) from this repo, then use **Import → Notebook** in the target Fabric workspace to upload it. First time importing a notebook into Fabric? See [../USER_GUIDE.md](../USER_GUIDE.md#import-the-deployment-notebook-into-fabric) for exact steps.
 2. Leave `WORKSPACE_ID=""` to deploy to the notebook's current workspace.
 3. Keep AI, Data Agent, and preview automation flags disabled for participant-ready deployment.
 4. Run all cells with `DOMAIN_PROFILE="uk-legal"` for the default scenario.

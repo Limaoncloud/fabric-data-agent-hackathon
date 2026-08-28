@@ -33,7 +33,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 
 ## Quick Start (30 Minutes)
 
-1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into a capacity-backed Fabric workspace.
+1. Download [NB_Deploy_Data_Agent_Hackathon.ipynb](https://github.com/Limaoncloud/fabric-data-agent-hackathon/blob/dev/NB_Deploy_Data_Agent_Hackathon.ipynb) and use **Import → Notebook** to upload it into a capacity-backed Fabric workspace. First time importing a notebook into Fabric? See [USER_GUIDE.md](USER_GUIDE.md#import-the-deployment-notebook-into-fabric) for exact steps.
 2. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default deployment.
 3. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and preview stages disabled.
 4. Run all cells to create the Lakehouse, Delta tables, and the Optimized Direct Lake semantic model.

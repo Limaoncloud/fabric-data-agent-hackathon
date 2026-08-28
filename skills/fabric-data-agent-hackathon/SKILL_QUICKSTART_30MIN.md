@@ -68,7 +68,7 @@ Use one of these prompts in Copilot Chat:
 ## 30-Minute Runbook
 
 ### 0 to 5 minutes: Deploy participant-ready assets
-1. Import and open `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target workspace.
+1. Download [NB_Deploy_Data_Agent_Hackathon.ipynb](https://github.com/Limaoncloud/fabric-data-agent-hackathon/blob/dev/NB_Deploy_Data_Agent_Hackathon.ipynb), then use **Import → Notebook** in the target workspace to upload and open it. First time importing a notebook into Fabric? See [USER_GUIDE.md](../../USER_GUIDE.md#import-the-deployment-notebook-into-fabric) for exact steps.
 2. Keep `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default scenario.
 3. Keep `ENABLE_PREP_FOR_AI=False` and `ENABLE_DATA_AGENT=False`.
 4. Run all cells to deploy the Lakehouse tables and the Optimized semantic model.
