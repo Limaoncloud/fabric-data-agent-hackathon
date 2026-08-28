@@ -164,7 +164,7 @@
   ],
   "semanticModels": {
     "optimized": {
-      "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
+      "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions", "_Measures"],
       "useRelationships": true,
       "measures": [
         { "table": "Customers", "name": "Total Customers", "expression": "COUNTROWS(Customers)", "formatString": "#,##0", "description": "Number of customers in the model." },
@@ -191,11 +191,12 @@
   "ai": {
     "instructions": "Business context:\n- This is a UK legal firm specializing in conveyancing, employment law, family law, and commercial law.\n- Customers can be Individual or Corporate.\n- Cases are assigned to solicitors with different specializations.\n- Fiscal year runs April to March.\n\nTerminology and rules:\n- Revenue means Invoice transactions only; use [Total Revenue].\n- Billed hours means Hours Worked from Timesheet transactions; use [Total Hours Billed].\n- Outstanding means Invoice transactions with Payment Status = Unpaid.\n- Active customers have Customer Status = Active.\n- High-value case means Case Value >= GBP 100,000.\n- Dates use UK date format.\n- For top, highest, most, or best, sort descending.\n- For this year, use the current calendar year unless fiscal year is explicitly requested.",
     "schema": {
-      "Customers": ["Customer ID", "Customer Name", "Customer Type", "City", "Customer Status", "Total Customers", "Active Customers", "Corporate Customers"],
-      "Cases": ["Case ID", "Case Type", "Case Value", "Case Status", "Start Date", "Total Cases", "Open Cases", "High Value Cases", "Total Case Value", "Average Case Value"],
-      "Solicitors": ["Solicitor Name", "Specialization", "Hourly Rate", "Total Solicitors", "Average Hourly Rate", "Cases Per Solicitor"],
-      "Transactions": ["Transaction Type", "Transaction Date", "Transaction Amount", "Payment Status", "Hours Worked", "Total Revenue", "Total Expenses", "Total Payments", "Total Hours Billed", "Outstanding Invoices"],
-      "Interactions": ["Interaction Type", "Interaction Date", "Duration Minutes", "Total Interactions", "Average Interaction Duration"]
+      "Customers": ["Customer ID", "Customer Name", "Customer Type", "City", "Customer Status"],
+      "Cases": ["Case ID", "Case Type", "Case Value", "Case Status", "Start Date"],
+      "Solicitors": ["Solicitor Name", "Specialization", "Hourly Rate"],
+      "Transactions": ["Transaction Type", "Transaction Date", "Transaction Amount", "Payment Status", "Hours Worked"],
+      "Interactions": ["Interaction Type", "Interaction Date", "Duration Minutes"],
+      "_Measures": ["Total Customers", "Active Customers", "Corporate Customers", "Total Cases", "Open Cases", "High Value Cases", "Total Case Value", "Average Case Value", "Total Revenue", "Total Expenses", "Total Payments", "Total Hours Billed", "Outstanding Invoices", "Total Solicitors", "Average Hourly Rate", "Cases Per Solicitor", "Total Interactions", "Average Interaction Duration"]
     },
     "verifiedAnswerCandidates": [
       { "question": "How many customers do we have?", "measure": "Total Customers", "description": "Total customer population." },

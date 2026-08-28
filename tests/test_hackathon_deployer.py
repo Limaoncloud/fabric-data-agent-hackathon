@@ -51,8 +51,8 @@ class SemanticModelTests(unittest.TestCase):
         flat = render_semantic_model_parts(flat_profile, "flat", WORKSPACE_ID, LAKEHOUSE_ID)
         optimized = render_semantic_model_parts(PROFILE, "optimized", WORKSPACE_ID, LAKEHOUSE_ID)
 
-        self.assertEqual(5, sum(path.startswith("definition/tables/") for path in flat))
-        self.assertEqual(5, sum(path.startswith("definition/tables/") for path in optimized))
+        self.assertEqual(6, sum(path.startswith("definition/tables/") for path in flat))
+        self.assertEqual(6, sum(path.startswith("definition/tables/") for path in optimized))
         self.assertNotIn("definition/relationships.tmdl", flat)
         self.assertIn("definition/relationships.tmdl", optimized)
         self.assertEqual(flat, decode_definition_parts(definition_payload(flat, "TMDL")))
@@ -75,8 +75,14 @@ class SemanticModelTests(unittest.TestCase):
 
         optimized = render_semantic_model_parts(PROFILE, "optimized", WORKSPACE_ID, LAKEHOUSE_ID)
         schema = json.loads(render_copilot_schema(PROFILE, optimized))
-        self.assertEqual(5, len(schema["tables"]))
+        self.assertEqual(6, len(schema["tables"]))
         self.assertTrue(all(table["id"] for table in schema["tables"]))
+
+        measures_table_tmdl = optimized["definition/tables/_Measures.tmdl"]
+        for measure in PROFILE["semanticModels"]["optimized"]["measures"]:
+            escaped_name = re.escape(measure["name"])
+            pattern = rf"^\s*measure\s+(?:'{escaped_name}'|{escaped_name})\s*="
+            self.assertRegex(measures_table_tmdl, re.compile(pattern, re.MULTILINE))
 
         declarations = "\n".join(
             content

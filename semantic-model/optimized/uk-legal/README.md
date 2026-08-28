@@ -82,11 +82,11 @@ Go back to the LegalFirmSemanticModel semantic model and open Model settings > P
 
 | Table | Columns to include |
 | --- | --- |
-| Customers | customer_id, customer_name, customer_type, city, status |
-| Cases | case_id, case_type, case_value_gbp, case_status, start_date, solicitor_name, customer_id |
-| Solicitors | solicitor_name, specialization, hourly_rate_gbp |
-| Transactions | transaction_type, amount_gbp, payment_status, case_id, hours_worked |
-| Interactions | interaction_type, interaction_date, customer_id, duration_minutes |
+| Customers | Customer ID, Customer Name, Customer Type, City, Customer Status |
+| Cases | Case ID, Case Type, Case Value, Case Status, Start Date |
+| Solicitors | Solicitor Name, Specialization, Hourly Rate |
+| Transactions | Transaction Type, Transaction Date, Transaction Amount, Payment Status, Hours Worked |
+| Interactions | Interaction Type, Interaction Date, Duration Minutes |
 
 Include all measures from `_Measures`.
 

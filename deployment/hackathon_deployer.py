@@ -13,6 +13,7 @@ from typing import Any, Iterable
 PROFILE_SCHEMA_VERSION = "1.0"
 ONTOLOGY_NAMESPACE = uuid.UUID("6d54b7e0-a028-45e9-b621-276429753dd8")
 SEMANTIC_MODEL_NAMESPACE = uuid.UUID("4f5c08d6-c125-42a5-a79c-c18ccb8f363f")
+MEASURES_TABLE_NAME = "_Measures"
 
 
 def load_json(path: str | Path) -> dict[str, Any]:
@@ -73,7 +74,7 @@ def validate_profile(profile: dict[str, Any], repo_root: str | Path | None = Non
     all_measures: dict[str, dict[str, Any]] = {}
     for model_name, model in profile.get("semanticModels", {}).items():
         for table_name in model.get("tableNames", []):
-            if table_name not in model_tables:
+            if table_name not in model_tables and table_name != MEASURES_TABLE_NAME:
                 errors.append(f"{model_name} model references unknown table {table_name!r}")
         measure_names = [measure["name"] for measure in model.get("measures", [])]
         duplicates = _duplicates(measure_names)
@@ -104,6 +105,11 @@ def validate_profile(profile: dict[str, Any], repo_root: str | Path | None = Non
                 )
 
     for table_name, objects in profile.get("ai", {}).get("schema", {}).items():
+        if table_name == MEASURES_TABLE_NAME:
+            for object_name in objects:
+                if object_name not in all_measures:
+                    errors.append(f"AI schema object does not resolve: {table_name}[{object_name}]")
+            continue
         if table_name not in model_tables:
             errors.append(f"AI schema references unknown table {table_name!r}")
             continue
@@ -226,6 +232,35 @@ def render_table_tmdl(
     return "\n".join(lines).rstrip() + "\n"
 
 
+def render_measures_table_tmdl(measures: list[dict[str, Any]], lineage_scope: str) -> str:
+    """Render a blank calculated table holding every measure, decoupled from data tables."""
+    table_scope = f"{lineage_scope}:table:{MEASURES_TABLE_NAME}"
+    lines = [
+        f"table {_tmdl_name(MEASURES_TABLE_NAME)}",
+        f"\tlineageTag: {_semantic_model_uuid(table_scope)}",
+        "",
+    ]
+    for measure in measures:
+        lines.extend(_render_measure(measure, table_scope))
+        lines.append("")
+    lines.extend(
+        [
+            "\tcolumn Column1",
+            f"\t\tlineageTag: {_semantic_model_uuid(f'{table_scope}:column:Column1')}",
+            "\t\tdataType: int64",
+            "\t\tisHidden",
+            "\t\tsummarizeBy: none",
+            "\t\tsourceColumn: Column1",
+            "",
+            f"\tpartition {_tmdl_name(MEASURES_TABLE_NAME)} = calculated",
+            "\t\tmode: import",
+            "\t\tsource =",
+            '\t\t\tROW("Column1", 0)',
+        ]
+    )
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def render_relationships_tmdl(profile: dict[str, Any]) -> str:
     blocks = []
     for relationship in profile.get("relationships", []):
@@ -283,14 +318,15 @@ def render_semantic_model_parts(
         "definition/model.tmdl": "\n".join(model_lines).rstrip() + "\n",
     }
     for table_name in model["tableNames"]:
-        measures = [
-            measure
-            for measure in model.get("measures", [])
-            if measure["table"] == table_name
-        ]
+        if table_name == MEASURES_TABLE_NAME:
+            parts[f"definition/tables/{table_name}.tmdl"] = render_measures_table_tmdl(
+                model.get("measures", []),
+                f"{profile['domain']['id']}:{model_key}",
+            )
+            continue
         parts[f"definition/tables/{table_name}.tmdl"] = render_table_tmdl(
             table_map[table_name],
-            measures,
+            [],
             expression_name,
             f"{profile['domain']['id']}:{model_key}",
         )
