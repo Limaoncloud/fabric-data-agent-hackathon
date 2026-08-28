@@ -12,39 +12,39 @@
       "question": "Which customers are in the low engagement segment?",
       "category": "routing_test",
       "expected_source": "LegalFirmDemo",
-      "ground_truth_answer": "See step6_client_engagement_summary rows where engagement_segment = 'Low Engagement'",
+      "ground_truth_answer": "See routing_client_engagement_summary rows where engagement_segment = 'Low Engagement'",
       "answer_type": "text",
-      "ground_truth_sql": "SELECT customer_id, customer_name FROM step6_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name",
+      "ground_truth_sql": "SELECT customer_id, customer_name FROM routing_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name",
       "difficulty": "medium",
       "tests_routing": true,
       "tests_measure_selection": false,
-      "notes": "Only the step6_client_engagement_summary Lakehouse table has this classification; LegalFirmOptimized does not."
+      "notes": "Only the routing_client_engagement_summary Lakehouse table has this classification; LegalFirmOptimized does not."
     },
     {
       "id": "RT002",
       "question": "Which high-value open cases have outstanding balances?",
       "category": "routing_test",
       "expected_source": "LegalFirmDemo",
-      "ground_truth_answer": "See step6_case_finance_insights rows where case_status = 'Open', case_value_gbp >= 100000, and outstanding_amount_gbp > 0",
+      "ground_truth_answer": "See routing_case_finance_insights rows where case_status = 'Open', case_value_gbp >= 100000, and outstanding_amount_gbp > 0",
       "answer_type": "text",
-      "ground_truth_sql": "SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp FROM step6_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC",
+      "ground_truth_sql": "SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp FROM routing_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC",
       "difficulty": "medium",
       "tests_routing": true,
       "tests_measure_selection": false,
-      "notes": "Combines case status, value, and outstanding balance; only available pre-joined in step6_case_finance_insights."
+      "notes": "Combines case status, value, and outstanding balance; only available pre-joined in routing_case_finance_insights."
     },
     {
       "id": "RT003",
       "question": "Which solicitors are in the top performance tier?",
       "category": "routing_test",
       "expected_source": "LegalFirmDemo",
-      "ground_truth_answer": "See step6_solicitor_performance_mart rows where performance_tier = 'Top'",
+      "ground_truth_answer": "See routing_solicitor_performance_mart rows where performance_tier = 'Top'",
       "answer_type": "text",
-      "ground_truth_sql": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM step6_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC",
+      "ground_truth_sql": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM routing_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC",
       "difficulty": "easy",
       "tests_routing": true,
       "tests_measure_selection": false,
-      "notes": "performance_tier only exists in step6_solicitor_performance_mart."
+      "notes": "performance_tier only exists in routing_solicitor_performance_mart."
     }
   ]
 }

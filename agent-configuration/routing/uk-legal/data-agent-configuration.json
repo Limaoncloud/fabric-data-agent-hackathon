@@ -28,16 +28,16 @@
         "name": "LegalFirmDemo",
         "type": "lakehouse",
         "selectedTables": [
-          "step6_client_engagement_summary",
-          "step6_case_finance_insights",
-          "step6_solicitor_performance_mart"
+          "routing_client_engagement_summary",
+          "routing_case_finance_insights",
+          "routing_solicitor_performance_mart"
         ],
         "excludedTables": [
-          "step1_cleaned_customers",
-          "step1_cleaned_cases",
-          "step1_cleaned_solicitors",
-          "step1_cleaned_transactions",
-          "step1_cleaned_interactions"
+          "base_customers",
+          "base_cases",
+          "base_solicitors",
+          "base_transactions",
+          "base_interactions"
         ],
         "description": "Use only for engagement segments, questions combining case context with financial outcomes, payment-risk analysis, and solicitor performance tiers.",
         "routingTopics": [
@@ -49,15 +49,15 @@
         "exampleQueries": [
           {
             "question": "Which customers are in the low engagement segment?",
-            "query": "SELECT customer_id, customer_name, total_interactions, last_interaction_date FROM step6_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name"
+            "query": "SELECT customer_id, customer_name, total_interactions, last_interaction_date FROM routing_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name"
           },
           {
             "question": "Which high-value open cases have outstanding balances?",
-            "query": "SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp FROM step6_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC"
+            "query": "SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp FROM routing_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC"
           },
           {
             "question": "Which solicitors are in the top performance tier?",
-            "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM step6_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC"
+            "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM routing_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC"
           }
         ]
       }
@@ -77,17 +77,17 @@
       {
         "question": "Which customers are in the low engagement segment?",
         "expectedSource": "LegalFirmDemo",
-        "expectedObject": "step6_client_engagement_summary"
+        "expectedObject": "routing_client_engagement_summary"
       },
       {
         "question": "Which high-value open cases have outstanding balances?",
         "expectedSource": "LegalFirmDemo",
-        "expectedObject": "step6_case_finance_insights"
+        "expectedObject": "routing_case_finance_insights"
       },
       {
         "question": "Which solicitors are in the top performance tier?",
         "expectedSource": "LegalFirmDemo",
-        "expectedObject": "step6_solicitor_performance_mart"
+        "expectedObject": "routing_solicitor_performance_mart"
       }
     ]
   }

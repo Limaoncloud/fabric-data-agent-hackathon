@@ -13,19 +13,19 @@ The organizer notebook creates these items before participants begin:
 
 | Table | Grain | Current rows |
 | --- | --- | ---: |
-| `step1_cleaned_customers` | One row per customer | 171 |
-| `step1_cleaned_cases` | One row per legal case | 500 |
-| `step1_cleaned_solicitors` | One row per solicitor | 15 |
-| `step1_cleaned_transactions` | One row per transaction | 1,000 |
-| `step1_cleaned_interactions` | One row per interaction | 800 |
+| `base_customers` | One row per customer | 171 |
+| `base_cases` | One row per legal case | 500 |
+| `base_solicitors` | One row per solicitor | 15 |
+| `base_transactions` | One row per transaction | 1,000 |
+| `base_interactions` | One row per interaction | 800 |
 
 ### Derived-Routing Analysis Tables
 
 | Table | Grain | Routing purpose |
 | --- | --- | --- |
-| `step6_client_engagement_summary` | One row per customer | Engagement segments and interaction recency |
-| `step6_case_finance_insights` | One row per case | Combined case and financial outcomes or payment risk |
-| `step6_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
+| `routing_client_engagement_summary` | One row per customer | Engagement segments and interaction recency |
+| `routing_case_finance_insights` | One row per case | Combined case and financial outcomes or payment risk |
+| `routing_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
 
 ## Semantic Model
 

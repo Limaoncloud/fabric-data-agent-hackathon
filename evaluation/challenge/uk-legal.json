@@ -15,7 +15,7 @@
       "expected_source": "LegalFirmOptimized",
       "ground_truth_answer": 101,
       "answer_type": "number",
-      "ground_truth_sql": "SELECT COUNT(*) FROM step1_cleaned_customers WHERE status = 'Active'",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_customers WHERE status = 'Active'",
       "difficulty": "easy",
       "tests_routing": false,
       "tests_measure_selection": true
@@ -29,7 +29,7 @@
       "ground_truth_answer": 123590881,
       "answer_type": "number",
       "answer_unit": "GBP",
-      "ground_truth_sql": "SELECT SUM(case_value_gbp) FROM step1_cleaned_cases",
+      "ground_truth_sql": "SELECT SUM(case_value_gbp) FROM base_cases",
       "difficulty": "medium",
       "tests_routing": false,
       "tests_measure_selection": true
@@ -43,7 +43,7 @@
       "ground_truth_answer": 5420217,
       "answer_type": "number",
       "answer_unit": "GBP",
-      "ground_truth_sql": "SELECT SUM(amount_gbp) FROM step1_cleaned_transactions WHERE transaction_type = 'Invoice'",
+      "ground_truth_sql": "SELECT SUM(amount_gbp) FROM base_transactions WHERE transaction_type = 'Invoice'",
       "difficulty": "medium",
       "tests_routing": false,
       "tests_measure_selection": true
@@ -56,7 +56,7 @@
       "expected_source": "LegalFirmOptimized",
       "ground_truth_answer": 54,
       "answer_type": "number",
-      "ground_truth_sql": "SELECT COUNT(*) FROM step1_cleaned_transactions WHERE transaction_type = 'Invoice' AND payment_status = 'Unpaid'",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_transactions WHERE transaction_type = 'Invoice' AND payment_status = 'Unpaid'",
       "difficulty": "easy",
       "tests_routing": false,
       "tests_measure_selection": true
@@ -69,7 +69,7 @@
       "expected_source": "LegalFirmOptimized",
       "ground_truth_answer": 180,
       "answer_type": "number",
-      "ground_truth_sql": "SELECT COUNT(*) FROM step1_cleaned_cases WHERE case_status = 'Open'",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_cases WHERE case_status = 'Open'",
       "difficulty": "easy",
       "tests_routing": false,
       "tests_measure_selection": true
@@ -82,7 +82,7 @@
       "expected_source": "LegalFirmOptimized",
       "ground_truth_answer": 171,
       "answer_type": "number",
-      "ground_truth_sql": "SELECT COUNT(*) FROM step1_cleaned_customers",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_customers",
       "difficulty": "easy",
       "tests_routing": false,
       "tests_measure_selection": true

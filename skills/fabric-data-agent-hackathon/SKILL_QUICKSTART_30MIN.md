@@ -78,7 +78,7 @@ Success check:
 
 ### 5 to 10 minutes: Stand up a baseline agent
 1. Create a Data Agent over the cleaned Lakehouse tables.
-2. Select only the five `step1_cleaned_*` tables and leave instructions/examples empty for the baseline.
+2. Select only the five `base_*` tables and leave instructions/examples empty for the baseline.
 3. Run baseline prompts:
    - How many active customers do we have?
   - How many open service records do we have?

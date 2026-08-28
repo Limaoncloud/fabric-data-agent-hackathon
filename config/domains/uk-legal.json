@@ -17,7 +17,7 @@
   "tables": [
     {
       "sourcePath": "sample-data/uk-legal/base/customers.csv",
-      "lakehouseName": "step1_cleaned_customers",
+      "lakehouseName": "base_customers",
       "modelName": "Customers",
       "description": "One row per legal-firm customer, including type, location, signup date, and current relationship status.",
       "includeInModels": true,
@@ -34,7 +34,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/base/cases.csv",
-      "lakehouseName": "step1_cleaned_cases",
+      "lakehouseName": "base_cases",
       "modelName": "Cases",
       "description": "One row per legal case or matter, with customer, assigned solicitor, type, value, start date, and status.",
       "includeInModels": true,
@@ -50,7 +50,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/base/solicitors.csv",
-      "lakehouseName": "step1_cleaned_solicitors",
+      "lakehouseName": "base_solicitors",
       "modelName": "Solicitors",
       "description": "One row per solicitor, including specialization, hire date, hourly rate, office, and employment status.",
       "includeInModels": true,
@@ -66,7 +66,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/base/transactions.csv",
-      "lakehouseName": "step1_cleaned_transactions",
+      "lakehouseName": "base_transactions",
       "modelName": "Transactions",
       "description": "One row per case-related invoice, payment, timesheet, or expense transaction.",
       "includeInModels": true,
@@ -82,7 +82,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/base/interactions.csv",
-      "lakehouseName": "step1_cleaned_interactions",
+      "lakehouseName": "base_interactions",
       "modelName": "Interactions",
       "description": "One row per customer interaction, including channel, date, duration, solicitor, and notes.",
       "includeInModels": true,
@@ -98,7 +98,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/derived-routing/client_engagement_summary.csv",
-      "lakehouseName": "step6_client_engagement_summary",
+      "lakehouseName": "routing_client_engagement_summary",
       "modelName": "Client Engagement Summary",
       "description": "Customer-level engagement metrics for multi-source routing demonstrations.",
       "includeInModels": false,
@@ -116,7 +116,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/derived-routing/case_finance_insights.csv",
-      "lakehouseName": "step6_case_finance_insights",
+      "lakehouseName": "routing_case_finance_insights",
       "modelName": "Case Finance Insights",
       "description": "Case-level financial outcome metrics for cross-domain routing demonstrations.",
       "includeInModels": false,
@@ -138,7 +138,7 @@
     },
     {
       "sourcePath": "sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv",
-      "lakehouseName": "step6_solicitor_performance_mart",
+      "lakehouseName": "routing_solicitor_performance_mart",
       "modelName": "Solicitor Performance",
       "description": "Solicitor-level performance metrics for routing and ranking demonstrations.",
       "includeInModels": false,
@@ -207,13 +207,13 @@
   },
   "ontology": {
     "entities": [
-      { "name": "Customer", "table": "step1_cleaned_customers", "key": "customer_id", "displayProperty": "customer_name" },
-      { "name": "LegalCase", "table": "step1_cleaned_cases", "key": "case_id", "displayProperty": "case_type" },
-      { "name": "Solicitor", "table": "step1_cleaned_solicitors", "key": "solicitor_name", "displayProperty": "solicitor_name" }
+      { "name": "Customer", "table": "base_customers", "key": "customer_id", "displayProperty": "customer_name" },
+      { "name": "LegalCase", "table": "base_cases", "key": "case_id", "displayProperty": "case_type" },
+      { "name": "Solicitor", "table": "base_solicitors", "key": "solicitor_name", "displayProperty": "solicitor_name" }
     ],
     "relationships": [
-      { "name": "CustomerHasCase", "from": "Customer", "to": "LegalCase", "table": "step1_cleaned_cases", "fromColumn": "customer_id", "toColumn": "case_id" },
-      { "name": "SolicitorHandlesCase", "from": "Solicitor", "to": "LegalCase", "table": "step1_cleaned_cases", "fromColumn": "solicitor_name", "toColumn": "case_id" }
+      { "name": "CustomerHasCase", "from": "Customer", "to": "LegalCase", "table": "base_cases", "fromColumn": "customer_id", "toColumn": "case_id" },
+      { "name": "SolicitorHandlesCase", "from": "Solicitor", "to": "LegalCase", "table": "base_cases", "fromColumn": "solicitor_name", "toColumn": "case_id" }
     ]
   },
   "agent": {
@@ -235,13 +235,13 @@
       {
         "name": "LegalFirmDemo",
         "artifact": "lakehouse",
-        "objects": ["step6_client_engagement_summary", "step6_case_finance_insights", "step6_solicitor_performance_mart"],
+        "objects": ["routing_client_engagement_summary", "routing_case_finance_insights", "routing_solicitor_performance_mart"],
         "description": "Curated legal-firm marts for engagement, combined case-finance outcomes, and solicitor performance.",
-        "instructions": "Use step6_client_engagement_summary for engagement segments, step6_case_finance_insights for combined case-finance risk, and step6_solicitor_performance_mart for solicitor ranking and performance tiers.",
+        "instructions": "Use routing_client_engagement_summary for engagement segments, routing_case_finance_insights for combined case-finance risk, and routing_solicitor_performance_mart for solicitor ranking and performance tiers.",
         "examples": [
-          { "question": "Which customers are in the low engagement segment?", "query": "SELECT customer_id, customer_name FROM step6_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name" },
-          { "question": "Which high-value open cases have outstanding balances?", "query": "SELECT case_id, case_value_gbp, outstanding_amount_gbp FROM step6_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC" },
-          { "question": "Which solicitors are in the top performance tier?", "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM step6_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC" }
+          { "question": "Which customers are in the low engagement segment?", "query": "SELECT customer_id, customer_name FROM routing_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name" },
+          { "question": "Which high-value open cases have outstanding balances?", "query": "SELECT case_id, case_value_gbp, outstanding_amount_gbp FROM routing_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC" },
+          { "question": "Which solicitors are in the top performance tier?", "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM routing_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC" }
         ]
       }
     ]

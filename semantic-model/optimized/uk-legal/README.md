@@ -8,17 +8,17 @@ The deployment notebook generates and deploys `LegalFirmOptimized` automatically
 
 ## 1. What the notebook creates
 
-The notebook creates a Direct Lake semantic model named LegalFirmOptimized over the LegalFirmDemo Lakehouse, using the five base cleaned tables (`step1_cleaned_customers`, `step1_cleaned_cases`, `step1_cleaned_transactions`, `step1_cleaned_solicitors`, `step1_cleaned_interactions`).
+The notebook creates a Direct Lake semantic model named LegalFirmOptimized over the LegalFirmDemo Lakehouse, using the five base cleaned tables (`base_customers`, `base_cases`, `base_transactions`, `base_solicitors`, `base_interactions`).
 
 ## 2. Tables renamed for business-friendly usage
 
 | Original table | Rename to |
 | --- | --- |
-| step1_cleaned_customers | Customers |
-| step1_cleaned_cases | Cases |
-| step1_cleaned_transactions | Transactions |
-| step1_cleaned_solicitors | Solicitors |
-| step1_cleaned_interactions | Interactions |
+| base_customers | Customers |
+| base_cases | Cases |
+| base_transactions | Transactions |
+| base_solicitors | Solicitors |
+| base_interactions | Interactions |
 
 ## 3. Star schema relationships already configured
 

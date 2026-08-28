@@ -222,11 +222,11 @@ Continue building the same `LegalFirmAgent`: give it one Data Agent with two com
 1. Open the existing `LegalFirmAgent` Data Agent. Do not create a new agent.
 2. Add the `LegalFirmDemo` Lakehouse as a second source and select **Add**.
 3. In the left **Explorer**, expand `LegalFirmDemo` and make only these tables available to the AI:
-   - `step1_cleaned_customers`
-   - `step1_cleaned_cases`
-   - `step1_cleaned_solicitors`
-   - `step1_cleaned_transactions`
-   - `step1_cleaned_interactions`
+   - `base_customers`
+   - `base_cases`
+   - `base_solicitors`
+   - `base_transactions`
+   - `base_interactions`
 4. Leave the three tables beginning with `step6_` unselected; you will add them in Step 5.
 5. Leave the Lakehouse source's description and example queries empty for now. Keep the Step 2 instructions on `LegalFirmOptimized` unchanged.
 
@@ -272,7 +272,7 @@ Improve response consistency by configuring the `LegalFirmDemo` Lakehouse source
 
 1. Ask: **"How many open matters do we have?"**
 2. Record the answer and inspect the generated SQL or agent steps.
-3. If *matter* is not understood for the Lakehouse path, open **Data agent instructions** and add one concise rule: `In legal terminology, matter and matters mean case and cases. Use step1_cleaned_cases.`
+3. If *matter* is not understood for the Lakehouse path, open **Data agent instructions** and add one concise rule: `In legal terminology, matter and matters mean case and cases. Use base_cases.`
 4. Ask the exact question again, then test: **"How many cases are currently open?"**
 5. Record whether the generated SQL and answer improved, and which source it used.
 
@@ -288,7 +288,7 @@ Participants are not expected to know the table schema or write their first SQL 
 
 ```sql
 SELECT COUNT(*) AS payment_transaction_count
-FROM step1_cleaned_transactions
+FROM base_transactions
 WHERE transaction_type = 'Payment';
 ```
 
@@ -338,9 +338,9 @@ Continue extending the same `LegalFirmAgent` with the three prepared Step 6 anal
 ### Actions: Add The Derived Tables
 1. Open the existing `LegalFirmAgent` Data Agent and its `LegalFirmDemo` source.
 2. In addition to the five `step1_cleaned_*` tables, make these three tables available:
-   - `step6_client_engagement_summary`
-   - `step6_case_finance_insights`
-   - `step6_solicitor_performance_mart`
+   - `routing_client_engagement_summary`
+   - `routing_case_finance_insights`
+   - `routing_solicitor_performance_mart`
 3. Leave their descriptions and example queries empty for now.
 
 ### Ask A Few Questions Before Configuring Anything
@@ -360,14 +360,14 @@ Remember that SQL example question/query pairs can be added to the Lakehouse sou
 **`LegalFirmOptimized` description:**
 > Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer its explicit measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.
 
-**`step6_client_engagement_summary` description (on `LegalFirmDemo`):**
+**`routing_client_engagement_summary` description (on `LegalFirmDemo`):**
 > Use only for engagement segment questions. This table is already prepared at customer grain with `engagement_segment`, `total_interactions`, and `last_interaction_date`.
 
-Add and validate this SQL example for `step6_client_engagement_summary`:
+Add and validate this SQL example for `routing_client_engagement_summary`:
 
 ```sql
 SELECT customer_id, customer_name, total_interactions, last_interaction_date
-FROM step6_client_engagement_summary
+FROM routing_client_engagement_summary
 WHERE engagement_segment = 'Low Engagement'
 ORDER BY customer_name;
 ```
@@ -398,8 +398,8 @@ Retest the same question plus a paraphrase and record whether the instruction, n
 ### Now Do The Rest Yourself
 
 Using the same method, write your own description and one validated SQL example for:
-- `step6_case_finance_insights` (case-level financial outcome and payment-risk questions)
-- `step6_solicitor_performance_mart` (solicitor ranking and performance-tier questions)
+- `routing_case_finance_insights` (case-level financial outcome and payment-risk questions)
+- `routing_solicitor_performance_mart` (solicitor ranking and performance-tier questions)
 
 Retest the two remaining questions from the baseline set above after each change.
 
@@ -421,9 +421,9 @@ Use this table to check whether your configuration routes each question to the i
 | --- | --- | --- | --- |
 | How many active customers do we have? | `LegalFirmOptimized` | `[Active Customers]` | Standard model measure |
 | What is our total revenue? | `LegalFirmOptimized` | `[Total Revenue]` | Standard financial measure |
-| Which customers are in the low engagement segment? | `LegalFirmDemo` | `step6_client_engagement_summary` | Prepared engagement classification |
-| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `step6_case_finance_insights` | Combined case and financial outcome |
-| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `step6_solicitor_performance_mart` | Prepared solicitor tier |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `routing_client_engagement_summary` | Prepared engagement classification |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `routing_case_finance_insights` | Combined case and financial outcome |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `routing_solicitor_performance_mart` | Prepared solicitor tier |
 
 ### Expected
 - Standard metrics route to `LegalFirmOptimized`.

@@ -37,7 +37,7 @@ Also demonstrate one Lakehouse SQL example pair that is not in the scored challe
 
 ```sql
 SELECT COUNT(*) AS payment_transaction_count
-FROM step1_cleaned_transactions
+FROM base_transactions
 WHERE transaction_type = 'Payment';
 ```
 
