@@ -6,12 +6,13 @@ This guide explains how to use the evaluation framework to measure actual data a
 
 1. **NB_Evaluate_Data_Agent_Hackathon.ipynb** - Participant notebook for entering observed results and generating a scored report
 2. **evaluation/hackathon_challenge_dataset.json** - Current six-question participant challenge with checked ground truths and paraphrases
-3. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-4. **evaluation/evaluation_dataset.json** - Extended legacy question bank; regenerate all ground truths before formal use with changed source data
-5. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
-6. **evaluation/TEST_QUERIES.md** - Extended manual testing reference
+3. **evaluation/step6_routing_dataset.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
+4. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+5. **evaluation/evaluation_dataset.json** - Extended legacy question bank; source names (`ClientCasePortfolio`, `FinancialTransactions`) predate the current `LegalFirmOptimized`/`LegalFirmDemo` architecture. Regenerate all ground truths and source names before formal use.
+6. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
+7. **evaluation/TEST_QUERIES.md** - Extended manual testing reference; also predates the current architecture and step numbering
 
-For the three-hour hackathon, use `hackathon_challenge_dataset.json`. Its expected answers are tested directly against the checked-in CSV files.
+For the three-hour hackathon, use `hackathon_challenge_dataset.json`. Its expected answers are tested directly against the checked-in CSV files. Add `step6_routing_dataset.json` once you reach Step 5.
 
 ## Why Evaluate?
 
@@ -144,7 +145,7 @@ Answer is semantically correct within tolerance:
 - Tables: all keys present, values within 5%
 
 ### 3. Routing Accuracy
-Correct data source selected (ClientCasePortfolio vs FinancialTransactions)
+Correct data source selected (`LegalFirmOptimized` vs `LegalFirmDemo`)
 
 ### 4. Measure Selection Accuracy
 Correct DAX measure used (important for Step 3 vs Step 4 comparison)
@@ -160,52 +161,25 @@ Percentage of queries that resulted in errors
 
 ## Comparing Across Steps
 
-### Step 3 (Basic Model) - Expected Results
+USER_GUIDE.md builds one continuously-extended Data Agent (`LegalFirmAgent`), not separate agents per step. Snapshot the same agent's behavior at each step by giving each run its own output file:
 
 ```bash
-# Test Step 3 agent
-python evaluation/evaluate_agent.py \
-  --agent-id step3_agent \
-  --dataset evaluation/evaluation_dataset.json \
-  --output step3/step3_results.json
+# Step 1: semantic-model baseline
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
+  --dataset evaluation/hackathon_challenge_dataset.json --output step1/step1_results.json
+
+# Step 2: after Prep for AI
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
+  --dataset evaluation/hackathon_challenge_dataset.json --output step2/step2_results.json
+
+# Step 5: after attaching the Lakehouse, tuning it, and adding derived tables/routing
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
+  --dataset evaluation/hackathon_challenge_dataset.json --output step5/step5_results.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
+  --dataset evaluation/step6_routing_dataset.json --output step5/step5_routing_results.json
 ```
 
-**Expected Metrics:**
-- Exact Match Accuracy: ~60-70%
-- Routing Accuracy: ~70% (no routing rules)
-- Measure Selection: ~40% (duplicate measures confuse agent)
-
-### Step 4 (Optimized Model) - Expected Results
-
-```bash
-# Test Step 4 agent
-python evaluation/evaluate_agent.py \
-  --agent-id step4_agent \
-  --dataset evaluation/evaluation_dataset.json \
-  --output step4/step4_results.json
-```
-
-**Expected Metrics:**
-- Exact Match Accuracy: ~95-100%
-- Routing Accuracy: N/A (single source)
-- Measure Selection: ~95%+ (no duplicates)
-- Verified Answer Hit Rate: ~20% (6/30 queries)
-
-### Step 6 (With Routing) - Expected Results
-
-```bash
-# Test Step 6 agent
-python evaluation/evaluate_agent.py \
-  --agent-id step6_agent \
-  --dataset evaluation/evaluation_dataset.json \
-  --output step6/step6_results.json
-```
-
-**Expected Metrics:**
-- Exact Match Accuracy: ~90-95%
-- Routing Accuracy: ~90-95%
-- Measure Selection: ~95%+
-- Verified Answer Hit Rate: ~20%
+Use `--simulation` instead of `--sdk-mode` only to smoke-test the framework; simulation results are seeded and illustrative, never measured accuracy.
 
 ## Viewing Results
 
@@ -278,35 +252,34 @@ This is more time-consuming but doesn't require code.
 
 ## Evaluation Modes in This Repo
 
-### 1) Simulation mode
-- Fast dry-run for framework validation
-- Command: `python evaluation/evaluate_agent.py --simulation --step 4 --dataset evaluation/hackathon_challenge_dataset.json --output results.json`
+There are exactly two modes; `evaluate_agent.py` requires picking one.
 
-### 2) SDK mode
-- Official Microsoft workflow using Fabric Data Agent SDK
-- Persists official evaluation tables in Fabric and saves local output
-- Supports custom critic prompts and compatibility reporting
+### 1) Simulation mode (illustrative only)
+- Seeded, reproducible dry-run for framework validation. Does not call a real agent.
+- Never report these numbers as measured accuracy.
+- Command: `python evaluation/evaluate_agent.py --simulation --seed 42 --step 2 --dataset evaluation/hackathon_challenge_dataset.json --output results.json`
 
-### 3) Custom production mode (legacy placeholder)
-- Keeps backward compatibility but does not implement direct live query API calls
-- Prefer SDK mode for production evaluations
+### 2) SDK mode (real, measured accuracy)
+- Official Microsoft workflow using the Fabric Data Agent SDK against a real deployed agent.
+- Persists official evaluation tables in Fabric and saves local output.
+- Supports custom critic prompts and compatibility reporting.
 
 ## Best Practices
 
 ### 1. Test All Steps
-Create separate agents for Steps 3, 4, and 6, then evaluate each:
+Evaluate the same `LegalFirmAgent` at each step boundary, using a distinct output file per step:
 
 ```bash
-python evaluation/evaluate_agent.py --agent-id step3_agent --output step3/step3_results.json
-python evaluation/evaluate_agent.py --agent-id step4_agent --output step4/step4_results.json
-python evaluation/evaluate_agent.py --agent-id step6_agent --output step6/step6_results.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step1/step1_results.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step2/step2_results.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step5/step5_results.json
 ```
 
 ### 2. Run Multiple Times
 Run evaluation 3-5 times and average results (LLMs can be non-deterministic)
 
 ### 3. Add Custom Queries
-Extend `evaluation/evaluation_dataset.json` with your own domain-specific queries
+Extend `evaluation/hackathon_challenge_dataset.json` (core) or `evaluation/step6_routing_dataset.json` (routing) with your own domain-specific queries. Only extend `evaluation/evaluation_dataset.json` after regenerating its stale source names and ground truths.
 
 ### 4. Track Over Time
 Save results with timestamps to track improvements:
@@ -348,8 +321,8 @@ The script flags unmatched rows as explicit failures. Check:
 
 ### Recommended Approach
 
-1. **Deploy Step 3 and Step 4 agents** to Fabric workspace
-2. **Run SDK evaluation** on both
+1. **Deploy the semantic-model agent (Step 1) and tune it (Step 2)**
+2. **Run SDK evaluation** before and after Step 2's Prep for AI changes
 3. **Show before/after metrics** in your presentation
 4. **Use real numbers** instead of estimates
 
@@ -357,11 +330,11 @@ The script flags unmatched rows as explicit failures. Check:
 
 Add this to your demo:
 
-> "To validate these improvements, I ran 30 test queries against both models. 
-> Here are the actual measured results:
-> - Step 3: 64% accurate
-> - Step 4: 96% accurate
-> - That's a measured 50% improvement!"
+> "To validate these improvements, I ran the six-question challenge against the same
+> agent before and after Prep for AI. Here are the actual measured results:
+> - Before Prep for AI: 64% accurate
+> - After Prep for AI: 96% accurate
+> - That's a measured improvement from one real SDK evaluation, not an estimate."
 
 ### Presentation Tips
 

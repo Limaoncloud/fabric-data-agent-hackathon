@@ -71,10 +71,10 @@ Use one of these prompts in Copilot Chat:
 1. Import and open `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target workspace.
 2. Keep `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default scenario.
 3. Keep `ENABLE_PREP_FOR_AI=False` and `ENABLE_DATA_AGENT=False`.
-4. Run all cells to deploy the Lakehouse tables and both semantic models.
+4. Run all cells to deploy the Lakehouse tables and the Optimized semantic model.
 
 Success check:
-- Eight Lakehouse tables and both semantic models are available; Direct Lake partitions are refreshed.
+- Eight Lakehouse tables and the Optimized semantic model are available; Direct Lake partitions are refreshed.
 
 ### 5 to 10 minutes: Stand up a baseline agent
 1. Create a Data Agent over the cleaned Lakehouse tables.

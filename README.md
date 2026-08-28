@@ -34,7 +34,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 1. Import `NB_Deploy_Data_Agent_Hackathon.ipynb` into a capacity-backed Fabric workspace.
 2. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default deployment.
 3. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and preview stages disabled.
-4. Run all cells to create the Lakehouse, Delta tables, and both Direct Lake semantic models.
+4. Run all cells to create the Lakehouse, Delta tables, and the Optimized Direct Lake semantic model.
 5. Participants tune Lakehouse agents with source scope, descriptions, instructions, and SQL examples; later they add semantic-model synonyms, Prep for AI, Verified Answers, and agent instructions.
 
 The notebook generates semantic models as TMDL through Fabric APIs. It does not require PBIP or PBIX files.
@@ -88,7 +88,6 @@ Deployment details:
 - evaluation/evaluation_dataset.json
 - evaluation/TEST_QUERIES.md
 - evaluation/EVALUATION_GUIDE.md
-- EVALUATION_COMPARISON.md
 
 ## How To Run Local Scripts
 
@@ -106,12 +105,13 @@ Generate Step 6 derived data sources:
 python step6/generate_step6_data.py
 ```
 
-Run simulation evaluation for all steps:
+Run simulation evaluation for the scored challenge and the optional Step 5 routing extension (illustrative only, not measured accuracy):
 
 ```powershell
 for ($i=1; $i -le 6; $i++) {
-    python evaluation/evaluate_agent.py --dataset evaluation/evaluation_dataset.json --output step${i}/step${i}_results.json --simulation --step $i
+    python evaluation/evaluate_agent.py --dataset evaluation/hackathon_challenge_dataset.json --output step${i}/step${i}_results.json --simulation --step $i
 }
+python evaluation/evaluate_agent.py --dataset evaluation/step6_routing_dataset.json --output step5/step5_routing_results.json --simulation --step 5
 ```
 
 ## How To Use The Copilot Skills

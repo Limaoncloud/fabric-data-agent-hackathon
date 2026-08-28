@@ -32,7 +32,7 @@ Participants work through these stages:
 2. Leave `WORKSPACE_ID=""` to use the notebook's current workspace.
 3. Leave `DOMAIN_PROFILE="uk-legal"` for the default scenario.
 4. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled.
-5. Run all cells to create the participant-ready Lakehouse and both Direct Lake semantic models.
+5. Run all cells to create the participant-ready Lakehouse and the Optimized Direct Lake semantic model.
 6. Review the deployment summary, then begin the participant exercises in Fabric.
 
 See [deployment/README.md](deployment/README.md) for parameters and custom-domain packaging.

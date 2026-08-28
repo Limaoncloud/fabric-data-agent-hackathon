@@ -1,13 +1,15 @@
 """
 Fabric Data Agent Evaluation Framework
 
-This script supports two evaluation paths:
-- Custom metrics path (existing): exact/semantic/routing/measure metrics
-- Official Fabric SDK path: evaluate_data_agent + summary/details retrieval
+This script supports exactly two evaluation modes. Pick one:
+- --simulation: a seeded, illustrative dry-run of the framework. It does NOT call a real
+  agent and must never be reported as measured accuracy.
+- --sdk-mode: the real, Microsoft-recommended evaluation path using fabric-data-agent-sdk
+  against an actual deployed Data Agent.
 
 Usage examples:
-    python evaluation/evaluate_agent.py --simulation --dataset evaluation/evaluation_dataset.json --output results.json
-    python evaluation/evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --output results.json
+    python evaluation/evaluate_agent.py --simulation --dataset evaluation/hackathon_challenge_dataset.json --output results_simulation.json
+    python evaluation/evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --dataset evaluation/hackathon_challenge_dataset.json --output results.json
 
 Requirements:
     pip install pandas
@@ -120,6 +122,12 @@ class DataAgentEvaluator:
         self.last_query_results: List[QueryResult] = []
         self.sdk_details_df = None
 
+        if not self.sdk_mode and not simulation_mode:
+            raise ValueError(
+                "Choose exactly one mode: --simulation (illustrative dry-run) or "
+                "--sdk-mode (real evaluation via fabric-data-agent-sdk)."
+            )
+
         if self.sdk_mode:
             if not FABRIC_EVAL_SDK_AVAILABLE:
                 raise RuntimeError(
@@ -128,11 +136,13 @@ class DataAgentEvaluator:
                 )
             if pd is None:
                 raise RuntimeError("pandas is required for --sdk-mode. Install it with: pip install pandas")
-            print(f"Running in SDK MODE - Agent name: {agent_id}, Stage: {data_agent_stage}")
-        elif simulation_mode:
-            print(f"Running in SIMULATION MODE - Step {simulation_step}")
+            print(f"Running in SDK MODE (real evaluation) - Agent name: {agent_id}, Stage: {data_agent_stage}")
         else:
-            print("Running in CUSTOM PRODUCTION MODE (placeholder query path)")
+            print(
+                f"Running in SIMULATION MODE - Step {simulation_step} - ILLUSTRATIVE ONLY.\n"
+                "These are seeded, synthetic results for smoke-testing the framework, "
+                "NOT real Data Agent answers. Use --sdk-mode for measured results."
+            )
     
     def load_evaluation_dataset(self, dataset_path: str) -> Dict[str, Any]:
         """Load evaluation dataset from JSON file"""
@@ -141,96 +151,73 @@ class DataAgentEvaluator:
     
     def execute_query(self, question: str, ground_truth_answer=None, expected_source=None) -> QueryResult:
         """
-        Execute a single query against the data agent
-        
-        In production, this would call the actual Fabric Data Agent API.
-        In simulation mode, it returns mock results.
+        Simulate a single query response.
+
+        Simulation mode is the only path that reaches this method; --sdk-mode calls the
+        real Fabric Data Agent SDK instead (see evaluate_with_sdk).
         """
-        start_time = time.time()
-        
-        if self.simulation_mode:
-            # Simulate response
-            time.sleep(0.05)  # Simulate processing time
-            
-            # Define accuracy rates per step
-            step_configs = {
-                1: {"accuracy": 0.40, "routing": 0.50, "response_time": (2000, 5000), "error_rate": 0.30},  # Raw data
-                2: {"accuracy": 0.55, "routing": 0.60, "response_time": (1800, 4500), "error_rate": 0.20},  # Cleaned data
-                3: {"accuracy": 0.65, "routing": 0.70, "response_time": (1500, 4000), "error_rate": 0.15},  # Basic model
-                4: {"accuracy": 0.95, "routing": 0.95, "response_time": (800, 2000), "error_rate": 0.02},   # Optimized model
-                5: {"accuracy": 0.96, "routing": 0.96, "response_time": (700, 1800), "error_rate": 0.02},   # With ontology
-                6: {"accuracy": 0.97, "routing": 0.97, "response_time": (800, 1800), "error_rate": 0.01}    # Multi-source routing after routing optimization
-            }
-            
-            config = step_configs.get(self.simulation_step, step_configs[4])
-            import random
-            
-            # Simulate errors based on step
-            if random.random() < config["error_rate"]:
-                return QueryResult(
-                    query_id="",
-                    question=question,
-                    answer=None,
-                    source_used=None,
-                    response_time_ms=random.randint(*config["response_time"]),
-                    dax_query=None,
-                    sql_query=None,
-                    error="Query execution failed"
-                )
-            
-            # Routing logic with configurable accuracy
-            correct_source = expected_source if expected_source else "ClientCasePortfolio"
-            if random.random() < config["routing"]:
-                # Correct routing
-                source = correct_source
-            else:
-                # Wrong routing
-                source = "FinancialTransactions" if correct_source == "ClientCasePortfolio" else "ClientCasePortfolio"
-            
-            # Answer accuracy based on step
-            if ground_truth_answer is not None and random.random() < config["accuracy"]:
-                answer = ground_truth_answer
-            else:
-                # Simulate wrong answer
-                if isinstance(ground_truth_answer, (int, float)):
-                    answer = int(ground_truth_answer * random.uniform(0.5, 1.5))
-                elif isinstance(ground_truth_answer, list):
-                    answer = ground_truth_answer[:len(ground_truth_answer)//2] if ground_truth_answer else []
-                else:
-                    answer = ground_truth_answer  # For other types, use correct answer
-            
+        # Simulate response
+        time.sleep(0.05)  # Simulate processing time
+
+        # Illustrative accuracy rates per USER_GUIDE.md step (1=semantic-model baseline,
+        # 2=after Prep for AI, 3=Lakehouse attached baseline, 4=Lakehouse tuned,
+        # 5=derived tables + routing, 6=bonus ontology).
+        step_configs = {
+            1: {"accuracy": 0.55, "routing": 0.60, "response_time": (1500, 4000), "error_rate": 0.15},  # Semantic-model baseline
+            2: {"accuracy": 0.95, "routing": 0.95, "response_time": (800, 2000), "error_rate": 0.02},   # After Prep for AI
+            3: {"accuracy": 0.80, "routing": 0.65, "response_time": (1200, 3000), "error_rate": 0.08},  # Lakehouse attached, untuned
+            4: {"accuracy": 0.92, "routing": 0.90, "response_time": (900, 2200), "error_rate": 0.03},   # Lakehouse tuned
+            5: {"accuracy": 0.96, "routing": 0.96, "response_time": (800, 1800), "error_rate": 0.01},   # Derived tables + routing
+            6: {"accuracy": 0.97, "routing": 0.97, "response_time": (700, 1700), "error_rate": 0.01},   # Bonus ontology
+        }
+
+        config = step_configs.get(self.simulation_step, step_configs[2])
+        import random
+
+        # Simulate errors based on step
+        if random.random() < config["error_rate"]:
             return QueryResult(
                 query_id="",
                 question=question,
-                answer=answer,
-                source_used=source,
+                answer=None,
+                source_used=None,
                 response_time_ms=random.randint(*config["response_time"]),
                 dax_query=None,
-                sql_query="SELECT simulated FROM query",
-                error=None
-            )
-        else:
-            # TODO: Replace with direct query API call if you want a non-SDK live path.
-            # Recommended production path is --sdk-mode per Microsoft guidance.
-            # Example structure:
-            # response = self.client.query(
-            #     workspace_id=self.workspace_id,
-            #     agent_id=self.agent_id,
-            #     question=question
-            # )
-            
-            result = QueryResult(
-                query_id="",
-                question=question,
-                answer="Not implemented - add actual API call",
-                source_used=None,
-                response_time_ms=(time.time() - start_time) * 1000,
-                dax_query=None,
                 sql_query=None,
-                error="Actual API integration not implemented"
+                error="Query execution failed"
             )
-        
-        return result
+
+        # Routing logic with configurable accuracy
+        correct_source = expected_source if expected_source else "LegalFirmOptimized"
+        if random.random() < config["routing"]:
+            # Correct routing
+            source = correct_source
+        else:
+            # Wrong routing
+            source = "LegalFirmDemo" if correct_source == "LegalFirmOptimized" else "LegalFirmOptimized"
+
+        # Answer accuracy based on step
+        if ground_truth_answer is not None and random.random() < config["accuracy"]:
+            answer = ground_truth_answer
+        else:
+            # Simulate wrong answer
+            if isinstance(ground_truth_answer, (int, float)):
+                answer = int(ground_truth_answer * random.uniform(0.5, 1.5))
+            elif isinstance(ground_truth_answer, list):
+                answer = ground_truth_answer[:len(ground_truth_answer)//2] if ground_truth_answer else []
+            else:
+                answer = ground_truth_answer  # For other types, use correct answer
+
+        return QueryResult(
+            query_id="",
+            question=question,
+            answer=answer,
+            source_used=source,
+            response_time_ms=random.randint(*config["response_time"]),
+            dax_query=None,
+            sql_query="SELECT simulated FROM query",
+            error=None
+        )
     
     def compare_answers(
         self, 
@@ -371,7 +358,7 @@ class DataAgentEvaluator:
         print(f"\n{'='*80}")
         print(f"Starting evaluation of {len(queries)} queries")
         print(f"Agent: {self.agent_id}")
-        print(f"Mode: {'SIMULATION' if self.simulation_mode else 'CUSTOM PRODUCTION'}")
+        print(f"Mode: {'SIMULATION (illustrative only)' if self.simulation_mode else 'SDK (real evaluation)'}")
         print(f"{'='*80}\n")
         
         results = []
@@ -631,9 +618,9 @@ class DataAgentEvaluator:
         
         # By category
         by_category = {}
-        categories = set(q["category"] for q in queries)
+        categories = set(q.get("category", "uncategorized") for q in queries)
         for category in categories:
-            cat_metrics = [m for m, q in zip(metrics_list, queries) if q["category"] == category]
+            cat_metrics = [m for m, q in zip(metrics_list, queries) if q.get("category", "uncategorized") == category]
             by_category[category] = {
                 "count": len(cat_metrics),
                 "exact_match": sum(m.exact_match for m in cat_metrics) / len(cat_metrics),
@@ -641,11 +628,11 @@ class DataAgentEvaluator:
                 "routing_correct": sum(m.routing_correct for m in cat_metrics) / len(cat_metrics)
             }
         
-        # By difficulty
+        # By difficulty (queries missing a "difficulty" field are grouped as "unlabeled")
         by_difficulty = {}
-        difficulties = set(q["difficulty"] for q in queries)
+        difficulties = set(q.get("difficulty", "unlabeled") for q in queries)
         for difficulty in difficulties:
-            diff_metrics = [m for m, q in zip(metrics_list, queries) if q["difficulty"] == difficulty]
+            diff_metrics = [m for m, q in zip(metrics_list, queries) if q.get("difficulty", "unlabeled") == difficulty]
             by_difficulty[difficulty] = {
                 "count": len(diff_metrics),
                 "exact_match": sum(m.exact_match for m in diff_metrics) / len(diff_metrics),
@@ -742,7 +729,8 @@ class DataAgentEvaluator:
             "evaluation_date": datetime.now().isoformat(),
             "agent_id": self.agent_id,
             "workspace_id": self.workspace_id,
-            "mode": "sdk" if self.sdk_mode else ("simulation" if self.simulation_mode else "custom_production"),
+            "mode": "sdk" if self.sdk_mode else "simulation",
+            "illustrative_only": bool(self.simulation_mode),
             "aggregate_metrics": asdict(aggregate),
             "detailed_metrics": [asdict(m) for m in metrics_list],
         }
@@ -777,16 +765,19 @@ def main():
                        help="Fabric workspace ID")
     parser.add_argument("--agent-id", default="<agent_id>",
                        help="Data agent ID")
-    parser.add_argument("--dataset", default="evaluation/evaluation_dataset.json",
+    parser.add_argument("--dataset", default="evaluation/hackathon_challenge_dataset.json",
                        help="Path to evaluation dataset")
     parser.add_argument("--output", default="evaluation_results.json",
                        help="Path to output results")
     parser.add_argument("--simulation", action="store_true",
-                       help="Run in simulation mode (no actual API calls)")
+                       help="Run a seeded, illustrative dry-run (no real agent calls). Not measured accuracy.")
     parser.add_argument("--sdk-mode", action="store_true",
-                       help="Use official Fabric SDK evaluation mode")
-    parser.add_argument("--step", type=int, choices=[1,2,3,4,5,6], default=4,
-                       help="Demo step to simulate (1=raw, 2=cleaned, 3=basic, 4=optimized, 5=ontology, 6=routing)")
+                       help="Use official Fabric SDK evaluation mode (real, measured accuracy)")
+    parser.add_argument("--seed", type=int, default=42,
+                       help="Random seed for --simulation, so illustrative runs are reproducible")
+    parser.add_argument("--step", type=int, choices=[1,2,3,4,5,6], default=2,
+                       help="USER_GUIDE.md step to simulate (1=semantic-model baseline, 2=after Prep for AI, "
+                            "3=Lakehouse attached, 4=Lakehouse tuned, 5=derived tables+routing, 6=bonus ontology)")
     parser.add_argument("--workspace-name", default=None,
                        help="Fabric workspace name for SDK mode (optional)")
     parser.add_argument("--table-name", default="evaluation_output",
@@ -806,6 +797,8 @@ def main():
 
     if args.simulation and args.sdk_mode:
         parser.error("--simulation and --sdk-mode are mutually exclusive")
+    if not args.simulation and not args.sdk_mode:
+        parser.error("Choose one mode: --simulation (illustrative) or --sdk-mode (real evaluation)")
 
     if args.critic_prompt and args.critic_prompt_file:
         parser.error("Use either --critic-prompt or --critic-prompt-file, not both")
@@ -813,13 +806,17 @@ def main():
     critic_prompt = args.critic_prompt
     if args.critic_prompt_file:
         critic_prompt = Path(args.critic_prompt_file).read_text(encoding="utf-8")
+
+    if args.simulation:
+        import random
+        random.seed(args.seed)
     
     # Initialize evaluator
     evaluator = DataAgentEvaluator(
         workspace_id=args.workspace_id,
         agent_id=args.agent_id,
         simulation_mode=args.simulation,
-        simulation_step=args.step if args.simulation else 4,
+        simulation_step=args.step if args.simulation else 2,
         sdk_mode=args.sdk_mode,
         workspace_name=args.workspace_name,
         table_name=args.table_name,
