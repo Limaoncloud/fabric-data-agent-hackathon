@@ -56,7 +56,7 @@ Current table and two-source routing architecture:
 - README_MULTITABLE.md
 
 Deployment details:
-- DEPLOYMENT_GUIDE.md
+- deployment/README.md
 
 ## Step Assets
 
@@ -88,8 +88,6 @@ Deployment details:
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
 - evaluation/FACILITATOR_GUIDE.md
-- evaluation/legacy/uk-legal.json
-- evaluation/legacy/TEST_QUERIES.md
 - evaluation/EVALUATION_GUIDE.md
 
 ## How To Run Local Scripts

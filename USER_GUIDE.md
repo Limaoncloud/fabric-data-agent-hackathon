@@ -75,7 +75,9 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 - `sample-data/uk-legal/derived-routing/generate_derived_routing_data.py`
 
 ### Test prompts
-- `evaluation/legacy/TEST_QUERIES.md`
+- `evaluation/FACILITATOR_GUIDE.md`
+- `evaluation/challenge/uk-legal.json`
+- `evaluation/routing/uk-legal.json`
 
 ### Verification reference
 - `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)

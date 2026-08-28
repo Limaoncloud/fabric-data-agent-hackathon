@@ -1,6 +1,6 @@
 # Multi-Table Architecture Reference
 
-This file is a concise architecture reference for the UK Legal Data Agent hackathon. Participant instructions are in [USER_GUIDE.md](USER_GUIDE.md); deployment instructions are in [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
+This file is a concise architecture reference for the UK Legal Data Agent hackathon. Participant instructions are in [USER_GUIDE.md](USER_GUIDE.md); deployment instructions are in [deployment/README.md](deployment/README.md).
 
 ## Deployed Assets
 

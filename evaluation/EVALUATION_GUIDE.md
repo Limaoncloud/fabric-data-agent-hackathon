@@ -8,9 +8,7 @@ This guide explains how to use the evaluation framework to measure actual data a
 2. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
 3. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
 4. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-5. **evaluation/legacy/uk-legal.json** - Extended legacy question bank; source names (`ClientCasePortfolio`, `FinancialTransactions`) predate the current `LegalFirmOptimized`/`LegalFirmDemo` architecture. Regenerate all ground truths and source names before formal use.
-6. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
-7. **evaluation/legacy/TEST_QUERIES.md** - Extended manual testing reference; also predates the current architecture and step numbering
+5. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
 
 For the three-hour hackathon, use `evaluation/challenge/uk-legal.json`. Its expected answers are tested directly against the checked-in CSV files. Add `evaluation/routing/uk-legal.json` once you reach Step 5.
 
@@ -119,19 +117,21 @@ You can also pass inline text with `--critic-prompt`.
 }
 ```
 
-### Query Categories
+### Query Categories (evaluation/challenge/uk-legal.json)
 
-1. **customer_count** (5 queries) - Customer counting and filtering
-2. **case_summary** (11 queries) - Case-level analysis
-3. **financial_transactions** (8 queries) - Billing, hours, expenses
-4. **solicitor_performance** (4 queries) - Solicitor metrics
-5. **routing_test** (2 queries) - Multi-source queries
+1. **terminology** (3 queries) - Legal vocabulary (matters vs cases, clients vs customers)
+2. **business_rule** (1 query) - Business definition of revenue
+3. **measure_discovery** (1 query) - Whether an existing measure is used
+4. **grounding** (1 query) - Basic schema and source grounding
 
-### Query Difficulty Levels
+### Query Categories (evaluation/routing/uk-legal.json)
 
-- **Easy** (13 queries) - Simple filtering and counting
-- **Medium** (14 queries) - Aggregation, grouping, date ranges
-- **Hard** (3 queries) - Complex joins, subqueries
+1. **routing_test** (3 queries) - Engagement, case-finance, and solicitor-performance questions that only the derived Lakehouse tables can answer
+
+### Query Difficulty Levels (evaluation/challenge/uk-legal.json)
+
+- **Easy** (4 queries) - Simple filtering and counting
+- **Medium** (2 queries) - Business-rule interpretation and terminology mapping
 
 ## Metrics Measured
 
@@ -192,24 +192,24 @@ The script prints a detailed report:
 EVALUATION REPORT
 ================================================================================
 
-Total Queries: 30
+Total Queries: 6
 
 Overall Accuracy:
-  Exact Match:       93.33%
-  Semantic Match:    96.67%
-  Routing:           94.44%
-  Measure Selection: 95.00%
+  Exact Match:       100.00%
+  Semantic Match:    100.00%
+  Routing:            83.33%
+  Measure Selection: 100.00%
 
 Performance:
-  Avg Response Time:  2,450 ms
-  Verified Answer Hit Rate: 20.00%
-  Error Rate:          3.33%
+  Avg Response Time:  1,300 ms
+  Verified Answer Hit Rate:  0.00%
+  Error Rate:          0.00%
 
 By Category:
-  customer_count            (n= 5): Exact=100.0%, Semantic=100.0%, Routing=100.0%
-  case_summary              (n=11): Exact= 90.9%, Semantic= 95.5%, Routing= 90.9%
-  financial_transactions    (n= 8): Exact= 87.5%, Semantic= 93.8%, Routing= 93.8%
-  ...
+  terminology               (n= 3): Exact=100.0%, Semantic=100.0%, Routing=100.0%
+  business_rule             (n= 1): Exact=100.0%, Semantic=100.0%, Routing=100.0%
+  measure_discovery         (n= 1): Exact=100.0%, Semantic=100.0%, Routing=100.0%
+  grounding                 (n= 1): Exact=100.0%, Semantic=100.0%, Routing=100.0%
 ```
 
 ### JSON Output
@@ -241,7 +241,7 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md). Use [TEST_QUERIES.md](legacy/TEST_QUERIES.md) only for an extended follow-up:
+If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md):
 
 1. Open your Data Agent in Fabric
 2. Run each question and paraphrase from the six-question challenge
@@ -279,7 +279,7 @@ python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --outpu
 Run evaluation 3-5 times and average results (LLMs can be non-deterministic)
 
 ### 3. Add Custom Queries
-Extend `evaluation/challenge/uk-legal.json` (core) or `evaluation/routing/uk-legal.json` (routing) with your own domain-specific queries. Only extend `evaluation/legacy/uk-legal.json` after regenerating its stale source names and ground truths.
+Extend `evaluation/challenge/uk-legal.json` (core) or `evaluation/routing/uk-legal.json` (routing) with your own domain-specific queries.
 
 ### 4. Track Over Time
 Save results with timestamps to track improvements:
@@ -348,7 +348,6 @@ Add this to your demo:
 ✅ **evaluation/challenge/uk-legal.json** - 6 ground truth queries  
 ✅ **evaluation/routing/uk-legal.json** - 3 optional routing queries  
 ✅ **evaluation/evaluate_agent.py** - Automated testing framework  
-✅ **evaluation/legacy/TEST_QUERIES.md** - Manual testing guide (legacy reference)  
 ✅ **Measured metrics** replace estimated percentages  
 ✅ **Before/after comparison** proves improvements  
 
@@ -356,6 +355,6 @@ This transforms your demo from "best practices say this works" to "here's proof 
 
 ---
 
-**Need help?** Check the example queries in evaluation/legacy/TEST_QUERIES.md or review the simulation mode output.
+**Need help?** Check [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) or review the simulation mode output.
 
 

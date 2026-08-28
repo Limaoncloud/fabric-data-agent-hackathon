@@ -129,7 +129,6 @@ ontology/uk-legal/
 agent-configuration/routing/uk-legal/
 evaluation/challenge/
 evaluation/routing/
-evaluation/legacy/
 ```
 
 Key files used in this demo:
@@ -153,8 +152,6 @@ Key files used in this demo:
 - evaluation/evaluate_agent.py
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
-- evaluation/legacy/uk-legal.json
-- evaluation/legacy/TEST_QUERIES.md
 - USER_GUIDE.md
 
 ## Authoring Workflow
