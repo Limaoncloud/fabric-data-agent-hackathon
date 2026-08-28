@@ -15,7 +15,7 @@ Before you begin, ensure you have:
 
 - ✅ **Fabric Workspace** with adequate capacity (F2 or higher recommended)
 - ✅ **Contributor or Admin access** to create Fabric items
-- ✅ **Data files generated** (run `python step1/generate_step1_data.py`)
+- ✅ **Data files generated** (run `python sample-data/uk-legal/base/generate_base_data.py`)
 
 ## Recommended: Deploy from the Fabric Notebook
 
@@ -117,11 +117,11 @@ Write-Host "Workspace ID: $WORKSPACE_ID"
 1. In the Lakehouse, go to **Tables**
 2. Click **Get data** → **Upload files**
 3. Upload all 5 Step 1 CSV files:
-   - `step1/step1_cleaned_customers.csv`
-   - `step1/step1_cleaned_cases.csv`
-   - `step1/step1_cleaned_solicitors.csv`
-   - `step1/step1_cleaned_transactions.csv`
-   - `step1/step1_cleaned_interactions.csv`
+   - `sample-data/uk-legal/base/customers.csv`
+   - `sample-data/uk-legal/base/cases.csv`
+   - `sample-data/uk-legal/base/solicitors.csv`
+   - `sample-data/uk-legal/base/transactions.csv`
+   - `sample-data/uk-legal/base/interactions.csv`
 4. For each file:
    - Click **Load to new table**
    - Keep suggested table name (e.g., `step1_cleaned_customers`)
@@ -180,7 +180,7 @@ The deployment notebook only deploys the Optimized model by default. `LegalFirmB
 
 #### **Optional: Create Manually in Fabric**
 
-To demonstrate the build manually, create a new Direct Lake semantic model from the `LegalFirmDemo` Lakehouse in the Fabric web UI, select the five Step 1 cleaned tables, and follow [step3/README.md](step3/README.md) for the anti-pattern measures and configuration.
+To demonstrate the build manually, create a new Direct Lake semantic model from the `LegalFirmDemo` Lakehouse in the Fabric web UI, select the five Step 1 cleaned tables, and follow [semantic-model/basic-reference/uk-legal/README.md](semantic-model/basic-reference/uk-legal/README.md) for the anti-pattern measures and configuration.
 
 **Result:** A deliberately low-quality semantic model for the Step 3 comparison.
 
@@ -237,7 +237,7 @@ The current domain profile creates these entities:
 
 It creates two relationships: `CustomerHasCase` and `SolicitorHandlesCase`.
 
-`config/domains/uk-legal.json` is the deployment source of truth. `step5/step5_ontology_definition.json` is a legacy design reference and does not match the current profile schema closely enough to deploy unchanged.
+`config/domains/uk-legal.json` is the deployment source of truth. `ontology/uk-legal/ontology-definition.json` is a legacy design reference and does not match the current profile schema closely enough to deploy unchanged.
 
 ---
 
@@ -252,7 +252,7 @@ The notebook creates or updates `LegalFirmCustomer360Agent` with two Fabric item
 | `LegalFirmOptimized` semantic model | Customers, Cases, Solicitors, Transactions, Interactions | Model measures and general customer, case, solicitor, transaction, and interaction questions |
 | `LegalFirmDemo` Lakehouse | `step6_client_engagement_summary`, `step6_case_finance_insights`, `step6_solicitor_performance_mart` | Engagement segments, combined case-finance outcomes, and solicitor performance |
 
-The notebook consumes `config/domains/uk-legal.json` as its source of truth. `step6/step6_data_agent_configuration.json` is the matching human-readable two-source routing reference for participants and facilitators.
+The notebook consumes `config/domains/uk-legal.json` as its source of truth. `agent-configuration/routing/uk-legal/data-agent-configuration.json` is the matching human-readable two-source routing reference for participants and facilitators.
 
 ### **Test the Agent**
 

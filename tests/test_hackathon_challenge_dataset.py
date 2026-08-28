@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATASET_PATH = ROOT / "evaluation" / "hackathon_challenge_dataset.json"
+DATASET_PATH = ROOT / "evaluation" / "challenge" / "uk-legal.json"
 
 
 def read_rows(relative_path):
@@ -19,9 +19,9 @@ class HackathonChallengeDatasetTests(unittest.TestCase):
         cls.queries = {
             query["id"]: query for query in cls.dataset["evaluation_queries"]
         }
-        cls.customers = read_rows("step1/step1_cleaned_customers.csv")
-        cls.cases = read_rows("step1/step1_cleaned_cases.csv")
-        cls.transactions = read_rows("step1/step1_cleaned_transactions.csv")
+        cls.customers = read_rows("sample-data/uk-legal/base/customers.csv")
+        cls.cases = read_rows("sample-data/uk-legal/base/cases.csv")
+        cls.transactions = read_rows("sample-data/uk-legal/base/transactions.csv")
 
     def test_dataset_shape(self):
         self.assertEqual(6, self.dataset["metadata"]["total_queries"])

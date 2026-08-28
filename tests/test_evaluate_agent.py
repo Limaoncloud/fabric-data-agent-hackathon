@@ -5,8 +5,8 @@ from pathlib import Path
 from evaluation.evaluate_agent import DataAgentEvaluator
 
 ROOT = Path(__file__).resolve().parents[1]
-CHALLENGE_DATASET = ROOT / "evaluation" / "hackathon_challenge_dataset.json"
-ROUTING_DATASET = ROOT / "evaluation" / "step6_routing_dataset.json"
+CHALLENGE_DATASET = ROOT / "evaluation" / "challenge" / "uk-legal.json"
+ROUTING_DATASET = ROOT / "evaluation" / "routing" / "uk-legal.json"
 
 
 class EvaluatorModeTests(unittest.TestCase):

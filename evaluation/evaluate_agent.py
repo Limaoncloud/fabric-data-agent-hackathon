@@ -8,8 +8,8 @@ This script supports exactly two evaluation modes. Pick one:
   against an actual deployed Data Agent.
 
 Usage examples:
-    python evaluation/evaluate_agent.py --simulation --dataset evaluation/hackathon_challenge_dataset.json --output results_simulation.json
-    python evaluation/evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --dataset evaluation/hackathon_challenge_dataset.json --output results.json
+    python evaluation/evaluate_agent.py --simulation --dataset evaluation/challenge/uk-legal.json --output results_simulation.json
+    python evaluation/evaluate_agent.py --sdk-mode --agent-id <agent_name> --table-name demo_eval --dataset evaluation/challenge/uk-legal.json --output results.json
 
 Requirements:
     pip install pandas
@@ -745,6 +745,7 @@ class DataAgentEvaluator:
                 "details_row_count": sdk_context.get("details_row_count"),
             }
         
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w') as f:
             json.dump(results, f, indent=2)
         
@@ -765,7 +766,7 @@ def main():
                        help="Fabric workspace ID")
     parser.add_argument("--agent-id", default="<agent_id>",
                        help="Data agent ID")
-    parser.add_argument("--dataset", default="evaluation/hackathon_challenge_dataset.json",
+    parser.add_argument("--dataset", default="evaluation/challenge/uk-legal.json",
                        help="Path to evaluation dataset")
     parser.add_argument("--output", default="evaluation_results.json",
                        help="Path to output results")

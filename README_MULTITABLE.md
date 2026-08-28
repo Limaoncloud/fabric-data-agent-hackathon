@@ -58,4 +58,4 @@ Do not select the five `step1_cleaned_*` Lakehouse tables in Step 6. Their stand
 
 SQL example question/query pairs can be configured for the Lakehouse source. They are not supported for the Power BI semantic-model source. Semantic-model synonyms are configured through Prep for AI, not on Lakehouse tables.
 
-The deployable source-of-truth configuration is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing reference is [step6/step6_data_agent_configuration.json](step6/step6_data_agent_configuration.json).
+The deployable source-of-truth configuration is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing reference is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).

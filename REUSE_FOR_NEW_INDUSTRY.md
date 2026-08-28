@@ -45,12 +45,13 @@ Paste that output into Copilot Chat, or invoke `/Generate Hackathon Domain water
 ## What Copilot Generates
 
 - validated domain profile under `config/domains/`
-- deterministic Step 1 synthetic data generator and CSVs
-- basic and optimized semantic-model definitions in the profile
-- ontology definition
-- Step 6 derived marts and Data Agent routing configuration
-- evaluation questions with expected answers calculated from the data
-- domain README and focused tests
+- deterministic base-data generator and CSVs under `sample-data/<domain>/base/`
+- derived-routing marts and generator under `sample-data/<domain>/derived-routing/`
+- basic and optimized semantic-model references under `semantic-model/basic-reference/<domain>/` and `semantic-model/optimized/<domain>/`
+- ontology definition under `ontology/<domain>/`
+- Data Agent routing configuration under `agent-configuration/routing/<domain>/`
+- evaluation questions with expected answers under `evaluation/challenge/<domain>.json` and `evaluation/routing/<domain>.json`
+- focused tests
 
 The deployment notebook and `deployment/hackathon_deployer.py` remain shared. A new domain should not require notebook code changes.
 

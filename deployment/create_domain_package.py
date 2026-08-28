@@ -93,23 +93,25 @@ Use the workspace skill at `skills/fabric-data-agent-hackathon/SKILL.md` and ada
 Create and validate all of the following:
 
 1. `config/domains/{domain_id}.json`, conforming to `config/domain-profile.schema.json`.
-2. `domains/{domain_id}/step1/generate_step1_data.py` and deterministic synthetic CSVs for all core entities.
-3. `domains/{domain_id}/step5/ontology_definition.json` with domain entities and relationships.
-4. `domains/{domain_id}/step6/generate_step6_data.py`, derived CSV marts, and `data_agent_configuration.json`.
-5. `domains/{domain_id}/evaluation/evaluation_dataset.json` with expected answers calculated from the generated data.
-6. `domains/{domain_id}/evaluation/TEST_QUERIES.md` with lookup, aggregation, ranking, relationship, routing, ambiguity, and out-of-scope questions.
-7. `domains/{domain_id}/README.md` containing generation, validation, notebook deployment, and review instructions.
-8. Focused tests that validate the profile, exact CSV headers, foreign keys, deterministic generation, and evaluation expected values.
+2. `sample-data/{domain_id}/base/generate_base_data.py` and deterministic synthetic CSVs for all core entities.
+3. `sample-data/{domain_id}/derived-routing/generate_derived_routing_data.py` and derived CSV marts for routing.
+4. `semantic-model/basic-reference/{domain_id}/README.md` (anti-pattern reference) and `semantic-model/optimized/{domain_id}/README.md` (optimized model reference).
+5. `ontology/{domain_id}/ontology-definition.json` with domain entities and relationships.
+6. `agent-configuration/routing/{domain_id}/data-agent-configuration.json` describing the multi-source routing configuration.
+7. `evaluation/challenge/{domain_id}.json` with the core scored challenge questions and expected answers calculated from the generated data.
+8. `evaluation/routing/{domain_id}.json` with 2-3 routing questions targeting the derived-routing marts.
+9. Focused tests that validate the profile, exact CSV headers, foreign keys, deterministic generation, and evaluation expected values.
 
 ## Implementation rules
 
-- Preserve the repository's six-step learning journey and notebook-first deployment.
+- Preserve the repository's learning journey (semantic-model agent, then Lakehouse attached as a continuation) and notebook-first deployment.
+- Use artifact-typed folders (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), each keyed by `{domain_id}`. Do not create numbered step folders; numbering belongs only in USER_GUIDE.md-style prose, not folder names.
 - Model the actual entity grains, keys, relationships, terminology, and KPI definitions in the brief.
 - Use synthetic data only. Do not imply that generated records represent live operational data.
 - Keep safety-critical, security-sensitive, personal, and infrastructure-vulnerability details out of generated data.
 - Treat operational and safety conclusions as demonstration-only; include the brief's safety rules in agent instructions.
 - Make basic-model ambiguity intentional and teaching-focused; make optimized measures explicit and governed.
-- Keep all domain-owned files under `domains/{domain_id}/`, except the profile under `config/domains/`.
+- Keep all domain-owned files under the `{domain_id}` subfolder of each artifact-typed folder, except the profile under `config/domains/`.
 - Do not edit or overwrite the UK legal package.
 - Do not deploy to Fabric. Generate locally, run focused tests, then run `python -m unittest discover -s tests -v`.
 - Stop and list assumptions requiring a domain expert if a grain, key, KPI, relationship, or safety rule is underspecified.

@@ -5,14 +5,14 @@ This guide explains how to use the evaluation framework to measure actual data a
 ## What's Included
 
 1. **NB_Evaluate_Data_Agent_Hackathon.ipynb** - Participant notebook for entering observed results and generating a scored report
-2. **evaluation/hackathon_challenge_dataset.json** - Current six-question participant challenge with checked ground truths and paraphrases
-3. **evaluation/step6_routing_dataset.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
+2. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
+3. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
 4. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-5. **evaluation/evaluation_dataset.json** - Extended legacy question bank; source names (`ClientCasePortfolio`, `FinancialTransactions`) predate the current `LegalFirmOptimized`/`LegalFirmDemo` architecture. Regenerate all ground truths and source names before formal use.
+5. **evaluation/legacy/uk-legal.json** - Extended legacy question bank; source names (`ClientCasePortfolio`, `FinancialTransactions`) predate the current `LegalFirmOptimized`/`LegalFirmDemo` architecture. Regenerate all ground truths and source names before formal use.
 6. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
-7. **evaluation/TEST_QUERIES.md** - Extended manual testing reference; also predates the current architecture and step numbering
+7. **evaluation/legacy/TEST_QUERIES.md** - Extended manual testing reference; also predates the current architecture and step numbering
 
-For the three-hour hackathon, use `hackathon_challenge_dataset.json`. Its expected answers are tested directly against the checked-in CSV files. Add `step6_routing_dataset.json` once you reach Step 5.
+For the three-hour hackathon, use `evaluation/challenge/uk-legal.json`. Its expected answers are tested directly against the checked-in CSV files. Add `evaluation/routing/uk-legal.json` once you reach Step 5.
 
 ## Why Evaluate?
 
@@ -40,7 +40,7 @@ This path does not call the Data Agent API and requires no SDK setup.
 Test the evaluation framework without connecting to Fabric:
 
 ```bash
-python evaluation/evaluate_agent.py --simulation --dataset evaluation/hackathon_challenge_dataset.json --output results_simulation.json
+python evaluation/evaluate_agent.py --simulation --dataset evaluation/challenge/uk-legal.json --output results_simulation.json
 ```
 
 This will:
@@ -64,7 +64,7 @@ python evaluation/evaluate_agent.py \
   --workspace-name <optional_workspace_name> \
   --table-name demo_evaluation_output \
   --stage production \
-  --dataset evaluation/hackathon_challenge_dataset.json \
+  --dataset evaluation/challenge/uk-legal.json \
   --output results.json \
   --save-official-details-csv
 ```
@@ -85,7 +85,7 @@ python evaluation/evaluate_agent.py \
   --sdk-mode \
   --agent-id <your_data_agent_name> \
   --table-name demo_evaluation_output \
-  --dataset evaluation/hackathon_challenge_dataset.json \
+  --dataset evaluation/challenge/uk-legal.json \
   --output results.json \
   --critic-prompt-file critic_prompt.txt
 ```
@@ -94,7 +94,7 @@ You can also pass inline text with `--critic-prompt`.
 
 ## Understanding the Dataset
 
-### evaluation/hackathon_challenge_dataset.json Structure
+### evaluation/challenge/uk-legal.json Structure
 
 ```json
 {
@@ -166,17 +166,17 @@ USER_GUIDE.md builds one continuously-extended Data Agent (`LegalFirmAgent`), no
 ```bash
 # Step 1: semantic-model baseline
 python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
-  --dataset evaluation/hackathon_challenge_dataset.json --output step1/step1_results.json
+  --dataset evaluation/challenge/uk-legal.json --output evaluation/results/step1-semantic-baseline.json
 
 # Step 2: after Prep for AI
 python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
-  --dataset evaluation/hackathon_challenge_dataset.json --output step2/step2_results.json
+  --dataset evaluation/challenge/uk-legal.json --output evaluation/results/step2-after-prep-for-ai.json
 
 # Step 5: after attaching the Lakehouse, tuning it, and adding derived tables/routing
 python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
-  --dataset evaluation/hackathon_challenge_dataset.json --output step5/step5_results.json
+  --dataset evaluation/challenge/uk-legal.json --output evaluation/results/step5-challenge.json
 python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent \
-  --dataset evaluation/step6_routing_dataset.json --output step5/step5_routing_results.json
+  --dataset evaluation/routing/uk-legal.json --output evaluation/results/step5-routing.json
 ```
 
 Use `--simulation` instead of `--sdk-mode` only to smoke-test the framework; simulation results are seeded and illustrative, never measured accuracy.
@@ -241,7 +241,7 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md). Use [TEST_QUERIES.md](TEST_QUERIES.md) only for an extended follow-up:
+If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md). Use [TEST_QUERIES.md](legacy/TEST_QUERIES.md) only for an extended follow-up:
 
 1. Open your Data Agent in Fabric
 2. Run each question and paraphrase from the six-question challenge
@@ -257,7 +257,7 @@ There are exactly two modes; `evaluate_agent.py` requires picking one.
 ### 1) Simulation mode (illustrative only)
 - Seeded, reproducible dry-run for framework validation. Does not call a real agent.
 - Never report these numbers as measured accuracy.
-- Command: `python evaluation/evaluate_agent.py --simulation --seed 42 --step 2 --dataset evaluation/hackathon_challenge_dataset.json --output results.json`
+- Command: `python evaluation/evaluate_agent.py --simulation --seed 42 --step 2 --dataset evaluation/challenge/uk-legal.json --output results.json`
 
 ### 2) SDK mode (real, measured accuracy)
 - Official Microsoft workflow using the Fabric Data Agent SDK against a real deployed agent.
@@ -270,16 +270,16 @@ There are exactly two modes; `evaluate_agent.py` requires picking one.
 Evaluate the same `LegalFirmAgent` at each step boundary, using a distinct output file per step:
 
 ```bash
-python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step1/step1_results.json
-python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step2/step2_results.json
-python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output step5/step5_results.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output evaluation/results/step1-semantic-baseline.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output evaluation/results/step2-after-prep-for-ai.json
+python evaluation/evaluate_agent.py --sdk-mode --agent-id LegalFirmAgent --output evaluation/results/step5-challenge.json
 ```
 
 ### 2. Run Multiple Times
 Run evaluation 3-5 times and average results (LLMs can be non-deterministic)
 
 ### 3. Add Custom Queries
-Extend `evaluation/hackathon_challenge_dataset.json` (core) or `evaluation/step6_routing_dataset.json` (routing) with your own domain-specific queries. Only extend `evaluation/evaluation_dataset.json` after regenerating its stale source names and ground truths.
+Extend `evaluation/challenge/uk-legal.json` (core) or `evaluation/routing/uk-legal.json` (routing) with your own domain-specific queries. Only extend `evaluation/legacy/uk-legal.json` after regenerating its stale source names and ground truths.
 
 ### 4. Track Over Time
 Save results with timestamps to track improvements:

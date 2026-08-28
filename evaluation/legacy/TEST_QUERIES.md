@@ -3,8 +3,8 @@
 > **Legacy reference.** This file predates the current architecture: it uses old step
 > numbering (a separate Step 3 basic-model agent) and old source names
 > (`ClientCasePortfolio`, `FinancialTransactions`) that no longer exist. For the current
-> six-question scored challenge, use [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) and
-> `hackathon_challenge_dataset.json`. For Step 5 routing, use `step6_routing_dataset.json`.
+> six-question scored challenge, use [FACILITATOR_GUIDE.md](../FACILITATOR_GUIDE.md) and
+> `evaluation/challenge/uk-legal.json`. For Step 5 routing, use `evaluation/routing/uk-legal.json`.
 
 This file contains test queries to validate each step of the demo and demonstrate improvements.
 

@@ -2,7 +2,7 @@
   "metadata": {
     "name": "UK Legal Firm Data Agent Evaluation Dataset",
     "version": "1.1",
-    "description": "Extended evaluation bank across steps 1-6. Use hackathon_challenge_dataset.json for the current six-question participant exercise.",
+    "description": "Extended evaluation bank across steps 1-6. Use evaluation/challenge/uk-legal.json for the current six-question participant exercise.",
     "legacy_note": "expected_source values (ClientCasePortfolio, FinancialTransactions) predate the current LegalFirmOptimized/LegalFirmDemo architecture. Regenerate ground truths and source names before using this file for scoring.",
     "total_queries": 31,
     "categories": [

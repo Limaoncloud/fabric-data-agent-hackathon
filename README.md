@@ -59,59 +59,60 @@ Deployment details:
 ## Step Assets
 
 ### Data generation and data files
-- step1/generate_step1_data.py
-- step1/step1_cleaned_customers.csv
-- step1/step1_cleaned_cases.csv
-- step1/step1_cleaned_solicitors.csv
-- step1/step1_cleaned_transactions.csv
-- step1/step1_cleaned_interactions.csv
-- step6/generate_step6_data.py
-- step6/step6_client_engagement_summary.csv
-- step6/step6_case_finance_insights.csv
-- step6/step6_solicitor_performance_mart.csv
+- sample-data/uk-legal/base/generate_base_data.py
+- sample-data/uk-legal/base/customers.csv
+- sample-data/uk-legal/base/cases.csv
+- sample-data/uk-legal/base/solicitors.csv
+- sample-data/uk-legal/base/transactions.csv
+- sample-data/uk-legal/base/interactions.csv
+- sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
+- sample-data/uk-legal/derived-routing/client_engagement_summary.csv
+- sample-data/uk-legal/derived-routing/case_finance_insights.csv
+- sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv
 
 ### Model and agent configuration
 - NB_Deploy_Data_Agent_Hackathon.ipynb
 - config/domain-profile.schema.json
 - config/domains/uk-legal.json
 - deployment/hackathon_deployer.py
-- step3/README.md
-- step4/README.md
-- step5/step5_ontology_definition.json
-- step6/step6_data_agent_configuration.json
+- semantic-model/basic-reference/uk-legal/README.md
+- semantic-model/optimized/uk-legal/README.md
+- ontology/uk-legal/ontology-definition.json
+- agent-configuration/routing/uk-legal/data-agent-configuration.json
 
 ### Evaluation and testing
 - NB_Evaluate_Data_Agent_Hackathon.ipynb
 - evaluation/evaluate_agent.py
-- evaluation/hackathon_challenge_dataset.json
+- evaluation/challenge/uk-legal.json
+- evaluation/routing/uk-legal.json
 - evaluation/FACILITATOR_GUIDE.md
-- evaluation/evaluation_dataset.json
-- evaluation/TEST_QUERIES.md
+- evaluation/legacy/uk-legal.json
+- evaluation/legacy/TEST_QUERIES.md
 - evaluation/EVALUATION_GUIDE.md
 
 ## How To Run Local Scripts
 
 Prerequisite: Python 3.10+
 
-Generate or validate Step 1 cleaned baseline data:
+Generate or validate the UK legal base dataset:
 
 ```powershell
-python step1/generate_step1_data.py
+python sample-data/uk-legal/base/generate_base_data.py
 ```
 
-Generate Step 6 derived data sources:
+Generate the derived routing data sources:
 
 ```powershell
-python step6/generate_step6_data.py
+python sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
 ```
 
 Run simulation evaluation for the scored challenge and the optional Step 5 routing extension (illustrative only, not measured accuracy):
 
 ```powershell
 for ($i=1; $i -le 6; $i++) {
-    python evaluation/evaluate_agent.py --dataset evaluation/hackathon_challenge_dataset.json --output step${i}/step${i}_results.json --simulation --step $i
+    python evaluation/evaluate_agent.py --dataset evaluation/challenge/uk-legal.json --output evaluation/results/step${i}-challenge.json --simulation --step $i
 }
-python evaluation/evaluate_agent.py --dataset evaluation/step6_routing_dataset.json --output step5/step5_routing_results.json --simulation --step 5
+python evaluation/evaluate_agent.py --dataset evaluation/routing/uk-legal.json --output evaluation/results/step5-routing.json --simulation --step 5
 ```
 
 ## How To Use The Copilot Skills

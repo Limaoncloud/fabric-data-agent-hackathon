@@ -20,10 +20,12 @@ class DomainPackageTests(unittest.TestCase):
         prompt = render_prompt(NETWORK_RAIL_BRIEF)
         for expected in (
             "config/domains/network-rail.json",
-            "domains/network-rail/step1/generate_step1_data.py",
-            "domains/network-rail/step5/ontology_definition.json",
-            "domains/network-rail/step6/generate_step6_data.py",
-            "domains/network-rail/evaluation/evaluation_dataset.json",
+            "sample-data/network-rail/base/generate_base_data.py",
+            "sample-data/network-rail/derived-routing/generate_derived_routing_data.py",
+            "ontology/network-rail/ontology-definition.json",
+            "agent-configuration/routing/network-rail/data-agent-configuration.json",
+            "evaluation/challenge/network-rail.json",
+            "evaluation/routing/network-rail.json",
             "synthetic data only",
             "Do not deploy to Fabric",
         ):

@@ -17,7 +17,7 @@
   },
   "tables": [
     {
-      "sourcePath": "step1/step1_cleaned_customers.csv",
+      "sourcePath": "sample-data/uk-legal/base/customers.csv",
       "lakehouseName": "step1_cleaned_customers",
       "modelName": "Customers",
       "description": "One row per legal-firm customer, including type, location, signup date, and current relationship status.",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "sourcePath": "step1/step1_cleaned_cases.csv",
+      "sourcePath": "sample-data/uk-legal/base/cases.csv",
       "lakehouseName": "step1_cleaned_cases",
       "modelName": "Cases",
       "description": "One row per legal case or matter, with customer, assigned solicitor, type, value, start date, and status.",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "sourcePath": "step1/step1_cleaned_solicitors.csv",
+      "sourcePath": "sample-data/uk-legal/base/solicitors.csv",
       "lakehouseName": "step1_cleaned_solicitors",
       "modelName": "Solicitors",
       "description": "One row per solicitor, including specialization, hire date, hourly rate, office, and employment status.",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "sourcePath": "step1/step1_cleaned_transactions.csv",
+      "sourcePath": "sample-data/uk-legal/base/transactions.csv",
       "lakehouseName": "step1_cleaned_transactions",
       "modelName": "Transactions",
       "description": "One row per case-related invoice, payment, timesheet, or expense transaction.",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "sourcePath": "step1/step1_cleaned_interactions.csv",
+      "sourcePath": "sample-data/uk-legal/base/interactions.csv",
       "lakehouseName": "step1_cleaned_interactions",
       "modelName": "Interactions",
       "description": "One row per customer interaction, including channel, date, duration, solicitor, and notes.",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "sourcePath": "step6/step6_client_engagement_summary.csv",
+      "sourcePath": "sample-data/uk-legal/derived-routing/client_engagement_summary.csv",
       "lakehouseName": "step6_client_engagement_summary",
       "modelName": "Client Engagement Summary",
       "description": "Customer-level engagement metrics for multi-source routing demonstrations.",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "sourcePath": "step6/step6_case_finance_insights.csv",
+      "sourcePath": "sample-data/uk-legal/derived-routing/case_finance_insights.csv",
       "lakehouseName": "step6_case_finance_insights",
       "modelName": "Case Finance Insights",
       "description": "Case-level financial outcome metrics for cross-domain routing demonstrations.",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "sourcePath": "step6/step6_solicitor_performance_mart.csv",
+      "sourcePath": "sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv",
       "lakehouseName": "step6_solicitor_performance_mart",
       "modelName": "Solicitor Performance",
       "description": "Solicitor-level performance metrics for routing and ranking demonstrations.",

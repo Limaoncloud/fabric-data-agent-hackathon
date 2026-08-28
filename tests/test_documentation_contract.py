@@ -18,7 +18,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertNotIn("add one relevant synonym rather than changing", guide)
 
     def test_lakehouse_sql_example_matches_current_data(self):
-        with (ROOT / "step1" / "step1_cleaned_transactions.csv").open(
+        with (ROOT / "sample-data" / "uk-legal" / "base" / "transactions.csv").open(
             encoding="utf-8", newline=""
         ) as handle:
             rows = list(csv.DictReader(handle))
@@ -53,7 +53,7 @@ class DocumentationContractTests(unittest.TestCase):
             )
         )
         reference = json.loads(
-            (ROOT / "step6" / "step6_data_agent_configuration.json").read_text(
+            (ROOT / "agent-configuration" / "routing" / "uk-legal" / "data-agent-configuration.json").read_text(
                 encoding="utf-8"
             )
         )["dataAgentConfiguration"]

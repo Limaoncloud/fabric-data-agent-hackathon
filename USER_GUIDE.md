@@ -4,7 +4,7 @@ This guide supports a three-hour, hands-on learning loop:
 
 > Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
 
-The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. The deployment notebook does not deploy the deliberately weak `LegalFirmBasic` model; build it manually from the [Basic model reference](step3/README.md) only if you want an optional side-by-side comparison.
+The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. The deployment notebook does not deploy the deliberately weak `LegalFirmBasic` model; build it manually from the [Basic model reference](semantic-model/basic-reference/uk-legal/README.md) only if you want an optional side-by-side comparison.
 
 You build one Data Agent and grow it step by step: first the semantic model, then the Lakehouse attached to that same agent as a second source. Each step is a continuation of the same agent, not a new one.
 
@@ -54,28 +54,28 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 ## Quick File Map
 
 ### Cleaned baseline data files
-- `step1/step1_cleaned_customers.csv`
-- `step1/step1_cleaned_cases.csv`
-- `step1/step1_cleaned_solicitors.csv`
-- `step1/step1_cleaned_transactions.csv`
-- `step1/step1_cleaned_interactions.csv`
+- `sample-data/uk-legal/base/customers.csv`
+- `sample-data/uk-legal/base/cases.csv`
+- `sample-data/uk-legal/base/solicitors.csv`
+- `sample-data/uk-legal/base/transactions.csv`
+- `sample-data/uk-legal/base/interactions.csv`
 
 ### Semantic model and config files
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
-- [Basic model reference](step3/README.md) (background only; not part of the participant walkthrough)
-- [Optimized model facilitator reference](step4/README.md) (contains a complete solution path; do not distribute during the participant challenge)
-- `step5/step5_ontology_definition.json`
-- `step6/step6_data_agent_configuration.json`
+- [Basic model reference](semantic-model/basic-reference/uk-legal/README.md) (background only; not part of the participant walkthrough)
+- [Optimized model facilitator reference](semantic-model/optimized/uk-legal/README.md) (contains a complete solution path; do not distribute during the participant challenge)
+- `ontology/uk-legal/ontology-definition.json`
+- `agent-configuration/routing/uk-legal/data-agent-configuration.json`
 
 ### Lakehouse routing data files
-- `step6/step6_client_engagement_summary.csv`
-- `step6/step6_case_finance_insights.csv`
-- `step6/step6_solicitor_performance_mart.csv`
-- `step6/generate_step6_data.py`
+- `sample-data/uk-legal/derived-routing/client_engagement_summary.csv`
+- `sample-data/uk-legal/derived-routing/case_finance_insights.csv`
+- `sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv`
+- `sample-data/uk-legal/derived-routing/generate_derived_routing_data.py`
 
 ### Test prompts
-- `evaluation/TEST_QUERIES.md`
+- `evaluation/legacy/TEST_QUERIES.md`
 
 ### Verification reference
 - `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)
@@ -127,7 +127,7 @@ Improve the same `LegalFirmAgent` by configuring `LegalFirmOptimized`'s Prep for
 - You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
 - You can also use any tools listed in Microsoft Learn here:
    [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- Facilitators may use the [Optimized model reference](step4/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
+- Facilitators may use the [Optimized model reference](semantic-model/optimized/uk-legal/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
 
 ### Configure Prep Data For AI
 Open **LegalFirmOptimized → Model settings → Prep data for AI**. It has three controls; two get a full worked example below, one you diagnose yourself:
@@ -437,7 +437,7 @@ Use this table to check whether your configuration routes each question to the i
 Add ontology layer for richer entity and relationship understanding.
 
 ### Actions
-1. Create ontology from `step5/step5_ontology_definition.json` as reference.
+1. Create ontology from `ontology/uk-legal/ontology-definition.json` as reference.
 2. Map entities and relationships:
    - Client
    - LegalCase
@@ -504,8 +504,8 @@ The notebook performs deterministic scoring from participant-entered observation
 From repo root:
 
 ```powershell
-python step1/generate_step1_data.py
-python step6/generate_step6_data.py
+python sample-data/uk-legal/base/generate_base_data.py
+python sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
 
 ```
 

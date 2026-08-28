@@ -116,14 +116,18 @@ Design rule:
 - Swap domain language, sample data labels, prompt phrasing, and KPI definitions via `INDUSTRY_PROFILE`.
 
 ## Expected Repository Structure
-Use this folder structure:
+Use artifact-typed folders keyed by domain ID, not numbered step folders. Numbering belongs only in USER_GUIDE.md-style prose:
 
 ```text
-step1/
-step3/
-step4/
-step5/
-step6/
+sample-data/uk-legal/base/
+sample-data/uk-legal/derived-routing/
+semantic-model/basic-reference/uk-legal/
+semantic-model/optimized/uk-legal/
+ontology/uk-legal/
+agent-configuration/routing/uk-legal/
+evaluation/challenge/
+evaluation/routing/
+evaluation/legacy/
 ```
 
 Key files used in this demo:
@@ -131,22 +135,24 @@ Key files used in this demo:
 - config/domain-profile.schema.json
 - config/domains/uk-legal.json
 - deployment/hackathon_deployer.py
-- step1/step1_cleaned_customers.csv
-- step1/step1_cleaned_cases.csv
-- step1/step1_cleaned_solicitors.csv
-- step1/step1_cleaned_transactions.csv
-- step1/step1_cleaned_interactions.csv
-- step3/README.md
-- step4/README.md
-- step5/step5_ontology_definition.json
-- step6/step6_data_agent_configuration.json
-- step6/generate_step6_data.py
-- step6/step6_client_engagement_summary.csv
-- step6/step6_case_finance_insights.csv
-- step6/step6_solicitor_performance_mart.csv
+- sample-data/uk-legal/base/customers.csv
+- sample-data/uk-legal/base/cases.csv
+- sample-data/uk-legal/base/solicitors.csv
+- sample-data/uk-legal/base/transactions.csv
+- sample-data/uk-legal/base/interactions.csv
+- semantic-model/basic-reference/uk-legal/README.md
+- semantic-model/optimized/uk-legal/README.md
+- ontology/uk-legal/ontology-definition.json
+- agent-configuration/routing/uk-legal/data-agent-configuration.json
+- sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
+- sample-data/uk-legal/derived-routing/client_engagement_summary.csv
+- sample-data/uk-legal/derived-routing/case_finance_insights.csv
+- sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv
 - evaluation/evaluate_agent.py
-- evaluation/evaluation_dataset.json
-- evaluation/TEST_QUERIES.md
+- evaluation/challenge/uk-legal.json
+- evaluation/routing/uk-legal.json
+- evaluation/legacy/uk-legal.json
+- evaluation/legacy/TEST_QUERIES.md
 - USER_GUIDE.md
 
 ## Authoring Workflow
@@ -176,7 +182,7 @@ Actions:
 - Re-run the same prompts for like-for-like comparison.
 
 ### Step 3 - Basic Semantic Model (Manual, Optional)
-The deployment notebook no longer creates this model. Build it manually in the Fabric web UI following `step3/README.md` only for an anti-pattern comparison.
+The deployment notebook no longer creates this model. Build it manually in the Fabric web UI following `semantic-model/basic-reference/uk-legal/README.md` only for an anti-pattern comparison.
 Actions:
 - Create the Basic Direct Lake semantic model manually from the selected domain profile.
 - Keep relationships disabled and use intentionally ambiguous/duplicate measures for the teaching baseline.
@@ -211,7 +217,7 @@ Actions:
 ### Step 6 - Multi-Source Routing
 Actions:
 - Add additional physical data sources (not config-only).
-- Generate Step 6 derived datasets using step6/generate_step6_data.py.
+- Generate derived routing datasets using sample-data/uk-legal/derived-routing/generate_derived_routing_data.py.
 - Upload Step 6 files and register multiple agent sources.
 - Apply routing best practices and retest.
 
@@ -237,7 +243,7 @@ Use the same test prompts across all six steps so quality movement is attributab
 Recommended assets:
 - evaluation/evaluation_dataset.json
 - evaluation/evaluate_agent.py
-- step1/step1_results.json ... step6/step6_results.json
+- evaluation/results/step1-results.json ... evaluation/results/step6-results.json
 
 Evaluation dimensions:
 - Exact Match

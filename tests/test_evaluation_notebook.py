@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK_PATH = ROOT / "NB_Evaluate_Data_Agent_Hackathon.ipynb"
-CHALLENGE_PATH = ROOT / "evaluation" / "hackathon_challenge_dataset.json"
+CHALLENGE_PATH = ROOT / "evaluation" / "challenge" / "uk-legal.json"
 
 
 class FakeResponse:

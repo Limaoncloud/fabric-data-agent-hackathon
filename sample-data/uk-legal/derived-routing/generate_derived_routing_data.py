@@ -1,6 +1,6 @@
 """
-Generate Step 6 derived datasets for multi-source routing demos.
-Creates additional data sources from Step 1 cleaned tables.
+Generate derived routing datasets for multi-source routing demos.
+Creates additional data sources from the base cleaned tables.
 """
 
 import csv
@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-STEP1_DIR = BASE_DIR.parent / "step1"
+BASE_DATA_DIR = BASE_DIR.parent / "base"
 
 
 def parse_uk_date(value):
@@ -245,17 +245,17 @@ def create_solicitor_performance_mart(cases, transactions, interactions):
 
 
 def main():
-    customers = load_csv(STEP1_DIR / "step1_cleaned_customers.csv")
-    cases = load_csv(STEP1_DIR / "step1_cleaned_cases.csv")
-    transactions = load_csv(STEP1_DIR / "step1_cleaned_transactions.csv")
-    interactions = load_csv(STEP1_DIR / "step1_cleaned_interactions.csv")
+    customers = load_csv(BASE_DATA_DIR / "customers.csv")
+    cases = load_csv(BASE_DATA_DIR / "cases.csv")
+    transactions = load_csv(BASE_DATA_DIR / "transactions.csv")
+    interactions = load_csv(BASE_DATA_DIR / "interactions.csv")
 
     engagement_rows = create_engagement_summary(customers, interactions)
     case_finance_rows = create_case_finance_insights(cases, transactions)
     solicitor_perf_rows = create_solicitor_performance_mart(cases, transactions, interactions)
 
     write_csv(
-        BASE_DIR / "step6_client_engagement_summary.csv",
+        BASE_DIR / "client_engagement_summary.csv",
         [
             "customer_id",
             "customer_name",
@@ -271,7 +271,7 @@ def main():
     )
 
     write_csv(
-        BASE_DIR / "step6_case_finance_insights.csv",
+        BASE_DIR / "case_finance_insights.csv",
         [
             "case_id",
             "customer_id",
@@ -291,7 +291,7 @@ def main():
     )
 
     write_csv(
-        BASE_DIR / "step6_solicitor_performance_mart.csv",
+        BASE_DIR / "solicitor_performance_mart.csv",
         [
             "solicitor_name",
             "cases_handled",
@@ -307,10 +307,10 @@ def main():
         solicitor_perf_rows,
     )
 
-    print("Generated Step 6 datasets:")
-    print(f"- step6_client_engagement_summary.csv ({len(engagement_rows)} rows)")
-    print(f"- step6_case_finance_insights.csv ({len(case_finance_rows)} rows)")
-    print(f"- step6_solicitor_performance_mart.csv ({len(solicitor_perf_rows)} rows)")
+    print("Generated derived routing datasets:")
+    print(f"- client_engagement_summary.csv ({len(engagement_rows)} rows)")
+    print(f"- case_finance_insights.csv ({len(case_finance_rows)} rows)")
+    print(f"- solicitor_performance_mart.csv ({len(solicitor_perf_rows)} rows)")
 
 
 if __name__ == "__main__":

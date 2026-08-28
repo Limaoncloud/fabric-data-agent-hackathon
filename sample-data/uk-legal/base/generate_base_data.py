@@ -1,7 +1,6 @@
 """
-Validate Step 1 cleaned baseline dataset.
+Validate the UK legal base dataset.
 
-This repo now starts from cleaned data in step1/*.csv.
 Run this script to verify files exist and print row counts.
 """
 
@@ -11,11 +10,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
 FILES = [
-    "step1_cleaned_customers.csv",
-    "step1_cleaned_cases.csv",
-    "step1_cleaned_solicitors.csv",
-    "step1_cleaned_transactions.csv",
-    "step1_cleaned_interactions.csv",
+    "customers.csv",
+    "cases.csv",
+    "solicitors.csv",
+    "transactions.csv",
+    "interactions.csv",
 ]
 
 
@@ -27,7 +26,7 @@ def count_rows(path: Path) -> int:
 
 
 def main() -> int:
-    print("Validating Step 1 cleaned baseline files...\n")
+    print("Validating UK legal base dataset...\n")
 
     missing = []
     total = 0
@@ -47,8 +46,8 @@ def main() -> int:
             print(f"  - {name}")
         return 1
 
-    print(f"\nTotal rows across Step 1 cleaned dataset: {total}")
-    print("Step 1 baseline dataset is ready.")
+    print(f"\nTotal rows across base dataset: {total}")
+    print("Base dataset is ready.")
     return 0
 
 

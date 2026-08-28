@@ -58,7 +58,7 @@ Do not demonstrate additional fixes or query solutions.
 | HC005 | How many legal cases are currently open? | 180 | Consistency across terminology |
 | HC006 | How many customers do we have? | 171 | Basic grounding and schema scope |
 
-Ground truths come from the checked-in Step 1 CSV files. The machine-readable set is `evaluation/hackathon_challenge_dataset.json`.
+Ground truths come from the checked-in Step 1 CSV files. The machine-readable set is `evaluation/challenge/uk-legal.json`.
 
 ## Escalating Hints
 
@@ -135,6 +135,6 @@ Use the focused dataset for this exercise:
 ```powershell
 python evaluation/evaluate_agent.py `
     --simulation `
-    --dataset evaluation/hackathon_challenge_dataset.json `
-    --output evaluation/hackathon_challenge_results.json
+    --dataset evaluation/challenge/uk-legal.json `
+    --output evaluation/results/hackathon-challenge.json
 ```
