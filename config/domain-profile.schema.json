@@ -35,7 +35,6 @@
       "properties": {
         "folder": { "type": "string", "minLength": 1 },
         "lakehouse": { "type": "string", "minLength": 1 },
-        "basicModel": { "type": "string", "minLength": 1 },
         "optimizedModel": { "type": "string", "minLength": 1 },
         "ontology": { "type": "string", "minLength": 1 },
         "dataAgent": { "type": "string", "minLength": 1 }
@@ -55,7 +54,6 @@
       "additionalProperties": false,
       "required": ["optimized"],
       "properties": {
-        "basic": { "$ref": "#/$defs/model" },
         "optimized": { "$ref": "#/$defs/model" }
       }
     },
