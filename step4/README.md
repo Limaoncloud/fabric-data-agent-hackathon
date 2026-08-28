@@ -129,7 +129,7 @@ Include all measures from `_Measures`.
 
 ## 7. Create verified answers correctly
 
-In Prep data for AI > Verified answers, create verified answers from the saved report visuals in LegalFirmOptimized QA Report. Do not paste raw DAX as the answer.
+Verified answers are pinned directly on a report visual, not configured from Prep data for AI. Create them from the saved visuals in LegalFirmOptimized QA Report. Do not paste raw DAX as the answer.
 
 | User question | Verified answer source |
 | --- | --- |
@@ -139,13 +139,13 @@ In Prep data for AI > Verified answers, create verified answers from the saved r
 | What is the total revenue? | Card visual using [Total Revenue] |
 | How many unpaid invoices do we have? | Card visual using [Outstanding Invoices] |
 
-1. Click New verified answer.
-1. Enter the natural-language question.
-1. Select the LegalFirmOptimized QA Report.
-1. Select the Verified Answers page.
-1. Select the visual that answers the question.
+1. Open LegalFirmOptimized QA Report and go to the Verified Answers page.
+1. Select the Card visual that answers the question.
+1. Open the visual's **...** menu and select **Add to Q&A**.
+1. Enter the natural-language question and turn on **Verified answer**.
 1. Add a short description explaining the business meaning.
-1. Save the verified answer.
+1. Save the report.
+1. Repeat for each remaining question and visual.
 
 ## Result
 

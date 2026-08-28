@@ -140,7 +140,7 @@ A fourth control lives on the **Data Agent** item itself, separate from the sema
 #### Worked example 1: Verified answer from a report visual
 1. Ask **"What is the total case value?"** and note the current answer and source.
 2. From `LegalFirmOptimized`, select **Create report**, add a page named **Verified Answers**, and add a Card visual bound to the `[Total Case Value]` measure. Save the report.
-3. In **Prep data for AI → Verified answers**, select **New verified answer**, enter the question, then select the saved report, page, and Card visual. Add a short description and save.
+3. Select the Card visual, open its **...** menu, choose **Add to Q&A**, enter the question, and turn on **Verified answer**. The verified answer is pinned on the visual in the report, not in Prep data for AI.
 4. Ask the same question again in the agent chat and confirm it now answers from the verified visual instead of generating a new query.
 
 #### Worked example 2: Tweak an AI instruction
