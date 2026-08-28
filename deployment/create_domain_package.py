@@ -106,6 +106,7 @@ Create and validate all of the following:
 
 - Preserve the repository's learning journey (semantic-model agent, then Lakehouse attached as a continuation) and notebook-first deployment.
 - Use artifact-typed folders (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), each keyed by `{domain_id}`. Do not create numbered step folders; numbering belongs only in USER_GUIDE.md-style prose, not folder names.
+- Use clean physical Lakehouse table names without step-number prefixes, e.g. `base_customers`, `base_cases`, `routing_client_engagement_summary`. Do not copy the `step1_cleaned_*` / `step6_*` naming used by the existing UK legal package; that naming predates this convention and is kept only for backward compatibility with already-deployed environments.
 - Model the actual entity grains, keys, relationships, terminology, and KPI definitions in the brief.
 - Use synthetic data only. Do not imply that generated records represent live operational data.
 - Keep safety-critical, security-sensitive, personal, and infrastructure-vulnerability details out of generated data.

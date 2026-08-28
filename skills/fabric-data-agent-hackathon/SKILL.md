@@ -256,7 +256,7 @@ UK legal default prompt examples:
 
 ## Packaging Rules For Future Events
 - Keep only multi-table artifacts for final event package.
-- Remove legacy single-table assets.
+- Keep only current multi-table assets.
 - Group outputs by artifact type (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), not step folders.
 - Keep user-facing guide concise and practical.
 - Keep reusable domain profiles under `config/domains/` and generated deployment logic under `deployment/`.
