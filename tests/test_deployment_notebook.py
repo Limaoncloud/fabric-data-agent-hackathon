@@ -49,6 +49,7 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertEqual(1800, values["LRO_TIMEOUT_SECONDS"])
         self.assertEqual(180, values["ITEM_DISCOVERY_TIMEOUT_SECONDS"])
         self.assertEqual(900, values["SEMANTIC_REFRESH_TIMEOUT_SECONDS"])
+        self.assertEqual(300, values["LAKEHOUSE_SYNC_TIMEOUT_SECONDS"])
 
     def test_required_deployment_patterns(self):
         for section in range(1, 9):
@@ -65,6 +66,8 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertIn("refresh_semantic_model(model_id, model_name)", self.source)
         self.assertIn("CONFIRM_PREVIEW_DEPLOYMENTS", self.source)
         self.assertIn("fabric-data-agent-sdk==0.1.28a0", self.source)
+        self.assertIn("wait_for_lakehouse_table_sync", self.source)
+        self.assertIn("lakehouses/{lakehouse_id}/tables", self.source)
 
     def test_no_binary_model_dependency(self):
         lowered = self.source.lower()
