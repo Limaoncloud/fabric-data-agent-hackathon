@@ -111,7 +111,7 @@ Create the one Data Agent you will keep extending through every later step, star
 3. Name it `LegalFirmAgent`. You will attach the Lakehouse to this same agent later; do not create a second agent.
 4. In the OneLake catalog, select the `LegalFirmSemanticModel` semantic model and select **Add**.
 5. In the Explorer, make all five model tables available: `Customers`, `Cases`, `Solicitors`, `Transactions`, and `Interactions`.
-6. Leave **Data agent instructions** and **Example queries** empty for the first test.
+6. Leave **Data agent instructions** and `LegalFirmSemanticModel`'s **Prep data for AI** settings unconfigured for the first test.
 
 ### Example Prompts, Including Two That Should Stumble
 Ask these before making any AI configuration changes and record each answer plus the model object used:
