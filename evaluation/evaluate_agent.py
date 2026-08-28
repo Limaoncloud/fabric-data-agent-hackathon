@@ -188,13 +188,13 @@ class DataAgentEvaluator:
             )
 
         # Routing logic with configurable accuracy
-        correct_source = expected_source if expected_source else "LegalFirmOptimized"
+        correct_source = expected_source if expected_source else "LegalFirmSemanticModel"
         if random.random() < config["routing"]:
             # Correct routing
             source = correct_source
         else:
             # Wrong routing
-            source = "LegalFirmDemo" if correct_source == "LegalFirmOptimized" else "LegalFirmOptimized"
+            source = "LegalFirmDemo" if correct_source == "LegalFirmSemanticModel" else "LegalFirmSemanticModel"
 
         # Answer accuracy based on step
         if ground_truth_answer is not None and random.random() < config["accuracy"]:

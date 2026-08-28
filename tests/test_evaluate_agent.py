@@ -49,12 +49,12 @@ class MissingFieldDefaultsTests(unittest.TestCase):
             {
                 "id": "X001",
                 "question": "Untagged question",
-                "expected_source": "LegalFirmOptimized",
+                "expected_source": "LegalFirmSemanticModel",
                 "ground_truth_answer": 1,
                 "answer_type": "number",
             }
         ]
-        metrics = [evaluator.evaluate_query(queries[0], evaluator.execute_query(queries[0]["question"], 1, "LegalFirmOptimized"))]
+        metrics = [evaluator.evaluate_query(queries[0], evaluator.execute_query(queries[0]["question"], 1, "LegalFirmSemanticModel"))]
         aggregate = evaluator._calculate_aggregate_metrics(queries, metrics)
         self.assertIn("unlabeled", aggregate.by_difficulty)
         self.assertIn("uncategorized", aggregate.by_category)

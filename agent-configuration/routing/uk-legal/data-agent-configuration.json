@@ -5,7 +5,7 @@
     "sourceOfTruth": "config/domains/uk-legal.json",
     "dataSources": [
       {
-        "name": "LegalFirmOptimized",
+        "name": "LegalFirmSemanticModel",
         "type": "semanticModel",
         "selectedObjects": [
           "Customers",
@@ -62,16 +62,16 @@
         ]
       }
     ],
-    "agentInstructions": "Use LegalFirmOptimized for ordinary customer, case, solicitor, transaction, and interaction questions that can be answered by model fields or measures. Use LegalFirmDemo only for engagement segments, combined case-finance outcomes, payment risk, outstanding balances by case, or solicitor performance tiers. Prefer one source when the question is clear. Do not combine sources unless the requested result cannot be answered by one selected source.",
+    "agentInstructions": "Use LegalFirmSemanticModel for ordinary customer, case, solicitor, transaction, and interaction questions that can be answered by model fields or measures. Use LegalFirmDemo only for engagement segments, combined case-finance outcomes, payment risk, outstanding balances by case, or solicitor performance tiers. Prefer one source when the question is clear. Do not combine sources unless the requested result cannot be answered by one selected source.",
     "routingScenarios": [
       {
         "question": "How many active customers do we have?",
-        "expectedSource": "LegalFirmOptimized",
+        "expectedSource": "LegalFirmSemanticModel",
         "expectedObject": "Active Customers"
       },
       {
         "question": "What is our total revenue?",
-        "expectedSource": "LegalFirmOptimized",
+        "expectedSource": "LegalFirmSemanticModel",
         "expectedObject": "Total Revenue"
       },
       {

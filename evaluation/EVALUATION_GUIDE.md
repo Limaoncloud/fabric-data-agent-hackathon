@@ -106,7 +106,7 @@ You can also pass inline text with `--critic-prompt`.
       "question": "How many active clients do we have?",
       "paraphrase": "What is our current active customer count?",
       "category": "terminology",
-      "expected_source": "LegalFirmOptimized",
+      "expected_source": "LegalFirmSemanticModel",
       "ground_truth_answer": 101,
       "answer_type": "number",
       "difficulty": "easy",
@@ -145,7 +145,7 @@ Answer is semantically correct within tolerance:
 - Tables: all keys present, values within 5%
 
 ### 3. Routing Accuracy
-Correct data source selected (`LegalFirmOptimized` vs `LegalFirmDemo`)
+Correct data source selected (`LegalFirmSemanticModel` vs `LegalFirmDemo`)
 
 ### 4. Measure Selection Accuracy
 Correct DAX measure used (important for Step 3 vs Step 4 comparison)

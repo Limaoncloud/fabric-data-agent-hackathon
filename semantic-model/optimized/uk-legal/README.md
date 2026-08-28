@@ -4,11 +4,11 @@
 
 Demonstrate semantic-model best practices and high / 100% Copilot accuracy using an optimized Direct Lake semantic model over the LegalFirmDemo Lakehouse.
 
-The deployment notebook generates and deploys `LegalFirmOptimized` automatically from `config/domains/uk-legal.json`; you do not need to build it by hand. This document is a facilitator/background reference describing exactly what the notebook builds (sections 1-4) and the participant-authored steps that remain manual (sections 5-7: verified-answer report, Prep for AI, and pinning verified answers).
+The deployment notebook generates and deploys `LegalFirmSemanticModel` automatically from `config/domains/uk-legal.json`; you do not need to build it by hand. This document is a facilitator/background reference describing exactly what the notebook builds (sections 1-4) and the participant-authored steps that remain manual (sections 5-7: verified-answer report, Prep for AI, and pinning verified answers).
 
 ## 1. What the notebook creates
 
-The notebook creates a Direct Lake semantic model named LegalFirmOptimized over the LegalFirmDemo Lakehouse, using the five base cleaned tables (`base_customers`, `base_cases`, `base_transactions`, `base_solicitors`, `base_interactions`).
+The notebook creates a Direct Lake semantic model named LegalFirmSemanticModel over the LegalFirmDemo Lakehouse, using the five base cleaned tables (`base_customers`, `base_cases`, `base_transactions`, `base_solicitors`, `base_interactions`).
 
 ## 2. Tables renamed for business-friendly usage
 
@@ -60,8 +60,8 @@ The notebook creates a blank table named `_Measures` with these measures:
 
 Verified answers should be based on saved report visuals, not raw DAX pasted into the answer box.
 
-1. From the LegalFirmOptimized semantic model, select Create report.
-1. Create a report named LegalFirmOptimized QA Report.
+1. From the LegalFirmSemanticModel semantic model, select Create report.
+1. Create a report named LegalFirmSemanticModel QA Report.
 1. Add a page called Verified Answers.
 1. Add the visuals below using the measures from `_Measures`.
 1. Save the report.
@@ -76,7 +76,7 @@ Verified answers should be based on saved report visuals, not raw DAX pasted int
 
 ## 6. Configure Prep data for AI
 
-Go back to the LegalFirmOptimized semantic model and open Model settings > Prep data for AI.
+Go back to the LegalFirmSemanticModel semantic model and open Model settings > Prep data for AI.
 
 ### A. Select AI data schema fields
 
@@ -123,7 +123,7 @@ Include all measures from `_Measures`.
 
 ## 7. Create verified answers correctly
 
-Verified answers are pinned directly on a report visual, not configured from Prep data for AI. Create them from the saved visuals in LegalFirmOptimized QA Report. Do not paste raw DAX as the answer.
+Verified answers are pinned directly on a report visual, not configured from Prep data for AI. Create them from the saved visuals in LegalFirmSemanticModel QA Report. Do not paste raw DAX as the answer.
 
 | User question | Verified answer source |
 | --- | --- |
@@ -133,7 +133,7 @@ Verified answers are pinned directly on a report visual, not configured from Pre
 | What is the total revenue? | Card visual using [Total Revenue] |
 | How many unpaid invoices do we have? | Card visual using [Outstanding Invoices] |
 
-1. Open LegalFirmOptimized QA Report and go to the Verified Answers page.
+1. Open LegalFirmSemanticModel QA Report and go to the Verified Answers page.
 1. Select the Card visual that answers the question.
 1. Open the visual's **...** menu and select **Add to Q&A**.
 1. Enter the natural-language question and turn on **Verified answer**.

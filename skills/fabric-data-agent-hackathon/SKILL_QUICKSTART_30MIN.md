@@ -88,7 +88,7 @@ Success check:
 - Agent returns data-backed answers for all baseline prompts.
 
 ### 10 to 15 minutes: Attach semantic model fast path
-1. Create a new Data Agent using the predeployed `LegalFirmOptimized` semantic model.
+1. Create a new Data Agent using the predeployed `LegalFirmSemanticModel` semantic model.
 2. Re-run baseline prompts before adding AI metadata.
 3. Add one semantic-model synonym or AI instruction in Prep for AI, then retest.
 

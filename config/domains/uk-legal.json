@@ -10,7 +10,7 @@
   "artifacts": {
     "folder": "data_agent_hackathon",
     "lakehouse": "LegalFirmDemo",
-    "optimizedModel": "LegalFirmOptimized",
+    "optimizedModel": "LegalFirmSemanticModel",
     "ontology": "LegalFirmOntology",
     "dataAgent": "LegalFirmCustomer360Agent"
   },
@@ -218,10 +218,10 @@
   },
   "agent": {
     "description": "Multi-source UK legal Customer 360 agent for customer, case, finance, engagement, and solicitor-performance questions.",
-    "instructions": "Use LegalFirmOptimized for customer, case, solicitor, transaction, and interaction questions that can be answered by model measures. Use the Lakehouse engagement summary for engagement segments, Case Finance Insights for questions combining case and financial outcomes, and Solicitor Performance for rankings and performance tiers. Prefer one source when the topic is clear. Never invent missing data; ask for clarification when the requested metric or period is ambiguous.",
+    "instructions": "Use LegalFirmSemanticModel for customer, case, solicitor, transaction, and interaction questions that can be answered by model measures. Use the Lakehouse engagement summary for engagement segments, Case Finance Insights for questions combining case and financial outcomes, and Solicitor Performance for rankings and performance tiers. Prefer one source when the topic is clear. Never invent missing data; ask for clarification when the requested metric or period is ambiguous.",
     "sources": [
       {
-        "name": "LegalFirmOptimized",
+        "name": "LegalFirmSemanticModel",
         "artifact": "optimizedModel",
         "objects": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
         "description": "Optimized Direct Lake semantic model for customer, legal case, solicitor, transaction, and interaction analysis.",

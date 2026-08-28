@@ -18,7 +18,7 @@
       "difficulty": "medium",
       "tests_routing": true,
       "tests_measure_selection": false,
-      "notes": "Only the routing_client_engagement_summary Lakehouse table has this classification; LegalFirmOptimized does not."
+      "notes": "Only the routing_client_engagement_summary Lakehouse table has this classification; LegalFirmSemanticModel does not."
     },
     {
       "id": "RT002",

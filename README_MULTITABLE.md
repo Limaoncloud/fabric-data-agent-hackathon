@@ -7,7 +7,7 @@ This file is a concise architecture reference for the UK Legal Data Agent hackat
 The organizer notebook creates these items before participants begin:
 
 - `LegalFirmDemo` Lakehouse with eight managed Delta tables.
-- `LegalFirmOptimized` Direct Lake semantic model.
+- `LegalFirmSemanticModel` Direct Lake semantic model.
 
 ### Baseline Lakehouse Tables
 
@@ -29,7 +29,7 @@ The organizer notebook creates these items before participants begin:
 
 ## Semantic Model
 
-`LegalFirmOptimized` contains:
+`LegalFirmSemanticModel` contains:
 
 - `Customers`
 - `Cases`
@@ -48,10 +48,10 @@ Create one Fabric Data Agent with exactly two sources:
 
 | Source | Selected objects | Use when |
 | --- | --- | --- |
-| `LegalFirmOptimized` semantic model | All five model tables | Standard customer, case, solicitor, transaction, and interaction questions answered by model fields or measures |
+| `LegalFirmSemanticModel` semantic model | All five model tables | Standard customer, case, solicitor, transaction, and interaction questions answered by model fields or measures |
 | `LegalFirmDemo` Lakehouse | Only the three `step6_*` analysis tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
 
-Do not select the five `step1_cleaned_*` Lakehouse tables in the routing configuration. Their standard business topics are already covered by `LegalFirmOptimized`; selecting both copies creates avoidable routing ambiguity.
+Do not select the five `base_*` Lakehouse tables in the routing configuration. Their standard business topics are already covered by `LegalFirmSemanticModel`; selecting both copies creates avoidable routing ambiguity.
 
 SQL example question/query pairs can be configured for the Lakehouse source. They are not supported for the Power BI semantic-model source. Semantic-model synonyms are configured through Prep for AI, not on Lakehouse tables.
 
