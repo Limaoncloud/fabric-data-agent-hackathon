@@ -5,10 +5,11 @@ This guide explains how to use the evaluation framework to measure actual data a
 ## What's Included
 
 1. **NB_Evaluate_Data_Agent_Hackathon.ipynb** - Participant notebook for entering observed results and generating a scored report
-2. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
-3. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
-4. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-5. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
+2. **NB_Run_SDK_Evaluation.ipynb** - Facilitator notebook that runs the real SDK-backed evaluation (Option 3 below) against a live Data Agent from inside Fabric, with no local Python setup
+3. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
+4. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
+5. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+6. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
 
 For the three-hour hackathon, use `evaluation/challenge/uk-legal.json`. Its expected answers are tested directly against the checked-in CSV files. Add `evaluation/routing/uk-legal.json` once you reach Step 5.
 
@@ -73,6 +74,10 @@ What this does:
 - Retrieves official details via `get_evaluation_details`
 - Produces local JSON output plus optional CSV of official detail rows
 - Prints a compatibility report (custom metrics vs official summary)
+
+### Option 4: Notebook Version Of SDK Mode (No Local Python Setup)
+
+Import `NB_Run_SDK_Evaluation.ipynb` into Fabric, set its parameters cell (`AGENT_NAME`, `DATASET_NAME`, `DATA_AGENT_STAGE`, etc.), and run all cells. It downloads `evaluate_agent.py` and the chosen dataset from this repository and calls the same `DataAgentEvaluator.evaluate_with_sdk(...)` path as Option 3, printing the report and saving results without requiring a local `pip install` or terminal access.
 
 ### Optional: Custom Critic Prompt in SDK Mode
 
