@@ -8,7 +8,6 @@ The default run creates or reuses:
 
 - A workspace folder and Lakehouse.
 - All managed Delta tables declared by the profile.
-- A deliberately weak Basic Direct Lake semantic model.
 - An Optimized Direct Lake semantic model with relationships, explicit measures, and descriptions.
 
 The default participant-ready deployment intentionally leaves synonyms, Prep for AI, Verified Answers, and Data Agent configuration empty. Set `ENABLE_PREP_FOR_AI=True` only for an organizer demonstration that needs preconfigured AI instructions, example prompts, and a scoped AI Data Schema.

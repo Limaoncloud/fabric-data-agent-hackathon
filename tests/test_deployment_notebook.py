@@ -38,7 +38,7 @@ class DeploymentNotebookTests(unittest.TestCase):
         self.assertEqual("", values["WORKSPACE_ID"])
         self.assertEqual("uk-legal", values["DOMAIN_PROFILE"])
         self.assertEqual("dev", values["REPOSITORY_REF"])
-        self.assertTrue(values["DEPLOY_BASIC_MODEL"])
+        self.assertNotIn("DEPLOY_BASIC_MODEL", values)
         self.assertTrue(values["DEPLOY_OPTIMIZED_MODEL"])
         self.assertFalse(values["ENABLE_PREP_FOR_AI"])
         self.assertTrue(values["REFRESH_SEMANTIC_MODELS"])

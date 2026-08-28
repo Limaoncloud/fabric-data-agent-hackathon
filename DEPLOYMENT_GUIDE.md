@@ -25,7 +25,7 @@ Use `NB_Deploy_Data_Agent_Hackathon.ipynb` for the reproducible deployment path:
 2. Leave `WORKSPACE_ID=""` to deploy to the notebook's current workspace.
 3. Leave `DOMAIN_PROFILE="uk-legal"` for the legal scenario.
 4. Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled for a participant-ready deployment.
-5. Run all cells to create the Lakehouse, managed Delta tables, Basic model, and Optimized model.
+5. Run all cells to create the Lakehouse, managed Delta tables, and the Optimized model.
 
 The notebook generates semantic models as TMDL through Fabric APIs. It does not require Power BI Desktop, PBIP, PBIX, BIM, or template files. See [deployment/README.md](deployment/README.md) for custom-domain deployment.
 
@@ -174,11 +174,9 @@ The three Step 6 analysis tables contain 171 engagement rows, 500 case-finance r
 
 ### **Purpose:** Demonstrate poor practices and lower answer quality
 
-#### **Recommended: Deploy from the Notebook**
+#### **Manual Only: The Notebook No Longer Deploys This Model**
 
-Run the semantic-model section of `NB_Deploy_Data_Agent_Hackathon.ipynb`, or run the full notebook from the beginning. It generates the `LegalFirmBasic` Direct Lake model as TMDL from `config/domains/uk-legal.json` and deploys it directly through the Fabric API.
-
-No Power BI Desktop or PBIX file is required. The generated Basic model deliberately contains five disconnected Step 1 tables, duplicate measures, ambiguous measures, and no Prep for AI configuration.
+The deployment notebook only deploys the Optimized model by default. `LegalFirmBasic` is an optional anti-pattern comparison that must be created manually; see the **Optional: Create Manually in Fabric** section below.
 
 #### **Optional: Create Manually in Fabric**
 

@@ -147,7 +147,7 @@ UK legal default prompt substitutions:
 ## Minimal Artifacts Checklist
 - Deployment notebook completed
 - Profile-defined Lakehouse tables loaded
-- Basic and Optimized Direct Lake semantic models available
+- Optimized Direct Lake semantic model available
 - Prep for AI metadata applied
 - Data Agent staged or published when enabled
 - Demo prompts ready

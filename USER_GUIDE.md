@@ -4,7 +4,7 @@ This guide supports a three-hour, hands-on learning loop:
 
 > Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
 
-The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. A deliberately weak `LegalFirmBasic` model is also deployed for optional side-by-side comparison; it is background only and not part of the core walkthrough.
+The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. The deployment notebook does not deploy the deliberately weak `LegalFirmBasic` model; build it manually from the [Basic model reference](step3/README.md) only if you want an optional side-by-side comparison.
 
 You build one Data Agent and grow it step by step: first the semantic model, then the Lakehouse attached to that same agent as a second source. Each step is a continuation of the same agent, not a new one.
 

@@ -175,9 +175,10 @@ Actions:
 - Use validated SQL example query pairs only for supported SQL sources.
 - Re-run the same prompts for like-for-like comparison.
 
-### Step 3 - Basic Semantic Model
+### Step 3 - Basic Semantic Model (Manual, Optional)
+The deployment notebook no longer creates this model. Build it manually in the Fabric web UI following `step3/README.md` only for an anti-pattern comparison.
 Actions:
-- Generate the Basic Direct Lake semantic model from the selected domain profile.
+- Create the Basic Direct Lake semantic model manually from the selected domain profile.
 - Keep relationships disabled and use intentionally ambiguous/duplicate measures for the teaching baseline.
 - Publish and connect the Data Agent.
 - Re-run test suite and log quality changes.
@@ -284,7 +285,7 @@ UK legal default prompt examples:
 - Multi-table raw CSV package
 - Multi-table cleaned CSV package
 - Validated domain profile
-- Notebook-generated Basic and Optimized Direct Lake semantic models
+- Notebook-generated Optimized Direct Lake semantic model
 - Ontology definition
 - Multi-source routing configuration
 - Step 6 derived data generator and outputs
