@@ -1,22 +1,16 @@
-# Step 4: Create Optimized Direct Lake Semantic Model
+# Optimized Direct Lake Semantic Model (Facilitator Reference)
 
 ## Purpose
 
 Demonstrate semantic-model best practices and high / 100% Copilot accuracy using an optimized Direct Lake semantic model over the LegalFirmDemo Lakehouse.
 
-## 1. Create the Direct Lake semantic model
+The deployment notebook generates and deploys `LegalFirmOptimized` automatically from `config/domains/uk-legal.json`; you do not need to build it by hand. This document is a facilitator/background reference describing exactly what the notebook builds (sections 1-4) and the participant-authored steps that remain manual (sections 5-7: verified-answer report, Prep for AI, and pinning verified answers).
 
-1. Open Microsoft Fabric in the browser.
-1. Go to the workspace containing the LegalFirmDemo Lakehouse.
-1. Open the LegalFirmDemo Lakehouse.
-1. Select New semantic model.
-1. Choose the Step 2 cleaned tables only.
-1. Select all 5 optimized tables: step1_cleaned_customers, step1_cleaned_cases, step1_cleaned_transactions, step1_cleaned_solicitors, and step1_cleaned_interactions.
-1. Create the semantic model in Direct Lake mode.
-1. Name it LegalFirmOptimized.
-1. Open the semantic model.
+## 1. What the notebook creates
 
-## 2. Rename tables for business-friendly usage
+The notebook creates a Direct Lake semantic model named LegalFirmOptimized over the LegalFirmDemo Lakehouse, using the five base cleaned tables (`step1_cleaned_customers`, `step1_cleaned_cases`, `step1_cleaned_transactions`, `step1_cleaned_solicitors`, `step1_cleaned_interactions`).
+
+## 2. Tables renamed for business-friendly usage
 
 | Original table | Rename to |
 | --- | --- |
@@ -26,9 +20,9 @@ Demonstrate semantic-model best practices and high / 100% Copilot accuracy using
 | step1_cleaned_solicitors | Solicitors |
 | step1_cleaned_interactions | Interactions |
 
-## 3. Create the star schema relationships
+## 3. Star schema relationships already configured
 
-In Model view, create these relationships:
+The notebook creates these relationships:
 
 | Relationship | From | To | Cardinality | Cross filter |
 | --- | --- | --- | --- | --- |
@@ -39,9 +33,9 @@ In Model view, create these relationships:
 
 *Note: The solicitor relationship works for demo purposes, but using a `solicitor_id` would be better practice in a production model.*
 
-## 4. Create a measures table
+## 4. Measures already created
 
-Create a blank table named `_Measures`, then add these measures:
+The notebook creates a blank table named `_Measures` with these measures:
 
 | Group | DAX measure |
 | --- | --- |

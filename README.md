@@ -4,13 +4,15 @@
 
 This repository provides a complete, reusable Microsoft Fabric Data Agent hackathon package.
 
-It demonstrates how answer quality improves across a six-step maturity journey:
-1. Cleaned multi-table data baseline
-2. Data agent configuration best practices
-3. Basic semantic model
-4. Optimized semantic model followed by participant-authored Prep for AI
-5. Ontology layer
-6. Multi-source routing with best practices
+It demonstrates how answer quality improves across a six-phase maturity journey:
+1. Data readiness
+2. Semantic model readiness
+3. Agent configuration
+4. Lakehouse source tuning
+5. Routing with derived data
+6. Optional ontology
+
+USER_GUIDE.md implements this journey as six numbered workshop steps for one continuously-extended Data Agent.
 
 Default example domain is UK legal Customer 360, and the package can be adapted to other industries.
 
@@ -22,9 +24,9 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 
 ## Repository Highlights
 
-- Multi-table data assets across step folders
+- Multi-table data assets across artifact-typed folders keyed by domain
 - Semantic model and ontology configuration templates
-- Step 6 routing configuration and derived data generator
+- Routing configuration and derived-routing data generator
 - Evaluation harness and sample prompt dataset
 - End-user and deployment documentation
 - Copilot skill documents for future event reuse
@@ -149,8 +151,8 @@ python deployment/create_domain_package.py --domain network-rail
 
 1. Show baseline quality on raw or cleaned tables.
 2. Show semantic model uplift.
-3. Show ontology reasoning uplift.
-4. Show Step 6 routing improvements across multiple sources.
+3. Show multi-source routing improvements across the Lakehouse and derived data.
+4. Show optional ontology reasoning uplift.
 
 ## Notes
 

@@ -12,8 +12,8 @@ Flexible scenario:
 ## Outcome
 By the end of this workflow, participants can:
 - Query an industry-specific Customer 360 scenario (UK legal by default)
-- See quality progression across maturity steps
-- Observe multi-source routing behavior in Step 6
+- See quality progression across maturity phases
+- Observe multi-source routing behavior in the routing phase
 
 ## Industry Profile (Set First)
 Define a quick profile before running the demo:
@@ -51,14 +51,14 @@ Use one of these prompts in Copilot Chat:
 ### What to provide in your first prompt
 - Target industry (or say "use UK legal default")
 - Available time window
-- Whether Step 5 ontology is in scope
+- Whether the optional ontology phase is in scope
 - Whether to use existing repo files as-is
 
 ### What you should get back from the skill
 - A time-boxed checklist by minute range
 - Table/model/agent setup sequence
 - Prompt pack for live testing
-- Routing tuning actions for Step 6
+- Routing tuning actions for the multi-source routing phase
 
 ## Inputs Required
 - A Fabric workspace with permission to create Lakehouse, semantic model, and Data Agent
@@ -95,13 +95,13 @@ Success check:
 Success check:
 - Answers become more consistent and business-aware.
 
-### 15 to 22 minutes: Enable Step 6 multi-source demo
-1. Confirm the notebook loaded the three Step 6 tables.
+### 15 to 22 minutes: Enable the multi-source routing demo
+1. Confirm the notebook loaded the three derived-routing tables.
 2. Set `ENABLE_DATA_AGENT=True` to stage the profile-defined semantic-model and Lakehouse sources.
 3. Review staging, then set `PUBLISH_DATA_AGENT=True` when ready.
 
 Success check:
-- All Step 6 tables exist and are connected.
+- All derived-routing tables exist and are connected.
 
 ### 22 to 27 minutes: Apply routing best practices
 Apply in this order:
@@ -165,10 +165,10 @@ UK legal default prompt substitutions:
 ## Facilitator Notes
 - Prefer speed and reliability over feature completeness.
 - Keep ontology as optional if time is constrained.
-- If extra time is available, show Step 5 ontology as bonus.
-- Keep the six-step structure fixed, but change domain vocabulary and KPI definitions to fit the target industry.
+- If extra time is available, show the optional ontology phase as a bonus.
+- Keep the six-phase structure fixed, but change domain vocabulary and KPI definitions to fit the target industry.
 
 ## Optional Extension (If +15 Minutes)
-1. Add Step 5 ontology layer.
+1. Add the optional ontology layer.
 2. Re-run relationship-heavy prompts.
 3. Compare improvements in cross-entity reasoning.

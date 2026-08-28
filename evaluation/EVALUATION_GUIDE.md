@@ -338,16 +338,17 @@ Add this to your demo:
 
 ### Presentation Tips
 
-1. Show the evaluation/evaluation_dataset.json file (ground truth queries)
+1. Show the evaluation/challenge/uk-legal.json file (ground truth queries)
 2. Run the evaluation script live (if time permits)
 3. Display the report with actual percentages
 4. Highlight specific query improvements
 
 ## Summary
 
-✅ **evaluation/evaluation_dataset.json** - 30 ground truth queries  
+✅ **evaluation/challenge/uk-legal.json** - 6 ground truth queries  
+✅ **evaluation/routing/uk-legal.json** - 3 optional routing queries  
 ✅ **evaluation/evaluate_agent.py** - Automated testing framework  
-✅ **evaluation/TEST_QUERIES.md** - Manual testing guide  
+✅ **evaluation/legacy/TEST_QUERIES.md** - Manual testing guide (legacy reference)  
 ✅ **Measured metrics** replace estimated percentages  
 ✅ **Before/after comparison** proves improvements  
 
@@ -355,6 +356,6 @@ This transforms your demo from "best practices say this works" to "here's proof 
 
 ---
 
-**Need help?** Check the example queries in evaluation/TEST_QUERIES.md or review the simulation mode output.
+**Need help?** Check the example queries in evaluation/legacy/TEST_QUERIES.md or review the simulation mode output.
 
 

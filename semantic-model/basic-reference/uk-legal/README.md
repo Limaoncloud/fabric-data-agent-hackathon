@@ -1,8 +1,8 @@
-# LegalFirmBasic Direct Lake Semantic Model Instructions
+# LegalFirmBasic Direct Lake Semantic Model Instructions (Manual, Optional)
 
 ## Purpose
 
-Demonstrate poor semantic-model practices and low Q&A / Copilot accuracy, targeting approximately 57% accuracy, using a Direct Lake semantic model over the LegalFirmDemo Lakehouse.
+Demonstrate poor semantic-model practices and low Q&A / Copilot accuracy, targeting approximately 57% accuracy, using a Direct Lake semantic model over the LegalFirmDemo Lakehouse. The deployment notebook does not create this model; build it manually only if you want the anti-pattern comparison.
 
 ## Fabric Web UI - Direct Lake Semantic Model
 
@@ -10,8 +10,8 @@ Demonstrate poor semantic-model practices and low Q&A / Copilot accuracy, target
 1. Go to the workspace containing the LegalFirmDemo Lakehouse.
 1. Open the LegalFirmDemo Lakehouse.
 1. Select New semantic model.
-1. Choose only the Step 1 cleaned tables to demonstrate baseline behavior before semantic model optimization.
-1. Select all 5 Step 1 cleaned tables: step1_cleaned_cases, step1_cleaned_customers, step1_cleaned_transactions, step1_cleaned_solicitors, and step1_cleaned_interactions.
+1. Choose only the base cleaned tables to demonstrate baseline behavior before semantic model optimization.
+1. Select all 5 base cleaned tables: step1_cleaned_cases, step1_cleaned_customers, step1_cleaned_transactions, step1_cleaned_solicitors, and step1_cleaned_interactions.
 1. Create the semantic model in Direct Lake mode.
 1. Name it LegalFirmBasic.
 1. Open the semantic model.
@@ -41,4 +41,4 @@ Value = SUM(step1_cleaned_transactions[amount_gbp])
 
 ## Result
 
-You now have a deliberately low-quality Direct Lake semantic model over the Lakehouse for Step 3 comparison.
+You now have a deliberately low-quality Direct Lake semantic model over the Lakehouse for optional side-by-side comparison with `LegalFirmOptimized`.

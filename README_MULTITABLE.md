@@ -7,8 +7,9 @@ This file is a concise architecture reference for the UK Legal Data Agent hackat
 The organizer notebook creates these items before participants begin:
 
 - `LegalFirmDemo` Lakehouse with eight managed Delta tables.
-- `LegalFirmBasic` Direct Lake semantic model.
 - `LegalFirmOptimized` Direct Lake semantic model.
+
+`LegalFirmBasic` is not deployed by the notebook. Build it manually from [semantic-model/basic-reference/uk-legal/README.md](semantic-model/basic-reference/uk-legal/README.md) only if you want the anti-pattern comparison.
 
 ### Baseline Lakehouse Tables
 
@@ -20,7 +21,7 @@ The organizer notebook creates these items before participants begin:
 | `step1_cleaned_transactions` | One row per transaction | 1,000 |
 | `step1_cleaned_interactions` | One row per interaction | 800 |
 
-### Step 6 Analysis Tables
+### Derived-Routing Analysis Tables
 
 | Table | Grain | Routing purpose |
 | --- | --- | --- |
@@ -45,7 +46,7 @@ The organizer notebook creates these items before participants begin:
 
 The participant-ready optimized model intentionally starts without synonyms, Prep for AI configuration, AI instructions, Verified Answers, or a Data Agent.
 
-## Step 6 Routing Architecture
+## Routing Architecture
 
 Create one Fabric Data Agent with exactly two sources:
 
@@ -54,7 +55,7 @@ Create one Fabric Data Agent with exactly two sources:
 | `LegalFirmOptimized` semantic model | All five model tables | Standard customer, case, solicitor, transaction, and interaction questions answered by model fields or measures |
 | `LegalFirmDemo` Lakehouse | Only the three `step6_*` analysis tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
 
-Do not select the five `step1_cleaned_*` Lakehouse tables in Step 6. Their standard business topics are already covered by `LegalFirmOptimized`; selecting both copies creates avoidable routing ambiguity.
+Do not select the five `step1_cleaned_*` Lakehouse tables in the routing configuration. Their standard business topics are already covered by `LegalFirmOptimized`; selecting both copies creates avoidable routing ambiguity.
 
 SQL example question/query pairs can be configured for the Lakehouse source. They are not supported for the Power BI semantic-model source. Semantic-model synonyms are configured through Prep for AI, not on Lakehouse tables.
 

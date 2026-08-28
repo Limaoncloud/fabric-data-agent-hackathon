@@ -59,7 +59,7 @@ Use one of these prompts in Copilot Chat:
 - Industry name and domain vocabulary
 - Demo duration (15-minute showcase or longer workshop)
 - Whether to use prepared repo assets or generate new data
-- Whether ontology (Step 5) is mandatory or optional
+- Whether the optional ontology phase is mandatory or optional
 
 ### New-domain procedure
 1. Create or review `config/domain-briefs/<domain>.json`. Use `python deployment/create_domain_package.py --domain <domain> --init --display-name "<name>"` for a new brief.
@@ -80,9 +80,9 @@ Network Rail example:
 Do not implement a new domain as vocabulary-only search and replace. Different domains require their own table grains, relationships, metric definitions, sample distributions, and routing examples.
 
 ### Minimum completion bar
-- All step folders have corresponding artifacts
-- Step 6 has physical derived tables plus routing configuration
-- Evaluation results exist for each completed step
+- Every artifact-typed folder (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`) has corresponding content for the domain
+- The routing phase has physical derived tables plus routing configuration
+- Evaluation results exist for each completed phase
 
 ## When Not To Use
 Do not use this skill for:
@@ -91,13 +91,15 @@ Do not use this skill for:
 - Report-only visualization tasks without a Data Agent
 
 ## Demo Objective
-Deliver a progressive six-step demonstration that shows answer-quality uplift:
-- Step 1: Raw multi-table data baseline
-- Step 2: Cleaned multi-table data
-- Step 3: Basic semantic model
-- Step 4: Optimized semantic model followed by participant-authored Prep for AI
-- Step 5: Ontology layer
-- Step 6: Multiple data sources with routing best practices
+Deliver a progressive demonstration that shows answer-quality uplift across six phases:
+- Data readiness: load the domain's base tables into the Lakehouse
+- Semantic model readiness: build the Data Agent on the Optimized semantic model and tune it with Prep for AI
+- Agent configuration: attach the Lakehouse to the same agent as a second source
+- Lakehouse source tuning: apply Data Agent best practices to the Lakehouse source
+- Routing with derived data: add derived Lakehouse marts and configure multi-source routing
+- Optional ontology: add an ontology layer for cross-entity reasoning
+
+USER_GUIDE.md implements this journey as six numbered workshop steps for one continuously-extended Data Agent; this skill describes it as reusable phases so it applies to any domain.
 
 ## Industry Flexibility (Required)
 Treat industry as a configurable input.
@@ -157,13 +159,10 @@ Key files used in this demo:
 
 ## Authoring Workflow
 
-### Step 1 - Cleaned Multi-Table Baseline
+### Phase 1 - Data Readiness
 Actions:
-- Use the cleaned industry-specific Customer 360 baseline with hundreds or thousands of rows.
-- Use multiple related tables, not a single denormalized table.
-- Deploy the Lakehouse with the organizer notebook, then connect a participant-created Data Agent.
-- Leave Data Agent instructions and example queries empty for the first baseline run.
-- Run baseline prompts and record initial quality.
+- Load the domain's base CSVs into the Lakehouse as managed Delta tables, either via the deployment notebook or manual upload in the Fabric web UI.
+- Confirm every profile-declared table and row count before any agent work begins.
 
 Minimum data domains:
 - Customer entity table
@@ -172,56 +171,34 @@ Minimum data domains:
 - Financial events table
 - Engagement/interactions table
 
-### Step 2 - Data Agent Configuration Best Practices
+### Phase 2 - Semantic Model Readiness
 Actions:
-- Keep Step 1 data unchanged.
-- Tighten schema scope and table/column selection.
-- Improve source descriptions, example queries, and agent instructions.
+- Build one Data Agent on the domain's Optimized Direct Lake semantic model. Keep extending this same agent in later phases; do not create a second agent.
+- Leave Data Agent instructions and example queries empty for the first baseline run.
+- Run baseline prompts, including at least one deliberately ambiguous and one deliberately undefined question.
+- Configure Prep for AI (AI Data Schema selection, synonyms, AI instructions), add a Data Agent instruction, and create one Verified Answer from a saved report visual.
+- Retest and record which change affected which question.
+
+Optional manual comparison: build the anti-pattern model from `semantic-model/basic-reference/<domain>/README.md`. The deployment notebook does not create this model.
+
+### Phase 3 - Agent Configuration
+Actions:
+- Attach the Lakehouse to the same agent as a second source and select only the base tables.
+- Leave the new source's description and examples empty for now; run the same baseline prompts to observe two-source ambiguity before tuning.
+
+### Phase 4 - Lakehouse Source Tuning
+Actions:
+- Add a clear source description, a Data Agent instruction distinguishing the Lakehouse from the semantic model, and a validated SQL example query pair.
 - For Lakehouse sources, teach terminology through source descriptions and Data Agent instructions; do not describe this as adding table synonyms.
-- Use validated SQL example query pairs only for supported SQL sources.
-- Re-run the same prompts for like-for-like comparison.
+- Re-run the same prompts and confirm the agent reliably prefers the semantic model for standard questions.
 
-### Step 3 - Basic Semantic Model (Manual, Optional)
-The deployment notebook no longer creates this model. Build it manually in the Fabric web UI following `semantic-model/basic-reference/uk-legal/README.md` only for an anti-pattern comparison.
+### Phase 5 - Routing With Derived Data
 Actions:
-- Create the Basic Direct Lake semantic model manually from the selected domain profile.
-- Keep relationships disabled and use intentionally ambiguous/duplicate measures for the teaching baseline.
-- Publish and connect the Data Agent.
-- Re-run test suite and log quality changes.
-
-### Step 4 - Optimized Semantic Model
-Actions:
-- Generate the Optimized Direct Lake semantic model from the same profile.
-- Apply a clear star schema, descriptions, formats, and unambiguous measures.
-- Leave AI-specific metadata empty in the participant-ready deployment.
-- Have participants configure Prep for AI:
-  - Semantic-model table/column/measure synonyms
-  - AI Data Schema
-  - AI Instructions
-- Configure Verified Answers manually from saved report visuals.
-- Reconnect Data Agent and retest.
-
-Guidance:
-- Prefer users to attempt this themselves first.
-- Use official Learn tooling guidance as needed.
-
-References:
-- https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools
-
-### Step 5 - Ontology Layer
-Actions:
-- Introduce ontology entities and relationships for cross-domain reasoning.
-- Map core business entities from `INDUSTRY_PROFILE`.
-- Re-run relationship-heavy prompts.
-
-### Step 6 - Multi-Source Routing
-Actions:
-- Add additional physical data sources (not config-only).
-- Generate derived routing datasets using sample-data/uk-legal/derived-routing/generate_derived_routing_data.py.
-- Upload Step 6 files and register multiple agent sources.
+- Generate derived routing datasets using `sample-data/<domain>/derived-routing/generate_derived_routing_data.py`.
+- Add the derived tables to the same Lakehouse source, write descriptions and SQL examples, and extend the Data Agent instruction to cover all three areas (semantic model, base tables, derived tables).
 - Apply routing best practices and retest.
 
-Required Step 6 routing sequence:
+Required routing sequence:
 1. Tighten schema scope per source
 2. Add concise source descriptions
 3. Add validated example query pairs for Lakehouse, Warehouse, or KQL sources; do not add them to Power BI semantic-model sources
@@ -229,6 +206,12 @@ Required Step 6 routing sequence:
 
 References:
 - https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing
+
+### Phase 6 - Optional Ontology
+Actions:
+- Introduce ontology entities and relationships for cross-domain reasoning.
+- Map core business entities from `INDUSTRY_PROFILE`.
+- Re-run relationship-heavy prompts.
 
 ## Routing Best Practices (Mandatory)
 - Keep each source narrowly scoped to one topic area.
@@ -238,10 +221,11 @@ References:
 - Validate orchestration outcomes and iteratively refine schema/description/examples/rules.
 
 ## Evaluation Pattern
-Use the same test prompts across all six steps so quality movement is attributable.
+Use the same test prompts across all six phases so quality movement is attributable.
 
 Recommended assets:
-- evaluation/evaluation_dataset.json
+- evaluation/challenge/uk-legal.json
+- evaluation/routing/uk-legal.json
 - evaluation/evaluate_agent.py
 - evaluation/results/step1-results.json ... evaluation/results/step6-results.json
 
@@ -270,21 +254,21 @@ UK legal default prompt examples:
 ## Deployment Expectations
 - Use the root deployment notebook for Lakehouse load, model publish, optional agent wiring, and verification.
 - Validate the profile against source headers before any Fabric write.
-- Ensure all paths and instructions reflect folderized steps.
+- Ensure all paths and instructions reflect the artifact-typed folder structure.
 - Include reproducible commands where practical.
 
 ## Packaging Rules For Future Events
 - Keep only multi-table artifacts for final event package.
 - Remove legacy single-table assets.
-- Group all outputs by step folders.
+- Group outputs by artifact type (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), not step folders.
 - Keep user-facing guide concise and practical.
 - Keep reusable domain profiles under `config/domains/` and generated deployment logic under `deployment/`.
 - Do not commit generated PBIP, PBIX, BIM, or report-template artifacts.
 
 ## Success Criteria
 - A participant can run the walkthrough end-to-end without hidden dependencies.
-- Step-by-step quality improvements are demonstrable.
-- Step 6 clearly shows better multi-source routing behavior.
+- Phase-by-phase quality improvements are demonstrable.
+- The routing phase clearly shows better multi-source routing behavior.
 - Repo is ready to publish and share publicly.
 
 ## Reusable Deliverables Checklist
@@ -294,7 +278,7 @@ UK legal default prompt examples:
 - Notebook-generated Optimized Direct Lake semantic model
 - Ontology definition
 - Multi-source routing configuration
-- Step 6 derived data generator and outputs
+- Derived-routing data generator and outputs
 - User guide
 - Deployment guide
 - Evaluation script, dataset, and per-step results
@@ -304,12 +288,12 @@ Industry adaptation add-ons:
 - 10 to 20 industry-specific test prompts mapped to the same evaluation intent categories
 
 ## Suggested 15-Minute Demo Script
-1. Show Step 1 baseline errors and ambiguity
-2. Show Step 2 stabilization from cleaning
-3. Show Step 3 structural gains from semantic model
-4. Show Step 4 before/after results from participant-authored semantic-model synonyms and Prep for AI
-5. Show Step 5 relationship reasoning with ontology
-6. Show Step 6 orchestrator routing improvements across sources
+1. Show data-readiness baseline errors and ambiguity
+2. Show semantic-model-readiness stabilization from Prep for AI
+3. Show agent-configuration structural gains from attaching the Lakehouse
+4. Show Lakehouse-source-tuning before/after results
+5. Show routing-with-derived-data orchestrator improvements across sources
+6. Show optional-ontology relationship reasoning
 
 ## Notes For Skill Operators
 - If a user asks for scale-up, increase row counts but preserve table relationships.

@@ -381,7 +381,7 @@ class DataAgentEvaluator:
             metrics_list.append(metrics)
             
             # Print result
-            status = "✓" if metrics.exact_match else "✗"
+            status = "PASS" if metrics.exact_match else "FAIL"
             print(f"  {status} Exact: {metrics.exact_match} | Semantic: {metrics.semantic_match} | "
                   f"Routing: {metrics.routing_correct} | Time: {result.response_time_ms:.0f}ms")
             if metrics.notes:
@@ -848,13 +848,13 @@ def main():
     
     # Return exit code based on accuracy
     if aggregate.semantic_match_accuracy >= 0.90:
-        print("✓ PASS: Accuracy >= 90%")
+        print("PASS: Accuracy >= 90%")
         return 0
     elif aggregate.semantic_match_accuracy >= 0.75:
-        print("⚠ WARNING: Accuracy between 75-90%")
+        print("WARNING: Accuracy between 75-90%")
         return 1
     else:
-        print("✗ FAIL: Accuracy < 75%")
+        print("FAIL: Accuracy < 75%")
         return 2
 
 

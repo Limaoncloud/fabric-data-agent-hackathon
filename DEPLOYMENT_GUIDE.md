@@ -29,7 +29,7 @@ Use `NB_Deploy_Data_Agent_Hackathon.ipynb` for the reproducible deployment path:
 
 The notebook generates semantic models as TMDL through Fabric APIs. It does not require Power BI Desktop, PBIP, PBIX, BIM, or template files. See [deployment/README.md](deployment/README.md) for custom-domain deployment.
 
-The remaining sections document the equivalent manual workflow and troubleshooting details.
+The remaining sections document a legacy manual-deployment narrative and troubleshooting details. Their internal `STEP 1`-`STEP 6` headers predate the current architecture and do not match USER_GUIDE.md's numbered workshop steps (routing is Step 5; ontology is the optional Step 6). USER_GUIDE.md is authoritative for the current phase order: data readiness, semantic model readiness, agent configuration, Lakehouse source tuning, routing with derived data, and optional ontology.
 
 ---
 
@@ -270,11 +270,11 @@ Try these queries in the Data Agent chat:
 
 ### **Test Each Step**
 
-Use queries from `evaluation/TEST_QUERIES.md`:
+Use queries from `evaluation/legacy/TEST_QUERIES.md`:
 
 ```powershell
 # Load test queries
-$queries = Get-Content evaluation/TEST_QUERIES.md
+$queries = Get-Content evaluation/legacy/TEST_QUERIES.md
 
 # Test each step manually in Fabric
 # Step 1-2: Validate data preparation and source descriptions
@@ -295,7 +295,7 @@ Once deployed, update `evaluation/evaluate_agent.py` with actual IDs:
 python evaluation/evaluate_agent.py `
     --workspace-id "your-workspace-id" `
     --agent-id "your-agent-id" `
-    --dataset evaluation/evaluation_dataset.json `
+    --dataset evaluation/challenge/uk-legal.json `
     --output production_results.json
 
 # Compare to simulation
