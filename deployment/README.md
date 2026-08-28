@@ -59,7 +59,7 @@ A new domain must model its real entities and metrics. Renaming legal entities a
 | `artifacts` | Fabric item names |
 | `tables` | Source paths, physical names, business names, columns, and types |
 | `relationships` | Optimized semantic-model relationships |
-| `semanticModels` | Basic and optimized tables and measures |
+| `semanticModels` | Optimized tables and measures |
 | `ai` | AI instructions, schema scope, and Verified Answer candidates |
 | `ontology` | Optional entities, bindings, and relationships |
 | `agent` | Optional Data Agent sources, scope, instructions, and examples |

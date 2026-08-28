@@ -9,8 +9,6 @@ The organizer notebook creates these items before participants begin:
 - `LegalFirmDemo` Lakehouse with eight managed Delta tables.
 - `LegalFirmOptimized` Direct Lake semantic model.
 
-`LegalFirmBasic` is not deployed by the notebook. Build it manually from [semantic-model/basic-reference/uk-legal/README.md](semantic-model/basic-reference/uk-legal/README.md) only if you want the anti-pattern comparison.
-
 ### Baseline Lakehouse Tables
 
 | Table | Grain | Current rows |
@@ -29,9 +27,7 @@ The organizer notebook creates these items before participants begin:
 | `step6_case_finance_insights` | One row per case | Combined case and financial outcomes or payment risk |
 | `step6_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
 
-## Semantic Models
-
-`LegalFirmBasic` contains the five business tables without relationships and includes intentionally ambiguous or duplicate measures.
+## Semantic Model
 
 `LegalFirmOptimized` contains:
 

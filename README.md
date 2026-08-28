@@ -77,7 +77,6 @@ Deployment details:
 - config/domain-profile.schema.json
 - config/domains/uk-legal.json
 - deployment/hackathon_deployer.py
-- semantic-model/basic-reference/uk-legal/README.md
 - semantic-model/optimized/uk-legal/README.md
 - ontology/uk-legal/ontology-definition.json
 - agent-configuration/routing/uk-legal/data-agent-configuration.json

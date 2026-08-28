@@ -10,7 +10,6 @@
   "artifacts": {
     "folder": "data_agent_hackathon",
     "lakehouse": "LegalFirmDemo",
-    "basicModel": "LegalFirmBasic",
     "optimizedModel": "LegalFirmOptimized",
     "ontology": "LegalFirmOntology",
     "dataAgent": "LegalFirmCustomer360Agent"
@@ -164,19 +163,6 @@
     { "name": "Cases to Solicitors", "fromTable": "Cases", "fromColumn": "Solicitor Name", "toTable": "Solicitors", "toColumn": "Solicitor Name", "crossFilter": "oneDirection" }
   ],
   "semanticModels": {
-    "basic": {
-      "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
-      "useRelationships": false,
-      "measures": [
-        { "table": "Cases", "name": "Total Cases", "expression": "COUNTROWS('Cases')", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
-        { "table": "Cases", "name": "TotalCases", "expression": "COUNTROWS('Cases')", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
-        { "table": "Cases", "name": "total_cases", "expression": "COUNTROWS('Cases')", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
-        { "table": "Cases", "name": "Case Count", "expression": "COUNTROWS('Cases')", "formatString": "#,##0", "description": "Case count duplicate used intentionally for the baseline anti-pattern." },
-        { "table": "Cases", "name": "Total", "expression": "SUM('Cases'[Case Value])", "formatString": "GBP #,##0.00", "description": "Intentionally ambiguous baseline measure." },
-        { "table": "Customers", "name": "Count", "expression": "COUNTROWS(Customers)", "formatString": "#,##0", "description": "Intentionally ambiguous baseline measure." },
-        { "table": "Transactions", "name": "Value", "expression": "SUM(Transactions[Transaction Amount])", "formatString": "GBP #,##0.00", "description": "Intentionally ambiguous baseline measure." }
-      ]
-    },
     "optimized": {
       "tableNames": ["Customers", "Cases", "Solicitors", "Transactions", "Interactions"],
       "useRelationships": true,

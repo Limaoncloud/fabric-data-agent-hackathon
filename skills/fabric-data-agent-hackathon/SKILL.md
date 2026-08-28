@@ -123,7 +123,6 @@ Use artifact-typed folders keyed by domain ID, not numbered step folders. Number
 ```text
 sample-data/uk-legal/base/
 sample-data/uk-legal/derived-routing/
-semantic-model/basic-reference/uk-legal/
 semantic-model/optimized/uk-legal/
 ontology/uk-legal/
 agent-configuration/routing/uk-legal/
@@ -141,7 +140,6 @@ Key files used in this demo:
 - sample-data/uk-legal/base/solicitors.csv
 - sample-data/uk-legal/base/transactions.csv
 - sample-data/uk-legal/base/interactions.csv
-- semantic-model/basic-reference/uk-legal/README.md
 - semantic-model/optimized/uk-legal/README.md
 - ontology/uk-legal/ontology-definition.json
 - agent-configuration/routing/uk-legal/data-agent-configuration.json
@@ -175,8 +173,6 @@ Actions:
 - Run baseline prompts, including at least one deliberately ambiguous and one deliberately undefined question.
 - Configure Prep for AI (AI Data Schema selection, synonyms, AI instructions), add a Data Agent instruction, and create one Verified Answer from a saved report visual.
 - Retest and record which change affected which question.
-
-Optional manual comparison: build the anti-pattern model from `semantic-model/basic-reference/<domain>/README.md`. The deployment notebook does not create this model.
 
 ### Phase 3 - Agent Configuration
 Actions:

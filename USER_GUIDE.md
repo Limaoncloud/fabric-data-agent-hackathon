@@ -4,7 +4,7 @@ This guide supports a three-hour, hands-on learning loop:
 
 > Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
 
-The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent. The deployment notebook does not deploy the deliberately weak `LegalFirmBasic` model; build it manually from the [Basic model reference](semantic-model/basic-reference/uk-legal/README.md) only if you want an optional side-by-side comparison.
+The environment starts with Lakehouse data and a `LegalFirmOptimized` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent.
 
 You build one Data Agent and grow it step by step: first the semantic model, then the Lakehouse attached to that same agent as a second source. Each step is a continuation of the same agent, not a new one.
 
@@ -63,7 +63,6 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 ### Semantic model and config files
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
-- [Basic model reference](semantic-model/basic-reference/uk-legal/README.md) (background only; not part of the participant walkthrough)
 - [Optimized model facilitator reference](semantic-model/optimized/uk-legal/README.md) (contains a complete solution path; do not distribute during the participant challenge)
 - `ontology/uk-legal/ontology-definition.json`
 - `agent-configuration/routing/uk-legal/data-agent-configuration.json`
@@ -301,7 +300,7 @@ WHERE transaction_type = 'Payment';
 6. Test the paraphrase: **How many payments are in the transaction table?**
 7. Confirm that both questions return `199`, then continue with the challenge questions without giving participants more SQL solutions.
 
-This question is deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmBasic` or `LegalFirmOptimized` Power BI semantic-model sources.
+This question is deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmOptimized` Power BI semantic-model source.
 
 ### Diagnostic Hints For The Remaining Questions
 

@@ -14,7 +14,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("add `matter` and `matters` as synonyms for the `Cases` table", guide)
         self.assertIn("How many payment transactions were recorded?", guide)
         self.assertIn("WHERE transaction_type = 'Payment'", guide)
-        self.assertIn("not for the `LegalFirmBasic` or `LegalFirmOptimized`", guide)
+        self.assertIn("not for the `LegalFirmOptimized` Power BI semantic-model source", guide)
         self.assertNotIn("add one relevant synonym rather than changing", guide)
 
     def test_lakehouse_sql_example_matches_current_data(self):

@@ -47,7 +47,7 @@ Paste that output into Copilot Chat, or invoke `/Generate Hackathon Domain water
 - validated domain profile under `config/domains/`
 - deterministic base-data generator and CSVs under `sample-data/<domain>/base/`
 - derived-routing marts and generator under `sample-data/<domain>/derived-routing/`
-- basic and optimized semantic-model references under `semantic-model/basic-reference/<domain>/` and `semantic-model/optimized/<domain>/`
+- an optimized semantic-model reference under `semantic-model/optimized/<domain>/`
 - ontology definition under `ontology/<domain>/`
 - Data Agent routing configuration under `agent-configuration/routing/<domain>/`
 - evaluation questions with expected answers under `evaluation/challenge/<domain>.json` and `evaluation/routing/<domain>.json`

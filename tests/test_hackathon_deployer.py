@@ -1,4 +1,5 @@
 import ast
+import copy
 import json
 import re
 import unittest
@@ -41,19 +42,25 @@ class ProfileTests(unittest.TestCase):
 
 class SemanticModelTests(unittest.TestCase):
     def test_model_parts_and_base64_round_trip(self):
-        basic = render_semantic_model_parts(PROFILE, "basic", WORKSPACE_ID, LAKEHOUSE_ID)
+        # No profile ships a "basic" model anymore; use a synthetic flat-model
+        # variant to keep coverage of the useRelationships=False code path.
+        flat_profile = copy.deepcopy(PROFILE)
+        flat_profile["semanticModels"]["flat"] = copy.deepcopy(PROFILE["semanticModels"]["optimized"])
+        flat_profile["semanticModels"]["flat"]["useRelationships"] = False
+
+        flat = render_semantic_model_parts(flat_profile, "flat", WORKSPACE_ID, LAKEHOUSE_ID)
         optimized = render_semantic_model_parts(PROFILE, "optimized", WORKSPACE_ID, LAKEHOUSE_ID)
 
-        self.assertEqual(5, sum(path.startswith("definition/tables/") for path in basic))
+        self.assertEqual(5, sum(path.startswith("definition/tables/") for path in flat))
         self.assertEqual(5, sum(path.startswith("definition/tables/") for path in optimized))
-        self.assertNotIn("definition/relationships.tmdl", basic)
+        self.assertNotIn("definition/relationships.tmdl", flat)
         self.assertIn("definition/relationships.tmdl", optimized)
-        self.assertEqual(basic, decode_definition_parts(definition_payload(basic, "TMDL")))
+        self.assertEqual(flat, decode_definition_parts(definition_payload(flat, "TMDL")))
         self.assertEqual(optimized, decode_definition_parts(definition_payload(optimized, "TMDL")))
 
-        for model_key, parts in (("basic", basic), ("optimized", optimized)):
+        for model_key, parts, source_profile in (("flat", flat, flat_profile), ("optimized", optimized, PROFILE)):
             declarations = "\n".join(parts.values())
-            for measure in PROFILE["semanticModels"][model_key]["measures"]:
+            for measure in source_profile["semanticModels"][model_key]["measures"]:
                 escaped_name = re.escape(measure["name"])
                 pattern = rf"^\s*measure\s+(?:'{escaped_name}'|{escaped_name})\s*="
                 self.assertEqual(1, len(re.findall(pattern, declarations, re.MULTILINE)), measure["name"])
