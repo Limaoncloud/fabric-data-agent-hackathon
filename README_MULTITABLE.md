@@ -49,9 +49,9 @@ Create one Fabric Data Agent with exactly two sources:
 | Source | Selected objects | Use when |
 | --- | --- | --- |
 | `LegalFirmSemanticModel` semantic model | All five model tables | Standard customer, case, solicitor, transaction, and interaction questions answered by model fields or measures |
-| `LegalFirmDemo` Lakehouse | Only the three `step6_*` analysis tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
+| `LegalFirmDemo` Lakehouse | Only the three `routing_*` analysis tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
 
-Do not select the five `base_*` Lakehouse tables in the routing configuration. Their standard business topics are already covered by `LegalFirmSemanticModel`; selecting both copies creates avoidable routing ambiguity.
+This table describes the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. In Step 5, deselect them and select only the three `routing_*` tables. Standard business topics are already covered by `LegalFirmSemanticModel`; selecting both copies creates avoidable routing ambiguity.
 
 SQL example question/query pairs can be configured for the Lakehouse source. They are not supported for the Power BI semantic-model source. Semantic-model synonyms are configured through Prep for AI, not on Lakehouse tables.
 

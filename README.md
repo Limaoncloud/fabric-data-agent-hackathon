@@ -22,6 +22,29 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 - Solution architects demonstrating semantic model and routing impact
 - Teams learning how to productionize agent quality step by step
 
+## Start Here
+
+Choose one path:
+
+| Role | Start with | Purpose |
+| --- | --- | --- |
+| Participant | [USER_GUIDE.md](USER_GUIDE.md) | Follow the six workshop steps and test one continuously improved Data Agent |
+| Facilitator | [evaluation/FACILITATOR_GUIDE.md](evaluation/FACILITATOR_GUIDE.md) | Prepare the event, use solution checkpoints, give hints, and validate results |
+| Automation or troubleshooting | [deployment/README.md](deployment/README.md) | Understand deployment parameters, generated artifacts, and rerun behavior |
+
+Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to test the live agent. Use `NB_Automated_Data_Agent_Evaluation.ipynb` only after review to calculate the 24-point scorecard.
+
+### Notebook Guide
+
+| Notebook | Use it for |
+| --- | --- |
+| `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the Lakehouse, tables, and semantic model |
+| `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
+| `NB_Automated_Data_Agent_Evaluation.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
+| `NB_Evaluate_Data_Agent_Hackathon.ipynb` | Basic compatibility path for an already prepared manual result dataset; prefer the automated scorecard for new runs |
+
+`NB_Run_SDK_Evaluation.ipynb` followed by `NB_Automated_Data_Agent_Evaluation.ipynb` is the recommended interactive evaluation workflow.
+
 ## Repository Highlights
 
 - Multi-table data assets across artifact-typed folders keyed by domain
@@ -59,6 +82,14 @@ Deployment details:
 - deployment/README.md
 
 ## Step Assets
+
+The three routing folders are intentionally separate:
+
+| Folder | Contains |
+| --- | --- |
+| `sample-data/uk-legal/derived-routing/` | CSV data used to create the three prepared routing tables |
+| `agent-configuration/routing/uk-legal/` | Reference Data Agent source selection and routing configuration |
+| `evaluation/routing/uk-legal/` | Optional Step 5 routing test questions and expected answers |
 
 ### Data generation and data files
 - sample-data/uk-legal/base/generate_base_data.py

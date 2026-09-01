@@ -45,9 +45,21 @@ class DocumentationContractTests(unittest.TestCase):
         guide = (ROOT / "evaluation" / "FACILITATOR_GUIDE.md").read_text(
             encoding="utf-8"
         )
+        self.assertIn("## How To Use This Guide", guide)
+        self.assertIn("## Facilitator Solution Checkpoints", guide)
+        self.assertIn("### Step 2: Prep For AI And Agent Instructions", guide)
+        self.assertIn("### Step 5: Prepared Tables And Multi-Source Routing", guide)
+        self.assertIn("NB_Run_SDK_Evaluation.ipynb", guide)
         self.assertIn("## Controls By Source Type", guide)
         self.assertIn("Do not tell participants to add synonyms to Lakehouse tables", guide)
         self.assertIn("not Power BI semantic-model sources", guide)
+
+        model_reference = (
+            ROOT / "semantic-model" / "optimized" / "uk-legal" / "README.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Artifact Reference", model_reference)
+        self.assertIn("FACILITATOR_GUIDE.md", model_reference)
+        self.assertNotIn("## 5. Create a report for verified answers", model_reference)
 
     def test_operator_skill_preserves_untuned_baseline(self):
         skill = (
@@ -85,6 +97,16 @@ class DocumentationContractTests(unittest.TestCase):
         user_guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
         self.assertIn("one Data Agent with two complementary sources", user_guide)
         self.assertNotIn("Add at least 4-5 data sources", user_guide)
+        self.assertNotIn("step6_", user_guide)
+        self.assertIn("Deselect the five `base_*` tables", user_guide)
+
+        root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("## Start Here", root_readme)
+        self.assertIn("The three routing folders are intentionally separate", root_readme)
+
+        routing_readme = (ROOT / "README_MULTITABLE.md").read_text(encoding="utf-8")
+        self.assertNotIn("step6_", routing_readme)
+        self.assertIn("final Step 5 configuration", routing_readme)
 
 
 if __name__ == "__main__":

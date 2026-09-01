@@ -2,6 +2,103 @@
 
 Keep this guide separate from participant materials until teams have recorded their baseline answers and diagnoses.
 
+## How To Use This Guide
+
+1. Use [USER_GUIDE.md](../USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
+2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
+3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](../NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
+4. Use [NB_Run_SDK_Evaluation.ipynb](../NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Automated_Data_Agent_Evaluation.ipynb](../NB_Automated_Data_Agent_Evaluation.ipynb) afterward for reviewed 24-point scoring.
+
+The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
+
+## Facilitator Solution Checkpoints
+
+These are reference outcomes, not a script to reveal to participants. Accept a different configuration when the team can demonstrate correct answers, durable behavior across paraphrases, and the expected source or measure.
+
+### Step 1: Untuned Baseline
+
+- Source: `LegalFirmSemanticModel` only.
+- Leave Prep for AI instructions, synonyms, Verified Answers, and Data Agent instructions empty.
+- Capture the six original questions and paraphrases before providing hints.
+
+### Step 2: Prep For AI And Agent Instructions
+
+In `LegalFirmSemanticModel > Model settings > Prep data for AI`:
+
+- Include business-facing identifiers, names, statuses, dates, values, transaction types, payment status, hours, and every measure from `_Measures`.
+- Add `client`/`clients` as alternatives for customer/customers and `matter`/`matters` as alternatives for case/cases.
+- Keep calculations in explicit measures when a suitable measure already exists.
+
+Use these semantic-model AI instructions as the reference solution:
+
+```text
+This is a UK legal firm. Customers may be Individual or Corporate, and legal matters are stored as cases.
+
+Revenue means Invoice transactions only, not Payments. Billed hours means hours_worked from Timesheet transactions. Outstanding means Invoices where payment_status is Unpaid. Active customers have status Active.
+
+Always filter Transactions by transaction_type when calculating revenue, expenses, invoices, payments, or timesheets. Case values are in GBP. Dates use UK format. When asked for top, highest, most, or best, sort descending. Use the current calendar year unless the user explicitly requests the April-to-March fiscal year.
+
+A high-value case is greater than GBP 100,000. A large customer has more than five cases. A senior solicitor has an hourly rate greater than GBP 300.
+```
+
+Use these initial Data Agent instructions while the semantic model is the only source:
+
+```text
+Use LegalFirmSemanticModel for business questions about customers, cases, solicitors, transactions, interactions, revenue, case value, billed hours, and outstanding invoices. Use an explicit semantic-model measure whenever one exists; do not recreate it from a raw column.
+
+Treat matter and matters as alternatives for case and cases. Ask one concise clarifying question only when different interpretations would materially change the answer.
+
+Present monetary values in GBP and dates in UK format. State important filters or time periods. Do not invent values, definitions, or legal conclusions, and do not present an answer as legal advice.
+```
+
+Checkpoint: **How many matters are currently open?** should return `180` using `[Open Cases]`. **How much revenue have we generated?** should return `GBP 5,420,217` using `[Total Revenue]`.
+
+### Optional Verified Answers
+
+Verified Answers are grounded in saved report visuals; do not paste raw DAX as an answer. Create a small report from `LegalFirmSemanticModel`, add Card visuals for stable measures, save it, and use each visual's **Add to Q&A** action with **Verified answer** enabled.
+
+Recommended cards: `[Total Customers]`, `[Total Case Value]`, `[Open Cases]`, `[Total Revenue]`, and `[Outstanding Invoices]`.
+
+### Steps 3-4: Add And Tune The Lakehouse Source
+
+Add `LegalFirmDemo` to the same `LegalFirmAgent`. Initially select only the five `base_*` tables. Lakehouse sources use selected objects, descriptions, Data Agent instructions, and validated SQL examples; they do not use semantic-model synonyms.
+
+Use this routing principle:
+
+```text
+Prefer LegalFirmSemanticModel for standard business metrics supported by model fields or explicit measures. Use LegalFirmDemo base_* tables for detailed row-level lookups, a field or filter not exposed by the model, or a calculation the model cannot answer. Prefer LegalFirmDemo for exact transaction_id, case_id, or interaction_id record lookups. Do not combine sources unless one source cannot answer the request.
+```
+
+Use the three non-scored identifier examples in [USER_GUIDE.md](../USER_GUIDE.md#worked-example-2-add-lakehouse-sql-example-queries) to teach SQL example queries. Do not provide SQL for the six scored challenge questions.
+
+### Step 5: Prepared Tables And Multi-Source Routing
+
+Deselect the five `base_*` tables used in Steps 3-4, then select only these tables on the existing `LegalFirmDemo` source:
+
+- `routing_client_engagement_summary` for engagement segments and interaction recency.
+- `routing_case_finance_insights` for combined case-finance outcomes, payment risk, and outstanding balances.
+- `routing_solicitor_performance_mart` for solicitor rankings and performance tiers.
+
+Extend the instructions with:
+
+```text
+Use routing_client_engagement_summary only for engagement segments and interaction recency. Use routing_case_finance_insights only for combined case-finance outcomes, payment risk, and outstanding balances by case. Use routing_solicitor_performance_mart only for solicitor rankings and performance tiers. Continue to prefer LegalFirmSemanticModel for standard measures and base_* tables for detailed records. Prefer one source when the question is clear.
+```
+
+Expected routing checks:
+
+| Test | Expected source | Expected object |
+| --- | --- | --- |
+| How many active customers do we have? | `LegalFirmSemanticModel` | `[Active Customers]` |
+| What is our total revenue? | `LegalFirmSemanticModel` | `[Total Revenue]` |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `routing_client_engagement_summary` |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `routing_case_finance_insights` |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `routing_solicitor_performance_mart` |
+
+Clear the chat before routing checks and inspect the selected source plus generated DAX or SQL. A correct answer alone does not prove correct routing.
+
+The detailed `base_*` identifier lookups are Steps 3-4 checks. They are not part of the final Step 5 routing state after those tables are deselected.
+
 ## Learning Objective
 
 Participants should learn to choose the lowest durable layer for a fix:
@@ -120,7 +217,14 @@ Score each response on:
 - Robustness to paraphrasing.
 - Evidence-based explanation of the change.
 
-Use the focused dataset for this exercise:
+Use the live SDK notebook for measured accuracy:
+
+1. Attach `LegalFirmDemo` as the notebook's default Lakehouse.
+2. Run [NB_Run_SDK_Evaluation.ipynb](../NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before tuning.
+3. Run it with `SNAPSHOT_NAME="final"` after tuning.
+4. Review source and query evidence before entering observations in [NB_Automated_Data_Agent_Evaluation.ipynb](../NB_Automated_Data_Agent_Evaluation.ipynb).
+
+The command below is only an illustrative local smoke test; it is not measured agent accuracy:
 
 ```powershell
 python evaluation/evaluate_agent.py `

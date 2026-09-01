@@ -74,7 +74,7 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 ### Semantic model and config files
 - [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
 - [UK Legal domain profile](config/domains/uk-legal.json)
-- [Optimized model facilitator reference](semantic-model/optimized/uk-legal/README.md) (contains a complete solution path; do not distribute during the participant challenge)
+- [Semantic-model artifact reference](semantic-model/optimized/uk-legal/README.md) (deployed relationships and measures)
 - `ontology/uk-legal/ontology-definition.json`
 - `agent-configuration/routing/uk-legal/data-agent-configuration.json`
 
@@ -85,7 +85,6 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 - `sample-data/uk-legal/derived-routing/generate_derived_routing_data.py`
 
 ### Test prompts
-- `evaluation/FACILITATOR_GUIDE.md`
 - `evaluation/challenge/uk-legal.json`
 - `evaluation/routing/uk-legal.json`
 
@@ -238,7 +237,7 @@ Continue building the same `LegalFirmAgent`: give it one Data Agent with two com
    - `base_solicitors`
    - `base_transactions`
    - `base_interactions`
-4. Leave the three tables beginning with `step6_` unselected; you will add them in Step 5.
+4. Leave the three tables beginning with `routing_` unselected; you will use them in Step 5.
 5. Leave the Lakehouse source's description and example queries empty for now. Keep the Step 2 instructions on `LegalFirmSemanticModel` unchanged.
 
 The agent can contain up to five data sources; it now has two.
@@ -363,11 +362,11 @@ Use the facilitator-provided evaluation results only after recording your own an
 ## Step 5: Add The Derived Lakehouse Tables And Configure Routing, Retest
 
 ### Goal
-Continue extending the same `LegalFirmAgent` with the three prepared Step 6 analysis tables on `LegalFirmDemo`, so it can also answer engagement, case-finance, and solicitor-performance questions that neither `LegalFirmSemanticModel` nor the raw `base_*` tables can.
+Continue extending the same `LegalFirmAgent` with the three prepared routing tables on `LegalFirmDemo`, so it can answer engagement, case-finance, and solicitor-performance questions that `LegalFirmSemanticModel` does not expose.
 
 ### Actions: Add The Derived Tables
 1. Open the existing `LegalFirmAgent` Data Agent and its `LegalFirmDemo` source.
-2. In addition to the five `base_*` tables, make these three tables available:
+2. Deselect the five `base_*` tables used in Steps 3-4, then make only these three tables available:
    - `routing_client_engagement_summary`
    - `routing_case_finance_insights`
    - `routing_solicitor_performance_mart`
@@ -378,7 +377,7 @@ Continue extending the same `LegalFirmAgent` with the three prepared Step 6 anal
 - "Which high-value open cases have outstanding balances?"
 - "Which solicitors are in the top performance tier?"
 
-Record the answer, the source selected, and whether routing was correct or ambiguous. With three Lakehouse table groups now unscoped, expect inconsistent or unexplained source selection.
+Record the answer, the source selected, and whether routing was correct or ambiguous. With three prepared Lakehouse tables now unscoped, expect inconsistent or unexplained source selection.
 
 ### Read The Routing Best Practices
 [Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
