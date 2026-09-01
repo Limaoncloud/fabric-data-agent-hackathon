@@ -19,6 +19,7 @@ Requirements:
 import argparse
 import importlib
 import json
+import re
 import time
 from dataclasses import asdict, dataclass
 from datetime import datetime
@@ -222,6 +223,23 @@ class DataAgentEvaluator:
             error=None
         )
     
+    @staticmethod
+    def _coerce_number(value: Any) -> Optional[float]:
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            return float(value)
+
+        text = str(value).strip()
+        try:
+            return float(text.replace(",", ""))
+        except ValueError:
+            matches = re.findall(
+                r"(?<![\w.])[-+]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?![\w.])",
+                text,
+            )
+            if len(matches) != 1:
+                return None
+            return float(matches[0].replace(",", ""))
+
     def compare_answers(
         self, 
         actual: Any, 
@@ -237,8 +255,10 @@ class DataAgentEvaluator:
         # Exact match
         if answer_type == "number":
             # Allow small floating point tolerance
-            actual_val = float(actual)
-            expected_val = float(expected)
+            actual_val = self._coerce_number(actual)
+            expected_val = self._coerce_number(expected)
+            if actual_val is None or expected_val is None:
+                return False, False
             exact = abs(actual_val - expected_val) < 0.01
             if expected_val == 0:
                 semantic = exact

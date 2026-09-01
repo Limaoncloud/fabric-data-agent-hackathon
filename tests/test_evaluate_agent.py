@@ -45,6 +45,22 @@ class EvaluatorModeTests(unittest.TestCase):
 
 
 class ChallengeDatasetEvaluationTests(unittest.TestCase):
+    def test_numeric_prose_answer_is_compared_without_crashing(self):
+        evaluator = DataAgentEvaluator(simulation_mode=True)
+        answer = (
+            "You currently have **101 active clients**.\n\n"
+            "- Metric used: **Active Customers**\n"
+            "- Data source: LegalFirmSemanticModel"
+        )
+        self.assertEqual((True, True), evaluator.compare_answers(answer, 101, "number"))
+
+    def test_ambiguous_numeric_prose_does_not_guess(self):
+        evaluator = DataAgentEvaluator(simulation_mode=True)
+        self.assertEqual(
+            (False, False),
+            evaluator.compare_answers("101 active out of 171 total clients", 101, "number"),
+        )
+
     def test_challenge_dataset_evaluates_without_crashing(self):
         evaluator = DataAgentEvaluator(simulation_mode=True, simulation_step=2)
         metrics_list, aggregate = evaluator.evaluate_all(str(CHALLENGE_DATASET))
