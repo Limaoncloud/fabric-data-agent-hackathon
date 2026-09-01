@@ -4,7 +4,7 @@
 
 Demonstrate semantic-model best practices and high / 100% Copilot accuracy using an optimized Direct Lake semantic model over the LegalFirmDemo Lakehouse.
 
-The deployment notebook generates and deploys `LegalFirmSemanticModel` automatically from `config/domains/uk-legal.json`; you do not need to build it by hand. This document is a facilitator/background reference describing exactly what the notebook builds (sections 1-4) and the participant-authored steps that remain manual (sections 5-7: verified-answer report, Prep for AI, and pinning verified answers).
+The deployment notebook generates and deploys `LegalFirmSemanticModel` automatically from `config/domains/uk-legal.json`; you do not need to build it by hand. This document is a facilitator/background reference describing exactly what the notebook builds (sections 1-4) and the participant-authored steps that remain manual (sections 5-8: verified-answer report, Prep for AI, pinning verified answers, and Lakehouse routing configuration).
 
 ## 1. What the notebook creates
 
@@ -159,6 +159,128 @@ Verified answers are pinned directly on a report visual, not configured from Pre
 1. Save the report.
 1. Repeat for each remaining question and visual.
 
+## 8. Configure the Lakehouse source and final agent routing
+
+Add `LegalFirmDemo` to the existing `LegalFirmAgent` as a second data source. Do not create a separate agent. Lakehouse sources do not have the semantic-model synonym editor; configure them with selected tables and columns, a data source description, Data Agent instructions, and validated SQL example queries.
+
+### A. Initial Lakehouse configuration with base tables
+
+Select only these tables for the initial Lakehouse test:
+
+- `base_customers`
+- `base_cases`
+- `base_solicitors`
+- `base_transactions`
+- `base_interactions`
+
+Paste this into the **Description** for the `LegalFirmDemo` data source:
+
+```text
+Detailed UK legal-firm Lakehouse data at customer, case, solicitor, transaction, and interaction grain. Use the base_* tables only for detailed row-level questions, combinations, or filters that LegalFirmSemanticModel does not expose. For standard counts, totals, revenue, case value, billed hours, and unpaid-invoice questions, prefer LegalFirmSemanticModel and its explicit measures.
+```
+
+Replace the earlier Data Agent instructions with this combined version:
+
+```text
+Prefer LegalFirmSemanticModel for standard customer, case, solicitor, transaction, and interaction questions that can be answered by model fields or explicit measures. Do not recreate an existing semantic-model measure by aggregating a raw Lakehouse column.
+
+Use the LegalFirmDemo base_* tables only when a question needs row-level detail, a specific column or filter that the semantic model does not expose, or a multi-table calculation that cannot be answered by one semantic-model measure.
+
+In legal terminology, "matter" and "matters" mean "case" and "cases". For a Lakehouse query, use base_cases for that concept.
+
+Do not combine sources unless the requested result cannot be answered by one selected source. If different interpretations would materially change the result, ask one concise clarifying question before querying.
+
+Present monetary values in GBP with two decimal places and dates in UK format. State the filters and time period used. Do not invent missing values, definitions, or legal conclusions. Answers are for demonstration and operational analysis only and must not be presented as legal advice.
+```
+
+Add and validate this non-challenge example under **Example queries** for `LegalFirmDemo`:
+
+**Question:** How many payment transactions were recorded?
+
+```sql
+SELECT COUNT(*) AS payment_transaction_count
+FROM base_transactions
+WHERE transaction_type = 'Payment';
+```
+
+The expected result is **199**. Also test **How many payments are in the transaction table?** and confirm the same result and source.
+
+### B. Final Lakehouse configuration with routing tables
+
+Add these prepared tables to the same `LegalFirmDemo` source:
+
+- `routing_client_engagement_summary`
+- `routing_case_finance_insights`
+- `routing_solicitor_performance_mart`
+
+Replace the Lakehouse data source description with this final version:
+
+```text
+Detailed and prepared UK legal-firm analysis data. Use routing_client_engagement_summary only for customer engagement segments and interaction recency. Use routing_case_finance_insights only for combined case-finance outcomes, payment risk, and outstanding balances by case. Use routing_solicitor_performance_mart only for solicitor rankings and performance tiers. Use base_* tables only for row-level detail or filters not exposed by LegalFirmSemanticModel. Prefer LegalFirmSemanticModel for standard business metrics supported by model fields or explicit measures.
+```
+
+Replace the Data Agent instructions with this final combined version:
+
+```text
+Prefer LegalFirmSemanticModel for standard customer, case, solicitor, transaction, and interaction questions that can be answered by model fields or explicit measures. Do not recreate an existing semantic-model measure from raw Lakehouse columns.
+
+Use LegalFirmDemo base_* tables only when a question needs row-level detail, a specific column or filter that the semantic model does not expose, or a multi-table calculation that cannot be answered by one semantic-model measure.
+
+Use routing_client_engagement_summary only for engagement segments and interaction recency. Use routing_case_finance_insights only for combined case-finance outcomes, payment risk, and outstanding balances by case. Use routing_solicitor_performance_mart only for solicitor rankings and performance tiers.
+
+In legal terminology, "matter" and "matters" mean "case" and "cases". Use the table appropriate to the requested analysis rather than treating matter as a separate entity.
+
+Prefer one source when the question is clear. Do not combine sources unless the requested result cannot be answered by one selected source. If different interpretations would materially change the result, ask one concise clarifying question before querying.
+
+Present monetary values in GBP with two decimal places and dates in UK format. State the filters and time period used. Do not invent missing values, definitions, or legal conclusions. Answers are for demonstration and operational analysis only and must not be presented as legal advice.
+```
+
+Add and validate these examples under **Example queries** for `LegalFirmDemo`:
+
+**Question:** Which customers are in the low engagement segment?
+
+```sql
+SELECT customer_id, customer_name, total_interactions, last_interaction_date
+FROM routing_client_engagement_summary
+WHERE engagement_segment = 'Low Engagement'
+ORDER BY customer_name;
+```
+
+**Question:** Which high-value open cases have outstanding balances?
+
+```sql
+SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp
+FROM routing_case_finance_insights
+WHERE case_status = 'Open'
+	AND case_value_gbp >= 100000
+	AND outstanding_amount_gbp > 0
+ORDER BY outstanding_amount_gbp DESC;
+```
+
+**Question:** Which solicitors are in the top performance tier?
+
+```sql
+SELECT solicitor_name, cases_handled, total_case_value_gbp
+FROM routing_solicitor_performance_mart
+WHERE performance_tier = 'Top'
+ORDER BY total_case_value_gbp DESC;
+```
+
+### C. Facilitator routing checks
+
+Clear the agent chat before the test, then inspect the selected source and generated DAX or SQL for each question.
+
+| Test question | Expected source | Expected object |
+| --- | --- | --- |
+| How many active customers do we have? | `LegalFirmSemanticModel` | `[Active Customers]` |
+| What is our total revenue? | `LegalFirmSemanticModel` | `[Total Revenue]` |
+| How many payment transactions were recorded? | `LegalFirmDemo` | `base_transactions` |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `routing_client_engagement_summary` |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `routing_case_finance_insights` |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `routing_solicitor_performance_mart` |
+
+For each test, also ask one paraphrase. A successful configuration returns the correct result, chooses the expected source, uses the expected measure or table, and states important filters without blending sources unnecessarily.
+
 ## Result
 
-You now have an optimized Direct Lake semantic model with a clean star schema, business-friendly measures, AI schema configuration, AI instructions, and verified answers grounded in actual report visuals.
+You now have an optimized Direct Lake semantic model with a clean star schema, business-friendly measures, AI schema configuration, AI instructions, verified answers grounded in actual report visuals, and a Data Agent configured to route appropriately between the semantic model and Lakehouse.
