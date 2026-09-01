@@ -35,6 +35,8 @@ class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase)
     def test_notebook_structure_and_compilation(self):
         self.assert_notebook_contract(AUTOMATED_NOTEBOOK)
         self.assertEqual(10, len(self.code))
+        self.assertIn('Example: OBSERVATIONS[0]["baseline"].update', self.code[2])
+        self.assertIn('Example: OBSERVATIONS[0]["final"].update', self.code[2])
 
     def execute_notebook(self, populate=False):
         namespace = {"display": lambda *args, **kwargs: None}
