@@ -5,11 +5,12 @@ This guide explains how to use the evaluation framework to measure actual data a
 ## What's Included
 
 1. **NB_Evaluate_Data_Agent_Hackathon.ipynb** - Participant notebook for entering observed results and generating a scored report
-2. **NB_Run_SDK_Evaluation.ipynb** - Facilitator notebook that runs the real SDK-backed evaluation (Option 3 below) against a live Data Agent from inside Fabric, with no local Python setup
-3. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
-4. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
-5. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
-6. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
+2. **NB_Run_SDK_Evaluation.ipynb** - Facilitator notebook that captures named baseline/final SDK snapshots, including original and paraphrased prompts, against a live Data Agent from inside Fabric
+3. **NB_Automated_Data_Agent_Evaluation.ipynb** - Semi-automated participant scorecard with validation, 24-point baseline/final scoring, evidence exports, and an isolated optional SDK capture section
+4. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
+5. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
+6. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+7. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
 
 For the three-hour hackathon, use `evaluation/challenge/uk-legal.json`. Its expected answers are tested directly against the checked-in CSV files. Add `evaluation/routing/uk-legal.json` once you reach Step 5.
 
@@ -77,7 +78,13 @@ What this does:
 
 ### Option 4: Notebook Version Of SDK Mode (No Local Python Setup)
 
-Import `NB_Run_SDK_Evaluation.ipynb` into Fabric, set its parameters cell (`AGENT_NAME`, `DATASET_NAME`, `DATA_AGENT_STAGE`, etc.), and run all cells. It downloads `evaluate_agent.py` and the chosen dataset from this repository and calls the same `DataAgentEvaluator.evaluate_with_sdk(...)` path as Option 3, printing the report and saving results without requiring a local `pip install` or terminal access.
+Import `NB_Run_SDK_Evaluation.ipynb` into Fabric and set its parameters. Use `SNAPSHOT_NAME = "baseline"` before tuning and `SNAPSHOT_NAME = "final"` after tuning. Keep `INCLUDE_PARAPHRASES = True` to submit all 12 prompts. Each run downloads the evaluator and dataset, calls the same `DataAgentEvaluator.evaluate_with_sdk(...)` path as Option 3, and saves self-contained JSON plus raw official-detail CSV evidence.
+
+### Option 5: Semi-Automated 24-Point Scorecard
+
+Import `NB_Automated_Data_Agent_Evaluation.ipynb` when you want stronger validation and exports while retaining the event's deterministic scoring contract. Enter the baseline/final observations, paste SQL or DAX evidence, and run all cells. Answers, sources, consistency, totals, regressions, and artifact schemas are calculated automatically.
+
+Query logic remains a human confirmation: set `logic_correct` to `True` only after the generated table or measure, filters, and aggregation have been inspected. The final optional section can run an independent 12-prompt SDK evaluation, but its raw output remains separate from participant-entered scoring.
 
 ### Optional: Custom Critic Prompt in SDK Mode
 

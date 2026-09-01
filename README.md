@@ -83,6 +83,8 @@ Deployment details:
 
 ### Evaluation and testing
 - NB_Evaluate_Data_Agent_Hackathon.ipynb
+- NB_Automated_Data_Agent_Evaluation.ipynb
+- NB_Run_SDK_Evaluation.ipynb
 - evaluation/evaluate_agent.py
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json

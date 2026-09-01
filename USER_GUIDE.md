@@ -526,6 +526,13 @@ Use [NB_Evaluate_Data_Agent_Hackathon.ipynb](NB_Evaluate_Data_Agent_Hackathon.ip
 7. Review the per-question scorecard and the baseline and final totals out of 24.
 8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
 
+### Automated Notebook Options
+
+- Use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 12 original and paraphrased prompts and retain raw official-detail CSV evidence.
+- Use `NB_Automated_Data_Agent_Evaluation.ipynb` for validated participant entry, deterministic baseline/final scoring out of 24, regression checks, and CSV/JSON artifact validation.
+
+The generated SQL or DAX still requires a human logic review. Automation must not mark logic `True` merely because an answer matches; verify the table or measure, filters, and aggregation first.
+
 The notebook performs deterministic scoring from participant-entered observations; it does not call the live Data Agent API. Facilitators can use the SDK workflow in [evaluation/EVALUATION_GUIDE.md](evaluation/EVALUATION_GUIDE.md) for independent automated runs after the event.
 
 ---

@@ -733,6 +733,7 @@ class DataAgentEvaluator:
             "illustrative_only": bool(self.simulation_mode),
             "aggregate_metrics": asdict(aggregate),
             "detailed_metrics": [asdict(m) for m in metrics_list],
+            "query_results": [asdict(result) for result in self.last_query_results],
         }
 
         if sdk_context:
