@@ -309,7 +309,9 @@ If certain categories score low, dig into those specific queries
 Install dependencies: `pip install -U fabric-data-agent-sdk pandas`
 
 ### "fabric-data-agent-sdk is required for --sdk-mode"
-Run the notebook's install cell and inspect its import verification output. If the fresh-process check succeeds but the current-kernel check fails, restart the Fabric Python session and run all cells again. If both checks fail, use the underlying import error to identify the missing transitive dependency or incompatible SDK version; the evaluator now includes that error in its exception.
+Use the latest `NB_Run_SDK_Evaluation.ipynb`. Its first code cell installs `fabric-data-agent-sdk>=0.1.30a0`, `typing_extensions>=4.12.2`, and `PyJWT>=2.6.0`, then calls `notebookutils.session.restartPython()`. Fabric continues execution in the next cell, where parameters are defined and imports are verified.
+
+For an older notebook already showing `cannot import name 'Sentinel' from 'typing_extensions'`, manually restart the Fabric Python session once and run all cells again, or re-import the latest notebook. The `fsspec-wrapper` warning about `PyJWT 2.4.0` is resolved by the explicit `PyJWT>=2.6.0` requirement.
 
 ### "No SDK detail row returned for this query"
 The script flags unmatched rows as explicit failures. Check:

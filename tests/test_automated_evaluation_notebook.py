@@ -87,7 +87,18 @@ class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase)
 class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
     def test_snapshot_notebook_contract(self):
         notebook = self.assert_notebook_contract(SDK_NOTEBOOK)
-        source = "\n".join("".join(cell["source"]) for cell in notebook["cells"])
+        code = [
+            "".join(cell["source"])
+            for cell in notebook["cells"]
+            if cell["cell_type"] == "code"
+        ]
+        source = "\n".join(code)
+        self.assertIn("fabric-data-agent-sdk>=0.1.30a0", code[0])
+        self.assertIn("typing_extensions>=4.12.2", code[0])
+        self.assertIn("PyJWT>=2.6.0", code[0])
+        self.assertIn("notebookutils.session.restartPython()", code[0])
+        self.assertIn('import_module("fabric.dataagent.evaluation")', code[1])
+        self.assertIn('WORKSPACE_NAME = "Hackathon"', code[1])
         self.assertIn('SNAPSHOT_NAME = "final"', source)
         self.assertIn("INCLUDE_PARAPHRASES = True", source)
         self.assertIn('"id": f"{item[\'id\']}-P"', source)
