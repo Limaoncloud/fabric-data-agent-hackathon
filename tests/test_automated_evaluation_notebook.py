@@ -99,6 +99,18 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
         self.assertIn("notebookutils.session.restartPython()", code[0])
         self.assertIn('import_module("fabric.dataagent.evaluation")', code[1])
         self.assertIn('WORKSPACE_NAME = "Hackathon"', code[1])
+        self.assertIn('DATA_AGENT_STAGE = "sandbox"', code[1])
+        self.assertIn("valid_data_agent_stages", code[3])
+        self.assertIn("data_agent_stage=data_agent_stage", code[3])
+        self.assertNotIn('data_agent_stage="sandbox"', code[3])
+        markdown = "\n".join(
+            "".join(cell["source"])
+            for cell in notebook["cells"]
+            if cell["cell_type"] == "markdown"
+        )
+        self.assertIn("default Lakehouse", markdown)
+        self.assertIn("Tables", markdown)
+        self.assertIn("TABLE_NAME", markdown)
         self.assertIn('SNAPSHOT_NAME = "final"', source)
         self.assertIn("INCLUDE_PARAPHRASES = True", source)
         self.assertIn('"id": f"{item[\'id\']}-P"', source)

@@ -468,6 +468,15 @@ class DataAgentEvaluator:
             kwargs["critic_prompt"] = self.critic_prompt
 
         evaluation_id = evaluate_data_agent(input_df, self.agent_id, **kwargs)
+        if evaluation_id is None:
+            raise RuntimeError(
+                "Fabric SDK evaluation did not start because the output table was not found. "
+                "In the Fabric notebook, attach the Lakehouse that contains the evaluation "
+                "table and set it as the default Lakehouse. Then set TABLE_NAME to the exact "
+                "table name shown under that Lakehouse's Tables folder and rerun from the "
+                "configuration cell."
+            )
+
         summary_df = get_evaluation_summary(table_name=self.table_name, verbose=False)
         details_df = get_evaluation_details(
             evaluation_id=evaluation_id,
@@ -475,6 +484,12 @@ class DataAgentEvaluator:
             get_all_rows=True,
             verbose=False,
         )
+        if details_df is None:
+            raise RuntimeError(
+                f"Fabric SDK returned no detail rows from table {self.table_name!r}. "
+                "Confirm that this exact table exists under the notebook's attached default "
+                "Lakehouse, then rerun the evaluation."
+            )
         self.sdk_details_df = details_df
 
         query_map = {(self._normalize_key(q["question"])): q for q in queries}

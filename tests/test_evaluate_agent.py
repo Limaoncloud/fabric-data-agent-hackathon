@@ -31,6 +31,14 @@ class EvaluatorModeTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "missing transitive dependency"):
                 DataAgentEvaluator(sdk_mode=True)
 
+    def test_sdk_missing_output_table_has_actionable_error(self):
+        with patch.object(evaluate_agent, "FABRIC_EVAL_SDK_AVAILABLE", True), patch.object(
+            evaluate_agent, "evaluate_data_agent", return_value=None
+        ):
+            evaluator = DataAgentEvaluator(agent_id="LegalFirmAgent", sdk_mode=True)
+            with self.assertRaisesRegex(RuntimeError, "attach the Lakehouse"):
+                evaluator.evaluate_with_sdk(str(CHALLENGE_DATASET))
+
 
 class ChallengeDatasetEvaluationTests(unittest.TestCase):
     def test_challenge_dataset_evaluates_without_crashing(self):

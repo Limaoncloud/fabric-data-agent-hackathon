@@ -80,6 +80,10 @@ What this does:
 
 Import `NB_Run_SDK_Evaluation.ipynb` into Fabric and set its parameters. Use `SNAPSHOT_NAME = "baseline"` before tuning and `SNAPSHOT_NAME = "final"` after tuning. Keep `INCLUDE_PARAPHRASES = True` to submit all 12 prompts. Each run downloads the evaluator and dataset, calls the same `DataAgentEvaluator.evaluate_with_sdk(...)` path as Option 3, and saves self-contained JSON plus raw official-detail CSV evidence.
 
+Set `DATA_AGENT_STAGE = "sandbox"` or `"draft"` while evaluating an unpublished agent. Change it to `"production"` only after that agent has been published. The notebook validates this parameter before calling the SDK; it does not silently fall back to another stage.
+
+The SDK result table must already be available under the notebook's attached **default Lakehouse**. Before running, use the notebook Explorer's **Add data items** action to attach that Lakehouse, make it the default, and set `TABLE_NAME` to the exact name shown under its **Tables** folder. If Fabric reports `Table does not exist`, correct the default Lakehouse or table name and rerun from the configuration cell.
+
 ### Option 5: Semi-Automated 24-Point Scorecard
 
 Import `NB_Automated_Data_Agent_Evaluation.ipynb` when you want stronger validation and exports while retaining the event's deterministic scoring contract. Enter the baseline/final observations, paste SQL or DAX evidence, and run all cells. Answers, sources, consistency, totals, regressions, and artifact schemas are calculated automatically.
