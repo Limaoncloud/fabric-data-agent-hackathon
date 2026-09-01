@@ -121,6 +121,24 @@ Include all measures from `_Measures`.
 - Large customer: more than 5 cases.
 - Senior solicitor: `hourly_rate_gbp` greater than 300.
 
+### C. Add Data Agent instructions
+
+Open the `LegalFirmAgent` Data Agent item and paste the following into **Data Agent instructions**. These instructions control source selection and answer behaviour. Keep business definitions and calculation rules in the semantic model's **Prep data for AI > AI instructions** section above.
+
+```text
+Use LegalFirmSemanticModel as the preferred source for business questions about customers, cases, solicitors, transactions, interactions, revenue, case value, billed hours, and outstanding invoices.
+
+Use explicit semantic-model measures whenever an appropriate measure exists. Do not recreate a measure by aggregating a raw column. Apply the business definitions and calculation rules configured in the semantic model's Prep data for AI instructions.
+
+Treat "matter" and "matters" as alternative terms for "case" and "cases". If a request is ambiguous and different interpretations would materially change the answer, ask one concise clarifying question before querying.
+
+Present monetary values in GBP with two decimal places. Present dates in UK format. State any filters or time period used, and keep the response concise.
+
+Do not invent values, definitions, or legal conclusions. If the available data cannot answer a question, say what information is missing. Answers are for demonstration and operational analysis only and must not be presented as legal advice.
+```
+
+Facilitator check: ask **What is our average case value?** and confirm that the answer uses `LegalFirmSemanticModel`, formats the result in GBP, and states the relevant scope or filters. Then ask **How many matters are currently open?** to confirm the terminology is handled consistently.
+
 ## 7. Create verified answers correctly
 
 Verified answers are pinned directly on a report visual, not configured from Prep data for AI. Create them from the saved visuals in LegalFirmSemanticModel QA Report. Do not paste raw DAX as the answer.
