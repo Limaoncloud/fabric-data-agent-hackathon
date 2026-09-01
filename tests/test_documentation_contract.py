@@ -9,6 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 class DocumentationContractTests(unittest.TestCase):
     def test_participant_guide_uses_source_specific_controls(self):
         guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
+        self.assertIn("Live agent test:", guide)
+        self.assertIn("Reviewed scorecard:", guide)
+        self.assertIn("It does not test the live agent by itself.", guide)
         self.assertIn("Lakehouse tables do not have the semantic-model synonym editor", guide)
         self.assertIn("Data agent instructions", guide)
         self.assertIn("add `matter` and `matters` as synonyms for the `Cases` table", guide)
