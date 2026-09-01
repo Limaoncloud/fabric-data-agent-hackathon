@@ -82,7 +82,7 @@ Import `NB_Run_SDK_Evaluation.ipynb` into Fabric and set its parameters. Use `SN
 
 Set `DATA_AGENT_STAGE = "sandbox"` or `"draft"` while evaluating an unpublished agent. Change it to `"production"` only after that agent has been published. The notebook validates this parameter before calling the SDK; it does not silently fall back to another stage.
 
-The SDK result table must already be available under the notebook's attached **default Lakehouse**. Before running, use the notebook Explorer's **Add data items** action to attach that Lakehouse, make it the default, and set `TABLE_NAME` to the exact name shown under its **Tables** folder. If Fabric reports `Table does not exist`, correct the default Lakehouse or table name and rerun from the configuration cell.
+Before running, use the notebook Explorer's **Add data items** action to attach `LegalFirmDemo` and make it the **default Lakehouse**. The notebook verifies this binding before it calls the agent. The SDK creates and appends the configured evaluation table and a companion `<TABLE_NAME>_steps` table automatically; users must not pre-create either table. In a schema-enabled Lakehouse, the default final snapshot appears as `eval_result.demo_evaluation_final` and `eval_result.demo_evaluation_final_steps`.
 
 ### Option 5: Semi-Automated 24-Point Scorecard
 

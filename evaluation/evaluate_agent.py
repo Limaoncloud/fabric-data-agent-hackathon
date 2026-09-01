@@ -470,11 +470,8 @@ class DataAgentEvaluator:
         evaluation_id = evaluate_data_agent(input_df, self.agent_id, **kwargs)
         if evaluation_id is None:
             raise RuntimeError(
-                "Fabric SDK evaluation did not start because the output table was not found. "
-                "In the Fabric notebook, attach the Lakehouse that contains the evaluation "
-                "table and set it as the default Lakehouse. Then set TABLE_NAME to the exact "
-                "table name shown under that Lakehouse's Tables folder and rerun from the "
-                "configuration cell."
+                "Fabric SDK evaluation did not return an evaluation ID. Confirm the Data Agent "
+                "name, workspace, and stage, then rerun the evaluation."
             )
 
         summary_df = get_evaluation_summary(table_name=self.table_name, verbose=False)
@@ -486,9 +483,10 @@ class DataAgentEvaluator:
         )
         if details_df is None:
             raise RuntimeError(
-                f"Fabric SDK returned no detail rows from table {self.table_name!r}. "
-                "Confirm that this exact table exists under the notebook's attached default "
-                "Lakehouse, then rerun the evaluation."
+                f"The agent evaluation ran, but the Fabric SDK could not persist or read "
+                f"{self.table_name!r}. Attach LegalFirmDemo to the notebook and set it as the "
+                "default Lakehouse, then rerun from the configuration cell. The SDK creates "
+                "the evaluation and steps tables automatically; do not create them manually."
             )
         self.sdk_details_df = details_df
 
