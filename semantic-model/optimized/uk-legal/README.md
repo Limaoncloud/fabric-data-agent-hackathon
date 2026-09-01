@@ -186,6 +186,8 @@ Prefer LegalFirmSemanticModel for standard customer, case, solicitor, transactio
 
 Use the LegalFirmDemo base_* tables only when a question needs row-level detail, a specific column or filter that the semantic model does not expose, or a multi-table calculation that cannot be answered by one semantic-model measure.
 
+Prefer LegalFirmDemo for a detailed record lookup by transaction_id, case_id, or interaction_id, especially when the user asks for all available details. Use base_transactions, base_cases, or base_interactions as appropriate.
+
 In legal terminology, "matter" and "matters" mean "case" and "cases". For a Lakehouse query, use base_cases for that concept.
 
 Do not combine sources unless the requested result cannot be answered by one selected source. If different interpretations would materially change the result, ask one concise clarifying question before querying.
@@ -193,17 +195,36 @@ Do not combine sources unless the requested result cannot be answered by one sel
 Present monetary values in GBP with two decimal places and dates in UK format. State the filters and time period used. Do not invent missing values, definitions, or legal conclusions. Answers are for demonstration and operational analysis only and must not be presented as legal advice.
 ```
 
-Add and validate this non-challenge example under **Example queries** for `LegalFirmDemo`:
+Add and validate these non-challenge examples under **Example queries** for `LegalFirmDemo`:
 
-**Question:** How many payment transactions were recorded?
+**Question:** Find transaction TXN000001 and show all its available details.
 
 ```sql
-SELECT COUNT(*) AS payment_transaction_count
+SELECT transaction_id, case_id, transaction_type, transaction_date,
+	   amount_gbp, hours_worked, payment_status
 FROM base_transactions
-WHERE transaction_type = 'Payment';
+WHERE transaction_id = 'TXN000001';
 ```
 
-The expected result is **199**. Also test **How many payments are in the transaction table?** and confirm the same result and source.
+**Question:** Show the detailed case record for CASE0001.
+
+```sql
+SELECT case_id, customer_id, solicitor_name, case_type,
+	   case_value_gbp, start_date, case_status
+FROM base_cases
+WHERE case_id = 'CASE0001';
+```
+
+**Question:** Find interaction INT000001 and show all its available details.
+
+```sql
+SELECT interaction_id, customer_id, solicitor_name, interaction_type,
+	   interaction_date, duration_minutes, notes
+FROM base_interactions
+WHERE interaction_id = 'INT000001';
+```
+
+Test all three questions and confirm that each uses `LegalFirmDemo` and returns the complete matching record.
 
 ### B. Final Lakehouse configuration with routing tables
 
@@ -274,7 +295,9 @@ Clear the agent chat before the test, then inspect the selected source and gener
 | --- | --- | --- |
 | How many active customers do we have? | `LegalFirmSemanticModel` | `[Active Customers]` |
 | What is our total revenue? | `LegalFirmSemanticModel` | `[Total Revenue]` |
-| How many payment transactions were recorded? | `LegalFirmDemo` | `base_transactions` |
+| Find transaction TXN000001 and show all its available details. | `LegalFirmDemo` | `base_transactions` |
+| Show the detailed case record for CASE0001. | `LegalFirmDemo` | `base_cases` |
+| Find interaction INT000001 and show all its available details. | `LegalFirmDemo` | `base_interactions` |
 | Which customers are in the low engagement segment? | `LegalFirmDemo` | `routing_client_engagement_summary` |
 | Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `routing_case_finance_insights` |
 | Which solicitors are in the top performance tier? | `LegalFirmDemo` | `routing_solicitor_performance_mart` |

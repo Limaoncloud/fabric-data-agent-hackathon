@@ -12,18 +12,31 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Lakehouse tables do not have the semantic-model synonym editor", guide)
         self.assertIn("Data agent instructions", guide)
         self.assertIn("add `matter` and `matters` as synonyms for the `Cases` table", guide)
-        self.assertIn("How many payment transactions were recorded?", guide)
-        self.assertIn("WHERE transaction_type = 'Payment'", guide)
+        self.assertIn("Find transaction TXN000001 and show all its available details.", guide)
+        self.assertIn("Show the detailed case record for CASE0001.", guide)
+        self.assertIn("Find interaction INT000001 and show all its available details.", guide)
+        self.assertIn("WHERE transaction_id = 'TXN000001'", guide)
+        self.assertIn("WHERE case_id = 'CASE0001'", guide)
+        self.assertIn("WHERE interaction_id = 'INT000001'", guide)
         self.assertIn("not for the `LegalFirmSemanticModel` Power BI semantic-model source", guide)
         self.assertNotIn("add one relevant synonym rather than changing", guide)
 
-    def test_lakehouse_sql_example_matches_current_data(self):
-        with (ROOT / "sample-data" / "uk-legal" / "base" / "transactions.csv").open(
-            encoding="utf-8", newline=""
-        ) as handle:
-            rows = list(csv.DictReader(handle))
-        payment_count = sum(row["transaction_type"] == "Payment" for row in rows)
-        self.assertEqual(199, payment_count)
+    def test_lakehouse_sql_examples_match_current_data(self):
+        examples = (
+            ("transactions.csv", "transaction_id", "TXN000001"),
+            ("cases.csv", "case_id", "CASE0001"),
+            ("interactions.csv", "interaction_id", "INT000001"),
+        )
+        base_dir = ROOT / "sample-data" / "uk-legal" / "base"
+        for filename, identifier_column, identifier in examples:
+            with self.subTest(identifier=identifier):
+                with (base_dir / filename).open(encoding="utf-8", newline="") as handle:
+                    matches = [
+                        row
+                        for row in csv.DictReader(handle)
+                        if row[identifier_column] == identifier
+                    ]
+                self.assertEqual(1, len(matches))
 
     def test_facilitator_guide_separates_lakehouse_and_model_controls(self):
         guide = (ROOT / "evaluation" / "FACILITATOR_GUIDE.md").read_text(

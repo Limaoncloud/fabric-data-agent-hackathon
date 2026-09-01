@@ -279,39 +279,58 @@ Improve response consistency by configuring the `LegalFirmDemo` Lakehouse source
 5. Extend the Data Agent instructions to say when the Lakehouse should be preferred over the semantic model.
 6. Keep data unchanged and rerun the same prompt set.
 
-### Worked Example 1: Teach A Business Term With Instructions
+### Worked Example 1: Route Detailed Record Lookups To The Lakehouse
 
-1. Ask: **"How many open matters do we have?"**
-2. Record the answer and inspect the generated SQL or agent steps.
-3. If *matter* is not understood for the Lakehouse path, open **Data agent instructions** and add one concise rule: `In legal terminology, matter and matters mean case and cases. Use base_cases.`
-4. Ask the exact question again, then test: **"How many cases are currently open?"**
-5. Record whether the generated SQL and answer improved, and which source it used.
+1. Ask these questions and record which source the agent uses:
+   - **"Find transaction TXN000001 and show all its available details."**
+   - **"Show the detailed case record for CASE0001."**
+   - **"Find interaction INT000001 and show all its available details."**
+2. Inspect the generated SQL or agent steps and note whether every available field is returned.
+3. Open **Data agent instructions** and add one concise rule: `Prefer LegalFirmDemo for a detailed record lookup by transaction_id, case_id, or interaction_id, especially when the user asks for all available details. Use base_transactions, base_cases, or base_interactions as appropriate.`
+4. Ask the exact three questions again.
+5. Confirm that each question uses `LegalFirmDemo`, selects the appropriate `base_*` table, filters on the requested identifier, and returns one detailed record.
 
 Lakehouse tables do not have the semantic-model synonym editor. For Lakehouse sources, use Data Agent instructions, data-source descriptions, schema selection, and validated SQL example queries. You already added true model-object synonyms in Step 2 for `LegalFirmSemanticModel`.
 
-### Worked Example 2: Add A Lakehouse SQL Example Query
+### Worked Example 2: Add Lakehouse SQL Example Queries
 
 Participants are not expected to know the table schema or write their first SQL example from scratch. Add this non-challenge example together:
 
-**Question:** How many payment transactions were recorded?
-
-**Expected answer:** 199
+**Question:** Find transaction TXN000001 and show all its available details.
 
 ```sql
-SELECT COUNT(*) AS payment_transaction_count
+SELECT transaction_id, case_id, transaction_type, transaction_date,
+       amount_gbp, hours_worked, payment_status
 FROM base_transactions
-WHERE transaction_type = 'Payment';
+WHERE transaction_id = 'TXN000001';
+```
+
+**Question:** Show the detailed case record for CASE0001.
+
+```sql
+SELECT case_id, customer_id, solicitor_name, case_type,
+       case_value_gbp, start_date, case_status
+FROM base_cases
+WHERE case_id = 'CASE0001';
+```
+
+**Question:** Find interaction INT000001 and show all its available details.
+
+```sql
+SELECT interaction_id, customer_id, solicitor_name, interaction_type,
+       interaction_date, duration_minutes, notes
+FROM base_interactions
+WHERE interaction_id = 'INT000001';
 ```
 
 1. In the Data Agent, select **Example queries**.
 2. For the `LegalFirmDemo` Lakehouse source, select **Add or Edit Example Queries**.
-3. Enter the question and SQL exactly as shown above.
-4. Validate and save the example. Fabric only uses examples that pass validation.
-5. Ask the question in chat and inspect the generated SQL and answer.
-6. Test the paraphrase: **How many payments are in the transaction table?**
-7. Confirm that both questions return `199`, then continue with the challenge questions without giving participants more SQL solutions.
+3. Enter each question and SQL pair exactly as shown above.
+4. Validate and save each example. Fabric only uses examples that pass validation.
+5. Ask all three questions in chat and inspect the generated SQL and answers.
+6. Confirm that each question uses `LegalFirmDemo` and returns the matching detailed record, then continue with the challenge questions without giving participants more SQL solutions.
 
-This question is deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
+These questions are deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
 
 ### Diagnostic Hints For The Remaining Questions
 
