@@ -309,7 +309,7 @@ If certain categories score low, dig into those specific queries
 Install dependencies: `pip install -U fabric-data-agent-sdk pandas`
 
 ### "fabric-data-agent-sdk is required for --sdk-mode"
-Install the package and rerun with the same command.
+Run the notebook's install cell and inspect its import verification output. If the fresh-process check succeeds but the current-kernel check fails, restart the Fabric Python session and run all cells again. If both checks fail, use the underlying import error to identify the missing transitive dependency or incompatible SDK version; the evaluator now includes that error in its exception.
 
 ### "No SDK detail row returned for this query"
 The script flags unmatched rows as explicit failures. Check:

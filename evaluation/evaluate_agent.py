@@ -36,11 +36,13 @@ try:
     get_evaluation_details = _fabric_eval_module.get_evaluation_details
     get_evaluation_summary = _fabric_eval_module.get_evaluation_summary
     FABRIC_EVAL_SDK_AVAILABLE = True
-except ImportError:
+    FABRIC_EVAL_SDK_IMPORT_ERROR = None
+except ImportError as exc:
     evaluate_data_agent = None
     get_evaluation_details = None
     get_evaluation_summary = None
     FABRIC_EVAL_SDK_AVAILABLE = False
+    FABRIC_EVAL_SDK_IMPORT_ERROR = exc
 
 
 @dataclass
@@ -131,8 +133,9 @@ class DataAgentEvaluator:
         if self.sdk_mode:
             if not FABRIC_EVAL_SDK_AVAILABLE:
                 raise RuntimeError(
-                    "fabric-data-agent-sdk is required for --sdk-mode. "
-                    "Install it with: pip install -U fabric-data-agent-sdk"
+                    "Could not import fabric.dataagent.evaluation. "
+                    "Install or upgrade it with: pip install -U fabric-data-agent-sdk. "
+                    f"Underlying import error: {FABRIC_EVAL_SDK_IMPORT_ERROR}"
                 )
             if pd is None:
                 raise RuntimeError("pandas is required for --sdk-mode. Install it with: pip install pandas")

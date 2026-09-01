@@ -1,7 +1,9 @@
 import json
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
+from evaluation import evaluate_agent
 from evaluation.evaluate_agent import DataAgentEvaluator
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +21,15 @@ class EvaluatorModeTests(unittest.TestCase):
         # This asserts the constructor does not silently accept an ambiguous state.
         evaluator = DataAgentEvaluator(simulation_mode=True, sdk_mode=False)
         self.assertTrue(evaluator.simulation_mode)
+
+    def test_sdk_import_error_preserves_underlying_cause(self):
+        with patch.object(evaluate_agent, "FABRIC_EVAL_SDK_AVAILABLE", False), patch.object(
+            evaluate_agent,
+            "FABRIC_EVAL_SDK_IMPORT_ERROR",
+            ImportError("missing transitive dependency"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "missing transitive dependency"):
+                DataAgentEvaluator(sdk_mode=True)
 
 
 class ChallengeDatasetEvaluationTests(unittest.TestCase):
