@@ -29,7 +29,7 @@ Choose one path:
 | Role | Start with | Purpose |
 | --- | --- | --- |
 | Participant | [USER_GUIDE.md](USER_GUIDE.md) | Follow the six workshop steps and test one continuously improved Data Agent |
-| Facilitator | [evaluation/FACILITATOR_GUIDE.md](evaluation/FACILITATOR_GUIDE.md) | Prepare the event, use solution checkpoints, give hints, and validate results |
+| Facilitator | [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) | Prepare the event, use solution checkpoints, give hints, and validate results |
 | Automation or troubleshooting | [deployment/README.md](deployment/README.md) | Understand deployment parameters, generated artifacts, and rerun behavior |
 
 Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to test the live agent. Use `NB_Automated_Data_Agent_Evaluation.ipynb` only after review to calculate the 24-point scorecard.
@@ -75,11 +75,47 @@ Use this guide:
 Follow the complete end-to-end user flow:
 - USER_GUIDE.md
 
-Current table and two-source routing architecture:
-- README_MULTITABLE.md
+The table and two-source routing architecture is documented below.
 
 Deployment details:
 - deployment/README.md
+
+## Multi-Table Architecture
+
+The deployment notebook creates `LegalFirmDemo`, a Lakehouse with eight managed Delta tables, and `LegalFirmSemanticModel`, an optimized Direct Lake semantic model.
+
+### Baseline Lakehouse Tables
+
+| Table | Grain | Current rows |
+| --- | --- | ---: |
+| `base_customers` | One row per customer | 171 |
+| `base_cases` | One row per legal case | 500 |
+| `base_solicitors` | One row per solicitor | 15 |
+| `base_transactions` | One row per transaction | 1,000 |
+| `base_interactions` | One row per interaction | 800 |
+
+### Derived Routing Tables
+
+| Table | Grain | Routing purpose |
+| --- | --- | --- |
+| `routing_client_engagement_summary` | One row per customer | Engagement segments and interaction recency |
+| `routing_case_finance_insights` | One row per case | Combined case-finance outcomes and payment risk |
+| `routing_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
+
+### Final Routing Architecture
+
+Create one Fabric Data Agent with exactly two sources:
+
+| Source | Selected objects | Use when |
+| --- | --- | --- |
+| `LegalFirmSemanticModel` | All five model tables | Standard customer, case, solicitor, transaction, interaction, and explicit-measure questions |
+| `LegalFirmDemo` | Only the three `routing_*` tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
+
+This is the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. Step 5 deselects them and selects only the three `routing_*` tables because the semantic model already covers standard business topics.
+
+Lakehouse sources support validated SQL example question/query pairs. Power BI semantic-model sources do not. Configure semantic-model synonyms through Prep for AI, not on Lakehouse tables.
+
+The deployable source of truth is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing configuration is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).
 
 ## Step Assets
 
@@ -119,7 +155,7 @@ The three routing folders are intentionally separate:
 - evaluation/evaluate_agent.py
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
-- evaluation/FACILITATOR_GUIDE.md
+- FACILITATOR_GUIDE.md
 - evaluation/EVALUATION_GUIDE.md
 
 ## How To Run Local Scripts

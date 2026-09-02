@@ -3,7 +3,7 @@
 This folder documents the semantic model created by `NB_Deploy_Data_Agent_Hackathon.ipynb`. It is an artifact reference, not a workshop runbook.
 
 - Participant steps: [USER_GUIDE.md](../../../USER_GUIDE.md)
-- Facilitator Prep for AI, Verified Answers, routing instructions, expected answers, and checks: [evaluation/FACILITATOR_GUIDE.md](../../../evaluation/FACILITATOR_GUIDE.md)
+- Facilitator Prep for AI, Verified Answers, routing instructions, expected answers, and checks: [FACILITATOR_GUIDE.md](../../../FACILITATOR_GUIDE.md)
 - Machine-readable source of truth: [config/domains/uk-legal.json](../../../config/domains/uk-legal.json)
 
 ## Deployed Model

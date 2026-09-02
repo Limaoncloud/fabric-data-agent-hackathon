@@ -9,7 +9,7 @@ This guide explains how to use the evaluation framework to measure actual data a
 3. **NB_Automated_Data_Agent_Evaluation.ipynb** - Semi-automated participant scorecard with validation, 24-point baseline/final scoring, evidence exports, and an isolated optional SDK capture section
 4. **evaluation/challenge/uk-legal.json** - Current six-question participant challenge with checked ground truths and paraphrases
 5. **evaluation/routing/uk-legal.json** - Optional 3-question extension for Step 5 (Lakehouse routing); run separately from the six-question challenge
-6. **evaluation/FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance
+6. **FACILITATOR_GUIDE.md** - Facilitator-only answers, escalating hints, and debrief guidance at the repository root
 7. **evaluation/evaluate_agent.py** - Facilitator framework for SDK-backed or simulated evaluation
 
 For the three-hour hackathon, use `evaluation/challenge/uk-legal.json`. Its expected answers are tested directly against the checked-in CSV files. Add `evaluation/routing/uk-legal.json` once you reach Step 5.
@@ -257,7 +257,7 @@ Results are saved to JSON for further analysis:
 
 ## Manual Testing Alternative
 
-If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md):
+If you prefer manual testing, use the challenge table in [FACILITATOR_GUIDE.md](../FACILITATOR_GUIDE.md):
 
 1. Open your Data Agent in Fabric
 2. Run each question and paraphrase from the six-question challenge
@@ -373,6 +373,6 @@ This transforms your demo from "best practices say this works" to "here's proof 
 
 ---
 
-**Need help?** Check [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) or review the simulation mode output.
+**Need help?** Check [FACILITATOR_GUIDE.md](../FACILITATOR_GUIDE.md) or review the simulation mode output.
 
 

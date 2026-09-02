@@ -1,13 +1,13 @@
-# Facilitator Guide: Agent Testing Challenge
+# Fabric Data Agent Facilitator Guide
 
 Keep this guide separate from participant materials until teams have recorded their baseline answers and diagnoses.
 
 ## How To Use This Guide
 
-1. Use [USER_GUIDE.md](../USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
+1. Use [USER_GUIDE.md](USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
 2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
-3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](../NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
-4. Use [NB_Run_SDK_Evaluation.ipynb](../NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Automated_Data_Agent_Evaluation.ipynb](../NB_Automated_Data_Agent_Evaluation.ipynb) afterward for reviewed 24-point scoring.
+3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
+4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluation.ipynb) afterward for reviewed 24-point scoring.
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
@@ -19,7 +19,8 @@ These are reference outcomes, not a script to reveal to participants. Accept a d
 
 - Source: `LegalFirmSemanticModel` only.
 - Leave Prep for AI instructions, synonyms, Verified Answers, and Data Agent instructions empty.
-- Capture the six original questions and paraphrases before providing hints.
+- Let participants complete the four exploratory Step 1 prompts.
+- Before changing any Step 2 controls, capture the six scored questions and their paraphrases as the measured baseline. Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME="baseline"` at this point.
 
 ### Step 2: Prep For AI And Agent Instructions
 
@@ -69,7 +70,7 @@ Use this routing principle:
 Prefer LegalFirmSemanticModel for standard business metrics supported by model fields or explicit measures. Use LegalFirmDemo base_* tables for detailed row-level lookups, a field or filter not exposed by the model, or a calculation the model cannot answer. Prefer LegalFirmDemo for exact transaction_id, case_id, or interaction_id record lookups. Do not combine sources unless one source cannot answer the request.
 ```
 
-Use the three non-scored identifier examples in [USER_GUIDE.md](../USER_GUIDE.md#worked-example-2-add-lakehouse-sql-example-queries) to teach SQL example queries. Do not provide SQL for the six scored challenge questions.
+Use the three non-scored identifier examples in [USER_GUIDE.md](USER_GUIDE.md#worked-example-2-add-lakehouse-sql-example-queries) to teach SQL example queries. Do not provide SQL for the six scored challenge questions.
 
 ### Step 5: Prepared Tables And Multi-Source Routing
 
@@ -82,7 +83,7 @@ Deselect the five `base_*` tables used in Steps 3-4, then select only these tabl
 Extend the instructions with:
 
 ```text
-Use routing_client_engagement_summary only for engagement segments and interaction recency. Use routing_case_finance_insights only for combined case-finance outcomes, payment risk, and outstanding balances by case. Use routing_solicitor_performance_mart only for solicitor rankings and performance tiers. Continue to prefer LegalFirmSemanticModel for standard measures and base_* tables for detailed records. Prefer one source when the question is clear.
+Use routing_client_engagement_summary only for engagement segments and interaction recency. Use routing_case_finance_insights only for combined case-finance outcomes, payment risk, and outstanding balances by case. Use routing_solicitor_performance_mart only for solicitor rankings and performance tiers. Continue to prefer LegalFirmSemanticModel for standard measures. Prefer one source when the question is clear.
 ```
 
 Expected routing checks:
@@ -220,9 +221,9 @@ Score each response on:
 Use the live SDK notebook for measured accuracy:
 
 1. Attach `LegalFirmDemo` as the notebook's default Lakehouse.
-2. Run [NB_Run_SDK_Evaluation.ipynb](../NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before tuning.
+3. Run [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before Step 2 tuning.
 3. Run it with `SNAPSHOT_NAME="final"` after tuning.
-4. Review source and query evidence before entering observations in [NB_Automated_Data_Agent_Evaluation.ipynb](../NB_Automated_Data_Agent_Evaluation.ipynb).
+5. Review source and query evidence before entering observations in [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluation.ipynb).
 
 The command below is only an illustrative local smoke test; it is not measured agent accuracy:
 

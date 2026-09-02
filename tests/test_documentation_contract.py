@@ -42,9 +42,7 @@ class DocumentationContractTests(unittest.TestCase):
                 self.assertEqual(1, len(matches))
 
     def test_facilitator_guide_separates_lakehouse_and_model_controls(self):
-        guide = (ROOT / "evaluation" / "FACILITATOR_GUIDE.md").read_text(
-            encoding="utf-8"
-        )
+        guide = (ROOT / "FACILITATOR_GUIDE.md").read_text(encoding="utf-8")
         self.assertIn("## How To Use This Guide", guide)
         self.assertIn("## Facilitator Solution Checkpoints", guide)
         self.assertIn("### Step 2: Prep For AI And Agent Instructions", guide)
@@ -53,6 +51,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("## Controls By Source Type", guide)
         self.assertIn("Do not tell participants to add synonyms to Lakehouse tables", guide)
         self.assertIn("not Power BI semantic-model sources", guide)
+        self.assertNotIn("base_* tables for detailed records", guide)
+        self.assertFalse((ROOT / "evaluation" / "FACILITATOR_GUIDE.md").exists())
 
         model_reference = (
             ROOT / "semantic-model" / "optimized" / "uk-legal" / "README.md"
@@ -96,6 +96,9 @@ class DocumentationContractTests(unittest.TestCase):
 
         user_guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
         self.assertIn("one Data Agent with two complementary sources", user_guide)
+        self.assertIn("[FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md)", user_guide)
+        self.assertNotIn("evaluation/FACILITATOR_GUIDE.md", user_guide)
+        self.assertNotIn("raw base_* Lakehouse tables", user_guide)
         self.assertNotIn("Add at least 4-5 data sources", user_guide)
         self.assertNotIn("step6_", user_guide)
         self.assertIn("Deselect the five `base_*` tables", user_guide)
@@ -104,9 +107,10 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("## Start Here", root_readme)
         self.assertIn("The three routing folders are intentionally separate", root_readme)
 
-        routing_readme = (ROOT / "README_MULTITABLE.md").read_text(encoding="utf-8")
-        self.assertNotIn("step6_", routing_readme)
-        self.assertIn("final Step 5 configuration", routing_readme)
+        self.assertFalse((ROOT / "README_MULTITABLE.md").exists())
+        self.assertNotIn("step6_", root_readme)
+        self.assertIn("final Step 5 configuration", root_readme)
+        self.assertIn("## Multi-Table Architecture", root_readme)
 
 
 if __name__ == "__main__":

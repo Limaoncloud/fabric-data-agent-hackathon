@@ -127,6 +127,8 @@ Run the prompts above in the agent chat.
 - No AI-specific tuning yet, so business terms and undefined thresholds can still fail
 - This is your semantic-model baseline before Step 2
 
+Before changing any Step 2 controls, run the six scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
+
 ---
 
 ## Step 2: Configure The Semantic-Model Agent With Prep For AI, Retest
@@ -203,7 +205,7 @@ Do not change several controls at once. For each question, capture the baseline,
 | 5 |  |  |  |  |  |  |
 | 6 |  |  |  |  |  |  |
 
-Facilitators should use [evaluation/FACILITATOR_GUIDE.md](evaluation/FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
+Facilitators should use [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
 
 ### Test
 Run the same prompt set from Step 1 and compare.
@@ -410,9 +412,6 @@ Update the **Data agent instruction** at the Data Agent level to cover all three
 ```text
 Prefer LegalFirmSemanticModel for standard customer, case, solicitor, transaction,
 and interaction questions that can be answered by model fields or measures.
-
-Only use the raw base_* Lakehouse tables if a question needs a specific
-column or filter that the semantic model does not expose.
 
 Use the routing_* Lakehouse tables only for engagement segments, combined
 case-finance outcomes, payment risk, outstanding balances by case, or solicitor
