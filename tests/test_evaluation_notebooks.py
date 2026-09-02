@@ -5,8 +5,20 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-AUTOMATED_NOTEBOOK = ROOT / "NB_Automated_Data_Agent_Evaluation.ipynb"
+REVIEW_NOTEBOOK = ROOT / "NB_Review_And_Score_Data_Agent.ipynb"
 SDK_NOTEBOOK = ROOT / "NB_Run_SDK_Evaluation.ipynb"
+CHALLENGE_PATH = ROOT / "evaluation" / "challenge" / "uk-legal.json"
+
+
+class FakeResponse:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def raise_for_status(self):
+        return None
+
+    def json(self):
+        return self.payload
 
 
 class NotebookContractMixin:
@@ -22,10 +34,11 @@ class NotebookContractMixin:
         return notebook
 
 
-class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase):
+class ReviewScorecardNotebookTests(NotebookContractMixin, unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.notebook = json.loads(AUTOMATED_NOTEBOOK.read_text(encoding="utf-8"))
+        cls.notebook = json.loads(REVIEW_NOTEBOOK.read_text(encoding="utf-8"))
+        cls.challenge = json.loads(CHALLENGE_PATH.read_text(encoding="utf-8"))
         cls.code = [
             "".join(cell["source"])
             for cell in cls.notebook["cells"]
@@ -33,10 +46,13 @@ class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase)
         ]
 
     def test_notebook_structure_and_compilation(self):
-        self.assert_notebook_contract(AUTOMATED_NOTEBOOK)
-        self.assertEqual(10, len(self.code))
+        self.assert_notebook_contract(REVIEW_NOTEBOOK)
+        self.assertEqual(9, len(self.code))
         self.assertIn('Example: OBSERVATIONS[0]["baseline"].update', self.code[2])
         self.assertIn('Example: OBSERVATIONS[0]["final"].update', self.code[2])
+        source = "\n".join(self.code)
+        self.assertIn("evaluation/challenge/uk-legal.json", source)
+        self.assertNotIn("RUN_SDK_AUTOMATION", source)
 
     def execute_notebook(self, populate=False):
         namespace = {"display": lambda *args, **kwargs: None}
@@ -46,6 +62,10 @@ class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase)
                 os.chdir(temporary_directory)
                 for index, source in enumerate(self.code):
                     exec(source, namespace)
+                    if index == 0:
+                        namespace["requests"].get = lambda *args, **kwargs: FakeResponse(
+                            self.challenge
+                        )
                     if populate and index == 2:
                         for observation in namespace["OBSERVATIONS"]:
                             expected = namespace["challenge_by_id"][observation["id"]]
@@ -71,7 +91,6 @@ class AutomatedEvaluationNotebookTests(NotebookContractMixin, unittest.TestCase)
         self.assertEqual(0.0, namespace["baseline_total"])
         self.assertEqual(0.0, namespace["final_total"])
         self.assertEqual(0.0, report["summary"]["final_score"])
-        self.assertFalse(namespace["RUN_SDK_AUTOMATION"])
 
     def test_complete_inputs_score_and_export_24(self):
         namespace, report = self.execute_notebook(populate=True)
@@ -106,8 +125,12 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
         self.assertIn('WORKSPACE_NAME = "Hackathon"', code[1])
         self.assertIn('DATA_AGENT_STAGE = "sandbox"', code[1])
         self.assertIn("valid_data_agent_stages", code[3])
-        self.assertIn("data_agent_stage=data_agent_stage", code[3])
-        self.assertNotIn('data_agent_stage="sandbox"', code[3])
+        self.assertIn('"data_agent_stage": data_agent_stage', code[3])
+        self.assertIn("fabric_evaluation.evaluate_data_agent", code[3])
+        self.assertIn("fabric_evaluation.get_evaluation_summary", code[3])
+        self.assertIn("fabric_evaluation.get_evaluation_details", code[3])
+        self.assertNotIn("DataAgentEvaluator", source)
+        self.assertNotIn("evaluate_agent.py", source)
         markdown = "\n".join(
             "".join(cell["source"])
             for cell in notebook["cells"]
@@ -120,7 +143,6 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
         self.assertIn('SNAPSHOT_NAME = "final"', source)
         self.assertIn("INCLUDE_PARAPHRASES = True", source)
         self.assertIn('"id": f"{item[\'id\']}-P"', source)
-        self.assertIn("query_results", (ROOT / "evaluation" / "evaluate_agent.py").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

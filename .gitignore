@@ -27,7 +27,8 @@ wheels/
 .ipynb_checkpoints
 *.ipynb
 !NB_Deploy_Data_Agent_Hackathon.ipynb
-!NB_Evaluate_Data_Agent_Hackathon.ipynb
+!NB_Run_SDK_Evaluation.ipynb
+!NB_Review_And_Score_Data_Agent.ipynb
 
 # IDEs
 .vscode/

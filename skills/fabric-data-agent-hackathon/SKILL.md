@@ -147,7 +147,8 @@ Key files used in this demo:
 - sample-data/uk-legal/derived-routing/client_engagement_summary.csv
 - sample-data/uk-legal/derived-routing/case_finance_insights.csv
 - sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv
-- evaluation/evaluate_agent.py
+- NB_Run_SDK_Evaluation.ipynb
+- NB_Review_And_Score_Data_Agent.ipynb
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
 - USER_GUIDE.md
@@ -219,14 +220,14 @@ Use the same test prompts across all six phases so quality movement is attributa
 Recommended assets:
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
-- evaluation/evaluate_agent.py
-- evaluation/results/step1-results.json ... evaluation/results/step6-results.json
+- NB_Run_SDK_Evaluation.ipynb
+- NB_Review_And_Score_Data_Agent.ipynb
 
 Evaluation dimensions:
-- Exact Match
-- Semantic Match
-- Routing Accuracy
-- Error Rate
+- Correct answer
+- Correct source
+- Reviewed query or measure logic
+- Paraphrase consistency
 
 ## Standard Prompt Set
 Use these representative prompts and adapt entity names from `INDUSTRY_PROFILE`:

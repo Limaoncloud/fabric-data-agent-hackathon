@@ -7,7 +7,7 @@ Keep this guide separate from participant materials until teams have recorded th
 1. Use [USER_GUIDE.md](USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
 2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
 3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
-4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluation.ipynb) afterward for reviewed 24-point scoring.
+4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward for reviewed 24-point scoring.
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
@@ -223,13 +223,4 @@ Use the live SDK notebook for measured accuracy:
 1. Attach `LegalFirmDemo` as the notebook's default Lakehouse.
 3. Run [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before Step 2 tuning.
 3. Run it with `SNAPSHOT_NAME="final"` after tuning.
-5. Review source and query evidence before entering observations in [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluation.ipynb).
-
-The command below is only an illustrative local smoke test; it is not measured agent accuracy:
-
-```powershell
-python evaluation/evaluate_agent.py `
-    --simulation `
-    --dataset evaluation/challenge/uk-legal.json `
-    --output evaluation/results/hackathon-challenge.json
-```
+5. Review source and query evidence before entering observations in [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb).

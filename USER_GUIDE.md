@@ -515,13 +515,13 @@ Run relationship-heavy prompts:
 
 Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the six original questions and six paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
 
-Use [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluation.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 24-point score. It does not test the live agent by itself.
+Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 24-point score. It does not test the live agent by itself.
 
 1. Import `NB_Run_SDK_Evaluation.ipynb` into the Fabric workspace and attach the target Lakehouse as the default.
 2. Run it once for the baseline and again after your changes for the final test.
 3. Review the recorded answers and the Fabric item selected as the source.
 4. Expand the run steps and inspect the generated SQL or DAX. Mark the logic `True` only when the table or measure, filters, and aggregation are correct.
-5. Enter those observations in section 3 of `NB_Automated_Data_Agent_Evaluation.ipynb`.
+5. Enter those observations in section 3 of `NB_Review_And_Score_Data_Agent.ipynb`.
 6. Run all cells. Fix any actionable validation errors.
 7. Review the per-question scorecard and the baseline and final totals out of 24.
 8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
@@ -529,7 +529,7 @@ Use [NB_Automated_Data_Agent_Evaluation.ipynb](NB_Automated_Data_Agent_Evaluatio
 ### Automated Notebook Options
 
 - **Live agent test:** use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 12 original and paraphrased prompts and retain raw official-detail CSV evidence.
-- **Reviewed scorecard:** use `NB_Automated_Data_Agent_Evaluation.ipynb` for validated participant entry, deterministic baseline/final scoring out of 24, regression checks, and CSV/JSON artifact validation.
+- **Reviewed scorecard:** use `NB_Review_And_Score_Data_Agent.ipynb` for validated participant entry, deterministic baseline/final scoring out of 24, regression checks, and CSV/JSON artifact validation.
 
 The generated SQL or DAX still requires a human logic review. Automation must not mark logic `True` merely because an answer matches; verify the table or measure, filters, and aggregation first.
 

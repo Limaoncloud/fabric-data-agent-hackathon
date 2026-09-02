@@ -32,7 +32,7 @@ Choose one path:
 | Facilitator | [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) | Prepare the event, use solution checkpoints, give hints, and validate results |
 | Automation or troubleshooting | [deployment/README.md](deployment/README.md) | Understand deployment parameters, generated artifacts, and rerun behavior |
 
-Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to test the live agent. Use `NB_Automated_Data_Agent_Evaluation.ipynb` only after review to calculate the 24-point scorecard.
+Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to capture live baseline/final evidence, then use `NB_Review_And_Score_Data_Agent.ipynb` to calculate the reviewed 24-point scorecard.
 
 ### Notebook Guide
 
@@ -40,10 +40,9 @@ Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Ru
 | --- | --- |
 | `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the Lakehouse, tables, and semantic model |
 | `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
-| `NB_Automated_Data_Agent_Evaluation.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
-| `NB_Evaluate_Data_Agent_Hackathon.ipynb` | Basic compatibility path for an already prepared manual result dataset; prefer the automated scorecard for new runs |
+| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
 
-`NB_Run_SDK_Evaluation.ipynb` followed by `NB_Automated_Data_Agent_Evaluation.ipynb` is the recommended interactive evaluation workflow.
+These two notebooks are the complete evaluation workflow. The first captures evidence; the second reviews and scores it.
 
 ## Repository Highlights
 
@@ -149,10 +148,8 @@ The three routing folders are intentionally separate:
 - agent-configuration/routing/uk-legal/data-agent-configuration.json
 
 ### Evaluation and testing
-- NB_Evaluate_Data_Agent_Hackathon.ipynb
-- NB_Automated_Data_Agent_Evaluation.ipynb
 - NB_Run_SDK_Evaluation.ipynb
-- evaluation/evaluate_agent.py
+- NB_Review_And_Score_Data_Agent.ipynb
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
 - FACILITATOR_GUIDE.md
@@ -174,14 +171,7 @@ Generate the derived routing data sources:
 python sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
 ```
 
-Run simulation evaluation for the scored challenge and the optional Step 5 routing extension (illustrative only, not measured accuracy):
-
-```powershell
-for ($i=1; $i -le 6; $i++) {
-    python evaluation/evaluate_agent.py --dataset evaluation/challenge/uk-legal.json --output evaluation/results/step${i}-challenge.json --simulation --step $i
-}
-python evaluation/evaluate_agent.py --dataset evaluation/routing/uk-legal.json --output evaluation/results/step5-routing.json --simulation --step 5
-```
+Run the repository tests with `python -m unittest discover -s tests -v`.
 
 ## How To Use The Copilot Skills
 
