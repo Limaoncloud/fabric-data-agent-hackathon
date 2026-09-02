@@ -230,6 +230,9 @@ Score each response on:
 Use the live SDK notebook for measured accuracy:
 
 1. Attach `LegalFirmDemo` as the notebook's default Lakehouse.
-3. Run [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before Step 2 tuning.
-3. Run it with `SNAPSHOT_NAME="final"` after tuning.
+2. Run [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before Step 2 tuning.
+3. During Steps 2–5, have participants manually retest only the affected question and its paraphrase after each individual change. They should record the answer, selected source, and generated SQL/DAX.
+4. Run the full SDK evaluation with `SNAPSHOT_NAME="final"` after Step 5.
 5. Review source and query evidence before entering observations in [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb).
+
+Use the same Data Agent, challenge dataset, Data Agent stage, and paraphrase setting for both official snapshots. Intermediate automated runs are optional and are not included automatically in the baseline/final scorecard.

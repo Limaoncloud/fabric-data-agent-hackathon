@@ -559,6 +559,14 @@ Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live 
 
 Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 28-point score. It does not test the live agent by itself.
 
+### Evaluation Cadence
+
+1. Before making any Step 2 changes, run the full SDK evaluation with `SNAPSHOT_NAME="baseline"`.
+2. During Steps 2–5, retest only the affected question and its paraphrase manually in the Data Agent chat after each individual change. Record the answer, selected source, and generated SQL/DAX.
+3. After completing Step 5, run the full SDK evaluation again with `SNAPSHOT_NAME="final"`.
+
+Keep the same Data Agent, challenge dataset, Data Agent stage, and paraphrase setting for both official snapshots. Intermediate automated runs are optional and are not compared automatically by the baseline/final scorecard. Do not reuse `baseline` for a later run.
+
 1. Import `NB_Run_SDK_Evaluation.ipynb` into the Fabric workspace and attach the target Lakehouse as the default.
 2. Run it once for the baseline and again after your changes for the final test.
 3. Review the recorded answers and the Fabric item selected as the source.
