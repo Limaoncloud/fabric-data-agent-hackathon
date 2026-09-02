@@ -37,7 +37,7 @@ New to Fabric? Follow these steps exactly:
 3. Open the target workspace.
 4. Select **Import → Notebook**, then upload the `.ipynb` file you downloaded.
 5. Open the imported notebook once it appears in the workspace.
-6. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default run.
+6. Leave all the fields as it is for the default run. (If you are running for a different industry, refer to the REUSE_FOR_NEW_INDUSTRY and then change the DOMAIN_PROFILE)
 7. Run all cells.
 
 ### Before You Run
