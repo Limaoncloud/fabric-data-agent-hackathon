@@ -1,6 +1,7 @@
 import csv
 import json
 import unittest
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,11 +23,12 @@ class HackathonChallengeDatasetTests(unittest.TestCase):
         cls.customers = read_rows("sample-data/uk-legal/base/customers.csv")
         cls.cases = read_rows("sample-data/uk-legal/base/cases.csv")
         cls.transactions = read_rows("sample-data/uk-legal/base/transactions.csv")
+        cls.interactions = read_rows("sample-data/uk-legal/base/interactions.csv")
 
     def test_dataset_shape(self):
-        self.assertEqual(6, self.dataset["metadata"]["total_queries"])
-        self.assertEqual(6, len(self.queries))
-        self.assertEqual(6, len({query["question"] for query in self.queries.values()}))
+        self.assertEqual(7, self.dataset["metadata"]["total_queries"])
+        self.assertEqual(7, len(self.queries))
+        self.assertEqual(7, len({query["question"] for query in self.queries.values()}))
         self.assertTrue(all(query.get("paraphrase") for query in self.queries.values()))
 
     def test_ground_truth_matches_current_csvs(self):
@@ -46,6 +48,27 @@ class HackathonChallengeDatasetTests(unittest.TestCase):
             "HC005": sum(row["case_status"] == "Open" for row in self.cases),
             "HC006": len(self.customers),
         }
+
+        customer_by_case = {row["case_id"]: row["customer_id"] for row in self.cases}
+        unpaid_by_customer = {}
+        for row in self.transactions:
+            if row["transaction_type"] == "Invoice" and row["payment_status"] == "Unpaid":
+                customer_id = customer_by_case[row["case_id"]]
+                unpaid_by_customer[customer_id] = (
+                    unpaid_by_customer.get(customer_id, 0.0) + float(row["amount_gbp"])
+                )
+
+        cutoff = date.today() - timedelta(days=60)
+        recent_customers = {
+            row["customer_id"]
+            for row in self.interactions
+            if datetime.strptime(row["interaction_date"], "%d/%m/%Y").date() >= cutoff
+        }
+        expected["HC007"] = sum(
+            amount > 10000 and customer_id not in recent_customers
+            for customer_id, amount in unpaid_by_customer.items()
+        )
+
         for query_id, value in expected.items():
             self.assertEqual(value, self.queries[query_id]["ground_truth_answer"])
 

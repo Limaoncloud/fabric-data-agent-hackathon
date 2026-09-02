@@ -87,19 +87,19 @@ class ReviewScorecardNotebookTests(NotebookContractMixin, unittest.TestCase):
 
     def test_blank_inputs_produce_actionable_report(self):
         namespace, report = self.execute_notebook(populate=False)
-        self.assertEqual(60, len(namespace["validation_issues"]))
+        self.assertEqual(70, len(namespace["validation_issues"]))
         self.assertEqual(0.0, namespace["baseline_total"])
         self.assertEqual(0.0, namespace["final_total"])
         self.assertEqual(0.0, report["summary"]["final_score"])
 
-    def test_complete_inputs_score_and_export_24(self):
+    def test_complete_inputs_score_and_export_28(self):
         namespace, report = self.execute_notebook(populate=True)
         self.assertEqual([], namespace["validation_issues"])
-        self.assertEqual(24.0, namespace["baseline_total"])
-        self.assertEqual(24.0, namespace["final_total"])
-        self.assertEqual(6, len(namespace["scorecard_df"]))
-        self.assertEqual(24.0, report["summary"]["baseline_score"])
-        self.assertEqual(24.0, report["summary"]["final_score"])
+        self.assertEqual(28.0, namespace["baseline_total"])
+        self.assertEqual(28.0, namespace["final_total"])
+        self.assertEqual(7, len(namespace["scorecard_df"]))
+        self.assertEqual(28.0, report["summary"]["baseline_score"])
+        self.assertEqual(28.0, report["summary"]["final_score"])
         for check, complete in namespace["artifact_checks"].items():
             if check != "Screenshots or copied run-step evidence attached":
                 self.assertTrue(complete, check)

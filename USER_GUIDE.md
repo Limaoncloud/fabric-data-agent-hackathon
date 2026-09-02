@@ -120,7 +120,7 @@ Run the prompts above in the agent chat.
 - No AI-specific tuning yet, so business terms and undefined thresholds can still fail
 - This is your semantic-model baseline before Step 2
 
-Before changing any Step 2 controls, run the six scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
+Before changing any Step 2 controls, run the seven scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
 
 ---
 
@@ -186,6 +186,7 @@ Do not change several controls at once. For each question, capture the baseline,
 | How many invoices remain unpaid? | What is our unpaid invoice count? | Does an existing measure already match the intent? |
 | How many legal cases are currently open? | How many open matters are on our books? | Does behavior remain consistent when terminology changes? |
 | How many customers do we have? | What is our total client count? | If this fails, inspect scope and grounding before adding instructions. |
+| Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000. | How many customers have had no interaction in the past 60 days and have more than GBP 10,000 in unpaid invoices? | Does the agent join customers, cases, transactions, and interactions, sum exact-Unpaid invoices per customer, and apply a current-date 60-day exclusion? |
 
 #### Results worksheet
 
@@ -197,6 +198,7 @@ Do not change several controls at once. For each question, capture the baseline,
 | 4 |  |  |  |  |  |  |
 | 5 |  |  |  |  |  |  |
 | 6 |  |  |  |  |  |  |
+| 7 |  |  |  |  |  |  |
 
 Facilitators should use [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
 
@@ -324,7 +326,7 @@ WHERE interaction_id = 'INT000001';
 5. Ask all three questions in chat and inspect the generated SQL and answers.
 6. Confirm that each question uses `LegalFirmDemo` and returns the matching detailed record, then continue with the challenge questions without giving participants more SQL solutions.
 
-These questions are deliberately outside the six-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
+These questions are deliberately outside the seven-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
 
 ### Diagnostic Hints For The Remaining Questions
 
@@ -506,9 +508,9 @@ Run relationship-heavy prompts:
 
 ## Evaluate Your Agent
 
-Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the six original questions and six paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
+Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the seven original questions and seven paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
 
-Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 24-point score. It does not test the live agent by itself.
+Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 28-point score. It does not test the live agent by itself.
 
 1. Import `NB_Run_SDK_Evaluation.ipynb` into the Fabric workspace and attach the target Lakehouse as the default.
 2. Run it once for the baseline and again after your changes for the final test.
@@ -516,13 +518,13 @@ Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb)
 4. Expand the run steps and inspect the generated SQL or DAX. Mark the logic `True` only when the table or measure, filters, and aggregation are correct.
 5. Enter those observations in section 3 of `NB_Review_And_Score_Data_Agent.ipynb`.
 6. Run all cells. Fix any actionable validation errors.
-7. Review the per-question scorecard and the baseline and final totals out of 24.
+7. Review the per-question scorecard and the baseline and final totals out of 28.
 8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
 
 ### Automated Notebook Options
 
-- **Live agent test:** use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 12 original and paraphrased prompts and retain raw official-detail CSV evidence.
-- **Reviewed scorecard:** use `NB_Review_And_Score_Data_Agent.ipynb` for validated participant entry, deterministic baseline/final scoring out of 24, regression checks, and CSV/JSON artifact validation.
+- **Live agent test:** use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 14 original and paraphrased prompts and retain raw official-detail CSV evidence.
+- **Reviewed scorecard:** use `NB_Review_And_Score_Data_Agent.ipynb` for validated participant entry, deterministic baseline/final scoring out of 28, regression checks, and CSV/JSON artifact validation.
 
 The generated SQL or DAX still requires a human logic review. Automation must not mark logic `True` merely because an answer matches; verify the table or measure, filters, and aggregation first.
 

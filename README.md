@@ -32,7 +32,7 @@ Choose one path:
 | Facilitator | [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) | Prepare the event, use solution checkpoints, give hints, and validate results |
 | Automation or troubleshooting | [deployment/README.md](deployment/README.md) | Understand deployment parameters, generated artifacts, and rerun behavior |
 
-Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to capture live baseline/final evidence, then use `NB_Review_And_Score_Data_Agent.ipynb` to calculate the reviewed 24-point scorecard.
+Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Run_SDK_Evaluation.ipynb` to capture live baseline/final evidence, then use `NB_Review_And_Score_Data_Agent.ipynb` to calculate the reviewed 28-point scorecard.
 
 ### Notebook Guide
 
@@ -40,7 +40,7 @@ Use `NB_Deploy_Data_Agent_Hackathon.ipynb` to create the environment. Use `NB_Ru
 | --- | --- |
 | `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the Lakehouse, tables, and semantic model |
 | `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
-| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
+| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 28-point score |
 
 These two notebooks are the complete evaluation workflow. The first captures evidence; the second reviews and scores it.
 
