@@ -11,6 +11,13 @@ Keep this guide separate from participant materials until teams have recorded th
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
+## Suggested Demo Flow (15 Minutes)
+
+1. Show baseline quality on raw or cleaned tables.
+2. Show semantic model uplift.
+3. Show multi-source routing improvements across the Lakehouse and derived data.
+4. Show optional ontology reasoning uplift.
+
 ## Facilitator Solution Checkpoints
 
 These are reference outcomes, not a script to reveal to participants. Accept a different configuration when the team can demonstrate correct answers, durable behavior across paraphrases, and the expected source or measure.

@@ -10,11 +10,11 @@ You build one Data Agent and grow it step by step: first the semantic model, the
 
 Participants work through these stages:
 
-1. Build a Data Agent on the Optimized semantic model and retest
-2. Configure the semantic-model agent with Prep for AI and retest
+1. Build a Data Agent on the raw semantic model and test
+2. Configure the semantic-model with Prep for AI and agent instructions and retest
 3. Attach the Lakehouse to the same agent and retest
-4. Configure the Lakehouse source with best practices and retest
-5. Add the derived Lakehouse tables and configure routing, retest
+4. Configure the Lakehouse source with best practices (data source instructions and example queries) and retest
+5. Add additional aggregated Lakehouse tables and configure multi data source routing in agent instruction and retest
 6. Bonus: Add ontology and retest
 
 ---
@@ -22,7 +22,7 @@ Participants work through these stages:
 ## Prerequisites
 
 - Microsoft Fabric workspace with enough capacity
-- Access to create Lakehouse, Semantic Model, and Data Agent
+- Workspace contributer role to have access to create Lakehouse, Semantic Model, and Data Agent
 - Power BI Desktop or Fabric report authoring only if configuring Verified Answers
 - Files already in this repo
 
@@ -63,6 +63,53 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 ---
 
 ## Quick File Map
+
+### Notebook Guide
+
+| Notebook | Use it for |
+| --- | --- |
+| `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the environment (Lakehouse, tables, and semantic model) |
+| `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
+| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
+
+The two evaluation notebooks form the complete evaluation workflow: the first captures evidence, and the second reviews and scores it.
+
+### Multi-Table Architecture
+
+The deployment notebook creates `LegalFirmDemo`, a Lakehouse with eight managed Delta tables, and `LegalFirmSemanticModel`, an optimized Direct Lake semantic model.
+
+#### Baseline Lakehouse Tables
+
+| Table | Grain | Current rows |
+| --- | --- | ---: |
+| `base_customers` | One row per customer | 171 |
+| `base_cases` | One row per legal case | 500 |
+| `base_solicitors` | One row per solicitor | 15 |
+| `base_transactions` | One row per transaction | 1,000 |
+| `base_interactions` | One row per interaction | 800 |
+
+#### Derived Routing Tables
+
+| Table | Grain | Routing purpose |
+| --- | --- | --- |
+| `routing_client_engagement_summary` | One row per customer | Engagement segments and interaction recency |
+| `routing_case_finance_insights` | One row per case | Combined case-finance outcomes and payment risk |
+| `routing_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
+
+#### Final Routing Architecture
+
+Create one Fabric Data Agent with exactly two sources:
+
+| Source | Selected objects | Use when |
+| --- | --- | --- |
+| `LegalFirmSemanticModel` | All five model tables | Standard customer, case, solicitor, transaction, interaction, and explicit-measure questions |
+| `LegalFirmDemo` | Only the three `routing_*` tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
+
+This is the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. Step 5 deselects them and selects only the three `routing_*` tables because the semantic model already covers standard business topics.
+
+Lakehouse sources support validated SQL example question/query pairs. Power BI semantic-model sources do not. Configure semantic-model synonyms through Prep for AI, not on Lakehouse tables.
+
+The deployable source of truth is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing configuration is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).
 
 ### Cleaned baseline data files
 - `sample-data/uk-legal/base/customers.csv`
