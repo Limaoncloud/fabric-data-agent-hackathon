@@ -1,6 +1,6 @@
 # Fabric Data Agent User Guide (Simple Step-by-Step)
 
-This guide supports a three-hour, hands-on learning loop:
+This guide supports a three-hour, hands-on learning exercise:
 
 > Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
 
