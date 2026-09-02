@@ -1,76 +1,290 @@
 # Fabric Data Agent User Guide (Simple Step-by-Step)
 
-This guide walks you through **Steps 1 to 6** in a simple flow:
+This guide supports a three-hour, hands-on learning loop:
 
-1. Load cleaned data and create an agent baseline
-2. Configure the data agent with best practices and retest
-3. Build a semantic model and retest
-4. Optimize the semantic model and retest
-5. Bonus: Add ontology and retest
-6. Bonus: Add multiple data sources with routing best practices and retest
+> Ask a question, observe the result, form a hypothesis, change one durable control, and retest.
+
+The environment starts with Lakehouse data and a `LegalFirmSemanticModel` semantic model that has correct relationships, explicit measures, and descriptions, but intentionally has no synonyms, Prep for AI configuration, AI instructions, Verified Answers, or Data Agent.
+
+You build one Data Agent and grow it step by step: first the semantic model, then the Lakehouse attached to that same agent as a second source. Each step is a continuation of the same agent, not a new one.
+
+Participants work through these stages:
+
+1. Build a Data Agent on the raw semantic model and test
+2. Configure the semantic-model with Prep for AI and agent instructions and retest
+3. Attach the Lakehouse to the same agent and retest
+4. Configure the Lakehouse source with best practices (data source instructions and example queries) and retest
+5. Add additional aggregated Lakehouse tables and configure multi data source routing in agent instruction and retest
+6. Bonus: Add ontology and retest
 
 ---
 
 ## Prerequisites
 
 - Microsoft Fabric workspace with enough capacity
-- Access to create Lakehouse, Semantic Model, and Data Agent
-- Power BI Desktop (for semantic model steps)
+- Workspace contributer role to have access to create Lakehouse, Semantic Model, and Data Agent
+- Power BI Desktop or Fabric report authoring only if configuring Verified Answers
 - Files already in this repo
+
+## Automated Deployment (Recommended)
+
+### Import The Deployment Notebook Into Fabric
+
+New to Fabric? Follow these steps exactly:
+
+1. Download the deployment notebook from this repo: [NB_Deploy_Data_Agent_Hackathon.ipynb](https://github.com/Limaoncloud/fabric-data-agent-hackathon/blob/dev/NB_Deploy_Data_Agent_Hackathon.ipynb). On the GitHub page, use **Download raw file** to save the `.ipynb` file to your computer.
+2. Open Microsoft Fabric at [https://app.fabric.microsoft.com](https://app.fabric.microsoft.com).
+3. Open the target workspace.
+4. Select **Import → Notebook**, then upload the `.ipynb` file you downloaded.
+5. Open the imported notebook once it appears in the workspace.
+6. Leave `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default run.
+7. Run all cells.
+
+### Before You Run
+
+- Keep `ENABLE_PREP_FOR_AI=False`, `ENABLE_DATA_AGENT=False`, and the preview stages disabled for a participant-ready deployment.
+- Running all cells creates the participant-ready Lakehouse and the Optimized Direct Lake semantic model.
+- Review the deployment summary printed at the end, then begin the participant exercises in Fabric.
+
+See [deployment/README.md](deployment/README.md) for parameters and custom-domain packaging.
+
+## Suggested Three-Hour Schedule
+
+| Time | Activity |
+| --- | --- |
+| 0:00-0:20 | Scenario and Data Agent creation on the Optimized semantic model |
+| 0:20-1:00 | Configure Prep for AI and Data Agent instructions, then retest |
+| 1:00-1:30 | Attach the Lakehouse to the same agent and capture the two-source baseline |
+| 1:30-2:00 | Configure the Lakehouse source with best practices and retest |
+| 2:00-2:30 | Add the derived Lakehouse tables and configure routing |
+| 2:30-2:45 | Bonus ontology or rerun unseen challenge questions |
+| 2:45-3:00 | Team debrief: what helped, what did not, and why |
 
 ---
 
 ## Quick File Map
 
-### Step 1 files (cleaned baseline)
-- `step1/step1_cleaned_customers.csv`
-- `step1/step1_cleaned_cases.csv`
-- `step1/step1_cleaned_solicitors.csv`
-- `step1/step1_cleaned_transactions.csv`
-- `step1/step1_cleaned_interactions.csv`
+### Notebook Guide
 
-### Step 3 to 6 model/config files
-- `step3/LegalFirmBasic Direct Lake Instructions.docx` (manual Power BI Service build guide)
-- `step4/LegalFirmOptimized Direct Lake Instructions.docx` (manual Power BI Service optimization guide)
-- `step5/step5_ontology_definition.json`
-- `step6/step6_data_agent_configuration.json`
+| Notebook | Use it for |
+| --- | --- |
+| `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the environment (Lakehouse, tables, and semantic model) |
+| `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
+| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
 
-### Step 6 additional data files
-- `step6/step6_client_engagement_summary.csv`
-- `step6/step6_case_finance_insights.csv`
-- `step6/step6_solicitor_performance_mart.csv`
-- `step6/generate_step6_data.py`
+The two evaluation notebooks form the complete evaluation workflow: the first captures evidence, and the second reviews and scores it.
+
+### Multi-Table Architecture
+
+The deployment notebook creates `LegalFirmDemo`, a Lakehouse with eight managed Delta tables, and `LegalFirmSemanticModel`, an optimized Direct Lake semantic model.
+
+#### Baseline Lakehouse Tables
+
+| Table | Grain | Current rows |
+| --- | --- | ---: |
+| `base_customers` | One row per customer | 171 |
+| `base_cases` | One row per legal case | 500 |
+| `base_solicitors` | One row per solicitor | 15 |
+| `base_transactions` | One row per transaction | 1,000 |
+| `base_interactions` | One row per interaction | 800 |
+
+#### Derived Routing Tables
+
+| Table | Grain | Routing purpose |
+| --- | --- | --- |
+| `routing_client_engagement_summary` | One row per customer | Engagement segments and interaction recency |
+| `routing_case_finance_insights` | One row per case | Combined case-finance outcomes and payment risk |
+| `routing_solicitor_performance_mart` | One row per solicitor | Performance tiers and solicitor rankings |
+
+#### Final Routing Architecture
+
+Create one Fabric Data Agent with exactly two sources:
+
+| Source | Selected objects | Use when |
+| --- | --- | --- |
+| `LegalFirmSemanticModel` | All five model tables | Standard customer, case, solicitor, transaction, interaction, and explicit-measure questions |
+| `LegalFirmDemo` | Only the three `routing_*` tables | Engagement segments, combined case-finance outcomes, payment risk, and solicitor performance tiers |
+
+This is the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. Step 5 deselects them and selects only the three `routing_*` tables because the semantic model already covers standard business topics.
+
+Lakehouse sources support validated SQL example question/query pairs. Power BI semantic-model sources do not. Configure semantic-model synonyms through Prep for AI, not on Lakehouse tables.
+
+The deployable source of truth is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing configuration is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).
+
+### Cleaned baseline data files
+- `sample-data/uk-legal/base/customers.csv`
+- `sample-data/uk-legal/base/cases.csv`
+- `sample-data/uk-legal/base/solicitors.csv`
+- `sample-data/uk-legal/base/transactions.csv`
+- `sample-data/uk-legal/base/interactions.csv`
+
+### Semantic model and config files
+- [Reusable deployment notebook](NB_Deploy_Data_Agent_Hackathon.ipynb)
+- [UK Legal domain profile](config/domains/uk-legal.json)
+- [Semantic-model artifact reference](semantic-model/optimized/uk-legal/README.md) (deployed relationships and measures)
+- `ontology/uk-legal/ontology-definition.json`
+- `agent-configuration/routing/uk-legal/data-agent-configuration.json`
+
+### Lakehouse routing data files
+- `sample-data/uk-legal/derived-routing/client_engagement_summary.csv`
+- `sample-data/uk-legal/derived-routing/case_finance_insights.csv`
+- `sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv`
+- `sample-data/uk-legal/derived-routing/generate_derived_routing_data.py`
 
 ### Test prompts
-- `evaluation/TEST_QUERIES.md`
+- `evaluation/challenge/uk-legal.json`
+- `evaluation/routing/uk-legal.json`
 
-### Verification reference
-- `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)
-
-Validation workflow:
-1. Run the test prompts for the current step.
-2. Record the agent output.
-3. Compare with the expected result for that step in `Verification.xlsx`.
-4. Mark pass/fail and note any mismatch before moving to the next step.
+Use `NB_Run_SDK_Evaluation.ipynb` to capture live results and `NB_Review_And_Score_Data_Agent.ipynb` to review evidence and calculate the scorecard.
 
 ---
 
-## Step 1: Upload Cleaned Data, Build Agent, Test
+## Step 1: Build A Data Agent With The Optimized Semantic Model, Test
 
 ### Goal
-Create a baseline agent on cleaned multi-table data before semantic-model and ontology tuning.
+Create the one Data Agent you will keep extending through every later step, starting with the predeployed `LegalFirmSemanticModel` semantic model as its first source.
 
 ### Actions
-1. In Fabric, create a new Lakehouse (example name: `LegalFirmDemo`).
-2. Upload all 5 cleaned CSV files from `step1/`:
-   - `step1_cleaned_customers.csv`
-   - `step1_cleaned_cases.csv`
-   - `step1_cleaned_solicitors.csv`
-   - `step1_cleaned_transactions.csv`
-   - `step1_cleaned_interactions.csv`
-3. Load each file to a new table.
-4. Create a Data Agent connected to this Lakehouse/tables.
-5. Add simple instructions and sample questions.
+1. Open the Fabric workspace containing the deployed hackathon items.
+2. Select **+ New item → Fabric data agent**.
+3. Name it `LegalFirmAgent`. You will attach the Lakehouse to this same agent later; do not create a second agent.
+4. In the OneLake catalog, select the `LegalFirmSemanticModel` semantic model and select **Add**.
+5. In the Explorer, make all five model tables available: `Customers`, `Cases`, `Solicitors`, `Transactions`, and `Interactions`.
+6. Leave **Data agent instructions** and `LegalFirmSemanticModel`'s **Prep data for AI** settings unconfigured for the first test.
+
+### Example Prompts, Including Two That Should Stumble
+Ask these before making any AI configuration changes and record each answer plus the model object used:
+- "How many active customers do we have?"
+- "What is the total case value?"
+- "How much money have we made?" — deliberately ambiguous; watch whether the agent uses Invoices only or every transaction type.
+- "How many senior solicitors do we have?" — deliberately undefined; "senior" is not a model field or measure.
+
+### Test
+Run the prompts above in the agent chat.
+
+### Expected
+- Reasonable answers from the model's relationships and explicit measures
+- No AI-specific tuning yet, so business terms and undefined thresholds can still fail
+- This is your semantic-model baseline before Step 2
+
+Before changing any Step 2 controls, run the seven scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
+
+---
+
+## Step 2: Configure The Semantic-Model Agent With Prep For AI, Retest
+
+### Goal
+Improve the same `LegalFirmAgent` by configuring `LegalFirmSemanticModel`'s Prep for AI settings and the agent's own instructions, then measure the effect.
+
+### Hint
+- You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
+- You can also use any tools listed in Microsoft Learn here:
+   [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
+- Facilitators may use the [Optimized model reference](semantic-model/optimized/uk-legal/README.md) after the exercise; participants should diagnose and choose improvements without following the completed solution path.
+
+### Configure Prep Data For AI
+Open **LegalFirmSemanticModel → Model settings → Prep data for AI**. It has three controls; two get a full worked example below, one you diagnose yourself:
+- **Table/column selection (AI Data Schema)** — scope which tables and columns the agent can see.
+- **Synonyms** — teach alternate business words for existing model objects.
+- **AI instructions** — teach business rules that no single field or measure already expresses.
+
+A fourth control lives on the **Data Agent** item itself, separate from the semantic model: **Data Agent instructions**, which shapes source selection and answer style rather than model semantics.
+
+#### Worked example 1: Verified answer from a report visual
+1. Ask **"What is the total case value?"** and note the current answer and source.
+2. From `LegalFirmSemanticModel`, select **Create report**, add a page named **Verified Answers**, and add a Card visual bound to the `[Total Case Value]` measure. Save the report.
+3. Select the Card visual, open its **...** menu, choose **Add to Q&A**, enter the question, and turn on **Verified answer**. The verified answer is pinned on the visual in the report, not in Prep data for AI.
+4. Ask the same question again in the agent chat and confirm it now answers from the verified visual instead of generating a new query.
+
+#### Worked example 2: Tweak an AI instruction
+1. Ask **"How many senior solicitors do we have?"** and record the result. The model has no field or measure for seniority, so the agent must guess or refuse.
+2. In **Prep data for AI → AI instructions**, add one concise rule: `Senior solicitor means hourly_rate_gbp greater than 300.`
+3. Ask the same question again, then test the paraphrase **"How many solicitors charge a high hourly rate?"**
+4. Record whether the answer and generated filter now match the rule, and note this was a business-rule gap, not a naming gap.
+
+#### Two more examples of the same method: synonyms and Data Agent instructions
+
+We won't spoon-feed every control. These two examples show how to analyse a failure and pick the right place to fix it, so you can apply the same method to table/column selection.
+
+**Example A — synonym.** Ask: **How many open matters do we have?**
+1. Record the answer and which model object the agent appears to use.
+2. Decide whether *matter* describes a new business rule or another name for an existing concept.
+3. In **Prep data for AI**, add `matter` and `matters` as synonyms for the `Cases` table. This synonym control is available on the `LegalFirmSemanticModel` Power BI semantic-model source.
+4. Ask the same question again, then test: **How many matters are currently open?**
+5. Record what changed and what evidence supports your conclusion.
+
+**Example B — Data Agent instruction.** Ask: **What is our average case value?**
+1. Check the number formatting in the answer.
+2. Open the Data Agent item (not the semantic model) and add one **Data Agent instruction**: `Present all monetary answers in GBP with two decimal places.`
+3. Retest the same question and confirm the answer style changed without changing the underlying measure.
+4. Decide yourself whether a similar answer-style or source-preference rule belongs here rather than in the semantic model's AI instructions.
+
+Now apply the same analyse → pick the control → change one thing → retest method to **table/column selection**: find a question where the agent uses an irrelevant or hidden column, narrow the AI Data Schema to the business-facing fields and measures only, and retest.
+
+#### Your questions
+
+Do not change several controls at once. For each question, capture the baseline, form a hypothesis, make one change, and retest the question plus its paraphrase. Keep going until you consider the agent AI-ready.
+
+| Question | Paraphrase | Hint |
+| --- | --- | --- |
+| How many active clients do we have? | What is our current active customer count? | Is every business term represented in the model language? |
+| What is the total value of all matters? | What is our complete case portfolio worth? | Did the agent select an explicit measure or aggregate a field itself? |
+| How much revenue have we generated? | What is the total amount invoiced? | Could revenue mean invoices, payments, or all transactions? |
+| How many invoices remain unpaid? | What is our unpaid invoice count? | Does an existing measure already match the intent? |
+| How many legal cases are currently open? | How many open matters are on our books? | Does behavior remain consistent when terminology changes? |
+| How many customers do we have? | What is our total client count? | If this fails, inspect scope and grounding before adding instructions. |
+| Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000. | How many customers have had no interaction in the past 60 days and have more than GBP 10,000 in unpaid invoices? | Does the agent join customers, cases, transactions, and interactions, sum exact-Unpaid invoices per customer, and apply a current-date 60-day exclusion? |
+
+#### Results worksheet
+
+| Question | Baseline answer | Hypothesis | One change made | Retest answer | Paraphrase result | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 |  |  |  |  |  |  |
+| 2 |  |  |  |  |  |  |
+| 3 |  |  |  |  |  |  |
+| 4 |  |  |  |  |  |  |
+| 5 |  |  |  |  |  |  |
+| 6 |  |  |  |  |  |  |
+| 7 |  |  |  |  |  |  |
+
+Facilitators should use [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
+
+### Test
+Run the same prompt set from Step 1 and compare.
+
+### Expected
+- Significant quality jump over the Step 1 baseline
+- Better business logic understanding
+- More accurate and repeatable answers
+- Evidence showing which specific changes affected behavior
+
+### Two Questions That Will Still Stumble
+Ask these once your AI configuration is otherwise stable:
+- "Which customers are in the low engagement segment?"
+- "Which solicitors are in the top performance tier?"
+
+Both should stumble or be refused. `LegalFirmSemanticModel` has no engagement-segment or performance-tier classification at any grain; that derived, row-level context does not exist anywhere yet. This is the motivation for attaching the Lakehouse in Step 3.
+
+---
+
+## Step 3: Attach The Lakehouse To The Same Agent, Retest
+
+### Goal
+Continue building the same `LegalFirmAgent`: give it one Data Agent with two complementary sources by adding the `LegalFirmDemo` Lakehouse alongside `LegalFirmSemanticModel`, then observe how it behaves before any Lakehouse-specific tuning.
+
+### Actions
+1. Open the existing `LegalFirmAgent` Data Agent. Do not create a new agent.
+2. Add the `LegalFirmDemo` Lakehouse as a second source and select **Add**.
+3. In the left **Explorer**, expand `LegalFirmDemo` and make only these tables available to the AI:
+   - `base_customers`
+   - `base_cases`
+   - `base_solicitors`
+   - `base_transactions`
+   - `base_interactions`
+4. Leave the three tables beginning with `routing_` unselected; you will use them in Step 5.
+5. Leave the Lakehouse source's description and example queries empty for now. Keep the Step 2 instructions on `LegalFirmSemanticModel` unchanged.
+
+The agent can contain up to five data sources; it now has two.
 
 ### Test (in agent chat)
 Try 5 prompts:
@@ -85,288 +299,216 @@ Also test these advanced prompts:
 - "Calculate unpaid invoice ratio by case type: unpaid invoice count divided by total invoices."
 
 ### Expected
-- Better than raw-data quality, but still room to improve
-- Some ambiguity on source usage and answer style
-- This is your cleaned-data baseline
+- The agent now has two sources covering similar ground
+- Without a Lakehouse description or examples, expect it to sometimes pick the wrong source, hesitate, or duplicate logic the semantic model already answers correctly
+- This is your two-source baseline before you apply Lakehouse best practices in Step 4
 
 ---
 
-## Step 2: Configure Data Agent Best Practices, Retest
+## Step 4: Configure The Lakehouse Source With Best Practices, Retest
 
 ### Goal
-Improve response consistency and quality by configuring the data agent using Microsoft best practices.
+Improve response consistency by configuring the `LegalFirmDemo` Lakehouse source on the same agent using Microsoft best practices, without changing `LegalFirmSemanticModel`.
 
 ### Hint
 - Follow Microsoft Learn guidance:
   [Best practices for configuring your data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-configuration-best-practices)
 
 ### Actions
-1. Keep the same cleaned Step 1 tables and agent data source.
+1. Keep the same five `base_*` tables selected on `LegalFirmDemo`.
 2. Improve data source scope and schema selection (include only relevant tables/columns).
-3. Write clear and concise data source descriptions.
-4. Add focused example prompts that represent real user intent.
-5. Strengthen agent instructions:
-   - domain terminology
-   - expected answer style
-   - assumptions and constraints
+3. Write a clear and concise description for the `LegalFirmDemo` source.
+4. Add focused example queries that represent real user intent.
+5. Extend the Data Agent instructions to say when the Lakehouse should be preferred over the semantic model.
 6. Keep data unchanged and rerun the same prompt set.
 
-### Step 2 Examples You Can Reuse
+### Worked Example 1: Route Detailed Record Lookups To The Lakehouse
 
-#### A) Business Terms To Define Explicitly
-Use this compact glossary in agent instructions (keep as one block): Active customer = `status='Active'`; Open case = `case_status='Open'`; High-value case = `case_value_gbp>=100000`; Unpaid invoice = `transaction_type='Invoice' AND payment_status='Unpaid'`; Overdue invoice = unpaid invoice older than 30 days; Revenue = sum(`amount_gbp`) for invoices; Payment collected = sum(`amount_gbp`) for payments; Billed hours = sum(`hours_worked`) for timesheets; Outstanding = Revenue - Payment collected.
+1. Ask these questions and record which source the agent uses:
+   - **"Find transaction TXN000001 and show all its available details."**
+   - **"Show the detailed case record for CASE0001."**
+   - **"Find interaction INT000001 and show all its available details."**
+2. Inspect the generated SQL or agent steps and note whether every available field is returned.
+3. Open **Data agent instructions** and add one concise rule: `Prefer LegalFirmDemo for a detailed record lookup by transaction_id, case_id, or interaction_id, especially when the user asks for all available details. Use base_transactions, base_cases, or base_interactions as appropriate.`
+4. Ask the exact three questions again.
+5. Confirm that each question uses `LegalFirmDemo`, selects the appropriate `base_*` table, filters on the requested identifier, and returns one detailed record.
 
-#### B) Abbreviations And Synonyms
-Use these canonical mappings: client->customer; matter->case; fee earner->solicitor; WIP->open case effort; AR->unpaid invoices; billed->invoice amount; collected->payment amount; top lawyer->solicitor with highest selected KPI; open matters->open cases; meetings/calls/touchpoints->interactions.
+Lakehouse tables do not have the semantic-model synonym editor. For Lakehouse sources, use Data Agent instructions, data-source descriptions, schema selection, and validated SQL example queries. You already added true model-object synonyms in Step 2 for `LegalFirmSemanticModel`.
 
-#### C) Clear Focused Instruction For The Data Agent
-Copy-paste and adapt this block:
+### Worked Example 2: Add Lakehouse SQL Example Queries
 
-```text
-You are a Fabric Data Agent for UK legal Customer 360.
+Participants are not expected to know the table schema or write their first SQL example from scratch. Add this non-challenge example together:
 
-Scope:
-- Use only the Step 1 cleaned tables in this source.
-- Do not invent fields, entities, or metrics outside the schema.
-
-Terminology rules:
-- Treat client = customer, matter = case, fee earner = solicitor.
-- Revenue means Invoice amounts only.
-- Outstanding means Invoice - Payment.
-- Unpaid invoice means transaction_type=Invoice and payment_status=Unpaid.
-
-Reasoning rules:
-- For counts, return integer values.
-- For money, return GBP with 2 decimals.
-- When a request is ambiguous, state the assumption in one short line.
-- If a required field is missing, say exactly what is missing.
-
-Response style:
-- Start with a direct answer in one sentence.
-- Then provide a short calculation summary (max 3 bullets).
-- Keep responses concise and evidence-based.
-```
-
-#### D) SQL Query Examples To Answer Questions
-Use these SQL examples as the expected logic behind common business questions.
-
-1. How many active customers do we have?
+**Question:** Find transaction TXN000001 and show all its available details.
 
 ```sql
-SELECT COUNT(*) AS active_customers
-FROM step1_cleaned_customers
-WHERE status = 'Active';
+SELECT transaction_id, case_id, transaction_type, transaction_date,
+       amount_gbp, hours_worked, payment_status
+FROM base_transactions
+WHERE transaction_id = 'TXN000001';
 ```
 
-2. How many open cases do we have?
+**Question:** Show the detailed case record for CASE0001.
 
 ```sql
-SELECT COUNT(*) AS open_cases
-FROM step1_cleaned_cases
-WHERE case_status = 'Open';
+SELECT case_id, customer_id, solicitor_name, case_type,
+       case_value_gbp, start_date, case_status
+FROM base_cases
+WHERE case_id = 'CASE0001';
 ```
 
-3. How many unpaid invoices do we have?
+**Question:** Find interaction INT000001 and show all its available details.
 
 ```sql
-SELECT COUNT(*) AS unpaid_invoices
-FROM step1_cleaned_transactions
-WHERE transaction_type = 'Invoice'
-   AND payment_status = 'Unpaid';
+SELECT interaction_id, customer_id, solicitor_name, interaction_type,
+       interaction_date, duration_minutes, notes
+FROM base_interactions
+WHERE interaction_id = 'INT000001';
 ```
 
-4. What is total outstanding amount?
+1. In the Data Agent, select **Example queries**.
+2. For the `LegalFirmDemo` Lakehouse source, select **Add or Edit Example Queries**.
+3. Enter each question and SQL pair exactly as shown above.
+4. Validate and save each example. Fabric only uses examples that pass validation.
+5. Ask all three questions in chat and inspect the generated SQL and answers.
+6. Confirm that each question uses `LegalFirmDemo` and returns the matching detailed record, then continue with the challenge questions without giving participants more SQL solutions.
 
-```sql
-WITH inv AS (
-      SELECT COALESCE(SUM(amount_gbp), 0) AS total_invoiced
-      FROM step1_cleaned_transactions
-      WHERE transaction_type = 'Invoice'
-),
-pay AS (
-      SELECT COALESCE(SUM(amount_gbp), 0) AS total_paid
-      FROM step1_cleaned_transactions
-      WHERE transaction_type = 'Payment'
-)
-SELECT CAST(inv.total_invoiced - pay.total_paid AS DECIMAL(18,2)) AS outstanding_amount_gbp
-FROM inv
-CROSS JOIN pay;
-```
+These questions are deliberately outside the seven-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
 
-5. Which solicitors handle the most open cases?
+### Diagnostic Hints For The Remaining Questions
 
-```sql
-SELECT
-      solicitor_name,
-      COUNT(*) AS open_case_count
-FROM step1_cleaned_cases
-WHERE case_status = 'Open'
-GROUP BY solicitor_name
-ORDER BY open_case_count DESC;
-```
-
-6. Corporate customers with more than 3 open cases and at least 1 unpaid invoice
-
-```sql
-WITH open_case_counts AS (
-      SELECT
-            c.customer_id,
-            COUNT(*) AS open_cases
-      FROM step1_cleaned_cases c
-      WHERE c.case_status = 'Open'
-      GROUP BY c.customer_id
-),
-unpaid_invoice_customers AS (
-      SELECT DISTINCT
-            c.customer_id
-      FROM step1_cleaned_cases c
-      JOIN step1_cleaned_transactions t
-         ON t.case_id = c.case_id
-      WHERE t.transaction_type = 'Invoice'
-         AND t.payment_status = 'Unpaid'
-)
-SELECT
-      cu.customer_id,
-      cu.customer_name,
-      occ.open_cases
-FROM step1_cleaned_customers cu
-JOIN open_case_counts occ
-   ON occ.customer_id = cu.customer_id
-JOIN unpaid_invoice_customers uic
-   ON uic.customer_id = cu.customer_id
-WHERE cu.customer_type = 'Corporate'
-   AND occ.open_cases > 3
-ORDER BY occ.open_cases DESC, cu.customer_name;
-```
-
-7. Cases opened this quarter with zero payments and more than 20 billed hours
-
-```sql
-WITH tx_rollup AS (
-      SELECT
-            case_id,
-            SUM(CASE WHEN transaction_type = 'Payment' THEN amount_gbp ELSE 0 END) AS total_payments,
-            SUM(CASE WHEN transaction_type = 'Timesheet' THEN hours_worked ELSE 0 END) AS total_hours
-      FROM step1_cleaned_transactions
-      GROUP BY case_id
-)
-SELECT
-      c.case_id,
-      c.customer_id,
-      c.solicitor_name,
-      c.case_type,
-      c.case_status,
-      c.start_date,
-      COALESCE(t.total_payments, 0) AS total_payments,
-      COALESCE(t.total_hours, 0) AS total_hours
-FROM step1_cleaned_cases c
-LEFT JOIN tx_rollup t
-   ON t.case_id = c.case_id
-WHERE YEAR(TRY_CONVERT(date, c.start_date, 103)) = YEAR(GETDATE())
-   AND DATEPART(QUARTER, TRY_CONVERT(date, c.start_date, 103)) = DATEPART(QUARTER, GETDATE())
-   AND COALESCE(t.total_payments, 0) = 0
-   AND COALESCE(t.total_hours, 0) > 20
-ORDER BY c.start_date;
-```
-
-8. High-value open cases that also have overdue unpaid invoices (30+ days)
-
-```sql
-SELECT DISTINCT
-      c.case_id,
-      c.customer_id,
-      c.solicitor_name,
-      c.case_value_gbp,
-      c.case_status
-FROM step1_cleaned_cases c
-JOIN step1_cleaned_transactions t
-   ON t.case_id = c.case_id
-WHERE c.case_status = 'Open'
-   AND c.case_value_gbp >= 100000
-   AND t.transaction_type = 'Invoice'
-   AND t.payment_status = 'Unpaid'
-   AND TRY_CONVERT(date, t.transaction_date, 103) < DATEADD(day, -30, CAST(GETDATE() AS date))
-ORDER BY c.case_value_gbp DESC;
-```
+- Is the failure caused by model structure, naming, business terminology, source selection, or answer style?
+- Did the generated SQL or DAX use the expected table or model object, columns, filters, and aggregation?
+- Is the term an alternative name that should be defined in Data Agent instructions?
+- Would narrowing the selected Lakehouse tables or columns reduce ambiguity?
+- Would a clearer Lakehouse source description help the agent choose the right source?
+- Would a validated SQL example demonstrate logic that instructions alone cannot express?
+- Can you test the hypothesis by changing only one control?
 
 ### Test
-Run the same 7 prompts from Step 1 and compare quality.
+Run the same 7 prompts from Step 3 and compare quality.
 
-Add 3 to 5 complex prompts from section D above and compare:
+Add 3 to 5 complex prompts from the challenge set and compare:
 - consistency of terminology mapping
 - correctness of filter logic
 - clarity of assumptions in responses
+- which source the agent selected
 
-Optional validation:
-- Run matching SQL from section E and compare agent answers against SQL outputs.
+Use the facilitator-provided evaluation results only after recording your own answer and diagnosis.
 
 ### Expected
-- Better consistency
-- Improved grounding and answer relevance
+- Better consistency between the two sources
+- The agent reliably prefers `LegalFirmSemanticModel` for standard questions
 - Clearer and more repeatable answers
 
 ---
 
-## Step 3: Build Basic Semantic Model, Retest
+## Step 5: Add The Derived Lakehouse Tables And Configure Routing, Retest
 
 ### Goal
-Create a new Data Agent that uses a basic semantic model (non-optimized) as its data source, then observe behavior.
+Continue extending the same `LegalFirmAgent` with the three prepared routing tables on `LegalFirmDemo`, so it can answer engagement, case-finance, and solicitor-performance questions that `LegalFirmSemanticModel` does not expose.
 
-### Actions
-1. For manual creation in **Power BI Service**, follow the Word guide: `step3/LegalFirmBasic Direct Lake Instructions.docx`.
-2. In Power BI Service, connect to cleaned Lakehouse tables and build a basic model (minimal relationships, basic measures).
-3. Publish the semantic model to your Fabric workspace.
-4. Create a **new Data Agent** for Step 3 (do not reuse Step 1/Step 2 agent).
-5. In the new agent, add the **published basic semantic model** as the data source.
-6. Keep test prompts unchanged from Steps 1 and 2.
+### Actions: Add The Derived Tables
+1. Open the existing `LegalFirmAgent` Data Agent and its `LegalFirmDemo` source.
+2. Deselect the five `base_*` tables used in Steps 3-4, then make only these three tables available:
+   - `routing_client_engagement_summary`
+   - `routing_case_finance_insights`
+   - `routing_solicitor_performance_mart`
+3. Leave their descriptions and example queries empty for now.
 
-### Test
-Run the same prompts 
+### Ask A Few Questions Before Configuring Anything
+- "Which customers are in the low engagement segment?"
+- "Which high-value open cases have outstanding balances?"
+- "Which solicitors are in the top performance tier?"
+
+Record the answer, the source selected, and whether routing was correct or ambiguous. With three prepared Lakehouse tables now unscoped, expect inconsistent or unexplained source selection.
+
+### Read The Routing Best Practices
+[Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
+
+Remember that SQL example question/query pairs can be added to the Lakehouse source, but not to the Power BI semantic-model source.
+
+### Worked Example 1: Source Description And SQL Example
+
+**`LegalFirmSemanticModel` description:**
+> Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer its explicit measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.
+
+**`routing_client_engagement_summary` description (on `LegalFirmDemo`):**
+> Use only for engagement segment questions. This table is already prepared at customer grain with `engagement_segment`, `total_interactions`, and `last_interaction_date`.
+
+Add and validate this SQL example for `routing_client_engagement_summary`:
+
+```sql
+SELECT customer_id, customer_name, total_interactions, last_interaction_date
+FROM routing_client_engagement_summary
+WHERE engagement_segment = 'Low Engagement'
+ORDER BY customer_name;
+```
+
+Ask **"Which customers are in the low engagement segment?"** again and confirm it now routes to `LegalFirmDemo` and uses this table.
+
+### Worked Example 2: Data Agent Instruction
+
+Update the **Data agent instruction** at the Data Agent level to cover all three areas of the now-continued agent:
+
+```text
+Prefer LegalFirmSemanticModel for standard customer, case, solicitor, transaction,
+and interaction questions that can be answered by model fields or measures.
+
+Use the routing_* Lakehouse tables only for engagement segments, combined
+case-finance outcomes, payment risk, outstanding balances by case, or solicitor
+performance tiers.
+
+Do not combine sources unless the requested result cannot be answered by one
+selected source.
+```
+
+Retest the same question plus a paraphrase and record whether the instruction, not just the example, influenced the routing decision.
+
+### Now Do The Rest Yourself
+
+Using the same method, write your own description and one validated SQL example for:
+- `routing_case_finance_insights` (case-level financial outcome and payment-risk questions)
+- `routing_solicitor_performance_mart` (solicitor ranking and performance-tier questions)
+
+Retest the two remaining questions from the baseline set above after each change.
+
+### Diagnose Incorrect Routing
+
+If a question routes incorrectly, change one control and retest:
+
+1. Confirm only the intended objects are selected for each source.
+2. Make the source descriptions more distinct rather than longer.
+3. Check that the Data Agent instruction names the correct source and topic for each question type.
+4. For a Lakehouse question, add or correct one validated SQL example pair.
+5. Clear the chat and test both the original question and a paraphrase.
+
+### Evaluate Your Routing
+
+Use this table to check whether your configuration routes each question to the intended source and object.
+
+| Question | Expected source | Expected object | Why |
+| --- | --- | --- | --- |
+| How many active customers do we have? | `LegalFirmSemanticModel` | `[Active Customers]` | Standard model measure |
+| What is our total revenue? | `LegalFirmSemanticModel` | `[Total Revenue]` | Standard financial measure |
+| Which customers are in the low engagement segment? | `LegalFirmDemo` | `routing_client_engagement_summary` | Prepared engagement classification |
+| Which high-value open cases have outstanding balances? | `LegalFirmDemo` | `routing_case_finance_insights` | Combined case and financial outcome |
+| Which solicitors are in the top performance tier? | `LegalFirmDemo` | `routing_solicitor_performance_mart` | Prepared solicitor tier |
 
 ### Expected
-- Some improvement in structure-based queries
-- Still confusion on certain measure selections
+- Standard metrics route to `LegalFirmSemanticModel`.
+- Engagement, case-finance, risk, and performance-tier questions route to the selected `routing_*` Lakehouse tables.
+- Participants can explain which source was selected and which configuration influenced the routing decision.
 
 ---
 
-## Step 4: Optimize Semantic Model, Retest
-
-### Goal
-Apply best practices and validate major accuracy improvement.
-
-### Hint
-- You can use tools like a **Power BI Modeling MCP server** to help design a clean semantic model.
-- You can also use any tools listed in Microsoft Learn here:
-   [Semantic model best practices for data agent - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools)
-- For manual optimization in **Power BI Service**, follow: `step4/LegalFirmOptimized Direct Lake Instructions.docx`.
-
-### Actions
-1. Improve model design to a clean star schema.
-2. Create clear, unique measures (no duplicates/ambiguous names).
-3. Configure Prep for AI:
-   - AI Data Schema
-   - Verified Answers
-   - AI Instructions
-4. Publish updated model.
-5. Reconnect the agent to this optimized model.
-
-### Test
-Run the same prompt set and compare with previous steps.
-
-### Expected
-- Significant quality jump
-- Better business logic understanding
-- More accurate and repeatable answers
-
----
-
-## Step 5 (Bonus): Add Ontology Data, Retest
+## Step 6 (Bonus): Add Ontology Data, Retest
 
 ### Goal
 Add ontology layer for richer entity and relationship understanding.
 
 ### Actions
-1. Create ontology from `step5/step5_ontology_definition.json` as reference.
+1. Create ontology from `ontology/uk-legal/ontology-definition.json` as reference.
 2. Map entities and relationships:
    - Client
    - LegalCase
@@ -384,80 +526,64 @@ Run relationship-heavy prompts:
 ### Expected
 - Better cross-entity reasoning
 - Better multi-table relationship answers
-- Strongest quality before adding advanced routing patterns
-
----
-
-## Step 6 (Bonus): Add Multiple Data Sources, Apply Routing Best Practices, Retest
-
-### Goal
-Demonstrate that Fabric Data Agent can route questions across multiple sources reliably and improve performance.
-
-### Hint
-- Use Microsoft Learn routing guidance:
-   [Improve data source routing - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing)
-- Key sequence to follow:
-   1. Tighten schema selection
-   2. Add focused data source descriptions
-   3. Add example queries (few-shot)
-   4. Add concise routing rules in agent instructions
-- Use `step6/step6_data_agent_configuration.json` as your starting template.
-
-### Actions
-1. Create the Step 6 additional data files (if not already generated):
-   - Run: `python step6/generate_step6_data.py`
-2. Upload these Step 6 files into Lakehouse tables:
-   - `step6/step6_client_engagement_summary.csv`
-   - `step6/step6_case_finance_insights.csv`
-   - `step6/step6_solicitor_performance_mart.csv`
-3. Add at least 4-5 data sources (for example):
-    - Client/case portfolio source
-    - Financial transactions source
-    - Client engagement/interactions source
-    - Cross-domain case-finance source for combined analysis
-   - Solicitor performance source
-4. For each source, select only required tables/columns (avoid noisy schema).
-5. Write a short source description that explains exactly when to use it.
-6. Add source-specific example questions that are clearly distinct.
-7. Add concise routing rules in agent instructions grouped by topic.
-8. Use `step6/step6_data_agent_configuration.json` as the routing template and adapt IDs/table names for your workspace.
-9. In Fabric run steps, inspect which source the orchestrator selected and adjust schema/description/examples/rules if routing is wrong.
-
-### Test
-Run prompts that should route to different sources:
-- "How many active customers do we have?" (client/case source)
-- "How many unpaid invoices do we have?" (financial source)
-- "How many client meetings happened in Q1?" (engagement source)
-- "Which high-value open cases also have overdue invoices?" (cross-domain)
-- "Which solicitors are in top performance tier?" (solicitor performance source)
-
-### Expected
-- More consistent source selection
-- Better answers for ambiguous questions
-- Improved multi-source query quality and stability
+- Strongest quality across the whole exercise
 
 ---
 
 ## Suggested Demo Flow (15 minutes)
 
-1. Step 1 cleaned baseline: show initial quality
-2. Step 2 config best practices: show improved consistency
-3. Step 3 basic model: show structured but imperfect answers
-4. Step 4 optimized model: show major jump
-5. Bonus Step 5 ontology: show advanced reasoning
-6. Bonus Step 6 multi-source routing: show reliable source selection and better cross-domain answers
+1. Step 1 optimized-model baseline: show initial quality
+2. Step 2 Prep for AI: show the before/after effect of participant AI tuning
+3. Step 3 attach Lakehouse: show the two-source baseline and initial routing confusion
+4. Step 4 Lakehouse best practices: show improved consistency
+5. Step 5 derived tables and routing: show reliable source selection across all sources
+6. Bonus Step 6 ontology: show advanced reasoning
 
 ---
 
 ## Quick Validation Checklist
 
-- [ ] Step 1 cleaned tables loaded and agent baseline answers captured
-- [ ] Step 2 data agent best-practice configuration applied and prompts rerun
-- [ ] Step 3 basic semantic model published and connected
-- [ ] Step 4 optimized model + Prep for AI configured
-- [ ] Bonus Step 5 ontology mapped and agent retested
-- [ ] Bonus Step 6 multiple data sources configured with routing best practices and retested
+- [ ] Step 1 semantic-model agent created and baseline answers captured
+- [ ] Step 2 Prep for AI and Data Agent instructions applied and prompts rerun
+- [ ] Step 3 Lakehouse attached to the same agent and two-source baseline captured
+- [ ] Step 4 Lakehouse best-practice configuration applied and prompts rerun
+- [ ] Step 5 derived `routing_*` tables added and routing retested
+- [ ] Bonus Step 6 ontology mapped and agent retested
 - [ ] Side-by-side comparison recorded for your demo
+
+---
+
+## Evaluate Your Agent
+
+Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the seven original questions and seven paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
+
+Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 28-point score. It does not test the live agent by itself.
+
+### Evaluation Cadence
+
+1. Before making any Step 2 changes, run the full SDK evaluation with `SNAPSHOT_NAME="baseline"`.
+2. During Steps 2–5, retest only the affected question and its paraphrase manually in the Data Agent chat after each individual change. Record the answer, selected source, and generated SQL/DAX.
+3. After completing Step 5, run the full SDK evaluation again with `SNAPSHOT_NAME="final"`.
+
+Keep the same Data Agent, challenge dataset, Data Agent stage, and paraphrase setting for both official snapshots. Intermediate automated runs are optional and are not compared automatically by the baseline/final scorecard. Do not reuse `baseline` for a later run.
+
+1. Import `NB_Run_SDK_Evaluation.ipynb` into the Fabric workspace and attach the target Lakehouse as the default.
+2. Run it once for the baseline and again after your changes for the final test.
+3. Review the recorded answers and the Fabric item selected as the source.
+4. Expand the run steps and inspect the generated SQL or DAX. Mark the logic `True` only when the table or measure, filters, and aggregation are correct.
+5. Enter those observations in section 3 of `NB_Review_And_Score_Data_Agent.ipynb`.
+6. Run all cells. Fix any actionable validation errors.
+7. Review the per-question scorecard and the baseline and final totals out of 28.
+8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
+
+### Automated Notebook Options
+
+- **Live agent test:** use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 14 original and paraphrased prompts and retain raw official-detail CSV evidence.
+- **Reviewed scorecard:** use `NB_Review_And_Score_Data_Agent.ipynb` for validated participant entry, deterministic baseline/final scoring out of 28, regression checks, and CSV/JSON artifact validation.
+
+The generated SQL or DAX still requires a human logic review. Automation must not mark logic `True` merely because an answer matches; verify the table or measure, filters, and aggregation first.
+
+The notebook performs deterministic scoring from participant-entered observations; it does not call the live Data Agent API. Facilitators can use the SDK workflow in [evaluation/EVALUATION_GUIDE.md](evaluation/EVALUATION_GUIDE.md) for independent automated runs after the event.
 
 ---
 
@@ -466,8 +592,8 @@ Run prompts that should route to different sources:
 From repo root:
 
 ```powershell
-python step1/generate_step1_data.py
-python step6/generate_step6_data.py
+python sample-data/uk-legal/base/generate_base_data.py
+python sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
 
 ```
 

@@ -1,3 +1,9 @@
+---
+name: fabric-data-agent-hackathon
+description: "Build and deploy a reusable Microsoft Fabric Data Agent hackathon from a domain profile. Use when asked to create a Customer 360 demo, provision the Lakehouse and Direct Lake semantic models from a Fabric notebook, adapt the six-step journey to Legal, Retail, Insurance, Healthcare, Banking, or Manufacturing, configure optional Ontology/Data Agent assets, or generate a new domain package without PBIP/PBIX files."
+argument-hint: "Describe the target domain and whether Ontology or Data Agent preview deployment is required"
+---
+
 # Fabric Data Agent Hackathon Playbook Skill
 
 Companion quickstart:
@@ -30,10 +36,18 @@ Trigger phrases:
 
 ### Operator flow
 1. Confirm target industry (or keep UK legal default).
-2. Create a short `INDUSTRY_PROFILE` in the chat response or a repo note.
-3. Execute the six-step workflow in order (Step 1 through Step 6).
+2. Create or validate `config/domains/<domain>.json` against `config/domain-profile.schema.json`.
+3. Run `NB_Deploy_Data_Agent_Hackathon.ipynb` in the target Fabric workspace.
 4. Reuse the same evaluation prompts across all steps.
 5. Publish final outputs and share deployment/user guides.
+
+### Notebook-first deployment
+- Default `WORKSPACE_ID=""` so the notebook deploys to its current workspace.
+- Default `DOMAIN_PROFILE="uk-legal"`.
+- Generate Direct Lake semantic models as TMDL in memory; do not create PBIP, PBIX, BIM, or report-template artifacts.
+- Keep Ontology and Data Agent SDK stages feature-gated because they are preview-dependent.
+- Treat Verified Answers as a manual live-authoring step because they require saved report visuals.
+- Use a release tag or commit SHA for `REPOSITORY_REF` during an event.
 
 ### Direct invocation prompts
 Use one of these prompts in Copilot Chat:
@@ -45,12 +59,29 @@ Use one of these prompts in Copilot Chat:
 - Industry name and domain vocabulary
 - Demo duration (15-minute showcase or longer workshop)
 - Whether to use prepared repo assets or generate new data
-- Whether ontology (Step 5) is mandatory or optional
+- Whether the optional ontology phase is mandatory or optional
+
+### New-domain procedure
+1. Ask the CSA for a plain-English industry scenario or invoke `/Generate Hackathon Domain`. Never require the CSA to create or edit JSON.
+2. Gather only unresolved business grains, relationships, KPI definitions, terminology, privacy rules, and safety boundaries; ask no more than four concise questions at a time.
+3. Present a short plain-English domain contract and list assumptions requiring domain-expert review. Proceed without another approval turn when the supplied description is sufficient.
+4. Create and validate `config/domain-briefs/<domain>.json` internally, then render the generation contract with `deployment/create_domain_package.py`.
+5. Generate the domain profile, deterministic base/derived data, model, ontology, routing configuration, participant guide, facilitator guide, six scored questions, three routing questions, calculated answers, and focused tests.
+6. Run focused tests and `python -m unittest discover -s tests -v`; fix generated-package failures before completion.
+7. Report all generated assets, questions and answers, assumptions, test results, and the exact `DOMAIN_PROFILE` value.
+8. Keep `WORKSPACE_ID=""` unless deploying elsewhere. Run the stable core first and enable preview features only after reviewing their generated scope.
+
+Network Rail example:
+- Brief: `config/domain-briefs/network-rail.json`
+- Command: `python deployment/create_domain_package.py --domain network-rail`
+- CSA runbook: `REUSE_FOR_NEW_INDUSTRY.md`
+
+Do not implement a new domain as vocabulary-only search and replace. Different domains require their own table grains, relationships, metric definitions, sample distributions, and routing examples.
 
 ### Minimum completion bar
-- All step folders have corresponding artifacts
-- Step 6 has physical derived tables plus routing configuration
-- Evaluation results exist for each completed step
+- Every artifact-typed folder (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`) has corresponding content for the domain
+- The routing phase has physical derived tables plus routing configuration
+- Evaluation results exist for each completed phase
 
 ## When Not To Use
 Do not use this skill for:
@@ -59,69 +90,75 @@ Do not use this skill for:
 - Report-only visualization tasks without a Data Agent
 
 ## Demo Objective
-Deliver a progressive six-step demonstration that shows answer-quality uplift:
-- Step 1: Raw multi-table data baseline
-- Step 2: Cleaned multi-table data
-- Step 3: Basic semantic model
-- Step 4: Optimized semantic model with Prep for AI
-- Step 5: Ontology layer
-- Step 6: Multiple data sources with routing best practices
+Deliver a progressive demonstration that shows answer-quality uplift across six phases:
+- Data readiness: load the domain's base tables into the Lakehouse
+- Semantic model readiness: build the Data Agent on the Optimized semantic model and tune it with Prep for AI
+- Agent configuration: attach the Lakehouse to the same agent as a second source
+- Lakehouse source tuning: apply Data Agent best practices to the Lakehouse source
+- Routing with derived data: add derived Lakehouse marts and configure multi-source routing
+- Optional ontology: add an ontology layer for cross-entity reasoning
+
+USER_GUIDE.md implements this journey as six numbered workshop steps for one continuously-extended Data Agent; this skill describes it as reusable phases so it applies to any domain.
 
 ## Industry Flexibility (Required)
 Treat industry as a configurable input.
 
-Define an `INDUSTRY_PROFILE` before execution:
-- industry_name: example "UK Legal", "Retail", "Banking", "Healthcare", "Insurance", "Manufacturing"
-- customer_entity_name: example "Client", "Customer", "Patient", "Policyholder", "Account"
-- service_entity_name: example "Case", "Order", "Claim", "Visit", "Ticket"
-- staff_entity_name: example "Solicitor", "Advisor", "Agent", "Clinician", "RelationshipManager"
-- finance_entity_name: example "Transaction", "Invoice", "Payment", "Charge"
-- interaction_entity_name: example "Interaction", "Call", "Appointment", "Touchpoint"
-- currency: example "GBP", "USD", "EUR"
-- core_metrics: top 6 to 10 business KPIs for that industry
+Define a complete domain profile before execution. It must include:
+- Domain identity, culture, and currency
+- Source files, exact columns, data types, and physical Lakehouse table names
+- Business-facing semantic-model table and column names
+- Relationships, measures, formats, and descriptions
+- AI schema, AI instructions, and Verified Answer candidates
+- Optional Ontology entities and relationships
+- Data Agent sources, object scope, descriptions, instructions, and examples
 
 Design rule:
 - Keep the six-step methodology unchanged.
 - Swap domain language, sample data labels, prompt phrasing, and KPI definitions via `INDUSTRY_PROFILE`.
 
 ## Expected Repository Structure
-Use this folder structure:
+Use artifact-typed folders keyed by domain ID, not numbered step folders. Numbering belongs only in USER_GUIDE.md-style prose:
 
 ```text
-step1/
-step3/
-step4/
-step5/
-step6/
+sample-data/uk-legal/base/
+sample-data/uk-legal/derived-routing/
+semantic-model/optimized/uk-legal/
+ontology/uk-legal/
+agent-configuration/routing/uk-legal/
+evaluation/challenge/
+evaluation/routing/
 ```
 
 Key files used in this demo:
-- step1/step1_cleaned_customers.csv
-- step1/step1_cleaned_cases.csv
-- step1/step1_cleaned_solicitors.csv
-- step1/step1_cleaned_transactions.csv
-- step1/step1_cleaned_interactions.csv
-- step3/step3_basic_semantic_model.json
-- step4/step4_optimized_semantic_model.json
-- step5/step5_ontology_definition.json
-- step6/step6_data_agent_configuration.json
-- step6/generate_step6_data.py
-- step6/step6_client_engagement_summary.csv
-- step6/step6_case_finance_insights.csv
-- step6/step6_solicitor_performance_mart.csv
-- evaluation/evaluate_agent.py
-- evaluation/evaluation_dataset.json
-- evaluation/TEST_QUERIES.md
+- NB_Deploy_Data_Agent_Hackathon.ipynb
+- config/domain-profile.schema.json
+- config/domains/uk-legal.json
+- deployment/hackathon_deployer.py
+- sample-data/uk-legal/base/customers.csv
+- sample-data/uk-legal/base/cases.csv
+- sample-data/uk-legal/base/solicitors.csv
+- sample-data/uk-legal/base/transactions.csv
+- sample-data/uk-legal/base/interactions.csv
+- semantic-model/optimized/uk-legal/README.md
+- ontology/uk-legal/ontology-definition.json
+- agent-configuration/routing/uk-legal/data-agent-configuration.json
+- sample-data/uk-legal/derived-routing/generate_derived_routing_data.py
+- sample-data/uk-legal/derived-routing/client_engagement_summary.csv
+- sample-data/uk-legal/derived-routing/case_finance_insights.csv
+- sample-data/uk-legal/derived-routing/solicitor_performance_mart.csv
+- NB_Run_SDK_Evaluation.ipynb
+- NB_Review_And_Score_Data_Agent.ipynb
+- evaluation/challenge/uk-legal.json
+- evaluation/routing/uk-legal.json
 - USER_GUIDE.md
+- FACILITATOR_GUIDE.md
 
 ## Authoring Workflow
 
-### Step 1 - Cleaned Multi-Table Baseline
+### Phase 1 - Data Readiness
 Actions:
-- Use the cleaned industry-specific Customer 360 baseline with hundreds or thousands of rows.
-- Use multiple related tables, not a single denormalized table.
-- Upload to Fabric Lakehouse and connect a Data Agent.
-- Run baseline prompts and record initial quality.
+- Load the domain's base CSVs into the Lakehouse as managed Delta tables, either via the deployment notebook or manual upload in the Fabric web UI.
+- Confirm every profile-declared table and row count before any agent work begins.
 
 Minimum data domains:
 - Customer entity table
@@ -130,56 +167,45 @@ Minimum data domains:
 - Financial events table
 - Engagement/interactions table
 
-### Step 2 - Data Agent Configuration Best Practices
+### Phase 2 - Semantic Model Readiness
 Actions:
-- Keep Step 1 data unchanged.
-- Tighten schema scope and table/column selection.
-- Improve source descriptions, example queries, and agent instructions.
-- Re-run the same prompts for like-for-like comparison.
+- Build one Data Agent on the domain's Optimized Direct Lake semantic model. Keep extending this same agent in later phases; do not create a second agent.
+- Leave Data Agent instructions and example queries empty for the first baseline run.
+- Run baseline prompts, including at least one deliberately ambiguous and one deliberately undefined question.
+- Configure Prep for AI (AI Data Schema selection, synonyms, AI instructions), add a Data Agent instruction, and create one Verified Answer from a saved report visual.
+- Retest and record which change affected which question.
 
-### Step 3 - Basic Semantic Model
+### Phase 3 - Agent Configuration
 Actions:
-- Manually create a basic semantic model, or use step3/step3_basic_semantic_model.json.
-- Publish and connect the Data Agent.
-- Re-run test suite and log quality changes.
+- Attach the Lakehouse to the same agent as a second source and select only the base tables.
+- Leave the new source's description and examples empty for now; run the same baseline prompts to observe two-source ambiguity before tuning.
 
-### Step 4 - Optimized Semantic Model
+### Phase 4 - Lakehouse Source Tuning
 Actions:
-- Refactor to clear star schema and unambiguous measures.
-- Configure Prep for AI:
-  - AI Data Schema
-  - Verified Answers
-  - AI Instructions
-- Reconnect Data Agent and retest.
+- Add a clear source description, a Data Agent instruction distinguishing the Lakehouse from the semantic model, and a validated SQL example query pair.
+- For Lakehouse sources, teach terminology through source descriptions and Data Agent instructions; do not describe this as adding table synonyms.
+- Re-run the same prompts and confirm the agent reliably prefers the semantic model for standard questions.
 
-Guidance:
-- Prefer users to attempt this themselves first.
-- Use official Learn tooling guidance as needed.
-
-References:
-- https://learn.microsoft.com/en-us/fabric/data-science/semantic-model-best-practices#tools
-
-### Step 5 - Ontology Layer
+### Phase 5 - Routing With Derived Data
 Actions:
-- Introduce ontology entities and relationships for cross-domain reasoning.
-- Map core business entities from `INDUSTRY_PROFILE`.
-- Re-run relationship-heavy prompts.
-
-### Step 6 - Multi-Source Routing
-Actions:
-- Add additional physical data sources (not config-only).
-- Generate Step 6 derived datasets using step6/generate_step6_data.py.
-- Upload Step 6 files and register multiple agent sources.
+- Generate derived routing datasets using `sample-data/<domain>/derived-routing/generate_derived_routing_data.py`.
+- Add the derived tables to the same Lakehouse source, write descriptions and SQL examples, and extend the Data Agent instruction to cover all three areas (semantic model, base tables, derived tables).
 - Apply routing best practices and retest.
 
-Required Step 6 routing sequence:
+Required routing sequence:
 1. Tighten schema scope per source
 2. Add concise source descriptions
-3. Add source-specific example queries
+3. Add validated example query pairs for Lakehouse, Warehouse, or KQL sources; do not add them to Power BI semantic-model sources
 4. Add short topic-based routing rules
 
 References:
 - https://learn.microsoft.com/en-us/fabric/data-science/data-agent-routing
+
+### Phase 6 - Optional Ontology
+Actions:
+- Introduce ontology entities and relationships for cross-domain reasoning.
+- Map core business entities from `INDUSTRY_PROFILE`.
+- Re-run relationship-heavy prompts.
 
 ## Routing Best Practices (Mandatory)
 - Keep each source narrowly scoped to one topic area.
@@ -189,18 +215,19 @@ References:
 - Validate orchestration outcomes and iteratively refine schema/description/examples/rules.
 
 ## Evaluation Pattern
-Use the same test prompts across all six steps so quality movement is attributable.
+Use the same test prompts across all six phases so quality movement is attributable.
 
 Recommended assets:
-- evaluation/evaluation_dataset.json
-- evaluation/evaluate_agent.py
-- step1/step1_results.json ... step6/step6_results.json
+- evaluation/challenge/uk-legal.json
+- evaluation/routing/uk-legal.json
+- NB_Run_SDK_Evaluation.ipynb
+- NB_Review_And_Score_Data_Agent.ipynb
 
 Evaluation dimensions:
-- Exact Match
-- Semantic Match
-- Routing Accuracy
-- Error Rate
+- Correct answer
+- Correct source
+- Reviewed query or measure logic
+- Paraphrase consistency
 
 ## Standard Prompt Set
 Use these representative prompts and adapt entity names from `INDUSTRY_PROFILE`:
@@ -219,31 +246,33 @@ UK legal default prompt examples:
 - "How many client meetings happened in Q1?"
 
 ## Deployment Expectations
-- Provide a complete deployment guide that includes lakehouse load, model publish, agent wiring, and test run.
-- Ensure all paths and instructions reflect folderized steps.
+- Use the root deployment notebook for Lakehouse load, model publish, optional agent wiring, and verification.
+- Validate the profile against source headers before any Fabric write.
+- Ensure all paths and instructions reflect the artifact-typed folder structure.
 - Include reproducible commands where practical.
 
 ## Packaging Rules For Future Events
 - Keep only multi-table artifacts for final event package.
-- Remove legacy single-table assets.
-- Group all outputs by step folders.
+- Keep only current multi-table assets.
+- Group outputs by artifact type (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), not step folders.
 - Keep user-facing guide concise and practical.
-- Keep machine-readable configuration files in step3-6 folders.
+- Keep reusable domain profiles under `config/domains/` and generated deployment logic under `deployment/`.
+- Do not commit generated PBIP, PBIX, BIM, or report-template artifacts.
 
 ## Success Criteria
 - A participant can run the walkthrough end-to-end without hidden dependencies.
-- Step-by-step quality improvements are demonstrable.
-- Step 6 clearly shows better multi-source routing behavior.
+- Phase-by-phase quality improvements are demonstrable.
+- The routing phase clearly shows better multi-source routing behavior.
 - Repo is ready to publish and share publicly.
 
 ## Reusable Deliverables Checklist
 - Multi-table raw CSV package
 - Multi-table cleaned CSV package
-- Basic semantic model definition
-- Optimized semantic model definition
+- Validated domain profile
+- Notebook-generated Optimized Direct Lake semantic model
 - Ontology definition
 - Multi-source routing configuration
-- Step 6 derived data generator and outputs
+- Derived-routing data generator and outputs
 - User guide
 - Deployment guide
 - Evaluation script, dataset, and per-step results
@@ -253,12 +282,12 @@ Industry adaptation add-ons:
 - 10 to 20 industry-specific test prompts mapped to the same evaluation intent categories
 
 ## Suggested 15-Minute Demo Script
-1. Show Step 1 baseline errors and ambiguity
-2. Show Step 2 stabilization from cleaning
-3. Show Step 3 structural gains from semantic model
-4. Show Step 4 major uplift from optimization + Prep for AI
-5. Show Step 5 relationship reasoning with ontology
-6. Show Step 6 orchestrator routing improvements across sources
+1. Show data-readiness baseline errors and ambiguity
+2. Show semantic-model-readiness stabilization from Prep for AI
+3. Show agent-configuration structural gains from attaching the Lakehouse
+4. Show Lakehouse-source-tuning before/after results
+5. Show routing-with-derived-data orchestrator improvements across sources
+6. Show optional-ontology relationship reasoning
 
 ## Notes For Skill Operators
 - If a user asks for scale-up, increase row counts but preserve table relationships.

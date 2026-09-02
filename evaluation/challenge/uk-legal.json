@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "name": "UK Legal Data Agent Hackathon Challenge",
+    "version": "1.0",
+    "description": "Focused seven-question evaluation set for the participant diagnose-change-retest exercise.",
+    "source_data_version": "step1 CSV files committed on 2026-08-26",
+    "total_queries": 7
+  },
+  "evaluation_queries": [
+    {
+      "id": "HC001",
+      "question": "How many active clients do we have?",
+      "paraphrase": "What is our current active customer count?",
+      "category": "terminology",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 101,
+      "answer_type": "number",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_customers WHERE status = 'Active'",
+      "difficulty": "easy",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC002",
+      "question": "What is the total value of all matters?",
+      "paraphrase": "What is our complete case portfolio worth?",
+      "category": "terminology",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 123590881,
+      "answer_type": "number",
+      "answer_unit": "GBP",
+      "ground_truth_sql": "SELECT SUM(case_value_gbp) FROM base_cases",
+      "difficulty": "medium",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC003",
+      "question": "How much revenue have we generated?",
+      "paraphrase": "What is the total amount invoiced?",
+      "category": "business_rule",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 5420217,
+      "answer_type": "number",
+      "answer_unit": "GBP",
+      "ground_truth_sql": "SELECT SUM(amount_gbp) FROM base_transactions WHERE transaction_type = 'Invoice'",
+      "difficulty": "medium",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC004",
+      "question": "How many invoices remain unpaid?",
+      "paraphrase": "What is our unpaid invoice count?",
+      "category": "measure_discovery",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 54,
+      "answer_type": "number",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_transactions WHERE transaction_type = 'Invoice' AND payment_status = 'Unpaid'",
+      "difficulty": "easy",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC005",
+      "question": "How many legal cases are currently open?",
+      "paraphrase": "How many open matters are on our books?",
+      "category": "terminology",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 180,
+      "answer_type": "number",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_cases WHERE case_status = 'Open'",
+      "difficulty": "easy",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC006",
+      "question": "How many customers do we have?",
+      "paraphrase": "What is our total client count?",
+      "category": "grounding",
+      "expected_source": "LegalFirmSemanticModel",
+      "ground_truth_answer": 171,
+      "answer_type": "number",
+      "ground_truth_sql": "SELECT COUNT(*) FROM base_customers",
+      "difficulty": "easy",
+      "tests_routing": false,
+      "tests_measure_selection": true
+    },
+    {
+      "id": "HC007",
+      "question": "Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000.",
+      "paraphrase": "How many customers have had no interaction in the past 60 days and have more than GBP 10,000 in unpaid invoices?",
+      "category": "cross_table_reasoning",
+      "expected_source": "LegalFirmDemo",
+      "ground_truth_answer": 35,
+      "answer_type": "number",
+      "ground_truth_sql": "WITH unpaid_by_customer AS (SELECT c.customer_id, SUM(t.amount_gbp) AS unpaid_invoice_amount FROM base_cases c JOIN base_transactions t ON t.case_id = c.case_id WHERE t.transaction_type = 'Invoice' AND t.payment_status = 'Unpaid' GROUP BY c.customer_id) SELECT COUNT(*) FROM unpaid_by_customer u WHERE u.unpaid_invoice_amount > 10000 AND NOT EXISTS (SELECT 1 FROM base_interactions i WHERE i.customer_id = u.customer_id AND i.interaction_date >= DATEADD(day, -60, CAST(GETDATE() AS date)))",
+      "difficulty": "hard",
+      "tests_routing": true,
+      "tests_measure_selection": false,
+      "notes": "Unpaid invoices means the per-customer sum of Invoice transactions whose payment_status is exactly Unpaid. The 60-day window is relative to the evaluation date. The checked-in interactions end on 2023-12-31, so the expected count is 35 for evaluations run after 2024-02-29."
+    }
+  ]
+}

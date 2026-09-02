@@ -1,0 +1,116 @@
+{
+  "domain": {
+    "id": "network-rail",
+    "displayName": "Network Rail Asset and Operations Intelligence",
+    "description": "Synthetic railway infrastructure, inspection, maintenance, possession, incident, delay, and cost analytics for a Fabric Data Agent hackathon.",
+    "culture": "en-GB",
+    "currency": "GBP"
+  },
+  "audience": [
+    "route operations manager",
+    "asset management lead",
+    "maintenance delivery manager",
+    "performance analyst"
+  ],
+  "entities": [
+    {
+      "name": "Route",
+      "grain": "one synthetic operational route",
+      "key": "route_id"
+    },
+    {
+      "name": "Asset",
+      "grain": "one synthetic railway infrastructure asset",
+      "key": "asset_id"
+    },
+    {
+      "name": "Inspection",
+      "grain": "one completed or scheduled inspection of an asset",
+      "key": "inspection_id"
+    },
+    {
+      "name": "WorkOrder",
+      "grain": "one maintenance work order raised against an asset",
+      "key": "work_order_id"
+    },
+    {
+      "name": "Incident",
+      "grain": "one synthetic operational incident associated with a route and optionally an asset",
+      "key": "incident_id"
+    },
+    {
+      "name": "Possession",
+      "grain": "one planned access window for engineering work",
+      "key": "possession_id"
+    },
+    {
+      "name": "CostTransaction",
+      "grain": "one synthetic maintenance cost transaction against a work order",
+      "key": "transaction_id"
+    }
+  ],
+  "relationships": [
+    "A Route has many Assets through route_id.",
+    "An Asset has many Inspections through asset_id.",
+    "An Asset has many WorkOrders through asset_id.",
+    "A Route has many Incidents through route_id; an Incident may also reference asset_id.",
+    "A Route has many Possessions through route_id.",
+    "A Possession may enable many WorkOrders through possession_id.",
+    "A WorkOrder has many CostTransactions through work_order_id."
+  ],
+  "metrics": [
+    {
+      "name": "Total Assets",
+      "definition": "Distinct count of asset_id."
+    },
+    {
+      "name": "Open Work Orders",
+      "definition": "Count of work orders whose status is Planned, Scheduled, or In Progress."
+    },
+    {
+      "name": "Overdue Inspections",
+      "definition": "Count of incomplete inspections whose scheduled_date is earlier than the fixed dataset as_of_date."
+    },
+    {
+      "name": "High Priority Defects",
+      "definition": "Count of inspections with a defect recorded and priority classified as High or Critical."
+    },
+    {
+      "name": "Total Delay Minutes",
+      "definition": "Sum of attributed_delay_minutes across synthetic incidents."
+    },
+    {
+      "name": "Maintenance Cost",
+      "definition": "Sum of amount_gbp for maintenance cost transactions."
+    },
+    {
+      "name": "Possession Utilisation",
+      "definition": "Actual engineering work minutes divided by granted possession minutes, excluding cancelled possessions."
+    },
+    {
+      "name": "Mean Time to Close Work Orders",
+      "definition": "Average elapsed days from raised_date to completed_date for completed work orders only."
+    }
+  ],
+  "terminology": {
+    "route": "A synthetic reporting geography, not a disclosure of live control boundaries.",
+    "asset": "A maintainable infrastructure record such as track, signalling, electrification, bridge, or station equipment.",
+    "possession": "A planned access window for engineering work; it is not a live authority to access the railway.",
+    "delay minutes": "Synthetic attributed operational delay used only for analytical demonstration.",
+    "overdue": "Measured against the fixed as_of_date stored with the generated dataset, never the machine clock.",
+    "high priority": "High or Critical in the synthetic demonstration classification."
+  },
+  "dataRules": [
+    "Generate deterministic synthetic data with a fixed random seed and a fixed as_of_date.",
+    "Use fictional route, asset, work order, incident, and possession identifiers.",
+    "Do not use real employee, contractor, timetable, access, signalling, location-coordinate, or vulnerability data.",
+    "Maintain referential integrity and include enough temporal variation for trend and overdue questions.",
+    "Calculate evaluation expected values from generated CSVs rather than typing answers manually."
+  ],
+  "safetyRules": [
+    "The agent is for analytics demonstration only and must not authorize, schedule, or direct railway operations or access.",
+    "The agent must not provide safety-critical instructions, live operational status, security-sensitive infrastructure detail, or maintenance approval.",
+    "Questions requesting operational action must be declined and redirected to approved Network Rail systems and competent personnel.",
+    "All outputs must state that the records are synthetic when a user could mistake them for live operational data."
+  ]
+}

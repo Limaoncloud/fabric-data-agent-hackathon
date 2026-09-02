@@ -1,0 +1,94 @@
+{
+  "dataAgentConfiguration": {
+    "name": "LegalFirmRoutingAgent",
+    "description": "Two-source routing exercise for standard semantic-model questions and prepared Lakehouse analysis scenarios.",
+    "sourceOfTruth": "config/domains/uk-legal.json",
+    "dataSources": [
+      {
+        "name": "LegalFirmSemanticModel",
+        "type": "semanticModel",
+        "selectedObjects": [
+          "Customers",
+          "Cases",
+          "Solicitors",
+          "Transactions",
+          "Interactions"
+        ],
+        "description": "Use for standard customer, case, solicitor, transaction, and interaction questions. Prefer explicit model measures for customer counts, case counts and values, revenue, payments, expenses, billed hours, and unpaid invoices.",
+        "routingTopics": [
+          "customer counts and status",
+          "case counts, status, type, and value",
+          "solicitor details and ordinary case analysis",
+          "revenue, payments, expenses, billed hours, and unpaid invoices",
+          "interaction counts, channels, and duration"
+        ],
+        "notes": "Data Agent example question/query pairs are not supported for Power BI semantic-model sources. Use model descriptions, Prep for AI, and agent instructions instead."
+      },
+      {
+        "name": "LegalFirmDemo",
+        "type": "lakehouse",
+        "selectedTables": [
+          "routing_client_engagement_summary",
+          "routing_case_finance_insights",
+          "routing_solicitor_performance_mart"
+        ],
+        "excludedTables": [
+          "base_customers",
+          "base_cases",
+          "base_solicitors",
+          "base_transactions",
+          "base_interactions"
+        ],
+        "description": "Use only for engagement segments, questions combining case context with financial outcomes, payment-risk analysis, and solicitor performance tiers.",
+        "routingTopics": [
+          "customer engagement segments and interaction recency",
+          "combined case-finance outcomes and outstanding balances",
+          "payment risk by case",
+          "solicitor performance rankings and tiers"
+        ],
+        "exampleQueries": [
+          {
+            "question": "Which customers are in the low engagement segment?",
+            "query": "SELECT customer_id, customer_name, total_interactions, last_interaction_date FROM routing_client_engagement_summary WHERE engagement_segment = 'Low Engagement' ORDER BY customer_name"
+          },
+          {
+            "question": "Which high-value open cases have outstanding balances?",
+            "query": "SELECT case_id, solicitor_name, case_value_gbp, outstanding_amount_gbp FROM routing_case_finance_insights WHERE case_status = 'Open' AND case_value_gbp >= 100000 AND outstanding_amount_gbp > 0 ORDER BY outstanding_amount_gbp DESC"
+          },
+          {
+            "question": "Which solicitors are in the top performance tier?",
+            "query": "SELECT solicitor_name, cases_handled, total_case_value_gbp FROM routing_solicitor_performance_mart WHERE performance_tier = 'Top' ORDER BY total_case_value_gbp DESC"
+          }
+        ]
+      }
+    ],
+    "agentInstructions": "Use LegalFirmSemanticModel for ordinary customer, case, solicitor, transaction, and interaction questions that can be answered by model fields or measures. Use LegalFirmDemo only for engagement segments, combined case-finance outcomes, payment risk, outstanding balances by case, or solicitor performance tiers. Prefer one source when the question is clear. Do not combine sources unless the requested result cannot be answered by one selected source.",
+    "routingScenarios": [
+      {
+        "question": "How many active customers do we have?",
+        "expectedSource": "LegalFirmSemanticModel",
+        "expectedObject": "Active Customers"
+      },
+      {
+        "question": "What is our total revenue?",
+        "expectedSource": "LegalFirmSemanticModel",
+        "expectedObject": "Total Revenue"
+      },
+      {
+        "question": "Which customers are in the low engagement segment?",
+        "expectedSource": "LegalFirmDemo",
+        "expectedObject": "routing_client_engagement_summary"
+      },
+      {
+        "question": "Which high-value open cases have outstanding balances?",
+        "expectedSource": "LegalFirmDemo",
+        "expectedObject": "routing_case_finance_insights"
+      },
+      {
+        "question": "Which solicitors are in the top performance tier?",
+        "expectedSource": "LegalFirmDemo",
+        "expectedObject": "routing_solicitor_performance_mart"
+      }
+    ]
+  }
+}

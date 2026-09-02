@@ -12,8 +12,8 @@ Flexible scenario:
 ## Outcome
 By the end of this workflow, participants can:
 - Query an industry-specific Customer 360 scenario (UK legal by default)
-- See quality progression across maturity steps
-- Observe multi-source routing behavior in Step 6
+- See quality progression across maturity phases
+- Observe multi-source routing behavior in the routing phase
 
 ## Industry Profile (Set First)
 Define a quick profile before running the demo:
@@ -51,38 +51,34 @@ Use one of these prompts in Copilot Chat:
 ### What to provide in your first prompt
 - Target industry (or say "use UK legal default")
 - Available time window
-- Whether Step 5 ontology is in scope
+- Whether the optional ontology phase is in scope
 - Whether to use existing repo files as-is
 
 ### What you should get back from the skill
 - A time-boxed checklist by minute range
 - Table/model/agent setup sequence
 - Prompt pack for live testing
-- Routing tuning actions for Step 6
+- Routing tuning actions for the multi-source routing phase
 
 ## Inputs Required
 - A Fabric workspace with permission to create Lakehouse, semantic model, and Data Agent
-- Repository files already present
-- Optional: Power BI Desktop
+- `NB_Deploy_Data_Agent_Hackathon.ipynb`
+- Repository assets accessible from GitHub
 
 ## 30-Minute Runbook
 
-### 0 to 5 minutes: Load curated data
-1. Create or open a Lakehouse.
-2. Upload cleaned multi-table files from step1/:
-  - step1_cleaned_customers.csv
-  - step1_cleaned_cases.csv
-  - step1_cleaned_solicitors.csv
-  - step1_cleaned_transactions.csv
-  - step1_cleaned_interactions.csv
-3. Load each as a table.
+### 0 to 5 minutes: Deploy participant-ready assets
+1. Download [NB_Deploy_Data_Agent_Hackathon.ipynb](https://github.com/Limaoncloud/fabric-data-agent-hackathon/blob/dev/NB_Deploy_Data_Agent_Hackathon.ipynb), then use **Import → Notebook** in the target workspace to upload and open it. First time importing a notebook into Fabric? See [USER_GUIDE.md](../../USER_GUIDE.md#import-the-deployment-notebook-into-fabric) for exact steps.
+2. Keep `WORKSPACE_ID=""` and `DOMAIN_PROFILE="uk-legal"` for the default scenario.
+3. Keep `ENABLE_PREP_FOR_AI=False` and `ENABLE_DATA_AGENT=False`.
+4. Run all cells to deploy the Lakehouse tables and the Optimized semantic model.
 
 Success check:
-- All 5 tables loaded and queryable.
+- Eight Lakehouse tables and the Optimized semantic model are available; Direct Lake partitions are refreshed.
 
 ### 5 to 10 minutes: Stand up a baseline agent
 1. Create a Data Agent over the cleaned Lakehouse tables.
-2. Add short instructions: industry context, currency, concise answers.
+2. Select only the five `base_*` tables and leave instructions/examples empty for the baseline.
 3. Run baseline prompts:
    - How many active customers do we have?
   - How many open service records do we have?
@@ -92,33 +88,26 @@ Success check:
 - Agent returns data-backed answers for all baseline prompts.
 
 ### 10 to 15 minutes: Attach semantic model fast path
-Option A (fastest): Use step4/step4_optimized_semantic_model.json as implementation reference.
-Option B: Manually build minimal star schema and publish.
-
-Then:
-1. Connect Data Agent to the semantic model.
-2. Re-run baseline prompts and compare quality.
+1. Create a new Data Agent using the predeployed `LegalFirmSemanticModel` semantic model.
+2. Re-run baseline prompts before adding AI metadata.
+3. Add one semantic-model synonym or AI instruction in Prep for AI, then retest.
 
 Success check:
 - Answers become more consistent and business-aware.
 
-### 15 to 22 minutes: Enable Step 6 multi-source demo
-1. Generate Step 6 derived files:
-   - Run: python step6/generate_step6_data.py
-2. Upload and load:
-   - step6_client_engagement_summary.csv
-   - step6_case_finance_insights.csv
-   - step6_solicitor_performance_mart.csv
-3. Use step6/step6_data_agent_configuration.json as template for source setup.
+### 15 to 22 minutes: Enable the multi-source routing demo
+1. Confirm the notebook loaded the three derived-routing tables.
+2. Set `ENABLE_DATA_AGENT=True` to stage the profile-defined semantic-model and Lakehouse sources.
+3. Review staging, then set `PUBLISH_DATA_AGENT=True` when ready.
 
 Success check:
-- All Step 6 tables exist and are connected.
+- All derived-routing tables exist and are connected.
 
 ### 22 to 27 minutes: Apply routing best practices
 Apply in this order:
 1. Tight schema selection per source
 2. Focused source descriptions
-3. Source-specific example queries
+3. Validated example query pairs for Lakehouse/KQL sources only
 4. Concise topic routing rules
 
 Reference:
@@ -156,10 +145,11 @@ UK legal default prompt substitutions:
 3. "Which solicitors are in top performance tier?"
 
 ## Minimal Artifacts Checklist
-- step1 cleaned CSVs loaded
-- Optimized semantic model available
-- Step 6 derived CSVs loaded
-- step6_data_agent_configuration.json adapted to workspace names
+- Deployment notebook completed
+- Profile-defined Lakehouse tables loaded
+- Optimized Direct Lake semantic model available
+- Prep for AI metadata applied
+- Data Agent staged or published when enabled
 - Demo prompts ready
 
 ## Troubleshooting In Event Time
@@ -175,10 +165,10 @@ UK legal default prompt substitutions:
 ## Facilitator Notes
 - Prefer speed and reliability over feature completeness.
 - Keep ontology as optional if time is constrained.
-- If extra time is available, show Step 5 ontology as bonus.
-- Keep the six-step structure fixed, but change domain vocabulary and KPI definitions to fit the target industry.
+- If extra time is available, show the optional ontology phase as a bonus.
+- Keep the six-phase structure fixed, but change domain vocabulary and KPI definitions to fit the target industry.
 
 ## Optional Extension (If +15 Minutes)
-1. Add Step 5 ontology layer.
+1. Add the optional ontology layer.
 2. Re-run relationship-heavy prompts.
 3. Compare improvements in cross-entity reasoning.
