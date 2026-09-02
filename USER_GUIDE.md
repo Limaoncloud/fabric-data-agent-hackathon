@@ -88,14 +88,7 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 - `evaluation/challenge/uk-legal.json`
 - `evaluation/routing/uk-legal.json`
 
-### Verification reference
-- `Verification.xlsx` (use this workbook to validate expected answers and compare results for each step)
-
-Validation workflow:
-1. Run the test prompts for the current step.
-2. Record the agent output.
-3. Compare with the expected result for that step in `Verification.xlsx`.
-4. Mark pass/fail and note any mismatch before moving to the next step.
+Use `NB_Run_SDK_Evaluation.ipynb` to capture live results and `NB_Review_And_Score_Data_Agent.ipynb` to review evidence and calculate the scorecard.
 
 ---
 
