@@ -74,6 +74,22 @@ class DocumentationContractTests(unittest.TestCase):
             skill,
         )
 
+    def test_reuse_guide_is_json_free_and_time_bounded(self):
+        guide = (ROOT / "REUSE_FOR_NEW_INDUSTRY.md").read_text(encoding="utf-8")
+        for expected in (
+            "# Reuse This Hackathon Without Editing JSON",
+            "less than one hour of CSA time",
+            "Generate Hackathon Domain",
+            "Copy-Paste Example: Water Utilities",
+            "guides/<domain>/USER_GUIDE.md",
+            "guides/<domain>/FACILITATOR_GUIDE.md",
+            "six scored challenge questions and three routing questions",
+            "expected answers calculated from the generated CSVs",
+            'DOMAIN_PROFILE = "water-utilities"',
+        ):
+            self.assertIn(expected, guide)
+        self.assertNotIn("Edit `config/domain-briefs/", guide)
+
     def test_step6_reference_matches_two_source_profile(self):
         profile = json.loads(
             (ROOT / "config" / "domains" / "uk-legal.json").read_text(

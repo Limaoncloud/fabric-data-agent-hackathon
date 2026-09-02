@@ -100,7 +100,9 @@ Create and validate all of the following:
 6. `agent-configuration/routing/{domain_id}/data-agent-configuration.json` describing the multi-source routing configuration.
 7. `evaluation/challenge/{domain_id}.json` with the core scored challenge questions and expected answers calculated from the generated data.
 8. `evaluation/routing/{domain_id}.json` with 2-3 routing questions targeting the derived-routing marts.
-9. Focused tests that validate the profile, exact CSV headers, foreign keys, deterministic generation, and evaluation expected values.
+9. `guides/{domain_id}/USER_GUIDE.md` with the domain-specific six-step participant journey.
+10. `guides/{domain_id}/FACILITATOR_GUIDE.md` with setup, checkpoints, hints, complete answer keys, expected routing, and debrief prompts.
+11. Focused tests that validate the profile, exact CSV headers, foreign keys, deterministic generation, evaluation expected values, guide links, and package completeness.
 
 ## Implementation rules
 
@@ -115,6 +117,7 @@ Create and validate all of the following:
 - Do not edit or overwrite the UK legal package.
 - Do not deploy to Fabric. Generate locally, run focused tests, then run `python -m unittest discover -s tests -v`.
 - Stop and list assumptions requiring a domain expert if a grain, key, KPI, relationship, or safety rule is underspecified.
+- Optimize for a complete package in under one hour of CSA time. Generate six scored questions and three routing questions unless the brief explicitly requires more.
 
 ## Completion report
 

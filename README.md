@@ -197,11 +197,7 @@ Keep the same six-step method and create a validated domain profile containing:
 
 Set `DOMAIN_PROFILE` to a committed profile name, or provide `CUSTOM_PROFILE_URL` and `ASSET_BASE_URL`. This allows reuse across Retail, Insurance, Banking, Healthcare, Manufacturing, and more without changing notebook code.
 
-For the parameter-driven CSA workflow, Network Rail example, and reusable VS Code prompt, see [REUSE_FOR_NEW_INDUSTRY.md](REUSE_FOR_NEW_INDUSTRY.md). Start with:
-
-```powershell
-python deployment/create_domain_package.py --domain network-rail
-```
+For the JSON-free CSA workflow, one-hour runbook, and a complete copy-paste Water Utilities example, see [REUSE_FOR_NEW_INDUSTRY.md](REUSE_FOR_NEW_INDUSTRY.md). In VS Code Chat, type `/`, select **Generate Hackathon Domain**, and describe the industry in plain English.
 
 ## Suggested Demo Flow (15 Minutes)
 

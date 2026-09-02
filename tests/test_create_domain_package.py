@@ -11,6 +11,22 @@ NETWORK_RAIL_BRIEF = json.loads(
 
 
 class DomainPackageTests(unittest.TestCase):
+    def test_workspace_prompt_is_json_free_and_complete(self):
+        prompt = (
+            ROOT / ".github" / "prompts" / "generate-hackathon-domain.prompt.md"
+        ).read_text(encoding="utf-8")
+        for expected in (
+            "never ask them to create, open, or edit JSON",
+            "guides/<domain-id>/USER_GUIDE.md",
+            "guides/<domain-id>/FACILITATOR_GUIDE.md",
+            "every expected answer calculated from the generated CSVs",
+            "under one hour",
+            'DOMAIN_PROFILE="<domain-id>"',
+        ):
+            self.assertIn(expected, prompt)
+        self.assertNotIn("The user will provide a domain ID", prompt)
+        self.assertNotIn("Read `config/domain-briefs/<domain-id>.json`", prompt)
+
     def test_network_rail_brief_is_valid_and_has_no_placeholders(self):
         validate_brief(NETWORK_RAIL_BRIEF)
         self.assertNotIn("REPLACE:", json.dumps(NETWORK_RAIL_BRIEF))
@@ -26,6 +42,8 @@ class DomainPackageTests(unittest.TestCase):
             "agent-configuration/routing/network-rail/data-agent-configuration.json",
             "evaluation/challenge/network-rail.json",
             "evaluation/routing/network-rail.json",
+            "guides/network-rail/USER_GUIDE.md",
+            "guides/network-rail/FACILITATOR_GUIDE.md",
             "synthetic data only",
             "Do not deploy to Fabric",
         ):

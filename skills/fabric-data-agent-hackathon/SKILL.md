@@ -62,15 +62,14 @@ Use one of these prompts in Copilot Chat:
 - Whether the optional ontology phase is mandatory or optional
 
 ### New-domain procedure
-1. Create or review `config/domain-briefs/<domain>.json`. Use `python deployment/create_domain_package.py --domain <domain> --init --display-name "<name>"` for a new brief.
-2. Render the complete generation contract with `python deployment/create_domain_package.py --domain <domain>` or run `/Generate Hackathon Domain <domain>` in VS Code Chat.
-3. Inspect source files or the proposed synthetic schema; do not invent unreviewed columns, keys, KPIs, privacy rules, or safety rules.
-4. Create `config/domains/<domain>.json` from `config/domain-profile.schema.json`, using domain-specific grains, relationships, DAX, descriptions, AI scope, routing, and evaluation intent.
-5. Add or map source data for every `tables[].sourcePath` and make profile columns exactly match source headers.
-6. Calculate evaluation expected answers from the generated data and add focused domain tests.
-7. Run `python -m unittest discover -s tests -v` when the new package is committed.
-8. Set `DOMAIN_PROFILE` in `NB_Deploy_Data_Agent_Hackathon.ipynb` and keep `WORKSPACE_ID=""` unless deploying elsewhere.
-9. Run the stable core first. Enable Ontology and Data Agent only after reviewing their generated scope.
+1. Ask the CSA for a plain-English industry scenario or invoke `/Generate Hackathon Domain`. Never require the CSA to create or edit JSON.
+2. Gather only unresolved business grains, relationships, KPI definitions, terminology, privacy rules, and safety boundaries; ask no more than four concise questions at a time.
+3. Present a short plain-English domain contract and list assumptions requiring domain-expert review. Proceed without another approval turn when the supplied description is sufficient.
+4. Create and validate `config/domain-briefs/<domain>.json` internally, then render the generation contract with `deployment/create_domain_package.py`.
+5. Generate the domain profile, deterministic base/derived data, model, ontology, routing configuration, participant guide, facilitator guide, six scored questions, three routing questions, calculated answers, and focused tests.
+6. Run focused tests and `python -m unittest discover -s tests -v`; fix generated-package failures before completion.
+7. Report all generated assets, questions and answers, assumptions, test results, and the exact `DOMAIN_PROFILE` value.
+8. Keep `WORKSPACE_ID=""` unless deploying elsewhere. Run the stable core first and enable preview features only after reviewing their generated scope.
 
 Network Rail example:
 - Brief: `config/domain-briefs/network-rail.json`
@@ -152,6 +151,7 @@ Key files used in this demo:
 - evaluation/challenge/uk-legal.json
 - evaluation/routing/uk-legal.json
 - USER_GUIDE.md
+- FACILITATOR_GUIDE.md
 
 ## Authoring Workflow
 
