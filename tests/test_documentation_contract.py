@@ -95,10 +95,16 @@ class DocumentationContractTests(unittest.TestCase):
             "less than one hour of CSA time",
             "Generate Hackathon Domain",
             "Copy-Paste Example: Water Utilities",
+            "Step 1: Ask Copilot To Recreate It For Your Industry",
+            "Step 2: Or Start With A Short Brief",
             "guides/<domain>/USER_GUIDE.md",
             "guides/<domain>/FACILITATOR_GUIDE.md",
             "six scored challenge questions and three routing questions",
             "expected answers calculated from the generated CSVs",
+            "accuracy percentage",
+            "exact Prep for AI settings",
+            "Verified Answers setup",
+            "question-by-step comparison",
             'DOMAIN_PROFILE = "water-utilities"',
         ):
             self.assertIn(expected, guide)

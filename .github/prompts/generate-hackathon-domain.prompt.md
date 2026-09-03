@@ -44,7 +44,7 @@ Generate and validate all of these outputs:
 2. Deterministic synthetic base and derived-routing generators plus CSV files.
 3. The optimized semantic-model reference, ontology definition, and Data Agent routing configuration.
 4. `guides/<domain-id>/USER_GUIDE.md`, adapted to the domain while preserving the six-step participant journey.
-5. `guides/<domain-id>/FACILITATOR_GUIDE.md`, including setup, checkpoints, escalating hints, expected source/measure, complete answer key, and debrief prompts.
+5. `guides/<domain-id>/FACILITATOR_GUIDE.md`, including setup, checkpoints, escalating hints, expected source/measure, complete answer key, and debrief prompts. Make it facilitator-ready: provide exact Prep for AI settings, semantic-model AI instructions, Data Agent instructions, per-source descriptions and instructions, validated Lakehouse example queries, Verified Answers setup, test prompts, expected results, and checkpoints for every tuning step.
 6. Core challenge and routing evaluation JSON, with every expected answer calculated from the generated CSVs rather than invented.
 7. Focused tests for schemas, CSV headers, foreign keys, deterministic generation, expected answers, guide links, and package completeness.
 
@@ -56,6 +56,8 @@ Preserve the learning controls in the generated guides and configuration:
 - For Lakehouse sources, use source descriptions, Data Agent instructions, and validated SQL examples; do not describe this as adding table synonyms.
 - Prefer the semantic model for governed business measures and prepared Lakehouse tables for specialist routing questions.
 - Keep expected answers deterministic and calculate them from the generated data rather than inventing them.
+- Use one fixed challenge question set for the initial agent, Prep for AI, Lakehouse attached, Lakehouse tuned, and final standard snapshots. Keep routing questions in a separate routing snapshot and ontology qualitative unless a dedicated ontology dataset is generated.
+- Require the SDK evaluation workflow to calculate accuracy percentage per snapshot and produce a question-by-step comparison. Explain improvements and regressions from the measured results; never fabricate a monotonic accuracy increase.
 
 ## One-Hour Constraint
 
@@ -76,6 +78,7 @@ Report:
 - the plain-English domain contract and review assumptions;
 - every generated file grouped by data, model, agent, evaluation, and guides;
 - all questions with their calculated answers and expected source or measure;
+- the staged evaluation plan and expected accuracy-percentage comparison output;
 - tests run and results;
 - the exact `DOMAIN_PROFILE="<domain-id>"` notebook setting;
 - the next manual step: run `NB_Deploy_Data_Agent_Hackathon.ipynb` in Fabric.
