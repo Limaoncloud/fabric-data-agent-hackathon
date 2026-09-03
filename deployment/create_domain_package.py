@@ -80,7 +80,7 @@ def render_prompt(brief: dict[str, Any]) -> str:
     brief_json = json.dumps(brief, indent=2, ensure_ascii=True)
     return f"""# Generate the {display_name} Hackathon Domain
 
-Use the workspace skill at `skills/fabric-data-agent-hackathon/SKILL.md` and adapt this repository for the domain brief below. Work from the existing UK legal implementation as a structural reference, but do not perform vocabulary-only replacement.
+Adapt this repository for the domain brief below. Follow the JSON-free workflow in `REUSE_FOR_NEW_INDUSTRY.md`, work from the existing UK legal implementation as a structural reference, and do not perform vocabulary-only replacement.
 
 ## Domain brief
 
@@ -107,6 +107,9 @@ Create and validate all of the following:
 ## Implementation rules
 
 - Preserve the repository's learning journey (semantic-model agent, then Lakehouse attached as a continuation) and notebook-first deployment.
+- Leave Data Agent instructions and example queries empty for the first baseline run.
+- For Lakehouse sources, use source descriptions, Data Agent instructions, and validated SQL examples; do not describe this as adding table synonyms.
+- Prefer the semantic model for governed business measures and prepared Lakehouse tables for specialist routing questions.
 - Use artifact-typed folders (`sample-data/`, `semantic-model/`, `ontology/`, `agent-configuration/`, `evaluation/`), each keyed by `{domain_id}`. Do not create numbered step folders; numbering belongs only in USER_GUIDE.md-style prose, not folder names.
 - Use clean physical Lakehouse table names without step-number prefixes, e.g. `base_customers`, `base_cases`, `routing_client_engagement_summary`. Do not copy the `step1_cleaned_*` / `step6_*` naming used by the existing UK legal package; that naming predates this convention and is kept only for backward compatibility with already-deployed environments.
 - Model the actual entity grains, keys, relationships, terminology, and KPI definitions in the brief.

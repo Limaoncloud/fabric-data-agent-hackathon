@@ -29,7 +29,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 - Routing configuration and derived-routing data generator
 - Evaluation harness and sample prompt dataset
 - End-user and deployment documentation
-- Copilot skill for future event reuse
+- JSON-free Copilot workflow for future industry reuse
 
 ## Start Here
 

@@ -61,17 +61,21 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("FACILITATOR_GUIDE.md", model_reference)
         self.assertNotIn("## 5. Create a report for verified answers", model_reference)
 
-    def test_operator_skill_preserves_untuned_baseline(self):
-        skill = (
-            ROOT / "skills" / "fabric-data-agent-hackathon" / "SKILL.md"
+    def test_generation_prompt_preserves_untuned_baseline(self):
+        prompt = (
+            ROOT / ".github" / "prompts" / "generate-hackathon-domain.prompt.md"
         ).read_text(encoding="utf-8")
         self.assertIn(
             "Leave Data Agent instructions and example queries empty for the first baseline run",
-            skill,
+            prompt,
         )
         self.assertIn(
             "do not describe this as adding table synonyms",
-            skill,
+            prompt,
+        )
+        self.assertIn("never ask them to create, open, or edit JSON", prompt)
+        self.assertFalse(
+            (ROOT / "skills" / "fabric-data-agent-hackathon" / "SKILL.md").exists()
         )
 
     def test_reuse_guide_is_json_free_and_time_bounded(self):
