@@ -7,7 +7,6 @@ Keep this guide separate from participant materials until teams have recorded th
 1. Use [USER_GUIDE.md](USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
 2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
 3. Import both [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) and [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) into Fabric. Use the first to create or reset the environment and the second after every required workshop stage.
-4. Keep [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) only as an optional facilitator tool when manual evidence scoring is needed; it is not part of the participant workflow.
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
@@ -248,4 +247,4 @@ Use the live SDK notebook for measured accuracy:
 5. Run with `SNAPSHOT_NAME = "step4_lakehouse_tuned"` after Lakehouse source tuning.
 6. Run with `SNAPSHOT_NAME = "step5_final"` for the final standard challenge, then `SNAPSHOT_NAME = "step5_routing"` for the separate routing marts dataset.
 
-The notebook maps each snapshot to the correct dataset. Keep the agent, stage, and challenge questions unchanged across challenge snapshots. Review its question-by-step comparison and missing-evidence warnings. Step 6 ontology is qualitative unless a separate ontology dataset is introduced. The manual review notebook remains optional for facilitator scoring.
+The notebook maps each snapshot to the correct dataset. Keep the agent, stage, and challenge questions unchanged across challenge snapshots. Review its question-by-step comparison and missing-evidence warnings. Step 6 ontology is qualitative unless a separate ontology dataset is introduced.

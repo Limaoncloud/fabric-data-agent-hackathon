@@ -5,7 +5,6 @@ The SDK notebook is the main and only required participant evaluation notebook:
 | Notebook | Responsibility |
 | --- | --- |
 | `NB_Run_SDK_Evaluation.ipynb` | Required: run staged prompts, preserve official SDK evidence, normalize run-step evidence, and compare snapshots |
-| `NB_Review_And_Score_Data_Agent.ipynb` | Optional facilitator tool for a separate manually reviewed score |
 
 There is no simulation mode or separate CLI evaluator. The checked-in challenge JSON is the source of truth for questions and expected answers.
 
@@ -36,7 +35,7 @@ Run all cells at each stage and retain the JSON and evidence CSV. Every challeng
 
 The standard details include question, expected answer, actual answer, SDK judgement, and thread information. Generated SQL or DAX is associated with companion run-step data and is not guaranteed in `get_evaluation_details()`. The notebook preserves both raw frames, normalizes run-step evidence when available, and warns when query or selected-source evidence is missing.
 
-Use the comparison section for the question-by-step result matrix. Facilitators may separately import `NB_Review_And_Score_Data_Agent.ipynb` when the event requires manual logic scoring.
+Use the comparison section for the question-by-step result matrix. Review generated query and selected-source evidence directly in the SDK notebook exports and thread links.
 
 Question `HC007` is time-relative. Its expected answer of 35 assumes the checked-in workshop data is evaluated after 2024-02-29. Treat unpaid invoices as the per-customer sum of Invoice transactions whose `payment_status` is exactly `Unpaid`, then exclude customers with an interaction in the 60 days before the evaluation date.
 

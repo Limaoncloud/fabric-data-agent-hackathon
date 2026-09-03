@@ -10,8 +10,8 @@ class DocumentationContractTests(unittest.TestCase):
     def test_participant_guide_uses_source_specific_controls(self):
         guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
         self.assertIn("Required staged evaluation:", guide)
-        self.assertIn("Optional manual scorecard:", guide)
         self.assertIn("only required participant evaluation notebook", guide)
+        self.assertNotIn("NB_Review_And_Score_Data_Agent.ipynb", guide)
         self.assertIn('SNAPSHOT_NAME = "step1_baseline"', guide)
         self.assertIn('SNAPSHOT_NAME = "step5_routing"', guide)
         self.assertIn("16 prompts", guide)
@@ -52,7 +52,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("### Step 2: Prep For AI And Agent Instructions", guide)
         self.assertIn("### Step 5: Prepared Tables And Multi-Source Routing", guide)
         self.assertIn("NB_Run_SDK_Evaluation.ipynb", guide)
-        self.assertIn("optional facilitator tool", guide)
+        self.assertNotIn("NB_Review_And_Score_Data_Agent.ipynb", guide)
         self.assertIn('SNAPSHOT_NAME = "step2_prep_ai"', guide)
         self.assertIn('SNAPSHOT_NAME = "step3_lakehouse_added"', guide)
         self.assertIn('SNAPSHOT_NAME = "step4_lakehouse_tuned"', guide)

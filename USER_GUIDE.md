@@ -70,7 +70,6 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 | --- | --- |
 | `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the environment (Lakehouse, tables, and semantic model) |
 | `NB_Run_SDK_Evaluation.ipynb` | Required: run the staged SDK evaluations and compare snapshots |
-| `NB_Review_And_Score_Data_Agent.ipynb` | Optional facilitator tool for manual evidence review and deterministic scoring |
 
 Import both the deployment notebook and SDK evaluation notebook into Fabric before the workshop. The SDK notebook is the only evaluation notebook participants are required to run.
 
@@ -137,7 +136,7 @@ The deployable source of truth is [config/domains/uk-legal.json](config/domains/
 - `evaluation/challenge/uk-legal.json`
 - `evaluation/routing/uk-legal.json`
 
-Use `NB_Run_SDK_Evaluation.ipynb` to capture and compare live results after every required step. Facilitators may use `NB_Review_And_Score_Data_Agent.ipynb` when a separate manual score is useful.
+Use `NB_Run_SDK_Evaluation.ipynb` to capture and compare live results after every required step.
 
 ---
 
@@ -587,7 +586,6 @@ After each stage, run all notebook cells and review the snapshot summary, questi
 ### Automated Notebook Options
 
 - **Required staged evaluation:** use `NB_Run_SDK_Evaluation.ipynb` after every stage in the table above.
-- **Optional manual scorecard:** facilitators may use `NB_Review_And_Score_Data_Agent.ipynb` to apply a separate human-reviewed score when the event needs one. Participants do not need it for the standard workflow.
 
 The generated SQL or DAX still requires human review. A correct SDK judgement does not by itself prove that the source, table or measure, filters, and aggregation were appropriate.
 
