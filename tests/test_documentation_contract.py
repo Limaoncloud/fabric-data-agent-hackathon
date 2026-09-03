@@ -135,12 +135,19 @@ class DocumentationContractTests(unittest.TestCase):
 
         root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("## Start Here", root_readme)
-        self.assertIn("The three routing folders are intentionally separate", root_readme)
+        self.assertNotIn("The three routing folders are intentionally separate", root_readme)
 
         self.assertFalse((ROOT / "README_MULTITABLE.md").exists())
         self.assertNotIn("step6_", root_readme)
-        self.assertIn("final Step 5 configuration", root_readme)
-        self.assertIn("## Multi-Table Architecture", root_readme)
+        self.assertNotIn("final Step 5 configuration", root_readme)
+        self.assertNotIn("## Multi-Table Architecture", root_readme)
+        self.assertIn("The three routing folders are intentionally separate", user_guide)
+        self.assertIn("## Multi-Table Architecture", user_guide)
+
+        facilitator_guide = (ROOT / "FACILITATOR_GUIDE.md").read_text(encoding="utf-8")
+        self.assertIn("The three routing folders are intentionally separate", facilitator_guide)
+        self.assertIn("final Step 5 configuration", facilitator_guide)
+        self.assertIn("## Multi-Table Architecture", facilitator_guide)
 
 
 if __name__ == "__main__":

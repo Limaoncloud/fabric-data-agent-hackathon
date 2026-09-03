@@ -107,6 +107,8 @@ Create one Fabric Data Agent with exactly two sources:
 
 This is the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. Step 5 deselects them and selects only the three `routing_*` tables because the semantic model already covers standard business topics.
 
+The three routing folders are intentionally separate: generated routing data, deployable agent configuration, and routing evaluation questions each have a distinct lifecycle.
+
 Lakehouse sources support validated SQL example question/query pairs. Power BI semantic-model sources do not. Configure semantic-model synonyms through Prep for AI, not on Lakehouse tables.
 
 The deployable source of truth is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing configuration is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).

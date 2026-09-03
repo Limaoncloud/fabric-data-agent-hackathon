@@ -11,6 +11,12 @@ Keep this guide separate from participant materials until teams have recorded th
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
+## Multi-Table Architecture
+
+`LegalFirmSemanticModel` serves standard business metrics and the `LegalFirmDemo` Lakehouse serves prepared routing marts. Participants tune one continuously extended Data Agent to select between these complementary sources. The semantic model plus the three derived Lakehouse marts form the final Step 5 configuration.
+
+The three routing folders are intentionally separate: generated routing data, deployable agent configuration, and routing evaluation questions each have a distinct lifecycle.
+
 ## Suggested Demo Flow (15 Minutes)
 
 1. Show baseline quality on raw or cleaned tables.
