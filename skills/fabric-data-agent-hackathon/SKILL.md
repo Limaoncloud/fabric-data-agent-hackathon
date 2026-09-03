@@ -6,9 +6,6 @@ argument-hint: "Describe the target domain and whether Ontology or Data Agent pr
 
 # Fabric Data Agent Hackathon Playbook Skill
 
-Companion quickstart:
-- See SKILL_QUICKSTART_30MIN.md for a fast event setup path.
-
 ## Purpose
 Use this skill to reproduce a complete Microsoft Fabric Data Agent hackathon demo for a Customer 360 scenario, with measurable quality improvements from a cleaned baseline to multi-source routed answers.
 
