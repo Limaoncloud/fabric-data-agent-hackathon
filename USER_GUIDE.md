@@ -167,7 +167,7 @@ Run the prompts above in the agent chat.
 - No AI-specific tuning yet, so business terms and undefined thresholds can still fail
 - This is your semantic-model baseline before Step 2
 
-Before changing any Step 2 controls, run the seven scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
+Before changing any Step 2 controls, run the eight scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
 
 ---
 
@@ -234,6 +234,7 @@ Do not change several controls at once. For each question, capture the baseline,
 | How many legal cases are currently open? | How many open matters are on our books? | Does behavior remain consistent when terminology changes? |
 | How many customers do we have? | What is our total client count? | If this fails, inspect scope and grounding before adding instructions. |
 | Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000. | How many customers have had no interaction in the past 60 days and have more than GBP 10,000 in unpaid invoices? | Does the agent join customers, cases, transactions, and interactions, sum exact-Unpaid invoices per customer, and apply a current-date 60-day exclusion? |
+| What was the firm's client satisfaction score for 2025? | What customer satisfaction rating did the firm achieve in 2025? | Is this metric actually present in any configured source, or should the agent explain that it cannot answer? |
 
 #### Results worksheet
 
@@ -246,6 +247,7 @@ Do not change several controls at once. For each question, capture the baseline,
 | 5 |  |  |  |  |  |  |
 | 6 |  |  |  |  |  |  |
 | 7 |  |  |  |  |  |  |
+| 8 |  |  |  |  |  |  |
 
 Facilitators should use [FACILITATOR_GUIDE.md](FACILITATOR_GUIDE.md) only after teams record their own diagnoses.
 
@@ -373,7 +375,7 @@ WHERE interaction_id = 'INT000001';
 5. Ask all three questions in chat and inspect the generated SQL and answers.
 6. Confirm that each question uses `LegalFirmDemo` and returns the matching detailed record, then continue with the challenge questions without giving participants more SQL solutions.
 
-These questions are deliberately outside the seven-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
+These questions are deliberately outside the eight-question scored challenge. Data Agent example question/query pairs are supported for the Lakehouse source, but not for the `LegalFirmSemanticModel` Power BI semantic-model source.
 
 ### Diagnostic Hints For The Remaining Questions
 
@@ -386,7 +388,7 @@ These questions are deliberately outside the seven-question scored challenge. Da
 - Can you test the hypothesis by changing only one control?
 
 ### Test
-Run the same 7 prompts from Step 3 and compare quality.
+Run the same 8 prompts from Step 3 and compare quality.
 
 Add 3 to 5 complex prompts from the challenge set and compare:
 - consistency of terminology mapping
@@ -555,9 +557,9 @@ Run relationship-heavy prompts:
 
 ## Evaluate Your Agent
 
-Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the seven original questions and seven paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
+Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the eight original questions and eight paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
 
-Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 28-point score. It does not test the live agent by itself.
+Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 32-point score. It does not test the live agent by itself.
 
 ### Evaluation Cadence
 

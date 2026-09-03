@@ -26,10 +26,18 @@ class HackathonChallengeDatasetTests(unittest.TestCase):
         cls.interactions = read_rows("sample-data/uk-legal/base/interactions.csv")
 
     def test_dataset_shape(self):
-        self.assertEqual(7, self.dataset["metadata"]["total_queries"])
-        self.assertEqual(7, len(self.queries))
-        self.assertEqual(7, len({query["question"] for query in self.queries.values()}))
+        self.assertEqual(8, self.dataset["metadata"]["total_queries"])
+        self.assertEqual(8, len(self.queries))
+        self.assertEqual(8, len({query["question"] for query in self.queries.values()}))
         self.assertTrue(all(query.get("paraphrase") for query in self.queries.values()))
+
+    def test_unsupported_question_requires_abstention(self):
+        query = self.queries["HC008"]
+
+        self.assertEqual("unsupported_question", query["category"])
+        self.assertEqual("none", query["expected_source"])
+        self.assertEqual("abstention", query["answer_type"])
+        self.assertIsNone(query["ground_truth_sql"])
 
     def test_ground_truth_matches_current_csvs(self):
         expected = {

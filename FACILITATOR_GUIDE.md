@@ -7,7 +7,7 @@ Keep this guide separate from participant materials until teams have recorded th
 1. Use [USER_GUIDE.md](USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
 2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
 3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
-4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward for reviewed 28-point scoring.
+4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward for reviewed 32-point scoring.
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
@@ -27,7 +27,7 @@ These are reference outcomes, not a script to reveal to participants. Accept a d
 - Source: `LegalFirmSemanticModel` only.
 - Leave Prep for AI instructions, synonyms, Verified Answers, and Data Agent instructions empty.
 - Let participants complete the four exploratory Step 1 prompts.
-- Before changing any Step 2 controls, capture the seven scored questions and their paraphrases as the measured baseline. Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME="baseline"` at this point.
+- Before changing any Step 2 controls, capture the eight scored questions and their paraphrases as the measured baseline. Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME="baseline"` at this point.
 
 ### Step 2: Prep For AI And Agent Instructions
 
@@ -77,7 +77,7 @@ Use this routing principle:
 Prefer LegalFirmSemanticModel for standard business metrics supported by model fields or explicit measures. Use LegalFirmDemo base_* tables for detailed row-level lookups, a field or filter not exposed by the model, or a calculation the model cannot answer. Prefer LegalFirmDemo for exact transaction_id, case_id, or interaction_id record lookups. Do not combine sources unless one source cannot answer the request.
 ```
 
-Use the three non-scored identifier examples in [USER_GUIDE.md](USER_GUIDE.md#worked-example-2-add-lakehouse-sql-example-queries) to teach SQL example queries. Do not provide SQL for the seven scored challenge questions.
+Use the three non-scored identifier examples in [USER_GUIDE.md](USER_GUIDE.md#worked-example-2-add-lakehouse-sql-example-queries) to teach SQL example queries. Do not provide SQL for the eight scored challenge questions.
 
 ### Step 5: Prepared Tables And Multi-Source Routing
 
@@ -138,7 +138,7 @@ In Step 4, demonstrate why detailed identifier lookups should route to the Lakeh
 
 Add a concise Data Agent instruction that prefers `LegalFirmDemo` for detailed lookups by `transaction_id`, `case_id`, or `interaction_id`. Then add, validate, and save the three SQL example pairs from the participant guide under **Example queries** for `LegalFirmDemo`.
 
-Confirm that each prompt routes to the appropriate `base_*` table, filters on the exact identifier, and returns every available column for the matching record. Stop after these examples; do not provide SQL for the seven scored questions.
+Confirm that each prompt routes to the appropriate `base_*` table, filters on the exact identifier, and returns every available column for the matching record. Stop after these examples; do not provide SQL for the eight scored questions.
 
 Do not demonstrate additional fixes or query solutions.
 
@@ -152,6 +152,8 @@ Do not demonstrate additional fixes or query solutions.
 | HC004 | How many invoices remain unpaid? | 54 | Existing measure discoverability |
 | HC005 | How many legal cases are currently open? | 180 | Consistency across terminology |
 | HC006 | How many customers do we have? | 171 | Basic grounding and schema scope |
+| HC007 | Find count of customers with no interactions in the last 60 days but with unpaid invoices over 10000. | 35 | Cross-table and time-relative reasoning |
+| HC008 | What was the firm's client satisfaction score for 2025? | Cannot answer from available data | Safe abstention for an unsupported metric |
 
 Ground truths come from the checked-in Step 1 CSV files. The machine-readable set is `evaluation/challenge/uk-legal.json`.
 
@@ -193,6 +195,8 @@ These are not mandatory solutions. Accept alternatives when teams can explain an
 | HC004 | Improve visibility or description of Outstanding Invoices | Agent selects the existing measure consistently |
 | HC005 | Compare case and matter terminology behavior | Both phrasings return 180 without contradictory assumptions |
 | HC006 | Reduce schema ambiguity before adding instructions | Agent returns 171 from Total Customers |
+| HC007 | Route to the prepared Lakehouse data and verify the grouped threshold and recency exclusion | Agent returns 35 with correct cross-table logic |
+| HC008 | Reinforce that unsupported metrics must not be inferred or fabricated | Both phrasings state that satisfaction data is unavailable and run no source query |
 
 ## Debrief Questions
 
@@ -206,7 +210,7 @@ Ask each team to present:
 
 ## Final Unseen Questions
 
-Use these after the seven-question exercise. Do not provide expected values until teams submit answers.
+Use these after the eight-question exercise. Do not provide expected values until teams submit answers.
 
 - What is our active client population?
 - What is the firm’s entire matter portfolio worth?
@@ -216,6 +220,8 @@ Use these after the seven-question exercise. Do not provide expected values unti
 - What is the total number of clients in the system?
 
 For the seventh scored question, the expected answer is **35** as of the workshop dataset: count customers whose summed Invoice transactions with `payment_status = 'Unpaid'` exceed GBP 10,000 and who have no interaction in the 60 days before evaluation. Inspect the generated logic to confirm the threshold is applied after summing per customer and the recent-interaction test uses the evaluation date.
+
+For the eighth scored question, the correct response is an explicit abstention: the configured data contains no client satisfaction metric or survey results. The agent must not infer a score from interaction counts, notes, or any other proxy. Record the selected source as `none` and retain run-step evidence that no source query was executed.
 
 ## Evaluation
 

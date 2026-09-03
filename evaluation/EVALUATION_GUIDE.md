@@ -5,7 +5,7 @@ The hackathon uses two notebooks with separate responsibilities:
 | Notebook | Responsibility |
 | --- | --- |
 | `NB_Run_SDK_Evaluation.ipynb` | Run prompts against the live Fabric Data Agent and capture raw SDK evidence |
-| `NB_Review_And_Score_Data_Agent.ipynb` | Review answers, sources, paraphrases, and generated query logic; calculate the deterministic 28-point score |
+| `NB_Review_And_Score_Data_Agent.ipynb` | Review answers, sources, paraphrases, and generated query logic; calculate the deterministic 32-point score |
 
 There is no simulation mode or separate CLI evaluator. The checked-in challenge JSON is the source of truth for questions and expected answers.
 
@@ -28,7 +28,7 @@ After tuning the same Data Agent:
 2. Keep the agent, dataset, stage, and paraphrase setting unchanged.
 3. Run all cells again and retain the final JSON and official-details CSV.
 
-For the optional Step 5 routing extension, run the notebook separately with `DATASET_NAME = "routing"`. Do not merge those results into the seven-question score.
+For the optional Step 5 routing extension, run the notebook separately with `DATASET_NAME = "routing"`. Do not merge those results into the eight-question score.
 
 ## 3. Review And Score
 
@@ -46,9 +46,11 @@ Each question is worth four points in each phase:
 - Correct paraphrase answer.
 - Correct reviewed query or measure logic with evidence.
 
-The maximum is 28 points for the baseline and 28 points for the final snapshot.
+The maximum is 32 points for the baseline and 32 points for the final snapshot.
 
 Question `HC007` is time-relative. Its expected answer of 35 assumes the checked-in workshop data is evaluated after 2024-02-29. Treat unpaid invoices as the per-customer sum of Invoice transactions whose `payment_status` is exactly `Unpaid`, then exclude customers with an interaction in the 60 days before the evaluation date.
+
+Question `HC008` is intentionally unsupported. Award answer and consistency points only when the agent explicitly says client satisfaction data is unavailable and does not invent a score or use interactions as a proxy. Record the selected source as `none`; copied run-step evidence showing that no source query was executed satisfies the evidence requirement.
 
 ## Evidence Rules
 
