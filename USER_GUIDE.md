@@ -69,10 +69,9 @@ See [deployment/README.md](deployment/README.md) for parameters and custom-domai
 | Notebook | Use it for |
 | --- | --- |
 | `NB_Deploy_Data_Agent_Hackathon.ipynb` | Create or reset the environment (Lakehouse, tables, and semantic model) |
-| `NB_Run_SDK_Evaluation.ipynb` | Run measured baseline/final tests against the live Data Agent |
-| `NB_Review_And_Score_Data_Agent.ipynb` | Enter reviewed evidence and calculate the deterministic 24-point score |
+| `NB_Run_SDK_Evaluation.ipynb` | Required: run the staged SDK evaluations and compare snapshots |
 
-The two evaluation notebooks form the complete evaluation workflow: the first captures evidence, and the second reviews and scores it.
+Import both the deployment notebook and SDK evaluation notebook into Fabric before the workshop. The SDK notebook is the only evaluation notebook participants are required to run.
 
 ### Multi-Table Architecture
 
@@ -107,6 +106,8 @@ Create one Fabric Data Agent with exactly two sources:
 
 This is the final Step 5 configuration. Steps 3-4 temporarily select the five `base_*` Lakehouse tables to teach detailed lookup and source tuning. Step 5 deselects them and selects only the three `routing_*` tables because the semantic model already covers standard business topics.
 
+The three routing folders are intentionally separate: generated routing data, deployable agent configuration, and routing evaluation questions each have a distinct lifecycle.
+
 Lakehouse sources support validated SQL example question/query pairs. Power BI semantic-model sources do not. Configure semantic-model synonyms through Prep for AI, not on Lakehouse tables.
 
 The deployable source of truth is [config/domains/uk-legal.json](config/domains/uk-legal.json). The human-readable routing configuration is [agent-configuration/routing/uk-legal/data-agent-configuration.json](agent-configuration/routing/uk-legal/data-agent-configuration.json).
@@ -135,7 +136,7 @@ The deployable source of truth is [config/domains/uk-legal.json](config/domains/
 - `evaluation/challenge/uk-legal.json`
 - `evaluation/routing/uk-legal.json`
 
-Use `NB_Run_SDK_Evaluation.ipynb` to capture live results and `NB_Review_And_Score_Data_Agent.ipynb` to review evidence and calculate the scorecard.
+Use `NB_Run_SDK_Evaluation.ipynb` to capture and compare live results after every required step.
 
 ---
 
@@ -167,7 +168,7 @@ Run the prompts above in the agent chat.
 - No AI-specific tuning yet, so business terms and undefined thresholds can still fail
 - This is your semantic-model baseline before Step 2
 
-Before changing any Step 2 controls, run the eight scored questions and paraphrases in Step 2's **Your questions** table. Record those results as the measured baseline. Facilitators can also capture the live baseline with `NB_Run_SDK_Evaluation.ipynb` and `SNAPSHOT_NAME="baseline"`.
+Before changing any Step 2 controls, run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME = "step1_baseline"`. This captures the same eight challenge questions and eight paraphrases used by every later challenge snapshot.
 
 ---
 
@@ -260,6 +261,8 @@ Run the same prompt set from Step 1 and compare.
 - More accurate and repeatable answers
 - Evidence showing which specific changes affected behavior
 
+Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME = "step2_prep_ai"` before continuing to Step 3.
+
 ### Two Questions That Will Still Stumble
 Ask these once your AI configuration is otherwise stable:
 - "Which customers are in the low engagement segment?"
@@ -304,6 +307,8 @@ Also test these advanced prompts:
 - The agent now has two sources covering similar ground
 - Without a Lakehouse description or examples, expect it to sometimes pick the wrong source, hesitate, or duplicate logic the semantic model already answers correctly
 - This is your two-source baseline before you apply Lakehouse best practices in Step 4
+
+Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME = "step3_lakehouse_added"` before tuning the Lakehouse source.
 
 ---
 
@@ -402,6 +407,8 @@ Use the facilitator-provided evaluation results only after recording your own an
 - Better consistency between the two sources
 - The agent reliably prefers `LegalFirmSemanticModel` for standard questions
 - Clearer and more repeatable answers
+
+Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME = "step4_lakehouse_tuned"` before adding the routing marts.
 
 ---
 
@@ -502,6 +509,8 @@ Use this table to check whether your configuration routes each question to the i
 - Engagement, case-finance, risk, and performance-tier questions route to the selected `routing_*` Lakehouse tables.
 - Participants can explain which source was selected and which configuration influenced the routing decision.
 
+Run `NB_Run_SDK_Evaluation.ipynb` twice: first with `SNAPSHOT_NAME = "step5_final"` for the standard challenge, then with `SNAPSHOT_NAME = "step5_routing"` for the separate routing dataset.
+
 ---
 
 ## Step 6 (Bonus): Add Ontology Data, Retest
@@ -557,35 +566,28 @@ Run relationship-heavy prompts:
 
 ## Evaluate Your Agent
 
-Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) to test the live Data Agent automatically. It sends the eight original questions and eight paraphrases to the agent, records the answers, and writes the SDK evaluation results to the default Lakehouse.
-
-Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward to record reviewed baseline/final observations and calculate the deterministic 32-point score. It does not test the live agent by itself.
+Import both [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) and [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) into the Fabric workspace. The SDK notebook is the main and only required participant evaluation notebook. It records all standard SDK detail columns, attempts to add generated-query and source evidence from companion run steps, and compares completed snapshots.
 
 ### Evaluation Cadence
 
-1. Before making any Step 2 changes, run the full SDK evaluation with `SNAPSHOT_NAME="baseline"`.
-2. During Steps 2–5, retest only the affected question and its paraphrase manually in the Data Agent chat after each individual change. Record the answer, selected source, and generated SQL/DAX.
-3. After completing Step 5, run the full SDK evaluation again with `SNAPSHOT_NAME="final"`.
+| When | Dataset | `SNAPSHOT_NAME` |
+| --- | --- | --- |
+| Initial agent, before Step 2 changes | `challenge` | `step1_baseline` |
+| Prep for AI configured | `challenge` | `step2_prep_ai` |
+| Lakehouse attached, before tuning | `challenge` | `step3_lakehouse_added` |
+| Lakehouse tuned | `challenge` | `step4_lakehouse_tuned` |
+| Final standard evaluation | `challenge` | `step5_final` |
+| Routing marts evaluation | `routing` | `step5_routing` |
 
-Keep the same Data Agent, challenge dataset, Data Agent stage, and paraphrase setting for both official snapshots. Intermediate automated runs are optional and are not compared automatically by the baseline/final scorecard. Do not reuse `baseline` for a later run.
+Change only `SNAPSHOT_NAME`; the notebook selects the dataset and paraphrase behavior. Every challenge snapshot uses the same eight questions and eight paraphrases, for 16 prompts. The routing JSON stays separate and runs three prompts without paraphrases.
 
-1. Import `NB_Run_SDK_Evaluation.ipynb` into the Fabric workspace and attach the target Lakehouse as the default.
-2. Run it once for the baseline and again after your changes for the final test.
-3. Review the recorded answers and the Fabric item selected as the source.
-4. Expand the run steps and inspect the generated SQL or DAX. Mark the logic `True` only when the table or measure, filters, and aggregation are correct.
-5. Enter those observations in section 3 of `NB_Review_And_Score_Data_Agent.ipynb`.
-6. Run all cells. Fix any actionable validation errors.
-7. Review the per-question scorecard and the baseline and final totals out of 28.
-8. Submit the exported CSV and JSON together with screenshots or copied query evidence.
+After each stage, run all notebook cells and review the snapshot summary, question-level evidence, and comparison matrix. Generated SQL or DAX comes from companion run-step evidence and may not be available for every SDK row; the notebook warns when it is missing. Step 6 ontology remains an optional qualitative exercise because there is no separate ontology question dataset.
 
 ### Automated Notebook Options
 
-- **Live agent test:** use `NB_Run_SDK_Evaluation.ipynb` twice to capture independent `baseline` and `final` SDK snapshots. Keep `INCLUDE_PARAPHRASES=True` to run all 14 original and paraphrased prompts and retain raw official-detail CSV evidence.
-- **Reviewed scorecard:** use `NB_Review_And_Score_Data_Agent.ipynb` for validated participant entry, deterministic baseline/final scoring out of 28, regression checks, and CSV/JSON artifact validation.
+- **Required staged evaluation:** use `NB_Run_SDK_Evaluation.ipynb` after every stage in the table above.
 
-The generated SQL or DAX still requires a human logic review. Automation must not mark logic `True` merely because an answer matches; verify the table or measure, filters, and aggregation first.
-
-The notebook performs deterministic scoring from participant-entered observations; it does not call the live Data Agent API. Facilitators can use the SDK workflow in [evaluation/EVALUATION_GUIDE.md](evaluation/EVALUATION_GUIDE.md) for independent automated runs after the event.
+The generated SQL or DAX still requires human review. A correct SDK judgement does not by itself prove that the source, table or measure, filters, and aggregation were appropriate.
 
 ---
 

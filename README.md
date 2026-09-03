@@ -18,7 +18,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 
 ## Who This Is For
 
-- Hackathon organizers who need a repeatable Fabric Data Agent demo
+- Hackathon organizers who need a repeatable Fabric Data Agent POC
 - Solution architects demonstrating semantic model and routing impact
 - Teams learning how to productionize agent quality step by step
 
@@ -29,7 +29,7 @@ Default example domain is UK legal Customer 360, and the package can be adapted 
 - Routing configuration and derived-routing data generator
 - Evaluation harness and sample prompt dataset
 - End-user and deployment documentation
-- JSON-free Copilot workflow for future industry reuse
+- Copilot workflow for future industry reuse
 
 ## Start Here
 

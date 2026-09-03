@@ -1,24 +1,9 @@
 import json
-import os
-import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REVIEW_NOTEBOOK = ROOT / "NB_Review_And_Score_Data_Agent.ipynb"
 SDK_NOTEBOOK = ROOT / "NB_Run_SDK_Evaluation.ipynb"
-CHALLENGE_PATH = ROOT / "evaluation" / "challenge" / "uk-legal.json"
-
-
-class FakeResponse:
-    def __init__(self, payload):
-        self.payload = payload
-
-    def raise_for_status(self):
-        return None
-
-    def json(self):
-        return self.payload
 
 
 class NotebookContractMixin:
@@ -27,6 +12,7 @@ class NotebookContractMixin:
         self.assertEqual(4, notebook["nbformat"])
         identifiers = [cell["id"] for cell in notebook["cells"]]
         self.assertEqual(len(identifiers), len(set(identifiers)))
+        self.assertEqual("python", notebook["metadata"]["language_info"]["name"])
         for number, cell in enumerate(notebook["cells"], start=1):
             self.assertIn(cell["cell_type"], {"code", "markdown"})
             if cell["cell_type"] == "code":
@@ -34,88 +20,10 @@ class NotebookContractMixin:
         return notebook
 
 
-class ReviewScorecardNotebookTests(NotebookContractMixin, unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.notebook = json.loads(REVIEW_NOTEBOOK.read_text(encoding="utf-8"))
-        cls.challenge = json.loads(CHALLENGE_PATH.read_text(encoding="utf-8"))
-        cls.code = [
-            "".join(cell["source"])
-            for cell in cls.notebook["cells"]
-            if cell["cell_type"] == "code"
-        ]
-
-    def test_notebook_structure_and_compilation(self):
-        self.assert_notebook_contract(REVIEW_NOTEBOOK)
-        self.assertEqual(9, len(self.code))
-        self.assertIn('Example: OBSERVATIONS[0]["baseline"].update', self.code[2])
-        self.assertIn('Example: OBSERVATIONS[0]["final"].update', self.code[2])
-        source = "\n".join(self.code)
-        self.assertIn("evaluation/challenge/uk-legal.json", source)
-        self.assertNotIn("RUN_SDK_AUTOMATION", source)
-
-    def execute_notebook(self, populate=False):
-        namespace = {"display": lambda *args, **kwargs: None}
-        previous_directory = Path.cwd()
-        with tempfile.TemporaryDirectory() as temporary_directory:
-            try:
-                os.chdir(temporary_directory)
-                for index, source in enumerate(self.code):
-                    exec(source, namespace)
-                    if index == 0:
-                        namespace["requests"].get = lambda *args, **kwargs: FakeResponse(
-                            self.challenge
-                        )
-                    if populate and index == 2:
-                        for observation in namespace["OBSERVATIONS"]:
-                            expected = namespace["challenge_by_id"][observation["id"]]
-                            for phase_name in ("baseline", "final"):
-                                phase = observation[phase_name]
-                                phase.update(
-                                    {
-                                        "original_answer": expected["expected_answer"],
-                                        "paraphrase_answer": expected["expected_answer"],
-                                        "selected_source": expected["expected_source"],
-                                        "query_evidence": "EVALUATE copied evidence",
-                                        "logic_correct": True,
-                                    }
-                                )
-                exported_report = json.loads(namespace["JSON_PATH"].read_text(encoding="utf-8"))
-                return namespace, exported_report
-            finally:
-                os.chdir(previous_directory)
-
-    def test_blank_inputs_produce_actionable_report(self):
-        namespace, report = self.execute_notebook(populate=False)
-        self.assertEqual(80, len(namespace["validation_issues"]))
-        self.assertEqual(0.0, namespace["baseline_total"])
-        self.assertEqual(0.0, namespace["final_total"])
-        self.assertEqual(0.0, report["summary"]["final_score"])
-
-    def test_complete_inputs_score_and_export_32(self):
-        namespace, report = self.execute_notebook(populate=True)
-        self.assertEqual([], namespace["validation_issues"])
-        self.assertEqual(32.0, namespace["baseline_total"])
-        self.assertEqual(32.0, namespace["final_total"])
-        self.assertEqual(8, len(namespace["scorecard_df"]))
-        self.assertEqual(32.0, report["summary"]["baseline_score"])
-        self.assertEqual(32.0, report["summary"]["final_score"])
-        self.assertTrue(
-            namespace["answer_matches"](
-                "I cannot determine the 2025 score because client satisfaction data is not available.",
-                "",
-                "abstention",
-            )
-        )
-        self.assertFalse(
-            namespace["answer_matches"]("The client satisfaction score was 95.", "", "abstention")
-        )
-        for check, complete in namespace["artifact_checks"].items():
-            if check != "Screenshots or copied run-step evidence attached":
-                self.assertTrue(complete, check)
-
-
 class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
+    def test_review_notebook_is_removed(self):
+        self.assertFalse((ROOT / "NB_Review_And_Score_Data_Agent.ipynb").exists())
+
     def test_snapshot_notebook_contract(self):
         notebook = self.assert_notebook_contract(SDK_NOTEBOOK)
         code = [
@@ -124,12 +32,13 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
             if cell["cell_type"] == "code"
         ]
         source = "\n".join(code)
-        self.assertIn("fabric-data-agent-sdk>=0.1.30a0", code[0])
+        self.assertIn("fabric-data-agent-sdk==0.1.30a0", code[0])
         self.assertIn("typing_extensions>=4.12.2", code[0])
         self.assertIn("PyJWT>=2.6.0", code[0])
         self.assertIn("notebookutils.session.restartPython()", code[0])
         self.assertIn('import_module("fabric.dataagent.evaluation")', code[1])
         self.assertIn('import_module("fabric.dataagent._fabric_runtime")', code[1])
+        self.assertIn('import_module("fabric.dataagent.evaluation._storage")', code[1])
         self.assertIn('fabric_context.get("trident.lakehouse.id")', code[1])
         self.assertIn('fabric_context.get("fs.defaultFS")', code[1])
         self.assertIn('WORKSPACE_NAME = "Hackathon"', code[1])
@@ -139,6 +48,8 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
         self.assertIn("fabric_evaluation.evaluate_data_agent", code[3])
         self.assertIn("fabric_evaluation.get_evaluation_summary", code[3])
         self.assertIn("fabric_evaluation.get_evaluation_details", code[3])
+        self.assertIn('item.get("sdk_expected_answer", item["ground_truth_answer"])', code[2])
+        self.assertIn('"expected_answer": [item["sdk_expected_answer"]', code[3])
         self.assertNotIn("DataAgentEvaluator", source)
         self.assertNotIn("evaluate_agent.py", source)
         markdown = "\n".join(
@@ -150,9 +61,29 @@ class SdkSnapshotNotebookTests(NotebookContractMixin, unittest.TestCase):
         self.assertIn("LegalFirmDemo", markdown)
         self.assertIn("TABLE_NAME", markdown)
         self.assertIn("you do not create it manually", markdown)
-        self.assertIn('SNAPSHOT_NAME = "final"', source)
-        self.assertIn("INCLUDE_PARAPHRASES = True", source)
+        self.assertIn('SNAPSHOT_NAME = "step1_baseline"', source)
+        for snapshot_name in (
+            "step1_baseline",
+            "step2_prep_ai",
+            "step3_lakehouse_added",
+            "step4_lakehouse_tuned",
+            "step5_final",
+            "step5_routing",
+        ):
+            self.assertIn(f'"{snapshot_name}"', source)
+        self.assertIn('INCLUDE_PARAPHRASES = DATASET_NAME == "challenge"', source)
         self.assertIn('"id": f"{item[\'id\']}-P"', source)
+        self.assertIn('evaluation_storage._get_data(f"{TABLE_NAME}_steps")', source)
+        self.assertIn('"official_details":', source)
+        self.assertIn('"official_steps":', source)
+        self.assertIn('"snapshot_name"', source)
+        self.assertIn('"selected_source"', source)
+        self.assertIn('"query_type"', source)
+        self.assertIn('"generated_query"', source)
+        self.assertIn('"thread_link"', source)
+        self.assertIn("WARNING: SQL/DAX/KQL was unavailable", source)
+        self.assertIn("Question-by-step SDK judgement", source)
+        self.assertIn("judgement_matrix_df", source)
 
 
 if __name__ == "__main__":

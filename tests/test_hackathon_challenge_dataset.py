@@ -27,6 +27,8 @@ class HackathonChallengeDatasetTests(unittest.TestCase):
 
     def test_dataset_shape(self):
         self.assertEqual(8, self.dataset["metadata"]["total_queries"])
+        for query in self.dataset["evaluation_queries"]:
+            self.assertTrue(query["sdk_expected_answer"].strip(), query["id"])
         self.assertEqual(8, len(self.queries))
         self.assertEqual(8, len({query["question"] for query in self.queries.values()}))
         self.assertTrue(all(query.get("paraphrase") for query in self.queries.values()))

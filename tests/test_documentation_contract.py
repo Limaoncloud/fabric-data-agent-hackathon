@@ -9,9 +9,13 @@ ROOT = Path(__file__).resolve().parents[1]
 class DocumentationContractTests(unittest.TestCase):
     def test_participant_guide_uses_source_specific_controls(self):
         guide = (ROOT / "USER_GUIDE.md").read_text(encoding="utf-8")
-        self.assertIn("Live agent test:", guide)
-        self.assertIn("Reviewed scorecard:", guide)
-        self.assertIn("It does not test the live agent by itself.", guide)
+        self.assertIn("Required staged evaluation:", guide)
+        self.assertIn("only required participant evaluation notebook", guide)
+        self.assertNotIn("NB_Review_And_Score_Data_Agent.ipynb", guide)
+        self.assertIn('SNAPSHOT_NAME = "step1_baseline"', guide)
+        self.assertIn('SNAPSHOT_NAME = "step5_routing"', guide)
+        self.assertIn("16 prompts", guide)
+        self.assertIn("Step 6 ontology remains an optional qualitative exercise", guide)
         self.assertIn("Lakehouse tables do not have the semantic-model synonym editor", guide)
         self.assertIn("Data agent instructions", guide)
         self.assertIn("add `matter` and `matters` as synonyms for the `Cases` table", guide)
@@ -48,6 +52,12 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("### Step 2: Prep For AI And Agent Instructions", guide)
         self.assertIn("### Step 5: Prepared Tables And Multi-Source Routing", guide)
         self.assertIn("NB_Run_SDK_Evaluation.ipynb", guide)
+        self.assertNotIn("NB_Review_And_Score_Data_Agent.ipynb", guide)
+        self.assertIn('SNAPSHOT_NAME = "step2_prep_ai"', guide)
+        self.assertIn('SNAPSHOT_NAME = "step3_lakehouse_added"', guide)
+        self.assertIn('SNAPSHOT_NAME = "step4_lakehouse_tuned"', guide)
+        self.assertIn('SNAPSHOT_NAME = "step5_final"', guide)
+        self.assertIn('SNAPSHOT_NAME = "step5_routing"', guide)
         self.assertIn("## Controls By Source Type", guide)
         self.assertIn("Do not tell participants to add synonyms to Lakehouse tables", guide)
         self.assertIn("not Power BI semantic-model sources", guide)
@@ -85,10 +95,16 @@ class DocumentationContractTests(unittest.TestCase):
             "less than one hour of CSA time",
             "Generate Hackathon Domain",
             "Copy-Paste Example: Water Utilities",
+            "Step 1: Ask Copilot To Recreate It For Your Industry",
+            "Step 2: Or Start With A Short Brief",
             "guides/<domain>/USER_GUIDE.md",
             "guides/<domain>/FACILITATOR_GUIDE.md",
             "six scored challenge questions and three routing questions",
             "expected answers calculated from the generated CSVs",
+            "accuracy percentage",
+            "exact Prep for AI settings",
+            "Verified Answers setup",
+            "question-by-step comparison",
             'DOMAIN_PROFILE = "water-utilities"',
         ):
             self.assertIn(expected, guide)
@@ -125,12 +141,19 @@ class DocumentationContractTests(unittest.TestCase):
 
         root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("## Start Here", root_readme)
-        self.assertIn("The three routing folders are intentionally separate", root_readme)
+        self.assertNotIn("The three routing folders are intentionally separate", root_readme)
 
         self.assertFalse((ROOT / "README_MULTITABLE.md").exists())
         self.assertNotIn("step6_", root_readme)
-        self.assertIn("final Step 5 configuration", root_readme)
-        self.assertIn("## Multi-Table Architecture", root_readme)
+        self.assertNotIn("final Step 5 configuration", root_readme)
+        self.assertNotIn("## Multi-Table Architecture", root_readme)
+        self.assertIn("The three routing folders are intentionally separate", user_guide)
+        self.assertIn("## Multi-Table Architecture", user_guide)
+
+        facilitator_guide = (ROOT / "FACILITATOR_GUIDE.md").read_text(encoding="utf-8")
+        self.assertIn("The three routing folders are intentionally separate", facilitator_guide)
+        self.assertIn("final Step 5 configuration", facilitator_guide)
+        self.assertIn("## Multi-Table Architecture", facilitator_guide)
 
 
 if __name__ == "__main__":
