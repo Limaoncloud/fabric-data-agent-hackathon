@@ -5,7 +5,7 @@ argument-hint: "Describe the industry, audience, scenario, and important KPIs in
 agent: "agent"
 ---
 
-Use [the Fabric Data Agent Hackathon skill](../../skills/fabric-data-agent-hackathon/SKILL.md).
+Follow [the JSON-free reuse workflow](../../REUSE_FOR_NEW_INDUSTRY.md) and adapt the existing UK legal implementation as a structural reference. Do not perform vocabulary-only replacement; model the new industry's actual grains, relationships, terminology, KPIs, routing needs, and safety boundaries.
 
 The user is a CSA. Give them a JSON-free experience: never ask them to create, open, or edit JSON. Accept an initial plain-English description such as:
 
@@ -49,6 +49,13 @@ Generate and validate all of these outputs:
 7. Focused tests for schemas, CSV headers, foreign keys, deterministic generation, expected answers, guide links, and package completeness.
 
 Keep shared deployment notebooks and Python deployment code unchanged unless the generated package exposes a real compatibility defect. Do not overwrite another domain package. Do not deploy to Fabric.
+
+Preserve the learning controls in the generated guides and configuration:
+
+- Leave Data Agent instructions and example queries empty for the first baseline run.
+- For Lakehouse sources, use source descriptions, Data Agent instructions, and validated SQL examples; do not describe this as adding table synonyms.
+- Prefer the semantic model for governed business measures and prepared Lakehouse tables for specialist routing questions.
+- Keep expected answers deterministic and calculate them from the generated data rather than inventing them.
 
 ## One-Hour Constraint
 

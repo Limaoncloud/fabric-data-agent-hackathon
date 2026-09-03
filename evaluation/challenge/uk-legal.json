@@ -1,10 +1,10 @@
 {
   "metadata": {
     "name": "UK Legal Data Agent Hackathon Challenge",
-    "version": "1.0",
-    "description": "Focused seven-question evaluation set for the participant diagnose-change-retest exercise.",
+    "version": "1.1",
+    "description": "Focused eight-question evaluation set for the participant diagnose-change-retest exercise, including one question that requires abstention.",
     "source_data_version": "step1 CSV files committed on 2026-08-26",
-    "total_queries": 7
+    "total_queries": 8
   },
   "evaluation_queries": [
     {
@@ -100,6 +100,20 @@
       "tests_routing": true,
       "tests_measure_selection": false,
       "notes": "Unpaid invoices means the per-customer sum of Invoice transactions whose payment_status is exactly Unpaid. The 60-day window is relative to the evaluation date. The checked-in interactions end on 2023-12-31, so the expected count is 35 for evaluations run after 2024-02-29."
+    },
+    {
+      "id": "HC008",
+      "question": "What was the firm's client satisfaction score for 2025?",
+      "paraphrase": "What customer satisfaction rating did the firm achieve in 2025?",
+      "category": "unsupported_question",
+      "expected_source": "none",
+      "ground_truth_answer": "Cannot answer from the available data because no client satisfaction metric or survey data is provided.",
+      "answer_type": "abstention",
+      "ground_truth_sql": null,
+      "difficulty": "hard",
+      "tests_routing": true,
+      "tests_measure_selection": false,
+      "notes": "The correct behavior is to state that the configured sources do not contain client satisfaction data. Do not infer a score from interactions or any other proxy, and do not fabricate a value."
     }
   ]
 }
