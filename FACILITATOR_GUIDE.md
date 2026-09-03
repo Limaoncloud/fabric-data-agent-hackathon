@@ -6,8 +6,8 @@ Keep this guide separate from participant materials until teams have recorded th
 
 1. Use [USER_GUIDE.md](USER_GUIDE.md) as the participant-facing workshop flow. Participants should test, diagnose, change one control, and retest.
 2. Use this guide privately for expected answers, solution checkpoints, escalating hints, and debrief prompts.
-3. Use [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) to create or reset the environment.
-4. Use [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) for live baseline/final agent tests. Use [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) afterward for reviewed 32-point scoring.
+3. Import both [NB_Deploy_Data_Agent_Hackathon.ipynb](NB_Deploy_Data_Agent_Hackathon.ipynb) and [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) into Fabric. Use the first to create or reset the environment and the second after every required workshop stage.
+4. Keep [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb) only as an optional facilitator tool when manual evidence scoring is needed; it is not part of the participant workflow.
 
 The deployment notebook creates `LegalFirmDemo` and `LegalFirmSemanticModel`. Participants create and improve one `LegalFirmAgent`; they do not create a new agent at each step.
 
@@ -27,7 +27,7 @@ These are reference outcomes, not a script to reveal to participants. Accept a d
 - Source: `LegalFirmSemanticModel` only.
 - Leave Prep for AI instructions, synonyms, Verified Answers, and Data Agent instructions empty.
 - Let participants complete the four exploratory Step 1 prompts.
-- Before changing any Step 2 controls, capture the eight scored questions and their paraphrases as the measured baseline. Run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME="baseline"` at this point.
+- Before changing any Step 2 controls, run `NB_Run_SDK_Evaluation.ipynb` with `SNAPSHOT_NAME = "step1_baseline"` to capture all 16 challenge prompts.
 
 ### Step 2: Prep For AI And Agent Instructions
 
@@ -235,10 +235,11 @@ Score each response on:
 
 Use the live SDK notebook for measured accuracy:
 
-1. Attach `LegalFirmDemo` as the notebook's default Lakehouse.
-2. Run [NB_Run_SDK_Evaluation.ipynb](NB_Run_SDK_Evaluation.ipynb) with `SNAPSHOT_NAME="baseline"` before Step 2 tuning.
-3. During Steps 2–5, have participants manually retest only the affected question and its paraphrase after each individual change. They should record the answer, selected source, and generated SQL/DAX.
-4. Run the full SDK evaluation with `SNAPSHOT_NAME="final"` after Step 5.
-5. Review source and query evidence before entering observations in [NB_Review_And_Score_Data_Agent.ipynb](NB_Review_And_Score_Data_Agent.ipynb).
+1. Import the deployment and SDK evaluation notebooks, then attach `LegalFirmDemo` to the evaluation notebook as its default Lakehouse.
+2. Run with `SNAPSHOT_NAME = "step1_baseline"` for the initial agent.
+3. Run with `SNAPSHOT_NAME = "step2_prep_ai"` after Prep for AI and agent instructions are configured.
+4. Run with `SNAPSHOT_NAME = "step3_lakehouse_added"` immediately after attaching the Lakehouse and before tuning it.
+5. Run with `SNAPSHOT_NAME = "step4_lakehouse_tuned"` after Lakehouse source tuning.
+6. Run with `SNAPSHOT_NAME = "step5_final"` for the final standard challenge, then `SNAPSHOT_NAME = "step5_routing"` for the separate routing marts dataset.
 
-Use the same Data Agent, challenge dataset, Data Agent stage, and paraphrase setting for both official snapshots. Intermediate automated runs are optional and are not included automatically in the baseline/final scorecard.
+The notebook maps each snapshot to the correct dataset. Keep the agent, stage, and challenge questions unchanged across challenge snapshots. Review its question-by-step comparison and missing-evidence warnings. Step 6 ontology is qualitative unless a separate ontology dataset is introduced. The manual review notebook remains optional for facilitator scoring.
